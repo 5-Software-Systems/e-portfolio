@@ -2,7 +2,7 @@
 
 ### IT Project - Semester 1 - 2020: ePortfolio
 
-##### Marcus Litterick, Nathan Doolan, Fraser Langton, Fabrice Wong Kwok, Calvin Sagar
+#### Marcus Litterick, Nathan Doolan, Fraser Langton, Fabrice Wong Kwok, Calvin Sagar
 
 The project for COMP30022 is to develop a personal ePortfolio system. The ePortfolio system must be capable of allowing you to submit individual guest lecture reports and end-of-subject individual reflections that are requirements in COMP30022, as well as a team report. You will be assigned a client in addition, specifically a Masters student (or group of Masters students) studying SWEN90016. The Masters students will be assigned in Week 3 of the semester.
 
