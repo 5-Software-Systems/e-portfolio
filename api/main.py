@@ -9,7 +9,6 @@ app = Flask(
 
 @app.route('/')
 def index():
-    print(app.template_folder)
     return render_template('index.html', token='Hello World')
 
 
