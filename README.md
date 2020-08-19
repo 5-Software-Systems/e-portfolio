@@ -12,5 +12,12 @@ The ePortfolio system must be capable of allowing you to submit individual guest
 and end-of-subject individual reflections that are requirements in COMP30022, as well as a team report.
 You will be assigned a client in addition, specifically a Masters student (or group of Masters students) studying SWEN90016.
 The Masters students will be assigned in Week 3 of the semester.
+  
+<h3>Running The Server</h3>
+<h4>Locally</h4>
+1. npm run build
+1. cd into flask-server folder
+2. run python3 main.py
+3. Go to http://localhost:5000/
 </body>
 </html>
