@@ -16,9 +16,9 @@ The Masters students will be assigned in Week 3 of the semester.
 <h3>Running The Server</h3>
 <h4>Locally</h4>
 <ol>
-  <li>npm run build</li>
-  <li>cd into flask-server folder</li>
-  <li>run python3 main.py</li>
+  <li>cd into eportfolio-app and use <i>npm run build</i></li>
+  <li><i>cd</i> into flask-server folder</li>
+  <li>run <i>python3 main.py</i></li>
   <li>Go to http://localhost:5000/</li>
 </ol>
 </body>
