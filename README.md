@@ -41,7 +41,9 @@ API (back-end) \
 `
 
 APP (front-end) \
-`npm --prefix app run start
+`cd app
+`\
+`npm run start
 `
 ##### Build
 
