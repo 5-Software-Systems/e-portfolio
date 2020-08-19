@@ -15,9 +15,11 @@ The Masters students will be assigned in Week 3 of the semester.
   
 <h3>Running The Server</h3>
 <h4>Locally</h4>
-1. npm run build
-1. cd into flask-server folder
-2. run python3 main.py
-3. Go to http://localhost:5000/
+<ol>
+  <li>npm run build</li>
+  <li>cd into flask-server folder</li>
+  <li>run python3 main.py</li>
+  <li>Go to http://localhost:5000/</li>
+</ol>
 </body>
 </html>
