@@ -66,7 +66,7 @@ Check you have Python by typing `python` in CMD, if not, get [Python](https://ww
 ##### Development
 
 API (back-end) \
-`venv\Scripts\python api\main.py
+`venv\Scripts\python main.py
 `
 
 APP (front-end) \
@@ -78,7 +78,7 @@ APP (front-end) \
 
 `npm --prefix app run build
 `\
-`venv\Scripts\python api\main.py
+`venv\Scripts\python main.py
 `
 
 ### Deploying
