@@ -1,20 +1,15 @@
-from flask import Flask, render_template, jsonify
+from flask import render_template
 
-app = Flask(
-    import_name='__main__',
-    static_folder='../app/build/static',
-    template_folder='../app/build'
-)
+from api.main import create_api
+from api import blueprint
+
+app = create_api()
+app.register_blueprint(blueprint, url_prefix='/api')
 
 
 @app.route('/')
 def index():
     return render_template('index.html', token='Hello World')
-
-
-@app.route('/test')
-def test():
-    return jsonify({"test": "this is a test"})
 
 
 if __name__ == '__main__':
