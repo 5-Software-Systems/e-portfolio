@@ -48,13 +48,13 @@ Now push the feature branch to the remote.
 ___
 
 ### Installation
-Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
+Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmjs.com/get-npm) \
 `cd app
 `\
 `npm install
 ` 
 
-Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmjs.com/get-npm) \
+Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
 `cd ..` _(return to parent dir)_\
 `python -m venv venv
 `\
