@@ -1,6 +1,0 @@
-.idea/
-app/node_modules/
-pip
-/venv/
-*.pyc
-*.DS_Store

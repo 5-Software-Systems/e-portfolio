@@ -33,3 +33,5 @@ class AuthDto:
         name='bearer_auth_token',
         model=dict({bearer_auth_token})
     )
+    auth_token = api.parser()
+    auth_token.add_argument('Authorization', type=str, location='headers')
