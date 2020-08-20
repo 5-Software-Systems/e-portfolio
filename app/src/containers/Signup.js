@@ -1,3 +1,5 @@
+/** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
+
 import React, { useState, useEffect } from "react";
 import {
     FormGroup,
