@@ -1,0 +1,36 @@
+.Signup {
+    max-width: fit-content;
+    padding: 20px;
+    border:2px solid black;
+    margin: auto;
+    background-color: azure;
+}
+
+.form-label {
+    display:block
+}
+
+.form-control {
+    color: rgb(0, 0, 0);
+    width: 100%;
+    padding: 0 6px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: aliceblue;
+}
+
+.form-group {
+    color: rgb(0, 0, 0);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: whitesmoke;
+    border: black;
+    color: black;
+    padding: 15px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+}
