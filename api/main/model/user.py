@@ -1,8 +1,8 @@
 import datetime
 import jwt
 
-from api.main import db, flask_bcrypt
-from ..config import key
+from .. import db, flask_bcrypt
+from ...config import SECRET_KEY
 from .blacklist import BlacklistToken
 
 
@@ -15,7 +15,6 @@ class User(db.Model):
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
     public_id = db.Column(db.String(100), unique=True)
-    username = db.Column(db.String(50), unique=True)
     password_hash = db.Column(db.String(100))
 
     @property
@@ -32,7 +31,8 @@ class User(db.Model):
     def __repr__(self):
         return "<User '{}'>".format(self.username)
 
-    def encode_auth_token(self, user_id):
+    @staticmethod
+    def encode_auth_token(user_id):
         """
         Generates the Auth Token
         :return: string
@@ -45,7 +45,7 @@ class User(db.Model):
             }
             return jwt.encode(
                 payload,
-                key,
+                SECRET_KEY,
                 algorithm='HS256'
             )
         except Exception as e:
@@ -59,7 +59,7 @@ class User(db.Model):
         :return: integer|string
         """
         try:
-            payload = jwt.decode(auth_token, key)
+            payload = jwt.decode(auth_token, SECRET_KEY)
             is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
             if is_blacklisted_token:
                 return 'Token blacklisted. Please log in again.'

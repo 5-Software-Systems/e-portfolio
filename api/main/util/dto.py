@@ -7,11 +7,11 @@ class UserDto:
     api = Namespace('user', description='user related operations')
     user = api.model(
         name='user',
-        model=dict({user_public_id, email, username})
+        model=dict({user_public_id, email})
     )
     new_user = api.model(
         name='new_user',
-        model=dict({email, username, password})
+        model=dict({email, password})
     )
     user_creation = api.model(
         name='user_creation',

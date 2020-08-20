@@ -10,7 +10,7 @@ api = UserDto.api
 
 @api.route('/')
 class UserList(Resource):
-    @admin_token_required
+    # @admin_token_required
     @api.doc('list_of_registered_users')
     @api.marshal_list_with(UserDto.user)
     def get(self):
