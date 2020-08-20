@@ -1,7 +1,7 @@
 import uuid
 import datetime
 
-from api.main import db
+from .. import db
 from ..model.user import User
 
 
@@ -11,7 +11,6 @@ def save_new_user(data):
         new_user = User(
             public_id=str(uuid.uuid4()),
             email=data['email'],
-            username=data['username'],
             password=data['password'],
             registered_on=datetime.datetime.utcnow()
         )

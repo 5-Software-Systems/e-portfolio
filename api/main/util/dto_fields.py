@@ -9,10 +9,6 @@ email = (
     'email',
     fields.String(description='new_user email address')
 )
-username = (
-    'username',
-    fields.String(description='new_user username')
-)
 password = (
     'password',
     fields.String(description='new_user password')
