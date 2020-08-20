@@ -36,14 +36,14 @@ Upon completion of the feature check that it is working locally.
 If anyone else has made changes to the master, merge them from the master to your feature branch.
 ` git merge master ` \
 Now push the feature branch to the remote.
-` git push -u origin {university id}/{feature name} ` \
-  ###### Pull Requests
-  Now go to GitHub and open a new Pull Request.
-  Set the "base" as master and the "compare" to your feature branch.
-  Fill out the heading with the feature name and write a breif description of the changes the feature adds to the master.
-  Assign Nathan to the Pull Request then click "Create Pull Request".
-  Your Pull Request will be reviewed by Nathan and one other member of the team withiin 48 hours of making the request.
-  If there is reason to deny the request from either reviewer you will be messaged to resolve the issues.
+` git push -u origin {university id}/{feature name} `
+###### Pull Requests
+Now go to GitHub and open a new Pull Request.
+Set the "base" as master and the "compare" to your feature branch.
+Fill out the heading with the feature name and write a breif description of the changes the feature adds to the master.
+Assign Nathan to the Pull Request then click "Create Pull Request".
+Your Pull Request will be reviewed by Nathan and one other member of the team withiin 48 hours of making the request.
+If there is reason to deny the request from either reviewer you will be messaged to resolve the issues.
   
 ___
 
