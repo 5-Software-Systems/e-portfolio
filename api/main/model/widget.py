@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
@@ -17,5 +19,8 @@ class Widget(db.Model):
 
     __mapper_args__ = {'polymorphic_on': widget_type}
 
-    def __repr__(self):
-        return '<{} {}>'.format(self.id, self.widget_type)
+    @abstractmethod
+    def marshal(self):
+        return {'type': self.widget_type,
+                'data': {}
+                }

@@ -1,6 +1,6 @@
 import datetime
 
-from api.main import db
+from .. import db
 
 
 class BlacklistToken(db.Model):
@@ -16,9 +16,6 @@ class BlacklistToken(db.Model):
     def __init__(self, token):
         self.token = token
         self.blacklisted_on = datetime.datetime.now()
-
-    def __repr__(self):
-        return '<id: bearer_auth_token: {}'.format(self.token)
 
     @staticmethod
     def check_blacklist(auth_token):

@@ -1,15 +1,17 @@
 from flask import request
 from flask_restplus import Resource, Namespace
+from flask_restplus import marshal
 
 from ..service import user_service
 
 from .api_fields import *
 
-
 api = Namespace(
     name='user',
     path='/user',
-    description='user related operations')
+    description='user related operations'
+)
+
 user = api.model(
     name='user',
     model={user_public_id, email, name_first, name_last}
@@ -22,23 +24,25 @@ user_creation = api.model(
     name='user_creation',
     model={response_status, response_message, user_public_id, auth_token}
 )
-# profile = api.model(
-#     name='profile',
-#     model={user}
-# )
+widget = api.model(
+    'widget',
+    model={widget_type, widget_data}
+)
+profile = api.model(
+    name='profile',
+    model={'user': fields.Nested(user), 'widgets': fields.List(fields.Nested(widget))}
+)
 
 
 @api.route('/')
 class UserList(Resource):
 
-    @api.doc('list_of_registered_users')
     @api.marshal_list_with(user)
     def get(self):
         """List all registered users"""
         return user_service.get_all_users()
 
     @api.response(201, 'User successfully created.')
-    @api.doc('create a new new_user')
     @api.expect(new_user, validate=True)
     @api.marshal_with(user_creation)
     def post(self):
@@ -51,8 +55,8 @@ class UserList(Resource):
 @api.route('/<public_id>')
 @api.param('public_id', 'The User identifier')
 class User(Resource):
-    @api.doc('get a user')
-    @api.marshal_with(user)
+
+    @api.marshal_with(user, envelope='user')
     def get(self, public_id):
         """get a new_user given its identifier"""
         return user_service.get_a_user(public_id)
@@ -61,6 +65,12 @@ class User(Resource):
 @api.route('/<public_id>/profile')
 @api.param('public_id', 'The User identifier')
 class Profile(Resource):
-    @api.doc('get a user profile')
+
+    @api.marshal_list_with(profile, envelope='profile')
     def get(self, public_id):
-        return user_service.get_a_user_profile(public_id)
+        res, code = user_service.get_a_user(public_id)
+        if code != 200:
+            return res, code
+        return {'user': marshal(res, user),
+                'widgets': [w.marshal() for w in res.widgets]
+                }, code

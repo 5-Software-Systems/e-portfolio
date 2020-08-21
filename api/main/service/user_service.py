@@ -1,8 +1,8 @@
 import uuid
 import datetime
 
-from .. import db
 from ..model import User
+from ..util.db import save_changes
 
 
 def create_new_user(data):
@@ -65,8 +65,3 @@ def generate_token(user):
                 'message': 'Some error occurred. Please try again.',
                 'debug': str(e),
                 }, 401
-
-
-def save_changes(data):
-    db.session.add(data)
-    db.session.commit()

@@ -1,12 +1,16 @@
 from flask_restplus import Api
 from flask import Blueprint
 
-from .main.controller import auth_namespace, user_namespace, test_namespace
+from .main.controller import *
+from .main.service import file_service
 
 blueprint = Blueprint('api', __name__)
 
 api = Api(blueprint)
 
-api.add_namespace(user_namespace, path='/user')
-api.add_namespace(auth_namespace, path='/auth')
-api.add_namespace(test_namespace, path='/test')
+api.add_namespace(status_namespace)
+api.add_namespace(auth_namespace)
+api.add_namespace(user_namespace)
+api.add_namespace(file_namespace)
+
+api.add_namespace(test_namespace)

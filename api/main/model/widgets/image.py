@@ -13,3 +13,8 @@ class Image(Widget):
     image = db.Column(db.Integer, nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'image'}
+
+    def marshal(self):
+        r = super().marshal()
+        r['data'].update({'image': self.image})
+        return r

@@ -13,3 +13,8 @@ class About(Widget):
     about = db.Column(db.String(280), nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'about'}
+
+    def marshal(self):
+        r = super().marshal()
+        r['data'].update({'about': self.about})
+        return r
