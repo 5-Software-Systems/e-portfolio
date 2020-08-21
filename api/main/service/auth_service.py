@@ -1,6 +1,6 @@
-from api.main import db
-from ..model.blacklist import BlacklistToken
-from ..model.user import User
+from .. import db
+
+from ..model import User, BlacklistToken
 
 
 class Auth:
@@ -12,7 +12,7 @@ class Auth:
             user = User.query.filter_by(email=data.get('email')).first()
             if user and user.check_password(data.get('password')):
                 auth_token = user.encode_auth_token(user.id)
-                if auth_token:
+                if not isinstance(Exception, auth_token):
                     response_object = {
                         'status': 'success',
                         'message': 'Successfully logged in.',
@@ -70,13 +70,14 @@ class Auth:
         auth_token = bearer_auth_token.split()[1]
         resp = User.decode_auth_token(auth_token=auth_token)
         if not isinstance(resp, str):
-            user = User.query.filter_by(id=resp).first()
+            user = User.query.filter_by(id=resp['sub']).first()
             response_object = {
                 'status': 'success',
                 'data': {
-                    'user_id': user.id,
+                    'public_id': user.public_id,
+                    'name_first': user.name_first,
+                    'name_last': user.name_last,
                     'email': user.email,
-                    'admin': user.admin,
                     'registered_on': str(user.registered_on)
                 }
             }

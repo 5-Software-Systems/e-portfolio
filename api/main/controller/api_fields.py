@@ -1,13 +1,23 @@
-from collections import namedtuple
-
 from flask_restplus import fields
 
-
-dtoField = namedtuple('name', 'type')
+"""
+email = (
+    '<exact name of variable>',
+    fields.<Type>(description='<description>')
+)
+"""
 
 email = (
     'email',
     fields.String(description='new_user email address')
+)
+name_first = (
+    'name_first',
+    fields.String(description='new_user first name')
+)
+name_last = (
+    'name_last',
+    fields.String(description='new_user last name')
 )
 password = (
     'password',

@@ -1,12 +1,32 @@
 from flask import request
 from flask_restplus import Resource
+from flask_restplus import Namespace
 
 from ..service.auth_service import Auth
-from ..util.decorator import token_required
-from ..util.dto import AuthDto
-from ..model.user import User
+from ..util.decorator import login_required
 
-api = AuthDto.api
+from .api_fields import *
+
+
+api = Namespace(
+    name='auth',
+    path='/auth',
+    description='authentication related operations'
+)
+user_auth = api.model(
+    name='auth_details',
+    model={email, password}
+)
+auth_response = api.model(
+    name='auth_response',
+    model={response_status, response_message, auth_token}
+)
+auth_token = api.model(
+    name='bearer_auth_token',
+    model={bearer_auth_token}
+)
+auth_token_header = api.parser()
+auth_token_header.add_argument('Authorization', type=str, location='headers')
 
 
 @api.route('/login')
@@ -16,12 +36,11 @@ class UserLogin(Resource):
     """
 
     @api.doc('new_user login')
-    @api.expect(AuthDto.user_auth, validate=True)
-    @api.marshal_with(AuthDto.auth_response)
+    @api.expect(user_auth, validate=True)
+    @api.marshal_with(auth_response)
     def post(self):
-        # get the post data
-        post_data = request.json
-        return Auth.login_user(data=post_data)
+        # TODO Validation
+        return Auth.login_user(data=request.json)
 
 
 @api.route('/logout')
@@ -31,12 +50,13 @@ class LogoutAPI(Resource):
     """
 
     @api.doc('logout a new_user')
-    @api.marshal_with(AuthDto.auth_response)
-    @api.expect(AuthDto.auth_token)
-    @token_required
+    @api.marshal_with(auth_response)
+    @api.expect(auth_token_header)
+    @login_required
     def post(self):
-        # get auth bearer_auth_token
+        # TODO Validation
         bearer_auth_token = request.headers.get('Authorization')
+
         return Auth.logout_user(bearer_auth_token=bearer_auth_token)
 
 
@@ -47,9 +67,10 @@ class CheckToken(Resource):
     """
 
     @api.doc('check a auth_token')
-    @api.expect(AuthDto.auth_token, validate=True)
+    # @api.marshal_with(auth_response)
+    @api.expect(auth_token, validate=True)
     def get(self):
-        data = request.json
-        auth_token = data['auth_token']
+        # TODO Validation
+        bearer_auth_token = request.json['bearer_auth_token']
 
-        return {'resp': User.decode_auth_token(auth_token=auth_token)}
+        return Auth.decode_auth_token(bearer_auth_token=bearer_auth_token)
