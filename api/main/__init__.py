@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -18,7 +20,8 @@ def create_app():
         template_folder='app/build'
     )
 
-    app.config.from_pyfile('api/config.py')
+    config_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../config.py')
+    app.config.from_pyfile(config_file)
     db.init_app(app)
 
     flask_bcrypt.init_app(app)

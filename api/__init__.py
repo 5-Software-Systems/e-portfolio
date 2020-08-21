@@ -1,14 +1,25 @@
 from flask_restplus import Api
 from flask import Blueprint
 
-from .main.controller.user_controller import api as user_ns
-from .main.controller.auth_controller import api as auth_ns
-from .main.controller.test_controller import api as test_ns
+from .main.controller import *
+from .main.service import file_service
+from .main.util.exception import ServerError
 
 blueprint = Blueprint('api', __name__)
 
 api = Api(blueprint)
 
-api.add_namespace(user_ns, path='/user')
-api.add_namespace(auth_ns, path='/auth')
-api.add_namespace(test_ns, path='/test')
+api.add_namespace(status_namespace)
+api.add_namespace(auth_namespace)
+api.add_namespace(user_namespace)
+api.add_namespace(file_namespace)
+
+api.add_namespace(test_namespace)
+
+
+@api.errorhandler
+def handle_server_error(e: ServerError):
+    return {
+        'error': e.__class__.__name__,
+        'message': e.error_message,
+    }, e.status_code

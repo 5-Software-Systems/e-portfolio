@@ -1,9 +1,11 @@
 import datetime
 import jwt
+from sqlalchemy.orm import relationship
 
 from .. import db, flask_bcrypt
 from ...config import SECRET_KEY
 from .blacklist import BlacklistToken
+from ..util.exception import TokenExpired, TokenInvalid, TokenBlacklisted
 
 
 class User(db.Model):
@@ -12,10 +14,13 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
+    name_first = db.Column(db.String(255), unique=False, nullable=False)
+    name_last = db.Column(db.String(255), unique=False, nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
-    admin = db.Column(db.Boolean, nullable=False, default=False)
     public_id = db.Column(db.String(100), unique=True)
     password_hash = db.Column(db.String(100))
+
+    widgets = relationship('Widget', back_populates='user')
 
     @property
     def password(self):
@@ -28,28 +33,22 @@ class User(db.Model):
     def check_password(self, password):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
 
-    def __repr__(self):
-        return "<User '{}'>".format(self.username)
-
     @staticmethod
-    def encode_auth_token(user_id):
+    def encode_auth_token(key):
         """
         Generates the Auth Token
         :return: string
         """
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
-            }
-            return jwt.encode(
-                payload,
-                SECRET_KEY,
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
+        payload = {
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
+            'iat': datetime.datetime.utcnow(),
+            'sub': key
+        }
+        return jwt.encode(
+            payload,
+            SECRET_KEY,
+            algorithm='HS256'
+        )
 
     @staticmethod
     def decode_auth_token(auth_token):
@@ -60,12 +59,12 @@ class User(db.Model):
         """
         try:
             payload = jwt.decode(auth_token, SECRET_KEY)
-            is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
-            if is_blacklisted_token:
-                return 'Token blacklisted. Please log in again.'
-            else:
-                return payload['sub']
         except jwt.ExpiredSignatureError:
-            return 'Signature expired. Please log in again.'
+            raise TokenExpired
         except jwt.InvalidTokenError:
-            return 'Invalid bearer_auth_token. Please log in again.'
+            raise TokenInvalid
+
+        if BlacklistToken.check_blacklist(auth_token):
+            raise TokenBlacklisted
+
+        return payload
