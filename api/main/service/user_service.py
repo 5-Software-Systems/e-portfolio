@@ -3,6 +3,7 @@ import datetime
 
 from ..model import User
 from ..util.db import save_changes
+from ..util.exception import UserNotFound, UserAlreadyExists
 
 
 def create_new_user(data):
@@ -12,9 +13,7 @@ def create_new_user(data):
     """
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        return {'status': 'fail',
-                'message': 'User already exists. Please Log in.',
-                }, 409
+        raise UserAlreadyExists('User already exists, log in instead')
 
     new_user = User(
         public_id=str(uuid.uuid4()),
@@ -37,18 +36,14 @@ def get_all_users():
 def get_a_user(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     if not user:
-        return {'status': 'fail',
-                'message': 'No user found',
-                }, 404
+        raise UserNotFound('User {} not found'.format(public_id))
     return user, 200
 
 
 def get_a_user_profile(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     if not user:
-        return {'status': 'fail',
-                'message': 'No user found',
-                }, 404
+        raise UserNotFound('User {} not found'.format(public_id))
     return user, 200
 
 

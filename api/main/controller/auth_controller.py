@@ -7,7 +7,6 @@ from ..util.decorator import login_required
 
 from .api_fields import *
 
-
 api = Namespace(
     name='auth',
     path='/auth',
@@ -16,15 +15,15 @@ api = Namespace(
 
 user_auth = api.model(
     name='auth_details',
-    model={email, password}
+    model=dict([email, password])
 )
 auth_response = api.model(
     name='auth_response',
-    model={response_status, response_message, auth_token}
+    model=dict([response_status, response_message, auth_token])
 )
 auth_token = api.model(
     name='bearer_auth_token',
-    model={bearer_auth_token}
+    model=dict([bearer_auth_token])
 )
 auth_token_header = api.parser()
 auth_token_header.add_argument('Authorization', type=str, location='headers')

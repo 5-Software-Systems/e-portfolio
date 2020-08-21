@@ -4,7 +4,6 @@ from ..service import test_service
 
 from .api_fields import *
 
-
 api = Namespace(
     name='test',
     path='/test',

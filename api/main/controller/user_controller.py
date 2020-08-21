@@ -5,6 +5,7 @@ from flask_restplus import marshal
 from ..service import user_service
 
 from .api_fields import *
+# from ..util.exception import ServerError
 
 api = Namespace(
     name='user',
@@ -14,19 +15,19 @@ api = Namespace(
 
 user = api.model(
     name='user',
-    model={user_public_id, email, name_first, name_last}
+    model=dict([user_public_id, email, name_first, name_last])
 )
 new_user = api.model(
     name='new_user',
-    model={email, name_first, name_last, password}
+    model=dict([email, name_first, name_last, password])
 )
 user_creation = api.model(
     name='user_creation',
-    model={response_status, response_message, user_public_id, auth_token}
+    model=dict([response_status, response_message, user_public_id, auth_token])
 )
 widget = api.model(
     'widget',
-    model={widget_type, widget_data}
+    model=dict([widget_type, widget_data])
 )
 profile = api.model(
     name='profile',
@@ -37,7 +38,7 @@ profile = api.model(
 @api.route('/')
 class UserList(Resource):
 
-    @api.marshal_list_with(user)
+    @api.marshal_list_with(user, envelope='users')
     def get(self):
         """List all registered users"""
         return user_service.get_all_users()
@@ -65,12 +66,27 @@ class User(Resource):
 @api.route('/<public_id>/profile')
 @api.param('public_id', 'The User identifier')
 class Profile(Resource):
+    """
+    Profile resource contains user and related widget data
+    """
 
     @api.marshal_list_with(profile, envelope='profile')
     def get(self, public_id):
+        """
+        Get a profile by public_id
+        """
         res, code = user_service.get_a_user(public_id)
         if code != 200:
             return res, code
         return {'user': marshal(res, user),
                 'widgets': [w.marshal() for w in res.widgets]
                 }, code
+
+
+# @api.errorhandler(ServerError)
+# def handle_server_error(e: ServerError):
+#     return {
+#         'error': e.__class__.__name__,
+#         'message': e.error_message,
+#     }, e.status_code
+#

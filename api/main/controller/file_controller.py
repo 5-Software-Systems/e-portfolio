@@ -30,7 +30,7 @@ class File(Resource):
 
     def put(self, public_id, file_name):
         """
-        Upload a file
+        This is technically not restful - UPLOAD IN SWAGGER WON'T WORK
         """
         image_binary = request.get_data()
         return file_service.save_file(public_id, file_name, image_binary)
