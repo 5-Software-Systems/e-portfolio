@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
 import Signup from './containers/Signup';
 
 
-function App() {
+function Test() {
     const [test, setTest] = useState({"test": "API not running"});
 
     useEffect(() => {
@@ -15,12 +14,11 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <header>This is a test</header>
-            <span>API return: {test.response}</span>
-            <Signup />
+        <div>
+            <h5 class="py-3">API return: {test.response}</h5>
+            <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
         </div>
     );
 }
 
-export default App;
+export default Test;
