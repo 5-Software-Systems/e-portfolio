@@ -1,43 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="E-portfolio project for IT Project Unimelb 2020"
+  />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="stylesheet" href="./style.css">
+  <title>E-portfolio Landing page</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0">
+    <div class="container">
+      <div class="navbar-brand-wrapper d-flex w-50">
+        <img src="images/Logo.png" alt="" height="50" class="pr-4">
+        <h1 style="min-height:50px" class="pt-1">E-portfolio</h1>
+      </div>
+      <div class="navbar-menu-wrapper">
+        <ul class="navbar-nav align-items-lg-center align-items-start align-items-center">
+          <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+            <button class="btn btn-info" id="login_button">Login</button>
+            <button class="btn btn-info" id="sign_up_button">Sign Up</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    </nav>
+  </header>
+  <div class="banner">
+    <div class="container">
+      <h1 class="font-weight-semibold">E-portfolio Landing page.</h1>
+      <h6 class="font-weight-normal text-muted pb-3">An electronic portfolio is a collection of electronic evidence assembled and managed by a user, usually on the Web.</h6>
+      <img src="images/Hero_Image.svg" alt="" class="img-fluid">
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container">
+      <section class="features-overview">
+        <div class="content-header">
+          <h2>How does it works</h2>
+          <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6>
+        </div>
+        <div class="d-md-flex justify-content-between">
+          <div class="grid-margin d-flex justify-content-start">
+            <div class="features-width">
+              <img src="images/About_Left.svg" alt="" class="img-icons">
+              <div id="left_info"> </div>
+              <a href=""><p class="readmore-link">Read more...</p></a>
+            </div>
+          </div>
+          <div class="grid-margin d-flex justify-content-center">
+            <div class="features-width">
+              <img src="images/About_Center.svg" alt="" class="img-icons">
+              <h5 class="py-3">Example1</h5>
+              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+              <a href=""><p class="readmore-link">Read more...</p></a>
+            </div>
+          </div>
+          <div class="grid-margin d-flex justify-content-end">
+            <div class="features-width">
+              <img src="images/About_Right.svg" alt="" class="img-icons">
+              <h5 class="py-3">Example1</h5>
+              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+              <a href=""><p class="readmore-link">Read more...</p></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="border-top">
+        <p class="text-center text-muted pt-4">Copyright © 2020<a href="" class="px-1">FiveCent Software Systems.</a></p>
+      </footer>
+      </div>
+  </div>
+  <div id="pop_up"></div>
+</body>
+<script type="text/javascript" src="./pop-up.js"></script>
 </html>
