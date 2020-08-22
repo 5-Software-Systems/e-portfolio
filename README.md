@@ -48,6 +48,7 @@ If there is reason to deny the request from either reviewer you will be messaged
 ___
 
 ### Installation
+
 Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmjs.com/get-npm) \
 `cd app
 `\
@@ -56,17 +57,17 @@ Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmj
 
 Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
 `cd ..` _(return to parent dir)_\
-`python -m venv venv
-`\
-`venv\Scripts\pip install -r requirements.txt
-`
+`python -m venv venv`\
+`venv\Scripts\pip install -r requirements.txt'`\
+`venv\Scripts\python -m api --reset --populate`
+
 
 ### Running
 
 ##### Development
 
 API (back-end) \
-`venv\Scripts\python main.py
+`venv\Scripts\python -m api --run --debug
 `
 
 APP (front-end) \
