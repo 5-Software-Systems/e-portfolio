@@ -79,7 +79,7 @@ APP (front-end) \
 
 `npm --prefix app run build
 `\
-`venv\Scripts\python main.py
+`venv\Scripts\python -m api --run --debug
 `
 
 ### Deploying
