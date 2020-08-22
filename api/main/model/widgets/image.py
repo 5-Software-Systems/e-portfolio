@@ -1,20 +1,21 @@
 from sqlalchemy import ForeignKey
 
-from ..widget import Widget, db
+from .. import WidgetBase
+from ... import db
 
 
-class Image(Widget):
+class Image(WidgetBase):
     """
     About model for storing about widgets
     """
     __tablename__ = 'image'
 
     id = db.Column(None, ForeignKey('widget.id'), primary_key=True)
-    image = db.Column(db.Integer, nullable=False)
+    image_url = db.Column(db.String(), nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'image'}
 
     def marshal(self):
         r = super().marshal()
-        r['data'].update({'image': self.image})
+        r['data'].update({'image': self.image_url})
         return r

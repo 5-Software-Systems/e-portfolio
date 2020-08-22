@@ -1,24 +1,28 @@
 import datetime
+import uuid
+
 import jwt
 from sqlalchemy.orm import relationship
 
+from . import Model
 from .. import db, flask_bcrypt
+
 from ...config import SECRET_KEY
 from .blacklist import BlacklistToken
 from ..util.exception import TokenExpired, TokenInvalid, TokenBlacklisted
 
 
-class User(db.Model):
+class User(Model):
     """ User Model for storing new_user related details """
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    public_id = db.Column(db.String(100), nullable=False, unique=True, default=lambda: str(uuid.uuid4()))
     email = db.Column(db.String(255), unique=True, nullable=False)
     name_first = db.Column(db.String(255), unique=False, nullable=False)
     name_last = db.Column(db.String(255), unique=False, nullable=False)
-    registered_on = db.Column(db.DateTime, nullable=False)
-    public_id = db.Column(db.String(100), unique=True)
     password_hash = db.Column(db.String(100))
+    registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
 
     widgets = relationship('Widget', back_populates='user')
 

@@ -2,7 +2,7 @@ import uuid
 import datetime
 
 from ..model import User
-from ..util.db import save_changes
+from ..util.db import save_db_object
 from ..util.exception import UserNotFound, UserAlreadyExists
 
 
@@ -16,14 +16,13 @@ def create_new_user(data):
         raise UserAlreadyExists('User already exists, log in instead')
 
     new_user = User(
-        public_id=str(uuid.uuid4()),
         email=data['email'],
         name_first=data['name_first'],
         name_last=data['name_last'],
         password=data['password'],
         registered_on=datetime.datetime.utcnow()
     )
-    save_changes(new_user)
+    new_user.save()
     response_object, code = generate_token(new_user)
     response_object.update({'public_id': new_user.public_id})
     return response_object, 201

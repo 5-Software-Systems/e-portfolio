@@ -1,5 +1,5 @@
 from ..model import User, BlacklistToken
-from ..util.db import save_changes
+from ..util.db import save_db_object
 from ..util.exception import LoginNotFound, RequestError
 
 
@@ -62,7 +62,7 @@ def get_logged_in_user(new_request):
 
 def blacklist_token(auth_token):
     blacklisted_auth_token = BlacklistToken(token=auth_token)
-    save_changes(blacklisted_auth_token)
+    save_db_object(blacklisted_auth_token)
     return {'status': 'success',
             'message': 'Successfully logged out.'
             }, 200

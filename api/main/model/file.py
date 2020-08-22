@@ -1,10 +1,11 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
+from . import Model
 from .. import db
 
 
-class File(db.Model):
+class File(Model):
     """
     File, img, pdf, etc...
     """
