@@ -32,4 +32,4 @@ if args.populate:
     db.populate()
 
 if args.run:
-    build_app().run(debug=args.debug)
+    build_app().run(debug=args.debug, host="0.0.0.0")
