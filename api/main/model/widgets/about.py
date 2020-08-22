@@ -1,9 +1,10 @@
 from sqlalchemy import ForeignKey
 
-from ..widget import Widget, db
+from .. import WidgetBase
+from ... import db
 
 
-class About(Widget):
+class About(WidgetBase):
     """
     About model for storing about widgets
     """

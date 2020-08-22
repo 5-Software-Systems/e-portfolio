@@ -4,7 +4,7 @@ from flask import send_file
 
 from . import user_service
 from ..model import File
-from ..util.db import save_changes
+from ..util.db import save_db_object
 
 
 def save_file(public_id: str, file_name: str, file_binary: bytes):
@@ -14,7 +14,7 @@ def save_file(public_id: str, file_name: str, file_binary: bytes):
                 'message': 'user not found'
                 }, 404
     file = File(user_id=user.id, file_name=file_name, file_binary=file_binary)
-    save_changes(file)
+    save_db_object(file)
     return {'status': 'success',
             'message': 'image uploaded'
             }, 201

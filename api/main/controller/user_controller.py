@@ -35,7 +35,7 @@ profile = api.model(
 )
 
 
-@api.route('/')
+@api.route('')
 class UserList(Resource):
 
     @api.marshal_list_with(user, envelope='users')

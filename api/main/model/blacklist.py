@@ -1,9 +1,10 @@
 import datetime
 
+from . import Model
 from .. import db
 
 
-class BlacklistToken(db.Model):
+class BlacklistToken(Model):
     """
     Token Model for storing JWT tokens
     """

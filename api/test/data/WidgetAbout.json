@@ -1,0 +1,10 @@
+[
+  {
+    "user_id": 1,
+    "about": "This is the test account for Fraser's private email\nMy email for this account is fraserbasil@gmail.com because my middle name is Basil, my dad originally wanted my first name to be Basil, thankfully my mother made sure such silly ideas were never brought to fruition"
+  },
+  {
+    "user_id": 2,
+    "about": "This is the test account for Fraser's uni email\nI go to Melbourne University, I was supposed to be finishing my undergraduate degree in 2020, but I keep failing subjects, but I hope to finish mid 2021 :)"
+  }
+]

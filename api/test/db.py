@@ -1,69 +1,50 @@
-from api.main import create_app, db
+import json
+import os
 
-from api.main.service.user_service import create_new_user
-from api.main.service.file_service import save_file
+from ..main import create_app, db
 
-from api.main.model import *
+from ..main.service.file_service import save_file
 
-from api.main.util.db import save_changes as save
+from ..main.model import *
 
 app = create_app()
 
 
-def main():
-    # play()
-    # exit()
+def reset():
+    delete()
     create()
 
 
-def play():
-
-    with app.app_context():
-        with open('assets/IMG_4374.JPG', 'rb') as f:
-            bites = f.read()
-        save_file(2, 'IMG_4374.JPG', bites)
-
-        exit()
-
-        a = WidgetImage.query.filter_by(user_id=1).first()
-        print(a)
-
-        u = User.query.filter_by(name_first='Fraser').first()
-        print(u.widgets)
+def delete():
+    try:
+        os.remove(os.path.join(os.path.dirname(__file__), '../eportfolio.db'))
+    except FileNotFoundError:
+        pass
 
 
 def create():
     with app.app_context():
         db.create_all()
 
-        # Users
-        u1, _ = create_new_user({
-            "email": "fraserbasil@gmail.com",
-            "name_first": "Fraser",
-            "name_last": "Langton",
-            "password": "password"
-        })
 
-        u2, _ = create_new_user({
-            "email": "flangton@student.unimelb.edu.au",
-            "name_first": "Fraser",
-            "name_last": "Langton",
-            "password": "password"
-        })
+def populate():
+    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    with app.app_context():
+        for data_file in os.listdir(data_dir):
+            if data_file.endswith('.json'):
+                model_name = data_file.split('.')[0]
+                model = globals()[model_name]
+                with open('{}/{}'.format(data_dir, data_file)) as f:
+                    data = json.load(f)
+                for record in data:
+                    obj = model(**record)
+                    obj.save()
 
-        # Widgets
-        a = WidgetAbout(user_id=1, about="test, PLEASE WORK!!")
-        i = WidgetImage(user_id=1, image=123)
-        save(a)
-        save(i)
+        exit()
 
         # Files
         with open('assets/IMG_4374.JPG', 'rb') as f:
             image_binary = f.read()
 
         save_file(u1['public_id'], 'IMG_4374.JPG', image_binary)
-        # save_file(u2['public_id'], 'IMG_4374.JPG', image_binary)
-
-
-if __name__ == '__main__':
-    main()
+        save_file(u2['public_id'], 'IMG_4374.JPG', image_binary)
