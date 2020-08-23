@@ -26,6 +26,8 @@ function useFormFields(initialState) {
 
 export default function Signup() {
     const [fields, handleFieldChange] = useFormFields({
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -48,9 +50,9 @@ export default function Signup() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({password: fields.password, email: fields.email})
+            body: JSON.stringify({email: fields.email, password: fields.password, name_first: fields.firstname, name_last: fields.lastname})
         };
-        const response = await fetch('/api/user/', requestOptions);
+        const response = await fetch('api/user', requestOptions);
         const data = await response.json();
         console.log(data);
     }
@@ -60,6 +62,23 @@ export default function Signup() {
             <div class="form-popup" id="pop_up_form">
                 <form action="/action_page.php" class="form-container">
                     <h1>Sign Up</h1>
+
+                    <FormGroup controlId="First Name">
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl
+                            type="firstname"
+                            values = {fields.firstname}
+                            onChange={handleFieldChange}
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="Last Name">
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl
+                            type="lastname"
+                            values = {fields.firstname}
+                            onChange={handleFieldChange}
+                        />
+                    </FormGroup>
 
                     <FormGroup controlId="email">
                         <FormLabel>Email</FormLabel>
