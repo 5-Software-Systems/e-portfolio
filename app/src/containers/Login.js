@@ -26,17 +26,13 @@ function useFormFields(initialState) {
 
 export default function Signup() {
     const [fields, handleFieldChange] = useFormFields({
-        firstname: "",
-        lastname: "",
         email: "",
         password: "",
-        confirmPassword: "",
     });
     function validateForm() {
         return (
             fields.email.length > 0 &&
             fields.password.length > 0 &&
-            fields.confirmPassword === fields.password &&
             validateEmail(fields.email)
         );
     }
@@ -50,36 +46,18 @@ export default function Signup() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.email, password: fields.password, name_first: fields.firstname, name_last: fields.lastname})
+            body: JSON.stringify({email: fields.email, password: fields.password})
         };
-        const response = await fetch('api/user', requestOptions);
+        const response = await fetch('api/auth/login', requestOptions);
         const data = await response.json();
         console.log(data);
     }
 
     function renderForm() {
         return (
-            <div class="form-popup" id="sign_up_form">
+            <div class="form-popup" id="log_in_form">
                 <form action="/action_page.php" class="form-container">
-                    <h1>Sign Up</h1>
-
-                    <FormGroup controlId="First Name">
-                        <FormLabel>First Name</FormLabel>
-                        <FormControl
-                            type="firstname"
-                            values = {fields.firstname}
-                            onChange={handleFieldChange}
-                        />
-                    </FormGroup>
-                    <FormGroup controlId="Last Name">
-                        <FormLabel>Last Name</FormLabel>
-                        <FormControl
-                            type="lastname"
-                            values = {fields.firstname}
-                            onChange={handleFieldChange}
-                        />
-                    </FormGroup>
-
+                    <h1>Login</h1>
                     <FormGroup controlId="email">
                         <FormLabel>Email</FormLabel>
                         <FormControl
@@ -96,18 +74,10 @@ export default function Signup() {
                             onChange={handleFieldChange}
                     />
                     </FormGroup>
-                    <FormGroup controlId="confirmPassword">
-                        <FormLabel>Confirm Password</FormLabel>
-                        <FormControl
-                            type="password"
-                            onChange={handleFieldChange}
-                            value={fields.confirmPassword}
-                        />
-                    </FormGroup>
 
                     <SubmitButton />
 
-                    <button type="button" class="btn cancel" id="pop_up_close">Close</button>
+                    <button type="button" class="btn cancel" id="login_pop_up_close">Close</button>
                 </form>
             </div>
         );
