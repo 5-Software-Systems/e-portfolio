@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Signup from './containers/Signup';
 
 
 function Test() {
@@ -15,8 +14,8 @@ function Test() {
 
     return (
         <div>
-            <h5 class="py-3">API return: {test.response}</h5>
-            <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+            <h5 className="py-3">API return: {test.response}</h5>
+            <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
         </div>
     );
 }
