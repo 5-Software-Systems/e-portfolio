@@ -34,6 +34,8 @@ export default function Signup() {
     });
     function validateForm() {
         return (
+            fields.firstname.length > 0 &&
+            fields.lastname.length > 0 &&
             fields.email.length > 0 &&
             fields.password.length > 0 &&
             fields.confirmPassword === fields.password &&
@@ -59,23 +61,23 @@ export default function Signup() {
 
     function renderForm() {
         return (
-            <div class="form-popup" id="sign_up_form">
-                <form action="/action_page.php" class="form-container">
+            <div className="form-popup" id="sign_up_form">
+                <form action="/action_page.php" className="form-container">
                     <h1>Sign Up</h1>
 
-                    <FormGroup controlId="First Name">
+                    <FormGroup controlId="Signup_FirstName">
                         <FormLabel>First Name</FormLabel>
                         <FormControl
-                            type="firstname"
-                            values = {fields.firstname}
+                            type="text"
+                            values={fields.firstname}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="Last Name">
+                    <FormGroup controlId="Signup_LastName">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl
-                            type="lastname"
-                            values = {fields.firstname}
+                            type="text"
+                            values={fields.firstname}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
@@ -84,7 +86,7 @@ export default function Signup() {
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             type="email"
-                            values = {fields.email}
+                            value={fields.email}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
@@ -92,7 +94,7 @@ export default function Signup() {
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
-                            value={fields.password}
+                            values ={fields.password}
                             onChange={handleFieldChange}
                     />
                     </FormGroup>
@@ -107,7 +109,7 @@ export default function Signup() {
 
                     <SubmitButton />
 
-                    <button type="button" class="btn cancel" id="pop_up_close">Close</button>
+                    <button type="button" className="btn cancel" id="pop_up_close">Close</button>
                 </form>
             </div>
         );
@@ -128,7 +130,7 @@ export default function Signup() {
 
         return (
             <Button
-                class="btn"
+                className="btn"
                 variant="primary"
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
@@ -141,7 +143,7 @@ export default function Signup() {
     return (
         <div>
             {renderForm()}
-            <div class="cover" id="cover"></div>
+            <div className="cover" id="cover"></div>
         </div>
     );
 }

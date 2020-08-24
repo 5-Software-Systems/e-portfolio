@@ -16,14 +16,14 @@ ReactDOM.render(
   <React.StrictMode>
     <Login />
   </React.StrictMode>,
-  document.getElementById('left_info')
+  document.getElementById('login_pop_up')
 );
 
 ReactDOM.render(
   <React.StrictMode>
-        <Signup />
+    <Signup />
   </React.StrictMode>,
-  document.getElementById('pop_up')
+  document.getElementById('signup_pop_up')
 );
 
 

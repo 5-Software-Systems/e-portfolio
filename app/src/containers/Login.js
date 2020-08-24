@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import './Signup.css'
+import './Login.css'
 
 
 function useFormFields(initialState) {
@@ -55,8 +55,8 @@ export default function Signup() {
 
     function renderForm() {
         return (
-            <div class="form-popup" id="log_in_form">
-                <form action="/action_page.php" class="form-container">
+            <div className="form-popup" id="log_in_form">
+                <form action="/action_page.php" className="form-container">
                     <h1>Login</h1>
                     <FormGroup controlId="email">
                         <FormLabel>Email</FormLabel>
@@ -70,14 +70,14 @@ export default function Signup() {
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
-                            value={fields.password}
+                            values = {fields.password}
                             onChange={handleFieldChange}
                     />
                     </FormGroup>
 
                     <SubmitButton />
 
-                    <button type="button" class="btn cancel" id="login_pop_up_close">Close</button>
+                    <button type="button" className="btn cancel" id="login_pop_up_close">Close</button>
                 </form>
             </div>
         );
@@ -98,7 +98,7 @@ export default function Signup() {
 
         return (
             <Button
-                class="btn"
+                className="btn"
                 variant="primary"
                 disabled={isLoading}
                 onClick={!isLoading ? handleClick : null}
@@ -111,7 +111,7 @@ export default function Signup() {
     return (
         <div>
             {renderForm()}
-            <div class="cover" id="cover"></div>
+            <div className="cover" id="cover"></div>
         </div>
     );
 }
