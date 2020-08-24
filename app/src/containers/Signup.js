@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import './Signup.css'
+import './Pop-up.css'
 
 
 function useFormFields(initialState) {
@@ -34,8 +34,6 @@ export default function Signup() {
     });
     function validateForm() {
         return (
-            fields.firstname.length > 0 &&
-            fields.lastname.length > 0 &&
             fields.email.length > 0 &&
             fields.password.length > 0 &&
             fields.confirmPassword === fields.password &&
@@ -65,19 +63,19 @@ export default function Signup() {
                 <form action="/action_page.php" className="form-container">
                     <h1>Sign Up</h1>
 
-                    <FormGroup controlId="Signup_FirstName">
+                    <FormGroup controlId="First Name">
                         <FormLabel>First Name</FormLabel>
                         <FormControl
                             type="text"
-                            values={fields.firstname}
+                            values = {fields.firstname}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="Signup_LastName">
+                    <FormGroup controlId="Last Name">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl
                             type="text"
-                            values={fields.firstname}
+                            values = {fields.lastname}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
@@ -86,7 +84,7 @@ export default function Signup() {
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             type="email"
-                            value={fields.email}
+                            values = {fields.email}
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
@@ -94,7 +92,7 @@ export default function Signup() {
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
-                            values ={fields.password}
+                            value={fields.password}
                             onChange={handleFieldChange}
                     />
                     </FormGroup>
