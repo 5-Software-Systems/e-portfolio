@@ -14,10 +14,13 @@ flask_bcrypt = Bcrypt()
 
 
 def create_app():
+    static_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../../app/build/static')
+    template_folder = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../../app/build')
+
     app = Flask(
         import_name='__main__',
-        static_folder='app/build/static',
-        template_folder='app/build'
+        static_folder=static_folder,
+        template_folder=template_folder,
     )
 
     config_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../config.py')
