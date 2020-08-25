@@ -19,4 +19,6 @@ auth_token = 'Authorization', fields.String(description='JSON Web Token')
 
 # WIDGET
 widget_type = 'type', fields.String(description='type of widget', example='about')
-widget_data = 'data', fields.Raw(description='data specific to widget type', example={'p1': 'hello', 'p2': '/file/user/asset.png'})
+widget_data = 'data', fields.Raw(
+    description='data specific to widget type', example={'p1': 'parameter 1', 'p2': 'parameter 2'}
+)
