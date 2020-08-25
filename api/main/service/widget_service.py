@@ -2,7 +2,7 @@ from ..model import WidgetBase, WidgetAbout
 from ..util.exception import WidgetNotFound
 
 def get_all_widgets():
-    return WidgetBase.query.join(WidgetAbout).all()
+    return WidgetBase.query.all()
 
 
 def get_a_widget(widget_id):
