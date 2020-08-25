@@ -14,15 +14,12 @@ api = Namespace(
     description='widget related operations'
 )
 
-# widget = api.model(
-#     'widget',
-#     model=dict([widget_type, widget_data])
-# )
 
 widget_creation = api.model(
     name='user_creation',
     model=dict([response_status, response_message])
 )
+
 
 @api.route('')
 class WidgetList(Resource):
@@ -38,16 +35,6 @@ class WidgetList(Resource):
         """Creates a new Widget"""
         data = request.json
         return widget_service.create_new_widget(data=data)
-
-
-
-@api.route('/about')
-class AboutWidget(Resource):
-
-    def post(self):
-        """Creates a new about Widget"""
-        data = request.json
-        widget_service.create_new_widget(data=data)
 
 
 @api.route('/<public_id>')
