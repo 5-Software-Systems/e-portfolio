@@ -14,7 +14,7 @@ api.add_namespace(status_namespace)
 api.add_namespace(auth_namespace)
 api.add_namespace(user_namespace)
 api.add_namespace(file_namespace)
-
+api.add_namespace(widget_namespace)
 api.add_namespace(test_namespace)
 
 

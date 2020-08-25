@@ -15,7 +15,7 @@ api = Namespace(
 
 user = api.model(
     name='user',
-    model=dict([user_public_id, email, name_first, name_last])
+    model=dict([public_id, email, name_first, name_last])
 )
 new_user = api.model(
     name='new_user',
@@ -23,11 +23,11 @@ new_user = api.model(
 )
 user_creation = api.model(
     name='user_creation',
-    model=dict([response_status, response_message, user_public_id, auth_token])
+    model=dict([response_status, response_message, public_id, auth_token])
 )
 widget = api.model(
     'widget',
-    model=dict([widget_type, widget_data])
+    model=dict([public_id, widget_type, widget_data])
 )
 profile = api.model(
     name='profile',

@@ -24,7 +24,7 @@ class User(Model):
     password_hash = db.Column(db.String(100))
     registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
 
-    widgets = relationship('Widget', back_populates='user')
+    widgets = relationship('WidgetBase', back_populates='user')
 
     @property
     def password(self):
