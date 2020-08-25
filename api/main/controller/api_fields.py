@@ -4,8 +4,10 @@ from flask_restplus import fields
 response_status = 'status', fields.String(description='status of the request')
 response_message = 'message', fields.String(description='message from the request')
 
+# RESOURCE
+public_id = 'public_id', fields.String(description='global resource identifier')
+
 # USER
-user_public_id = 'public_id', fields.String(description='user identifier')
 email = 'email', fields.String(description='email address')
 name_first = 'name_first', fields.String(description='first name')
 name_last = 'name_last', fields.String(description='last name')

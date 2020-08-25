@@ -39,7 +39,6 @@ class WidgetNotFound(ResourceError):
     pass
 
 
-
 class AuthenticationError(ServerError):
     status_code = 401
     error_message = 'Authentication error'
