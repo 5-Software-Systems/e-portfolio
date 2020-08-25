@@ -33,6 +33,13 @@ class UserAlreadyExists(ResourceError):
     pass
 
 
+class WidgetNotFound(ResourceError):
+    status_code=404
+    error_message = 'Widget not found'
+    pass
+
+
+
 class AuthenticationError(ServerError):
     status_code = 401
     error_message = 'Authentication error'
@@ -61,3 +68,4 @@ class LoginNotFound(AuthenticationError):
     status_code = 401
     error_message = 'Login details incorrect, check and try again'
     pass
+
