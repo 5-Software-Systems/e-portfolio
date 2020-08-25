@@ -28,6 +28,7 @@ widget_creation = api.model(
 class WidgetList(Resource):
     @api.marshal_list_with(widget, envelope='widgets')
     def get(self):
+        """List of all widgets"""
         return [w.marshal() for w in widget_service.get_all_widgets()]
 
     @api.response(201, 'Widget successfully created.')
@@ -58,7 +59,7 @@ class Widget(Resource):
     @api.marshal_with(widget)
     def get(self, public_id):
         """
-        Gets widget given widget_id
+        Gets widget given public_id
         :param public_id:
         :return:
         """
