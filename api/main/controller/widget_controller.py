@@ -1,50 +1,52 @@
 from flask import request
 from flask_restplus import Resource, Namespace
-from flask_restplus import marshal
 
 from ..service import widget_service
 
 from .api_fields import *
 
-from .user_controller import widget
-
-api = Namespace(
+namespace = Namespace(
     name='widget',
     path='/widget',
     description='widget related operations'
 )
 
+widget = namespace.model(
+    name='widget',
+    model=dict([public_id, widget_type, widget_data])
+)
+new_widget = namespace.model(
+    name='new_widget',
+    model=dict([widget_type, widget_data])
+)
 
-widget_creation = api.model(
-    name='user_creation',
-    model=dict([response_status, response_message])
+widget_type = namespace.model(
+    name='widget_type',
+    model=dict([widget_type, ('data_fields', fields.List(fields.String()))])
 )
 
 
-@api.route('')
+@namespace.route('')
 class WidgetList(Resource):
-    @api.marshal_list_with(widget, envelope='widgets')
+
+    @namespace.marshal_list_with(widget, envelope='widgets')
     def get(self):
         """List of all widgets"""
         return [w.marshal() for w in widget_service.get_all_widgets()]
 
-    @api.response(201, 'Widget successfully created.')
-    @api.expect(widget, validate=True)
-    @api.marshal_with(widget_creation)
+    @namespace.response(201, 'Widget successfully created.')
+    @namespace.expect(new_widget, validate=True)
     def post(self):
         """Creates a new Widget"""
         data = request.json
         return widget_service.create_new_widget(data=data)
 
 
-@api.route('/<public_id>')
-@api.param('public_id', 'The Widget Identifier')
+@namespace.route('/<public_id>')
+@namespace.param('public_id', 'The Widget Identifier')
 class Widget(Resource):
-    """
-    Widget resource contains individual widget data
-    test
-    """
-    @api.marshal_with(widget)
+
+    @namespace.marshal_with(widget, envelope='widget')
     def get(self, public_id):
         """
         Gets widget given public_id
@@ -52,3 +54,11 @@ class Widget(Resource):
         :return:
         """
         return widget_service.get_a_widget(public_id)
+
+
+@namespace.route('/types')
+class WidgetTypes(Resource):
+
+    @namespace.marshal_list_with(widget_type)
+    def get(self):
+        return widget_service.get_types()

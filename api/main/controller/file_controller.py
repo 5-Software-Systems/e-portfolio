@@ -3,16 +3,16 @@ from flask_restplus import Resource, Namespace
 
 from ..service import file_service
 
-api = Namespace(
+namespace = Namespace(
     name='file',
     path='/user',
     description='file related operations'
 )
 
 
-@api.route('/<public_id>/<file_name>')
-@api.param('public_id', 'The User identifier')
-@api.param('file_name', 'The File identifier')
+@namespace.route('/<public_id>/<file_name>')
+@namespace.param('public_id', 'The User identifier')
+@namespace.param('file_name', 'The File identifier')
 class File(Resource):
     """
     Resource for fetching and uploading asset files

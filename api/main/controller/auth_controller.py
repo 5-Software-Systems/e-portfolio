@@ -7,36 +7,36 @@ from ..util.decorator import login_required
 
 from .api_fields import *
 
-api = Namespace(
+namespace = Namespace(
     name='auth',
     path='/auth',
     description='authentication related operations'
 )
 
-user_auth = api.model(
+user_auth = namespace.model(
     name='auth_details',
     model=dict([email, password])
 )
-auth_response = api.model(
+auth_response = namespace.model(
     name='auth_response',
     model=dict([response_status, response_message, auth_token])
 )
-auth_token = api.model(
+auth_token = namespace.model(
     name='bearer_auth_token',
     model=dict([bearer_auth_token])
 )
-auth_token_header = api.parser()
+auth_token_header = namespace.parser()
 auth_token_header.add_argument('Authorization', type=str, location='headers')
 
 
-@api.route('/login')
+@namespace.route('/login')
 class UserLogin(Resource):
     """
     User Login Resource
     """
 
-    @api.expect(user_auth, validate=True)
-    @api.marshal_with(auth_response)
+    @namespace.expect(user_auth, validate=True)
+    @namespace.marshal_with(auth_response)
     def post(self):
         """
         Log in a user
@@ -45,14 +45,14 @@ class UserLogin(Resource):
         return auth_service.login_user(data=request.json)
 
 
-@api.route('/logout')
+@namespace.route('/logout')
 class LogoutAPI(Resource):
     """
     Logout Resource
     """
 
-    @api.marshal_with(auth_response)
-    @api.expect(auth_token_header)
+    @namespace.marshal_with(auth_response)
+    @namespace.expect(auth_token_header)
     @login_required
     def post(self):
         """
@@ -64,14 +64,14 @@ class LogoutAPI(Resource):
         return auth_service.logout_user(bearer_auth_token=bearer_auth_token)
 
 
-@api.route('/check_token')
+@namespace.route('/check_token')
 class CheckToken(Resource):
     """
     Check bearer_auth_token
     """
 
     # @api.marshal_with(auth_response)
-    @api.expect(auth_token, validate=True)
+    @namespace.expect(auth_token, validate=True)
     def get(self):
         """
         Check the status and user of an auth token (for development only)
