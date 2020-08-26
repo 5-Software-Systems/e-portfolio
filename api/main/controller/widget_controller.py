@@ -42,6 +42,7 @@ class WidgetList(Resource):
 class Widget(Resource):
     """
     Widget resource contains individual widget data
+    test
     """
     @api.marshal_with(widget)
     def get(self, public_id):
