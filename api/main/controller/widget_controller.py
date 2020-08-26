@@ -14,20 +14,18 @@ api = Namespace(
     description='widget related operations'
 )
 
-# widget = api.model(
-#     'widget',
-#     model=dict([widget_type, widget_data])
-# )
 
 widget_creation = api.model(
     name='user_creation',
     model=dict([response_status, response_message])
 )
 
+
 @api.route('')
 class WidgetList(Resource):
     @api.marshal_list_with(widget, envelope='widgets')
     def get(self):
+        """List of all widgets"""
         return [w.marshal() for w in widget_service.get_all_widgets()]
 
     @api.response(201, 'Widget successfully created.')
@@ -39,16 +37,6 @@ class WidgetList(Resource):
         return widget_service.create_new_widget(data=data)
 
 
-
-@api.route('/about')
-class AboutWidget(Resource):
-
-    def post(self):
-        """Creates a new about Widget"""
-        data = request.json
-        widget_service.create_new_widget(data=data)
-
-
 @api.route('/<public_id>')
 @api.param('public_id', 'The Widget Identifier')
 class Widget(Resource):
@@ -58,7 +46,7 @@ class Widget(Resource):
     @api.marshal_with(widget)
     def get(self, public_id):
         """
-        Gets widget given widget_id
+        Gets widget given public_id
         :param public_id:
         :return:
         """
