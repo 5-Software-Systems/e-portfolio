@@ -1,51 +1,47 @@
 from flask import request
 from flask_restplus import Resource, Namespace
-from flask_restplus import marshal
 
 from ..service import user_service
 
 from .api_fields import *
-# from ..util.exception import ServerError
+from .widget_controller import widget
 
-api = Namespace(
+
+namespace = Namespace(
     name='user',
     path='/user',
     description='user related operations'
 )
 
-user = api.model(
-    name='user',
-    model=dict([public_id, email, name_first, name_last])
+portfolio = namespace.model(
+    name='portfolio',
+    model=dict([public_id, portfolio_title, ('widgets', fields.List(fields.Nested(widget)))])
 )
-new_user = api.model(
+user = namespace.model(
+    name='user',
+    model=dict([public_id, email, name_first, name_last, portfolio_list])
+)
+new_user = namespace.model(
     name='new_user',
     model=dict([email, name_first, name_last, password])
 )
-user_creation = api.model(
+user_creation = namespace.model(
     name='user_creation',
     model=dict([response_status, response_message, public_id, auth_token])
 )
-widget = api.model(
-    'widget',
-    model=dict([public_id, widget_type, widget_data])
-)
-profile = api.model(
-    name='profile',
-    model={'user': fields.Nested(user), 'widgets': fields.List(fields.Nested(widget))}
-)
 
 
-@api.route('')
+@namespace.route('')
 class UserList(Resource):
 
-    @api.marshal_list_with(user, envelope='users')
+    @namespace.marshal_with(user, as_list=True, envelope='users')
     def get(self):
         """List all registered users"""
         return user_service.get_all_users()
 
-    @api.response(201, 'User successfully created.')
-    @api.expect(new_user, validate=True)
-    @api.marshal_with(user_creation)
+    @namespace.response(201, 'User successfully created.')
+    @namespace.expect(new_user, validate=True)
+    @namespace.marshal_with(user_creation)
     def post(self):
         """Creates a new User"""
         data = request.json
@@ -53,40 +49,11 @@ class UserList(Resource):
         return user_service.create_new_user(data=data)
 
 
-@api.route('/<public_id>')
-@api.param('public_id', 'The User identifier')
+@namespace.route('/<public_id>')
+@namespace.param('public_id', 'The User identifier')
 class User(Resource):
 
-    @api.marshal_with(user, envelope='user')
+    @namespace.marshal_with(user, envelope='user')
     def get(self, public_id):
         """get a new_user given its identifier"""
         return user_service.get_a_user(public_id)
-
-
-@api.route('/<public_id>/profile')
-@api.param('public_id', 'The User identifier')
-class Profile(Resource):
-    """
-    Profile resource contains user and related widget data
-    """
-
-    @api.marshal_list_with(profile, envelope='profile')
-    def get(self, public_id):
-        """
-        Get a profile by public_id
-        """
-        res, code = user_service.get_a_user(public_id)
-        if code != 200:
-            return res, code
-        return {'user': marshal(res, user),
-                'widgets': [w.marshal() for w in res.widgets]
-                }, code
-
-
-# @api.errorhandler(ServerError)
-# def handle_server_error(e: ServerError):
-#     return {
-#         'error': e.__class__.__name__,
-#         'message': e.error_message,
-#     }, e.status_code
-#
