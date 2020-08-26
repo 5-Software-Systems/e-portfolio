@@ -51,3 +51,12 @@ class Widget(Resource):
         :return:
         """
         return widget_service.get_a_widget(public_id)
+
+
+# @api.route('/about')
+# class AboutWidget(Resource):
+#
+#     def post(self):
+#         """Creates a new about Widget"""
+#         data = request.json
+#         widget_service.create_new_widget(data=data)
