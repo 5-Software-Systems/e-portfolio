@@ -63,7 +63,7 @@ export default function Signup() {
                 <form action="/action_page.php" className="form-container">
                     <h1>Sign Up</h1>
 
-                    <FormGroup controlId="First Name">
+                    <FormGroup controlId="firstname">
                         <FormLabel>First Name</FormLabel>
                         <FormControl
                             type="text"
@@ -71,7 +71,7 @@ export default function Signup() {
                             onChange={handleFieldChange}
                         />
                     </FormGroup>
-                    <FormGroup controlId="Last Name">
+                    <FormGroup controlId="lastname">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl
                             type="text"
