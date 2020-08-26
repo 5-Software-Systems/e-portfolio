@@ -3,3 +3,4 @@ from .user import User
 from .blacklist import BlacklistToken
 from .file import File
 from .widgets import *
+from .portfolio import Portfolio

@@ -16,9 +16,10 @@ class WidgetBase(Model):
 
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(100), nullable=False, unique=True, default=lambda: str(uuid.uuid4()))
-    user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
-    user = relationship('User', back_populates='widgets')
+    portfolio_id = db.Column(db.Integer, ForeignKey('portfolio.id'), nullable=False)
     widget_type = db.Column(db.String(100), nullable=False)
+
+    portfolio = relationship('Portfolio', back_populates='widgets')
 
     __mapper_args__ = {
         'polymorphic_identity': 'widget',
