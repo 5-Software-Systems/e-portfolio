@@ -17,6 +17,7 @@ api.add_namespace(user_namespace)
 api.add_namespace(widget_namespace)
 
 api.add_namespace(file_namespace)
+api.add_namespace(model_namespace)
 
 
 @api.errorhandler

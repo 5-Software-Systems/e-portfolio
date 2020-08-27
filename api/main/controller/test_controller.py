@@ -19,7 +19,7 @@ class Test1(Resource):
 
     @namespace.doc('test endpoint1')
     def get(self):
-        return test_service.service_test1()
+        return test_service.service_test1(), 200
 
 
 @namespace.route('/test2')
@@ -30,4 +30,4 @@ class Test2(Resource):
 
     @namespace.doc('test endpoint2')
     def get(self):
-        return test_service.service_test2()
+        return test_service.service_test2(), 200

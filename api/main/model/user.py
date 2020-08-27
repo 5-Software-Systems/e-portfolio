@@ -37,8 +37,7 @@ class User(Model):
     def check_password(self, password):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
 
-    @staticmethod
-    def encode_auth_token(key):
+    def encode_auth_token(self):
         """
         Generates the Auth Token
         :return: string
@@ -46,7 +45,7 @@ class User(Model):
         payload = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
             'iat': datetime.datetime.utcnow(),
-            'sub': key
+            'sub': self.public_id
         }
         return jwt.encode(
             payload,

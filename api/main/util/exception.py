@@ -27,6 +27,12 @@ class UserNotFound(ResourceError):
     pass
 
 
+class FileNotFound(ResourceError):
+    def __init__(self, public_id):
+        self.error_message = 'File <{}> not found'.format(public_id)
+    pass
+
+
 class UserAlreadyExists(ResourceError):
     error_message = 'User already exists'
     pass
