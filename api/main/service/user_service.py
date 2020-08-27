@@ -13,7 +13,7 @@ def create_new_user(data):
     """
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        raise UserAlreadyExists('User already exists, log in instead')
+        raise UserAlreadyExists
 
     new_user = User(
         email=data['email'],
@@ -35,7 +35,7 @@ def get_all_users():
 def get_a_user(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     if not user:
-        raise UserNotFound('User {} not found'.format(public_id))
+        raise UserNotFound(public_id)
     return user, 200
 
 

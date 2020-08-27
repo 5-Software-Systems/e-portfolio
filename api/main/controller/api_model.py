@@ -90,27 +90,3 @@ class Widget:
         name='widget_type',
         model=dict([widget_type, ('data_fields', fields.List(fields.String()))])
     )
-
-
-class Portfolio:
-    namespace = Namespace(
-        name='portfolio',
-        path='/portfolio',
-        description='portfolio related operations'
-    )
-    new_portfolio = namespace.model(
-        name='new_portfolio',
-        model=dict([portfolio_title])
-    )
-    portfolio_list = namespace.model(
-        name='portfolio_list',
-        model=dict([public_id, portfolio_title])
-    )
-    widget = namespace.model(
-        name='widget_list',
-        model=dict([public_id, widget_type, widget_data])
-    )
-    portfolio = namespace.model(
-        name='portfolio',
-        model=dict([public_id, portfolio_title, ('widget', fields.List(fields.Nested(widget), attribute='widget_list'))])
-    )

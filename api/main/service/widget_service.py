@@ -11,9 +11,9 @@ def get_all_widgets():
 
 
 def get_a_widget(public_id):
-    widget: WidgetBase = WidgetBase.query.filter_by(public_id=public_id).first()
+    widget = WidgetBase.query.filter_by(public_id=public_id).first()
     if not widget:
-        raise WidgetNotFound('Widget {} not found'.format(public_id))
+        raise WidgetNotFound(public_id)
     return widget.marshal(), 200
 
 
