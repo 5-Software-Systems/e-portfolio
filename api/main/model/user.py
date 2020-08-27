@@ -24,7 +24,7 @@ class User(Model):
     password_hash = db.Column(db.String(100))
     registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
 
-    portfolios = relationship('Portfolio', back_populates='user')
+    portfolios = relationship('Portfolio')
 
     @property
     def password(self):

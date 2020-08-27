@@ -19,7 +19,7 @@ class WidgetBase(Model):
     portfolio_id = db.Column(db.Integer, ForeignKey('portfolio.id'), nullable=False)
     widget_type = db.Column(db.String(100), nullable=False)
 
-    portfolio = relationship('Portfolio', back_populates='widgets')
+    portfolio = relationship('Portfolio')
 
     __mapper_args__ = {
         'polymorphic_identity': 'widget',
