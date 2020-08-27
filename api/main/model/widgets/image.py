@@ -14,8 +14,3 @@ class Image(WidgetBase):
     image_url = db.Column(db.String(), nullable=False)
 
     __mapper_args__ = {'polymorphic_identity': 'image'}
-
-    def marshal(self):
-        r = super().marshal()
-        r['data'].update({'image': self.image_url})
-        return r

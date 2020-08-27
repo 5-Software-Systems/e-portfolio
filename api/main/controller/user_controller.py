@@ -54,7 +54,8 @@ class PortfolioList(Resource):
 
 
 @namespace.route('/<public_id>/portfolio/<portfolio_public_id>')
-@namespace.param('public_id', 'The Portfolio identifier')
+@namespace.param('public_id', 'The User identifier')
+@namespace.param('portfolio_public_id', 'The Portfolio identifier')
 class Portfolio(Resource):
 
     @namespace.marshal_with(api_model.User.portfolio, envelope='portfolio')
