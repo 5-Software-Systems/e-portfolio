@@ -1,12 +1,17 @@
 from flask import request
-from flask_restplus import Resource
+from flask_restplus import Resource, Namespace
 
 from ..service import auth_service
 from ..util.decorator import login_required
+from ..util.exception import *
 
 from . import api_model
 
-namespace = api_model.Auth.namespace
+namespace = Namespace(
+    name='auth',
+    path='/auth',
+    description='authentication related operations'
+)
 
 
 @namespace.route('/login')
@@ -15,14 +20,14 @@ class UserLogin(Resource):
     User Login Resource
     """
 
-    @namespace.expect(api_model.Auth.user_auth, validate=True)
-    @namespace.marshal_with(api_model.Auth.auth_response)
+    @namespace.expect(api_model.user_auth, validate=True)
+    @namespace.marshal_with(api_model.auth_response)
     def post(self):
         """
         Log in a user
         """
         # TODO Validation
-        return auth_service.login_user(data=request.json)
+        return auth_service.login_user(data=request.json), 200
 
 
 @namespace.route('/logout')
@@ -31,8 +36,8 @@ class LogoutAPI(Resource):
     Logout Resource
     """
 
-    @namespace.marshal_with(api_model.Auth.auth_response)
-    @namespace.expect(api_model.Auth.auth_token_header)
+    @namespace.marshal_with(api_model.auth_response)
+    @namespace.expect(api_model.auth_token_header)
     @login_required
     def post(self):
         """
@@ -41,7 +46,7 @@ class LogoutAPI(Resource):
         # TODO Validation
         bearer_auth_token = request.headers.get('Authorization')
 
-        return auth_service.logout_user(bearer_auth_token=bearer_auth_token)
+        return auth_service.logout_user(bearer_auth_token=bearer_auth_token), 200
 
 
 @namespace.route('/check_token')
@@ -50,8 +55,8 @@ class CheckToken(Resource):
     Check bearer_auth_token
     """
 
-    # @api.marshal_with(auth_response)
-    @namespace.expect(api_model.Auth.auth_token, validate=True)
+    @namespace.marshal_with(api_model.user_basic)
+    @namespace.expect(api_model.auth_token, validate=True)
     def get(self):
         """
         Check the status and user of an auth token (for development only)
@@ -59,4 +64,4 @@ class CheckToken(Resource):
         # TODO Validation
         bearer_auth_token = request.json['bearer_auth_token']
 
-        return auth_service.decode_auth_token(bearer_auth_token=bearer_auth_token)
+        return auth_service.decode_auth_token(bearer_auth_token=bearer_auth_token), 200

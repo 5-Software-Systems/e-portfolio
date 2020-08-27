@@ -11,10 +11,10 @@ def get_all_widgets():
 
 
 def get_a_widget(public_id):
-    widget: WidgetBase = WidgetBase.query.filter_by(public_id=public_id).first()
+    widget = WidgetBase.query.filter_by(public_id=public_id).first()
     if not widget:
-        raise WidgetNotFound('Widget {} not found'.format(public_id))
-    return widget.marshal(), 200
+        raise WidgetNotFound(public_id)
+    return widget.marshal()
 
 
 def create_new_widget(data):
@@ -26,9 +26,7 @@ def create_new_widget(data):
         new_about_widget.save()
     except sqlalchemy.exc.IntegrityError:
         raise RequestError('Data parameters missing')
-    return {'status': 'success',
-            'message': 'Successfully created',
-            }, 201
+    return 'created'
 
 
 def get_types():
@@ -37,4 +35,4 @@ def get_types():
          'data_fields': ['about']},
         {'type': 'image',
          'data_fields': ['image_url']},
-    ], 200
+    ]

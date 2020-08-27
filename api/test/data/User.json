@@ -1,14 +1,20 @@
 [
   {
-    "email": "mlitterick@student.unimelb.edu.au",
-    "name_first": "Marcus",
-    "name_last": "Litterick",
+    "email": "email",
+    "name_first": "name_first",
+    "name_last": "name_first",
     "password": "password"
   },
   {
     "email": "flangton@student.unimelb.edu.au",
     "name_first": "Fraser",
     "name_last": "Langton",
+    "password": "password"
+  },
+  {
+    "email": "mlitterick@student.unimelb.edu.au",
+    "name_first": "Marcus",
+    "name_last": "Litterick",
     "password": "password"
   }
 ]

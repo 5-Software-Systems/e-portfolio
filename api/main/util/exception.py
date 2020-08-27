@@ -22,20 +22,31 @@ class ResourceError(ServerError):
 
 
 class UserNotFound(ResourceError):
-    status_code = 404
-    error_message = 'User not found'
+    def __init__(self, public_id):
+        self.error_message = 'User <{}> not found'.format(public_id)
+    pass
+
+
+class FileNotFound(ResourceError):
+    def __init__(self, public_id):
+        self.error_message = 'File <{}> not found'.format(public_id)
     pass
 
 
 class UserAlreadyExists(ResourceError):
-    status_code = 409
-    error_message = 'Error already exists'
+    error_message = 'User already exists'
+    pass
+
+
+class PortfolioNotFound(ResourceError):
+    def __init__(self, public_id):
+        self.error_message = 'Portfolio <{}> not found'.format(public_id)
     pass
 
 
 class WidgetNotFound(ResourceError):
-    status_code=404
-    error_message = 'Widget not found'
+    def __init__(self, public_id):
+        self.error_message = 'Widget <{}> not found'.format(public_id)
     pass
 
 
