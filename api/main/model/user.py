@@ -1,7 +1,7 @@
 import datetime
 import uuid
-
 import jwt
+
 from sqlalchemy.orm import relationship
 
 from . import Model

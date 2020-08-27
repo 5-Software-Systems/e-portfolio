@@ -4,8 +4,8 @@ from abc import abstractmethod
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
-from api.main.model import Model
-from api.main import db
+from .. import Model
+from ... import db
 
 
 class WidgetBase(Model):
@@ -28,7 +28,9 @@ class WidgetBase(Model):
 
     @abstractmethod
     def marshal(self):
+        columns = [str(i).split('.')[-1] for i in self.__table__.columns]
+        columns = [i for i in columns if i not in ['id']]
         return {'public_id': self.public_id,
                 'type': self.widget_type,
-                'data': {}
+                'data': {column: self.__getattribute__(column) for column in columns}
                 }

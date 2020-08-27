@@ -1,32 +1,12 @@
 from flask import request
 from flask_restplus import Resource
-from flask_restplus import Namespace
 
 from ..service import auth_service
 from ..util.decorator import login_required
 
-from .api_fields import *
+from . import api_model
 
-namespace = Namespace(
-    name='auth',
-    path='/auth',
-    description='authentication related operations'
-)
-
-user_auth = namespace.model(
-    name='auth_details',
-    model=dict([email, password])
-)
-auth_response = namespace.model(
-    name='auth_response',
-    model=dict([response_status, response_message, auth_token])
-)
-auth_token = namespace.model(
-    name='bearer_auth_token',
-    model=dict([bearer_auth_token])
-)
-auth_token_header = namespace.parser()
-auth_token_header.add_argument('Authorization', type=str, location='headers')
+namespace = api_model.Auth.namespace
 
 
 @namespace.route('/login')
@@ -35,8 +15,8 @@ class UserLogin(Resource):
     User Login Resource
     """
 
-    @namespace.expect(user_auth, validate=True)
-    @namespace.marshal_with(auth_response)
+    @namespace.expect(api_model.Auth.user_auth, validate=True)
+    @namespace.marshal_with(api_model.Auth.auth_response)
     def post(self):
         """
         Log in a user
@@ -51,8 +31,8 @@ class LogoutAPI(Resource):
     Logout Resource
     """
 
-    @namespace.marshal_with(auth_response)
-    @namespace.expect(auth_token_header)
+    @namespace.marshal_with(api_model.Auth.auth_response)
+    @namespace.expect(api_model.Auth.auth_token_header)
     @login_required
     def post(self):
         """
@@ -71,7 +51,7 @@ class CheckToken(Resource):
     """
 
     # @api.marshal_with(auth_response)
-    @namespace.expect(auth_token, validate=True)
+    @namespace.expect(api_model.Auth.auth_token, validate=True)
     def get(self):
         """
         Check the status and user of an auth token (for development only)

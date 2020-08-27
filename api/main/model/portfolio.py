@@ -1,8 +1,11 @@
-from . import Model
-from .. import db
 import uuid
+
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
+
+from . import Model
+from .. import db
+
 
 class Portfolio(Model):
     """Portfolio model for storing portfolio data"""

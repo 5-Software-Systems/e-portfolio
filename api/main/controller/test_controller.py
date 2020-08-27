@@ -2,7 +2,7 @@ from flask_restplus import Resource, Namespace
 
 from ..service import test_service
 
-from .api_fields import *
+from .api_field import *
 
 namespace = Namespace(
     name='test',

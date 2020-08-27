@@ -3,6 +3,7 @@ from sqlalchemy import ForeignKey
 from .widget import WidgetBase
 from ... import db
 
+
 class Website(WidgetBase):
     """
     Feature model for storing features the user may want to highlight,
@@ -15,8 +16,3 @@ class Website(WidgetBase):
     external_url = db.Column(db.String(100))
 
     __mapper_args__ = {'polymorphic_identity': 'website'}
-
-    def marshal(self):
-        r = super().marshal()
-        r['data'].update({'external_link': self.external_url})
-        return r
