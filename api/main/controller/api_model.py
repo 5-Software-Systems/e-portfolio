@@ -36,7 +36,6 @@ portfolio = namespace.model(
                 ('widget', fields.List(fields.Nested(widget), attribute='widget_list'))])
 )
 
-
 user_new = namespace.model(
     name='user_new',
     model=dict([email, name_first, name_last, password])
@@ -44,6 +43,10 @@ user_new = namespace.model(
 user_basic = namespace.model(
     name='user',
     model=dict([public_id, email, name_first, name_last, registered_on])
+)
+user_change = namespace.model(
+    name='user_change',
+    model=dict([email, name_first, name_last])
 )
 user_portfolio = namespace.model(
     name='user_portfolio',

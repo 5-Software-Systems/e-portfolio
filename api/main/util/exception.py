@@ -34,6 +34,7 @@ class FileNotFound(ResourceError):
 
 
 class UserAlreadyExists(ResourceError):
+    status_code = 302
     error_message = 'User already exists'
     pass
 

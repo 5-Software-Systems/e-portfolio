@@ -1,35 +1,27 @@
 import sqlalchemy
 
-from ..model import User, Portfolio
+from . import user_service
+from ..model import Portfolio
 from ..util.exception import *
 
 
-def get_a_portfolio(user_public_id, portfolio_public_id):
-    user = User.query.filter_by(public_id=user_public_id).first()
-    if not user:
-        raise UserNotFound(user_public_id)
-
-    portfolio = Portfolio.query.filter_by(public_id=portfolio_public_id).first()
+def get_a_portfolio(public_id):
+    portfolio = Portfolio.query.filter_by(public_id=public_id).first()
     if not portfolio:
-        raise PortfolioNotFound(portfolio_public_id)
+        raise PortfolioNotFound(public_id)
 
-    widgets = [w.marshal() for w in portfolio.widgets]
     # custom marshalling, portfolio.widget cannot be
-    portfolio.widget_list = widgets
+    portfolio.widget_list = [w.marshal() for w in portfolio.widgets]
     return portfolio
 
 
-def get_all_portfolios(user_public_id):
-    user = User.query.filter_by(public_id=user_public_id).first()
-    if not user:
-        raise UserNotFound(user_public_id)
+def get_all_user_portfolios(user_public_id):
+    user = user_service.get_a_user(user_public_id)
     return user.portfolios
 
 
 def create_a_portfolio(user_public_id, data):
-    user = User.query.filter_by(public_id=user_public_id).first()
-    if not user:
-        raise UserNotFound(user_public_id)
+    user = user_service.get_a_user(user_public_id)
 
     data['user_id'] = user.id
     try:
@@ -37,4 +29,11 @@ def create_a_portfolio(user_public_id, data):
         portfolio.save()
     except sqlalchemy.exc.IntegrityError:
         raise RequestError('Data parameters missing')
-    return 'created'
+    return portfolio
+
+
+def update_a_portfolio(public_id, data):
+    portfolio = get_a_portfolio(public_id)
+    portfolio.patch(**data)
+    portfolio.save()
+    return portfolio

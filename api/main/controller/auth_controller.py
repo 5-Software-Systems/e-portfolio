@@ -27,7 +27,8 @@ class UserLogin(Resource):
         Log in a user
         """
         # TODO Validation
-        return auth_service.login_user(data=request.json), 200
+        data = request.json
+        return auth_service.login_user(data=data), 200
 
 
 @namespace.route('/logout')
