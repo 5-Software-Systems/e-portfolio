@@ -4,8 +4,8 @@ from abc import abstractmethod
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
-from api.main.model import Model
-from api.main import db
+from .. import Model
+from ... import db
 
 
 class WidgetBase(Model):
@@ -19,7 +19,7 @@ class WidgetBase(Model):
     portfolio_id = db.Column(db.Integer, ForeignKey('portfolio.id'), nullable=False)
     widget_type = db.Column(db.String(100), nullable=False)
 
-    portfolio = relationship('Portfolio', back_populates='widgets')
+    portfolio = relationship('Portfolio')
 
     __mapper_args__ = {
         'polymorphic_identity': 'widget',

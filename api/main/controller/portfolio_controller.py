@@ -1,38 +1,24 @@
 from flask import request
-from flask_restplus import Resource, Namespace
+from flask_restplus import Resource
 
-from .api_fields import *
+from ..service import portfolio_service
 
-namespace = Namespace(
-    name='portfolio',
-    path='/portfolio',
-    description='portfolio related operations'
-)
+from . import api_model
 
-widget = namespace.model(
-    name='widget',
-    model=dict([public_id, widget_type, widget_data])
-)
-portfolio = namespace.model(
-    name='portfolio',
-    model=dict([public_id, portfolio_title, ('widgets', fields.List(fields.Nested(widget)))])
-)
-new_portfolio = namespace.model(
-    name='new_portfolio',
-    model=dict([portfolio_title])
-)
+namespace = api_model.Portfolio.namespace
 
 
-@namespace.route('')
+@namespace.route('/<user_public_id>')
+@namespace.param('public_id', 'The User identifier')
 class PortfolioList(Resource):
 
-    @namespace.marshal_list_with(portfolio, envelope='portfolios')
-    def get(self):
+    @namespace.marshal_list_with(api_model.Portfolio.portfolio_list, envelope='portfolios')
+    def get(self, user_public_id):
         """List all Portfolios"""
-        return {}, 200
+        return portfolio_service.get_all_portfolios(user_public_id)
 
-    @namespace.expect(new_portfolio, validate=True)
-    def post(self):
+    @namespace.expect(api_model.Portfolio.new_portfolio, validate=True)
+    def post(self, user_public_id):
         """Creates a new Portfolio"""
         data = request.json
         # TODO Validation https://aviaryan.com/blog/gsoc/restplus-validation-custom-fields
@@ -43,7 +29,7 @@ class PortfolioList(Resource):
 @namespace.param('public_id', 'The Portfolio identifier')
 class User(Resource):
 
-    @namespace.marshal_with(portfolio, envelope='portfolio')
+    @namespace.marshal_with(api_model.Portfolio.portfolio, envelope='portfolio')
     def get(self, public_id):
         """get a Portfolio given its identifier"""
         return {}, 200

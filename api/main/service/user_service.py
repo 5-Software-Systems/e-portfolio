@@ -39,13 +39,6 @@ def get_a_user(public_id):
     return user, 200
 
 
-def get_a_user_profile(public_id):
-    user = User.query.filter_by(public_id=public_id).first()
-    if not user:
-        raise UserNotFound('User {} not found'.format(public_id))
-    return user, 200
-
-
 def generate_token(user):
     try:
         # generate the auth bearer_auth_token
