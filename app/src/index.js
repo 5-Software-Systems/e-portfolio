@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Test from './Test';
 import Signup from './containers/Signup';
+import SignupButton from './containers/Signup';
 import Login from './containers/Login';
+import LoginButton from './containers/Login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -14,16 +16,10 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+      <Signup />
+      <Login />
   </React.StrictMode>,
-  document.getElementById('login_pop_up')
-);
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Signup />
-  </React.StrictMode>,
-  document.getElementById('signup_pop_up')
+  document.getElementById('pop_ups')
 );
 
 

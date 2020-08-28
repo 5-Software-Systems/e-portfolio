@@ -1,6 +1,6 @@
 /** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
     FormGroup,
     FormControl,
@@ -123,17 +123,25 @@ export default function Signup() {
             </Button>
         );
     }
-    return (
-        <div>
+
+    function LoginButton() {
+        return (
             <Button
-                className="btn btn-info"
+                className="btn btn-info mx-2"
                 variant="primary"
                 onClick={openFormLogin}
                 type="button"
-                id="login_button"
-            >Log In</Button>
+            >
+                Log In
+            </Button>
+        );
+    }
+
+    return (
+        <Fragment>
+            <LoginButton />
             {renderForm()}
             <div className="cover" id="cover"></div>
-        </div>
+        </Fragment>
     );
 }
