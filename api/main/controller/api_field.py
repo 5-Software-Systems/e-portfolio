@@ -10,7 +10,7 @@ public_id = 'public_id', fields.String(description='global resource identifier')
 # USER
 email = 'email', fields.String(description='email address', example='email')
 name_first = 'name_first', fields.String(description='first name', example='first_name')
-name_last = 'name_last', fields.String(description='last name', example='first_name')
+name_last = 'name_last', fields.String(description='last name', example='last_name')
 password = 'password', fields.String(description='password', example='password')
 registered_on = 'registered_on', fields.DateTime(description='datetime user was registered')
 

@@ -82,6 +82,14 @@ APP (front-end) \
 `venv\Scripts\python -m api --run --debug
 `
 
+### Testing
+
+API (back-end) \
+In separate processes: \
+`venv\Scripts\python -m api --run --debug`\
+`venv\Scripts\python -m api --testapi`
+
+
 ### Deploying
 
 @Nathan todo

@@ -1,5 +1,4 @@
 import uuid
-from abc import abstractmethod
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
@@ -26,7 +25,6 @@ class WidgetBase(Model):
         'polymorphic_on': widget_type
     }
 
-    @abstractmethod
     def marshal(self):
         columns = [str(i).split('.')[-1] for i in self.__table__.columns]
         columns = [i for i in columns if i not in ['id']]

@@ -39,16 +39,10 @@ class Model(db.Model):
 
         self.after_save()
 
-    # def before_update(self, *args, **kwargs):
-    #     pass
-    #
-    # def after_update(self, *args, **kwargs):
-    #     pass
-    #
-    # def update(self, *args, **kwargs):
-    #     self.before_update(*args, **kwargs)
-    #     db.session.commit()
-    #     self.after_update(*args, **kwargs)
+    def patch(self, *args, **kwargs):
+        for key, val in kwargs.items():
+            if hasattr(self, key):
+                setattr(self, key, val)
 
     def delete(self, commit=True):
         db.session.delete(self)
@@ -59,34 +53,3 @@ class Model(db.Model):
     def eager(cls, *args):
         cols = [orm.joinedload(arg) for arg in args]
         return cls.query.options(*cols)
-
-    # @classmethod
-    # def before_bulk_create(cls, iterable, *args, **kwargs):
-    #     pass
-    #
-    # @classmethod
-    # def after_bulk_create(cls, model_objs, *args, **kwargs):
-    #     pass
-    #
-    # @classmethod
-    # def bulk_create(cls, iterable, *args, **kwargs):
-    #     cls.before_bulk_create(iterable, *args, **kwargs)
-    #     model_objs = []
-    #     for data in iterable:
-    #         if not isinstance(data, cls):
-    #             data = cls(**data)
-    #         model_objs.append(data)
-    #
-    #     db.session.bulk_save_objects(model_objs)
-    #     if kwargs.get('commit', True) is True:
-    #         db.session.commit()
-    #     cls.after_bulk_create(model_objs, *args, **kwargs)
-    #     return model_objs
-    #
-    # @classmethod
-    # def bulk_create_or_none(cls, iterable, *args, **kwargs):
-    #     try:
-    #         return cls.bulk_create(iterable, *args, **kwargs)
-    #     except exc.IntegrityError as e:
-    #         db.session.rollback()
-    #         return None
