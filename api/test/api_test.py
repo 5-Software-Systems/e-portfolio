@@ -15,16 +15,9 @@ PUT = 'put'
 POST = 'post'
 PATCH = 'patch'
 
-METHODS = {
-    GET: requests.get,
-    PUT: requests.put,
-    POST: requests.post,
-    PATCH: requests.patch,
-}
 
-
-def test_endpoint(url, method='get', data=None, print_res=False, output=None):
-    r = METHODS[method](url, json=data)
+def test_endpoint(url, method='get', data=None, print_res=True, output=None):
+    r = requests.request(method, url, json=data)
     print('{:<7}{:<10}{}'.format(r.status_code, method.upper(), url))
     if print_res:
         print(r.text)
@@ -43,7 +36,10 @@ def run_tests():
     """
 
     # STATUS
-    test_endpoint(status)
+    test_endpoint(
+        status,
+        output='ok'
+    )
 
     # USER
     create_user = test_endpoint(
@@ -52,12 +48,13 @@ def run_tests():
         {"email": "email",
          "name_first": "first_name",
          "name_last": "first_name",
-         "password": "password"}
+         "password": "password"},
+
     )
     user_public_id = create_user.json()['user']['public_id']
 
     list_user = test_endpoint(
-        user
+        user,
     )
 
     get_user = test_endpoint(
