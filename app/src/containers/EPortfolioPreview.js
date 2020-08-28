@@ -1,12 +1,13 @@
 import React from 'react';
-import Foggers from '../res/foggers.png';
+import '../BasePage.css';
 
-function EPortfolioPreview(){
+
+function EPortfolioPreview({name, date, img}){
     return(
-        <div>
-            <h3>Name</h3>
-            <p> today 24:01 XD</p>
-            <img src={Foggers} alt='foggers'/>
+        <div className="eportfoliopreview">
+            <h3>{name}</h3>
+            <p> {date} </p>
+            <img src={img} alt='foggers' height='150'/>
         </div>
     )
 }
