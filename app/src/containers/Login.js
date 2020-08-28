@@ -127,10 +127,9 @@ export default function Signup() {
     function LoginButton() {
         return (
             <Button
-                className="btn btn-info mx-2"
+                className="btn btn-info m-2"
                 variant="primary"
                 onClick={openFormLogin}
-                type="button"
             >
                 Log In
             </Button>

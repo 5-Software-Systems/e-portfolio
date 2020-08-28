@@ -157,10 +157,9 @@ export default function Signup() {
     function SignupButton() {
         return (
             <Button
-                className="btn btn-info mx-2"
+                className="btn btn-info m-2"
                 variant="primary"
                 onClick={openFormSignUp}
-                type="sign_up_button"
             >
                 Sign Up
             </Button>

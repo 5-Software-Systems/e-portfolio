@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Test from './Test';
 import Signup from './containers/Signup';
-import SignupButton from './containers/Signup';
 import Login from './containers/Login';
-import LoginButton from './containers/Login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
