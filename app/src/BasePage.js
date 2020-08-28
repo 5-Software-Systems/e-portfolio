@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-function basePage(){
+function BasePage(){
     return(
         <Router>
             <div>
@@ -11,3 +11,5 @@ function basePage(){
 
     );
 }
+
+export default BasePage;
