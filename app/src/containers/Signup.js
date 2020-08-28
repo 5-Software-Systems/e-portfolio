@@ -57,6 +57,16 @@ export default function Signup() {
         console.log(data);
     }
 
+    function openFormSignUp() {
+      document.getElementById("sign_up_form").style.display = "block"
+      document.getElementById("cover").style.display = "block";
+    }
+
+    function closeFormSignUp() {
+      document.getElementById("sign_up_form").style.display = "none";
+      document.getElementById("cover").style.display = "none";
+    }
+
     function renderForm() {
         return (
             <div className="form-popup" id="sign_up_form">
@@ -107,7 +117,12 @@ export default function Signup() {
 
                     <SubmitButton />
 
-                    <button type="button" className="btn cancel" id="pop_up_close">Close</button>
+                    <Button
+                        className="btn cancel"
+                        variant="primary"
+                        onClick={closeFormSignUp}
+                        type="button"
+                    >Close</Button>
                 </form>
             </div>
         );
@@ -140,6 +155,12 @@ export default function Signup() {
     }
     return (
         <div>
+            <Button
+                className="btn btn-info"
+                variant="primary"
+                onClick={openFormSignUp}
+                type="sign_up_button"
+            >Sign Up</Button>
             {renderForm()}
             <div className="cover" id="cover"></div>
         </div>
