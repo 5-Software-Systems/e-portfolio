@@ -1,14 +1,12 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import EPortfolioPreview from "./containers/EPortfolioPreview";
 
 function BasePage(){
     return(
-        <Router>
-            <div>
-                <h1>Base Page</h1>
-            </div>
-        </Router>
-
+        <div>
+            <h1>Base Page</h1>
+            < EPortfolioPreview />
+        </div>
     );
 }
 
