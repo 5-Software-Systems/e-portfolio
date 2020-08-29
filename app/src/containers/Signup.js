@@ -26,23 +26,25 @@ function useFormFields(initialState) {
 
 export default function Signup() {
     const [fields, handleFieldChange] = useFormFields({
-        firstname: "",
-        lastname: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+        signup_firstname: "",
+        signup_lastname: "",
+        signup_email: "",
+        signup_password: "",
+        signup_confirmPassword: "",
     });
     function validateForm() {
         return (
-            fields.email.length > 0 &&
-            fields.password.length > 0 &&
-            fields.confirmPassword === fields.password &&
-            validateEmail(fields.email)
+            fields.signup_firstname.length > 0 &&
+            fields.signup_lastname.length > 0 &&
+            fields.signup_email.length > 0 &&
+            fields.signup_password.length > 0 &&
+            fields.signup_confirmPassword === fields.signup_password &&
+            validateEmail(fields.signup_email)
         );
     }
 
     function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         return re.test(String(email).toLowerCase());
     }
 
@@ -50,7 +52,7 @@ export default function Signup() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.email, password: fields.password, name_first: fields.firstname, name_last: fields.lastname})
+            body: JSON.stringify({email: fields.signup_email, password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
         };
         const response = await fetch('api/user', requestOptions);
         const data = await response.json();
@@ -73,45 +75,50 @@ export default function Signup() {
                 <form action="/action_page.php" className="form-container">
                     <h1>Sign Up</h1>
 
-                    <FormGroup controlId="firstname">
+                    <FormGroup controlId="signup_firstname">
                         <FormLabel>First Name</FormLabel>
                         <FormControl
                             type="text"
                             values = {fields.firstname}
                             onChange={handleFieldChange}
+                            autoComplete="name"
                         />
                     </FormGroup>
-                    <FormGroup controlId="lastname">
+                    <FormGroup controlId="signup_lastname">
                         <FormLabel>Last Name</FormLabel>
                         <FormControl
                             type="text"
                             values = {fields.lastname}
                             onChange={handleFieldChange}
+                            autoComplete="surname"
                         />
                     </FormGroup>
 
-                    <FormGroup controlId="email">
+                    <FormGroup controlId="signup_email">
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             type="email"
                             values = {fields.email}
                             onChange={handleFieldChange}
+                            autoComplete="email"
                         />
                     </FormGroup>
-                    <FormGroup controlId="password">
+                    <FormGroup controlId="signup_password">
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
                             value={fields.password}
                             onChange={handleFieldChange}
+                            autoComplete="password"
                     />
                     </FormGroup>
-                    <FormGroup controlId="confirmPassword">
+                    <FormGroup controlId="signup_confirmPassword">
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl
                             type="password"
                             onChange={handleFieldChange}
                             value={fields.confirmPassword}
+                            autoComplete="password"
                         />
                     </FormGroup>
 
@@ -136,6 +143,8 @@ export default function Signup() {
                 handleSubmit().then(() => {
                     setLoading(false);
                 });
+            } else if (isLoading && !validateForm()) {
+                setLoading(false);
             }
         }, [isLoading]);
 

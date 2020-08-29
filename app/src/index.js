@@ -1,25 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './Test';
-import Signup from './containers/Signup';
-import Login from './containers/Login';
+import LandingContent from './components/Landing';
+import LandingButtons from './components/LandingButtons';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Test />
+      <LandingButtons />
   </React.StrictMode>,
-  document.getElementById('left_info')
+  document.getElementById('nav_right')
 );
 
 ReactDOM.render(
   <React.StrictMode>
-      <Signup />
-      <Login />
+      <LandingContent />
   </React.StrictMode>,
-  document.getElementById('pop_ups')
+  document.getElementById('content')
 );
-
 
 
 // If you want your app to work offline and load faster, you can change

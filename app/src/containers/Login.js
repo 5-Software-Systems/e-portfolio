@@ -26,19 +26,20 @@ function useFormFields(initialState) {
 
 export default function Signup() {
     const [fields, handleFieldChange] = useFormFields({
-        email: "",
-        password: "",
+        login_email: "",
+        login_password: "",
     });
+
     function validateForm() {
         return (
-            fields.email.length > 0 &&
-            fields.password.length > 0 &&
-            validateEmail(fields.email)
+            fields.login_email.length > 0 &&
+            fields.login_password.length > 0 &&
+            validateEmail(fields.login_email)
         );
     }
 
     function validateEmail(email) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         return re.test(String(email).toLowerCase());
     }
 
@@ -46,7 +47,7 @@ export default function Signup() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.email, password: fields.password})
+            body: JSON.stringify({email: fields.login_email, password: fields.login_password})
         };
         const response = await fetch('api/auth/login', requestOptions);
         const data = await response.json();
@@ -68,20 +69,22 @@ export default function Signup() {
             <div className="form-popup" id="log_in_form">
                 <form action="/action_page.php" className="form-container">
                     <h1>Login</h1>
-                    <FormGroup controlId="email">
+                    <FormGroup controlId="login_email">
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             type="email"
                             values = {fields.email}
                             onChange={handleFieldChange}
+                            autoComplete="email"
                         />
                     </FormGroup>
-                    <FormGroup controlId="password">
+                    <FormGroup controlId="login_password">
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
                             values = {fields.password}
                             onChange={handleFieldChange}
+                            autoComplete="password"
                     />
                     </FormGroup>
 
@@ -106,6 +109,8 @@ export default function Signup() {
                 handleSubmit().then(() => {
                     setLoading(false);
                 });
+            } else if (isLoading && !validateForm()) {
+                setLoading(false);
             }
         }, [isLoading]);
 
