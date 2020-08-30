@@ -1,31 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Test from './Test';
-import Signup from './containers/Signup';
-import Login from './containers/Login';
+import LandingContent from './components/Landing';
+import LandingButtons from './components/LandingButtons';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Test />
+      <LandingButtons />
   </React.StrictMode>,
-  document.getElementById('left_info')
+  document.getElementById('nav_right')
 );
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+      <LandingContent />
   </React.StrictMode>,
-  document.getElementById('login_pop_up')
+  document.getElementById('content')
 );
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Signup />
-  </React.StrictMode>,
-  document.getElementById('signup_pop_up')
-);
-
 
 
 // If you want your app to work offline and load faster, you can change
@@ -33,33 +25,3 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-
-//login button
-document.getElementById("login_button").addEventListener("click", openFormLogin);
-document.getElementById("login_pop_up_close").addEventListener("click", closeFormLogin);
-
-
-function openFormLogin() {
-  document.getElementById("log_in_form").style.display = "block"
-  document.getElementById("cover").style.display = "block";
-}
-
-function closeFormLogin() {
-  document.getElementById("log_in_form").style.display = "none";
-  document.getElementById("cover").style.display = "none";
-}
-
-
-//sign up button
-document.getElementById("sign_up_button").addEventListener("click", openFormSignUp);
-document.getElementById("pop_up_close").addEventListener("click", closeForm);
-
-function openFormSignUp() {
-  document.getElementById("sign_up_form").style.display = "block"
-  document.getElementById("cover").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("sign_up_form").style.display = "none";
-  document.getElementById("cover").style.display = "none";
-}
