@@ -7,7 +7,7 @@ function EPortfolioPreview({name, date, img}){
         <div className="eportfoliopreview">
             <h3>{name}</h3>
             <p> {date} </p>
-            <img src={img} alt='foggers' height='150'/>
+            <img src={img} alt='image' height='150'/>
         </div>
     )
 }
