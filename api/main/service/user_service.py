@@ -1,31 +1,20 @@
-import uuid
-import datetime
+import sqlalchemy
 
 from ..model import User
-from ..util.db import save_db_object
-from ..util.exception import UserNotFound, UserAlreadyExists
+from ..util.exception import *
 
 
 def create_new_user(data):
-    """
-    :param data: {email, name_first, name_last, password}
-    :return:
-    """
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        raise UserAlreadyExists('User already exists, log in instead')
+        raise UserAlreadyExists
 
-    new_user = User(
-        email=data['email'],
-        name_first=data['name_first'],
-        name_last=data['name_last'],
-        password=data['password'],
-        registered_on=datetime.datetime.utcnow()
-    )
-    new_user.save()
-    response_object, code = generate_token(new_user)
-    response_object.update({'public_id': new_user.public_id})
-    return response_object, 201
+    try:
+        new_user = User(**data)
+        new_user.save()
+    except sqlalchemy.exc.IntegrityError:
+        raise RequestError('Data parameters missing')
+    return new_user
 
 
 def get_all_users():
@@ -35,27 +24,20 @@ def get_all_users():
 def get_a_user(public_id):
     user = User.query.filter_by(public_id=public_id).first()
     if not user:
-        raise UserNotFound('User {} not found'.format(public_id))
-    return user, 200
+        raise UserNotFound(public_id)
+    return user
 
 
-def get_a_user_profile(public_id):
-    user = User.query.filter_by(public_id=public_id).first()
-    if not user:
-        raise UserNotFound('User {} not found'.format(public_id))
-    return user, 200
+def update_a_user(public_id, data):
+    user = get_a_user(public_id)
+    user.patch(**data)
+    user.save()
+    return user
 
 
 def generate_token(user):
-    try:
-        # generate the auth bearer_auth_token
-        auth_token = user.encode_auth_token(user.id)
-        return {'status': 'success',
-                'message': 'Successfully registered.',
-                'Authorization': auth_token.decode()
-                }, 201
-    except Exception as e:
-        return {'status': 'fail',
-                'message': 'Some error occurred. Please try again.',
-                'debug': str(e),
-                }, 401
+    auth_token = user.encode_auth_token()
+    return {'message': 'Successfully registered.',
+            'Authorization': auth_token.decode()
+            }
+
