@@ -20,7 +20,7 @@ class MyGrid extends React.Component {
     };
 
     fetchData = async () => {
-        const response = await fetch("api/portfolio/77e9ef28-ad15-4d81-ba98-08bcfc4f6dd2");
+        const response = await fetch("api/portfolio/" + await getPortfolioID());
         const json = await response.json();
         //const result = json.portfolio.state.data.widget[0].data.about;
         //this.setState({data: json.portfolio});
@@ -85,21 +85,18 @@ class MyGrid extends React.Component {
 
 
   // later
-async function getWidgets() {
+async function getPortfolioID() {
+
+    const user = 'c0e6aa7b-db70-4675-88d9-699bee38f154'
+
     const requestOptions = {
         method: "GET",
         headers: {'Content-Type': 'application/json'}
     }
 
-    const res = await (await fetch('api/user/c0e6aa7b-db70-4675-88d9-699bee38f154/portfolio', requestOptions)).json();
-    console.log('api/portfolio/' + res.portfolios[0].public_id);
-    
-    const portfolio = await (await fetch ('api/portfolio/' + res.portfolios[0].public_id, requestOptions)).json();
-    console.log(portfolio);
-    console.log(portfolio.portfolio.widget[0].data.about);
-    console.log('api/portfolio/' + res.portfolios[0].public_id);
+    const res = await (await fetch('api/user/' + user + '/portfolio', requestOptions)).json();
 
-    return (portfolio.portfolio.widget[0].data.about);
+    return (res.portfolios[0].public_id);
 }
 
 
