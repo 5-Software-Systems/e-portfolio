@@ -4,19 +4,24 @@ image {
 }
 
 .react-grid-layout {
-  background: #2980b9;
+  background: #1a1a2e;
   position: relative;
   transition: height 200ms ease;
 }
 .react-grid-item {
   overflow: hidden;
-  border: 2px solid green;
+  border: 2px solid #16213e;
+  border-radius: 20px;
   transition: all 200ms ease;
   transition-property: left, top;
 }
 
 .react-grid-item img{
   width: 100%;
+}
+
+.react-grid-item iplayer{
+  vertical-align: middle;
 }
 
 .react-grid-item.cssTransforms {
