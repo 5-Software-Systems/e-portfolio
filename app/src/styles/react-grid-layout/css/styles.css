@@ -21,7 +21,8 @@ image {
 }
 
 .react-grid-item iplayer{
-  vertical-align: middle;
+  width: 100%;
+  height: 98%;
 }
 
 .react-grid-item.cssTransforms {

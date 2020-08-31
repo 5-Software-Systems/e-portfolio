@@ -44,11 +44,11 @@ class MyFirstGrid extends React.Component {
                 <p>hey whats up guys its scarce here</p>
             </div>
             <div key="f" data-grid={{i: 'f', x: 27, y: 0, w: 2, h: 1}}>
-                <iframe width={this.width * 2 - 10} height={this.height - 10} src="https://www.youtube.com/embed/G7RgN9ijwE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width='100%' height='99%' src="https://www.youtube.com/embed/G7RgN9ijwE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>hey this is pretty cool</p>
             </div>
             <div key="g" data-grid={{i: 'g', x: 27, y: 0, w: 1, h: 1}}>
-                <iframe src="https://open.spotify.com/embed/album/4aN2EaQB4G7z6BqcEClnMd" width={this.width-10} height={this.height-10} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/album/4aN2EaQB4G7z6BqcEClnMd" width='100%' height='99%' frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <p>hey this is pretty cool</p>
             </div>
             </ReactGridLayout>
