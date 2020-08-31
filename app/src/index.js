@@ -5,6 +5,7 @@ import LandingButtons from './components/LandingButtons';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import EPortfolio from "./containers/EPortfolio";
+import TextToHTML from "./components/Widgets/TextWidget";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
 
 
 

@@ -1,12 +1,13 @@
 import React from 'react';
 
 
-
-
-export default function TextWidget() {
+export function TextToHTML(props) {
     return (
-        <div>
-            <MyFirstGrid/>
+        <div id='textWidget'>
+            <h1>{props.header}</h1>
+            <p>{props.text}</p>
         </div>
     );
-};
+}
+
+export default TextToHTML;

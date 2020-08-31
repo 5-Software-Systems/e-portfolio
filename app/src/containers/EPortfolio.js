@@ -1,8 +1,10 @@
 import React from "react";
 import ReactGridLayout from 'react-grid-layout';
-import '../styles/grid-styles.css';
+import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
+
+import {TextToHTML} from "../components/Widgets/TextWidget";
 
 class MyGrid extends React.Component {
 
@@ -29,10 +31,7 @@ class MyGrid extends React.Component {
                 <img className="image" src={process.env.PUBLIC_URL + '/images/bruh.jpg'} alt={'bruhmoment'} draggable='false' />
             </div>
             <div key="b" data-grid={{i: 'b', x: 4, y: 0, w: 1, h: 2}}>
-            <iframe width="100%" height="99%" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div key="h" data-grid={{i: 'h', x: 3, y: 1, w: 1, h: 1}}>
-                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
               <div key="c" data-grid={{i: 'c', x: 3, y: 2, w: 2, h: 1}}>
                 <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} width={this.width} draggable='false' />
@@ -45,12 +44,18 @@ class MyGrid extends React.Component {
                 <p>hey whats up guys its scarce here</p>
             </div>
             <div key="f" data-grid={{i: 'f', x: 2, y: 1, w: 2, h: 1}}>
-                <iframe width='100%' height='99%' src="https://www.youtube.com/embed/G7RgN9ijwE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width='100%' height='100%' src="https://www.youtube.com/embed/G7RgN9ijwE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>hey this is pretty cool</p>
             </div>
             <div key="g" data-grid={{i: 'g', x: 0, y: 0, w: 1, h: 3}}>
-                <iframe src="https://open.spotify.com/embed/album/4aN2EaQB4G7z6BqcEClnMd" width='100%' height='99%' frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R" width='100%' height='100%' frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <p>hey this is pretty cool</p>
+            </div>
+            <div key="h" data-grid={{i: 'h', x: 3, y: 1, w: 1, h: 1}}>
+                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
+            </div>
+            <div key="i" data-grid={{i: 'i', x: 0, y: 3, w: 5, h: 1}}>
+                <TextToHTML header="Welcome to My Page!" text={getWidgets}/>
             </div>
             </ReactGridLayout>
         </div>
@@ -66,18 +71,15 @@ async function getWidgets() {
         headers: {'Content-Type': 'application/json'}
     }
 
-    const response = await fetch('api/widget/dd404c7c-6769-4049-9611-907ca2e3c252', requestOptions);
-    const data = await response.json();
-    const type = data.type;
-    var info;
-    if (type === 'about') {
-        info = data.data.about;
-    } else if (type === 'image') {
-        info = data.data.image;
-    }
+    const res = await (await fetch('api/user/c0e6aa7b-db70-4675-88d9-699bee38f154/portfolio', requestOptions)).json();
+    console.log('api/portfolio/' + res.portfolios[0].public_id);
+    
+    const portfolio = await (await fetch ('api/portfolio/' + res.portfolios[0].public_id, requestOptions)).json();
+    console.log(portfolio);
+    console.log(portfolio.portfolio.widget[0].data.about)
 
-    console.log(info);
-    return {type, info};
+    return portfolio.portfolio.widget[0].data.about;
+
 }
 
 

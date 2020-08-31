@@ -10,10 +10,21 @@
 .wholePage * {
   color: rgb(211, 211, 211);
   font-family: Roboto;
+  text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
 }
 
 .wholePage {
   background-color: #121212;
+}
+
+.wholePage h1 {
+  padding-left: 10px;
+  background-color: #1a1a1a;
+}
+
+.wholePage p {
+  padding-left: 15px;
+  background-color: #1a1a1a;
 }
 
 image {
