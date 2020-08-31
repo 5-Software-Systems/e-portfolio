@@ -11,15 +11,31 @@ class MyGrid extends React.Component {
     width = 280;
     height = 315;
     columns = 6;
+    state = {
+        data: 'loading...'
+    }
 
+    componentDidMount() {
+        this.fetchData();
+    };
+
+    fetchData = async () => {
+        const response = await fetch("api/portfolio/77e9ef28-ad15-4d81-ba98-08bcfc4f6dd2");
+        const json = await response.json();
+        //const result = json.portfolio.state.data.widget[0].data.about;
+        //this.setState({data: json.portfolio});
+        //console.log(this.state.data.widget[0].data.about);
+        const that = json.portfolio.widget[0].data.about;
+        this.setState({data: that})
+        console.log("that:");
+        console.log(that);
+    }
+    
+    //test = getWidgets()
    render() {
-
-    
-
-    getWidgets();
-    
+       //console.log('before');
       // layout is an array of objects, see the demo for more complete usage
-      return (
+      const out = (
         <div className='wholePage'>
             <div>
                 <h1 class="impact">
@@ -55,11 +71,15 @@ class MyGrid extends React.Component {
                 <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
             </div>
             <div key="i" data-grid={{i: 'i', x: 0, y: 3, w: 5, h: 1}}>
-                <TextToHTML header="Welcome to My Page!" text={getWidgets}/>
+                {console.log('help')}
+                {console.log(this.state)}
+                <TextToHTML header="Welcome to My Page!" text={this.state.data}/>
             </div>
             </ReactGridLayout>
         </div>
       )
+      //console.log('after');
+      return out;
     }
   }
 
@@ -76,10 +96,10 @@ async function getWidgets() {
     
     const portfolio = await (await fetch ('api/portfolio/' + res.portfolios[0].public_id, requestOptions)).json();
     console.log(portfolio);
-    console.log(portfolio.portfolio.widget[0].data.about)
+    console.log(portfolio.portfolio.widget[0].data.about);
+    console.log('api/portfolio/' + res.portfolios[0].public_id);
 
-    return portfolio.portfolio.widget[0].data.about;
-
+    return (portfolio.portfolio.widget[0].data.about);
 }
 
 
