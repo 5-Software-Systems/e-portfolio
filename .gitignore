@@ -6,3 +6,4 @@ pip
 *.pyc
 *.DS_Store
 *.db
+package-lock.json
