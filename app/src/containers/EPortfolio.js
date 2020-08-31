@@ -1,9 +1,10 @@
 import React from "react";
 import ReactGridLayout from 'react-grid-layout';
-import '../styles/react-grid-layout/css/styles.css';
-import '../styles/react-resizable/css/styles.css';
+import '../styles/grid-styles.css';
+import '../styles/resizable-styles.css';
+import '../fonts/roboto/Roboto-Black.ttf'
 
-class MyFirstGrid extends React.Component {
+class MyGrid extends React.Component {
 
     width = 280;
     height = 315;
@@ -17,18 +18,18 @@ class MyFirstGrid extends React.Component {
     
       // layout is an array of objects, see the demo for more complete usage
       return (
-        <div>
+        <div className='wholePage'>
             <div>
-                <h1>
-                    EPORTFOLIO PAGE
+                <h1 class="impact">
+                    E-PORTFOLIO PAGE
                 </h1>
             </div>
             <ReactGridLayout className="layout" cols={this.columns} rowHeight={this.height} width={this.columns * this.width} margin={[10,10]} compactType='horizontal' >
             <div key="a" data-grid={{i: 'a', x: 1, y: 0, w: 1, h: 1}}>
                 <img className="image" src={process.env.PUBLIC_URL + '/images/bruh.jpg'} alt={'bruhmoment'} draggable='false' />
             </div>
-            <div key="b" data-grid={{i: 'b', x: 4, y: 0, w: 2, h: 2}}>
-                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
+            <div key="b" data-grid={{i: 'b', x: 4, y: 0, w: 1, h: 2}}>
+            <iframe width="100%" height="99%" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=1&loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div key="h" data-grid={{i: 'h', x: 3, y: 1, w: 1, h: 1}}>
                 <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
@@ -58,7 +59,7 @@ class MyFirstGrid extends React.Component {
   }
 
 
-  //do this shit later
+  // later
 async function getWidgets() {
     const requestOptions = {
         method: "GET",
@@ -84,7 +85,7 @@ async function getWidgets() {
 export default function EPortfolio() {
     return (
         <div>
-            <MyFirstGrid/>
+            <MyGrid/>
         </div>
     );
 };
