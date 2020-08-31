@@ -1,4 +1,4 @@
-aniso8601==8.0.0
+eaniso8601==8.0.0
 attrs==19.3.0
 bcrypt==3.2.0
 cffi==1.14.2
