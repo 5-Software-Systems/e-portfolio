@@ -10,11 +10,11 @@ def login_user(data):
     if not user.check_password(data.get('password')):
         raise LoginNotFound
 
-    auth_token = user.encode_auth_token(user.id)
+    auth_token = user.encode_auth_token()
     return {'status': 'success',
             'message': 'Successfully logged in.',
             'Authorization': auth_token.decode()
-            }, 200
+            }
 
 
 def logout_user(bearer_auth_token):
@@ -43,14 +43,7 @@ def decode_auth_token(bearer_auth_token):
 
     user = User.query.filter_by(id=resp['sub']).first()
 
-    return {'status': 'success',
-            'data': {'public_id': user.public_id,
-                     'name_first': user.name_first,
-                     'name_last': user.name_last,
-                     'email': user.email,
-                     'registered_on': str(user.registered_on)
-                     }
-            }, 200
+    return user
 
 
 def get_logged_in_user(new_request):
@@ -63,9 +56,7 @@ def get_logged_in_user(new_request):
 def blacklist_token(auth_token):
     blacklisted_auth_token = BlacklistToken(token=auth_token)
     save_db_object(blacklisted_auth_token)
-    return {'status': 'success',
-            'message': 'Successfully logged out.'
-            }, 200
+    return 'ok'
 
 
 def split_bearer_token(bearer_auth_token):

@@ -1,92 +1,45 @@
 from flask import request
 from flask_restplus import Resource, Namespace
-from flask_restplus import marshal
 
-from ..service import user_service
+from ..service import user_service, portfolio_service, widget_service
 
-from .api_fields import *
-# from ..util.exception import ServerError
+from . import api_model
 
-api = Namespace(
+namespace = Namespace(
     name='user',
-    path='/user',
-    description='user related operations'
-)
-
-user = api.model(
-    name='user',
-    model=dict([public_id, email, name_first, name_last])
-)
-new_user = api.model(
-    name='new_user',
-    model=dict([email, name_first, name_last, password])
-)
-user_creation = api.model(
-    name='user_creation',
-    model=dict([response_status, response_message, public_id, auth_token])
-)
-widget = api.model(
-    'widget',
-    model=dict([public_id, widget_type, widget_data])
-)
-profile = api.model(
-    name='profile',
-    model={'user': fields.Nested(user), 'widgets': fields.List(fields.Nested(widget))}
+    path='/',
+    description='User related operations'
 )
 
 
-@api.route('')
+@namespace.route('/user')
 class UserList(Resource):
 
-    @api.marshal_list_with(user, envelope='users')
+    @namespace.marshal_with(api_model.user_basic, as_list=True, envelope='users')
     def get(self):
-        """List all registered users"""
+        """List all Users"""
         return user_service.get_all_users()
 
-    @api.response(201, 'User successfully created.')
-    @api.expect(new_user, validate=True)
-    @api.marshal_with(user_creation)
+    @namespace.expect(api_model.user_new, validate=True)
+    @namespace.marshal_with(api_model.user_basic, envelope='user')
     def post(self):
         """Creates a new User"""
         data = request.json
-        # TODO Validation https://aviaryan.com/blog/gsoc/restplus-validation-custom-fields
-        return user_service.create_new_user(data=data)
+        return user_service.create_new_user(data=data), 201
 
 
-@api.route('/<public_id>')
-@api.param('public_id', 'The User identifier')
+@namespace.route('/user/<public_id>')
+@namespace.param('public_id', 'The User identifier')
 class User(Resource):
 
-    @api.marshal_with(user, envelope='user')
+    @namespace.marshal_with(api_model.user_basic, envelope='user')
     def get(self, public_id):
-        """get a new_user given its identifier"""
-        return user_service.get_a_user(public_id)
+        """Get a User"""
+        return user_service.get_a_user(public_id), 200
 
-
-@api.route('/<public_id>/profile')
-@api.param('public_id', 'The User identifier')
-class Profile(Resource):
-    """
-    Profile resource contains user and related widget data
-    """
-
-    @api.marshal_list_with(profile, envelope='profile')
-    def get(self, public_id):
-        """
-        Get a profile by public_id
-        """
-        res, code = user_service.get_a_user(public_id)
-        if code != 200:
-            return res, code
-        return {'user': marshal(res, user),
-                'widgets': [w.marshal() for w in res.widgets]
-                }, code
-
-
-# @api.errorhandler(ServerError)
-# def handle_server_error(e: ServerError):
-#     return {
-#         'error': e.__class__.__name__,
-#         'message': e.error_message,
-#     }, e.status_code
-#
+    @namespace.expect(api_model.user_change)
+    @namespace.marshal_with(api_model.user_basic, envelope='user')
+    def patch(self, public_id):
+        """Update a User"""
+        data = request.json
+        return user_service.update_a_user(public_id=public_id, data=data), 200

@@ -1,58 +1,44 @@
 from flask import request
-from flask_restplus import Resource
-from flask_restplus import Namespace
+from flask_restplus import Resource, Namespace
 
 from ..service import auth_service
 from ..util.decorator import login_required
+from ..util.exception import *
 
-from .api_fields import *
+from . import api_model
 
-api = Namespace(
+namespace = Namespace(
     name='auth',
     path='/auth',
     description='authentication related operations'
 )
 
-user_auth = api.model(
-    name='auth_details',
-    model=dict([email, password])
-)
-auth_response = api.model(
-    name='auth_response',
-    model=dict([response_status, response_message, auth_token])
-)
-auth_token = api.model(
-    name='bearer_auth_token',
-    model=dict([bearer_auth_token])
-)
-auth_token_header = api.parser()
-auth_token_header.add_argument('Authorization', type=str, location='headers')
 
-
-@api.route('/login')
+@namespace.route('/login')
 class UserLogin(Resource):
     """
     User Login Resource
     """
 
-    @api.expect(user_auth, validate=True)
-    @api.marshal_with(auth_response)
+    @namespace.expect(api_model.user_auth, validate=True)
+    @namespace.marshal_with(api_model.auth_response)
     def post(self):
         """
         Log in a user
         """
         # TODO Validation
-        return auth_service.login_user(data=request.json)
+        data = request.json
+        return auth_service.login_user(data=data), 200
 
 
-@api.route('/logout')
+@namespace.route('/logout')
 class LogoutAPI(Resource):
     """
     Logout Resource
     """
 
-    @api.marshal_with(auth_response)
-    @api.expect(auth_token_header)
+    @namespace.marshal_with(api_model.auth_response)
+    @namespace.expect(api_model.auth_token_header)
     @login_required
     def post(self):
         """
@@ -61,17 +47,17 @@ class LogoutAPI(Resource):
         # TODO Validation
         bearer_auth_token = request.headers.get('Authorization')
 
-        return auth_service.logout_user(bearer_auth_token=bearer_auth_token)
+        return auth_service.logout_user(bearer_auth_token=bearer_auth_token), 200
 
 
-@api.route('/check_token')
+@namespace.route('/check_token')
 class CheckToken(Resource):
     """
     Check bearer_auth_token
     """
 
-    # @api.marshal_with(auth_response)
-    @api.expect(auth_token, validate=True)
+    @namespace.marshal_with(api_model.user_basic)
+    @namespace.expect(api_model.auth_token, validate=True)
     def get(self):
         """
         Check the status and user of an auth token (for development only)
@@ -79,4 +65,4 @@ class CheckToken(Resource):
         # TODO Validation
         bearer_auth_token = request.json['bearer_auth_token']
 
-        return auth_service.decode_auth_token(bearer_auth_token=bearer_auth_token)
+        return auth_service.decode_auth_token(bearer_auth_token=bearer_auth_token), 200

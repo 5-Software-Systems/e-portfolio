@@ -1,3 +1,5 @@
-from .image import Image as Image
-from .about import About as About
+from .image import Image
+from .about import About
+from .website import Website
+from .project import Project
 from .widget import WidgetBase
