@@ -24,30 +24,30 @@ class MyFirstGrid extends React.Component {
                 </h1>
             </div>
             <ReactGridLayout className="layout" cols={this.columns} rowHeight={this.height} width={this.columns * this.width} margin={[10,10]} compactType='horizontal' >
-            <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 1, h: 1}}>
+            <div key="a" data-grid={{i: 'a', x: 1, y: 0, w: 1, h: 1}}>
                 <img className="image" src={process.env.PUBLIC_URL + '/images/bruh.jpg'} alt={'bruhmoment'} draggable='false' />
             </div>
-            <div key="b" data-grid={{i: 'b', x: 1, y: 0, w: 1, h: 1}}>
+            <div key="b" data-grid={{i: 'b', x: 4, y: 0, w: 2, h: 2}}>
                 <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
             </div>
-            <div key="h" data-grid={{i: 'h', x: 1, y: 0, w: 1, h: 1}}>
+            <div key="h" data-grid={{i: 'h', x: 3, y: 1, w: 1, h: 1}}>
                 <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
             </div>
-              <div key="c" data-grid={{i: 'c', x: 1, y: 0, w: 1, h: 1}}>
+              <div key="c" data-grid={{i: 'c', x: 3, y: 2, w: 2, h: 1}}>
                 <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} width={this.width} draggable='false' />
             </div>
-              <div key="d" data-grid={{i: 'd', x: 1, y: 0, w: 1, h: 1}}>
-                <img src={'https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320'} alt={'bruhmoment'} width={this.width} draggable='false' />
+              <div key="d" data-grid={{i: 'd', x: 1, y: 0, w: 2, h: 1}}>
+                <img src={'https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320'} alt={'damn'} width={this.width} draggable='false' />
             </div>
-            <div key="e" data-grid={{i: 'e', x: 1, y: 0, w: 1, h: 1}}>
-                <img src={'https://steamuserimages-a.akamaihd.net/ugc/956341298143370332/53ABE6EC0306FB921C6BE61D2F054A6B964EE15A/'} alt={'bruhmoment'} width={this.width} draggable='false' />
+            <div key="e" data-grid={{i: 'e', x: 1, y: 2, w: 2, h: 1}}>
+                <img src={'https://steamuserimages-a.akamaihd.net/ugc/956341298143370332/53ABE6EC0306FB921C6BE61D2F054A6B964EE15A/'} alt={'scarce'} width={this.width} draggable='false' />
                 <p>hey whats up guys its scarce here</p>
             </div>
-            <div key="f" data-grid={{i: 'f', x: 27, y: 0, w: 2, h: 1}}>
+            <div key="f" data-grid={{i: 'f', x: 2, y: 1, w: 2, h: 1}}>
                 <iframe width='100%' height='99%' src="https://www.youtube.com/embed/G7RgN9ijwE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <p>hey this is pretty cool</p>
             </div>
-            <div key="g" data-grid={{i: 'g', x: 27, y: 0, w: 1, h: 1}}>
+            <div key="g" data-grid={{i: 'g', x: 0, y: 0, w: 1, h: 3}}>
                 <iframe src="https://open.spotify.com/embed/album/4aN2EaQB4G7z6BqcEClnMd" width='100%' height='99%' frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <p>hey this is pretty cool</p>
             </div>
