@@ -56,7 +56,7 @@ class MyGrid extends React.Component {
                 <img src={'https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320'} alt={'damn'} height='100%' draggable='false' />
             </div>
             <div key="e" data-grid={{i: 'e', x: 1, y: 2, w: 2, h: 1}}>
-                <img src={'https://steamuserimages-a.akamaihd.net/ugc/956341298143370332/53ABE6EC0306FB921C6BE61D2F054A6B964EE15A/'} alt={'scarce'} height='100%' draggable='false' />
+                <img src={'https://data.whicdn.com/images/286894498/original.gif'} alt={'scarce'} height='100%' draggable='false' />
                 <p>hey whats up guys its scarce here</p>
             </div>
             <div key="f" data-grid={{i: 'f', x: 2, y: 3, w: 2, h: 1}}>
