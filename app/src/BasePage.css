@@ -42,3 +42,15 @@
      justify-content: space-around;
      align-items: center;
 }
+
+.addportfolio:hover{
+     height: 300px;
+     width: 300px;
+     border: 2px solid black;
+     border-radius: 30px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+     align-items: center;
+     background-color: #d3d3d3;
+}
