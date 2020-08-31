@@ -12,18 +12,21 @@ api = Api(blueprint)
 
 api.add_namespace(status_namespace)
 api.add_namespace(auth_namespace)
+
 api.add_namespace(user_namespace)
-api.add_namespace(file_namespace)
+api.add_namespace(portfolio_namespace)
 api.add_namespace(widget_namespace)
-api.add_namespace(test_namespace)
+
+api.add_namespace(file_namespace)
+api.add_namespace(model_namespace)
 
 
 @api.errorhandler
 def handle_server_error(e: ServerError):
     return {
-        'error': e.__class__.__name__,
-        'message': e.error_message,
-    }, e.status_code
+               'error': e.__class__.__name__,
+               'message': e.error_message,
+           }, e.status_code
 
 
 def build_app():

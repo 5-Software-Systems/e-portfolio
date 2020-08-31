@@ -1,15 +1,15 @@
 from flask_restplus import Resource, Namespace
 
-api = Namespace(
+namespace = Namespace(
     name='status',
     path='/',
     description='get api status'
 )
 
 
-@api.route('/status')
+@namespace.route('/status')
 class Status(Resource):
 
-    @api.doc('get status')
+    @namespace.doc('get status')
     def get(self):
         return 'ok', 200

@@ -1,7 +1,7 @@
 import datetime
 import uuid
-
 import jwt
+
 from sqlalchemy.orm import relationship
 
 from . import Model
@@ -24,7 +24,7 @@ class User(Model):
     password_hash = db.Column(db.String(100))
     registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
 
-    widgets = relationship('WidgetBase', back_populates='user')
+    portfolios = relationship('Portfolio')
 
     @property
     def password(self):
@@ -37,8 +37,7 @@ class User(Model):
     def check_password(self, password):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
 
-    @staticmethod
-    def encode_auth_token(key):
+    def encode_auth_token(self):
         """
         Generates the Auth Token
         :return: string
@@ -46,7 +45,7 @@ class User(Model):
         payload = {
             'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
             'iat': datetime.datetime.utcnow(),
-            'sub': key
+            'sub': self.public_id
         }
         return jwt.encode(
             payload,
