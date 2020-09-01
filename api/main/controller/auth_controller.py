@@ -57,12 +57,12 @@ class CheckToken(Resource):
     """
 
     @namespace.marshal_with(api_model.user_basic)
-    @namespace.expect(api_model.auth_token, validate=True)
+    @namespace.expect(api_model.auth_token_header)
     def get(self):
         """
         Check the status and user of an auth token (for development only)
         """
         # TODO Validation
-        bearer_auth_token = request.json['bearer_auth_token']
+        bearer_auth_token = request.headers.get('Authorization')
 
         return auth_service.decode_auth_token(bearer_auth_token=bearer_auth_token), 200

@@ -41,7 +41,7 @@ def decode_auth_token(bearer_auth_token):
 
     resp = User.decode_auth_token(auth_token=auth_token)
 
-    user = User.query.filter_by(id=resp['sub']).first()
+    user = User.query.filter_by(public_id=resp['sub']).first()
 
     return user
 
