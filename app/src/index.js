@@ -1,24 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BasePage from './containers/BasePage.js'
-import LandingButtons from './components/LandingButtons.js'
+import Landing from './components/Landing';
+import Login from './components/Login';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import EPortfolio from "./containers/EPortfolio";
-import TextToHTML from "./components/Widgets/TextWidget";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter
+} from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-      <EPortfolio />
-  </React.StrictMode>,
-  document.getElementById('ePortfolio')
-);
-
-ReactDOM.render(
-  <React.StrictMode>
-      <BasePage />
-  </React.StrictMode>,
-  document.getElementById('basePage')
+    <React.StrictMode>
+        {Content_Routing()}
+    </React.StrictMode>,
+  document.getElementById('content')
 );
 
 
@@ -27,3 +23,21 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
+function Content_Routing() {
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Landing />
+                </Route>
+                <Route exact path="/login">
+                    <Login />
+                </Route>
+                <Route exact path="/profile">
+                </Route>
+                <Route path="/">
+                </Route>
+            </Switch>
+        </Router>
+    );
+}
