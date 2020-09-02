@@ -11,9 +11,15 @@ ReactDOM.render(
   <React.StrictMode>
       <EPortfolio />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('ePortfolio')
 );
 
+ReactDOM.render(
+  <React.StrictMode>
+      <BasePage />
+  </React.StrictMode>,
+  document.getElementById('basePage')
+);
 
 
 // If you want your app to work offline and load faster, you can change
