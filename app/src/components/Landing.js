@@ -3,9 +3,17 @@ import Test from './Test';
 import Signup from '../containers/Signup_Popup';
 import Login from '../containers/Login_Popup';
 import { Link } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
 
 
 export default function Landing() {
+    const cookies = new Cookies();
+    const history = useHistory();
+    if (cookies.get('authorization') != null) {
+        history.push("/profile");
+    }
+
     function renderBody() {
         return (
             <Fragment>
