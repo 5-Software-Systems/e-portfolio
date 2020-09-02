@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import './Pop-up.css'
+import './Pop-up.css';
 import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
 

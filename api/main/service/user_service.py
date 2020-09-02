@@ -28,6 +28,11 @@ def get_a_user(public_id):
     return user
 
 
+def get_a_user_by_email(email):
+    user = User.query.filter_by(email=email).first()
+    return user
+
+
 def update_a_user(public_id, data):
     user = get_a_user(public_id)
     user.patch(**data)
