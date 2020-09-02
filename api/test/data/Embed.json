@@ -1,0 +1,10 @@
+[
+  {
+    "portfolio_id": "1",
+    "external_url": "<iframe src=\"https://open.spotify.com/embed/playlist/3EfNm0ZNh5QkV8u2VUeg6b\" width=\"300\" height=\"380\" frameborder=\"0\" allowtransparency=\"true\" allow=\"encrypted-media\"></iframe>"
+  },
+  {
+    "portfolio_id": "2",
+    "external_url": "www.google.com"
+  }
+]

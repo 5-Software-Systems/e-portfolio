@@ -4,7 +4,7 @@ from .widget import WidgetBase
 from ... import db
 
 
-class Website(WidgetBase):
+class Embed(WidgetBase):
     """
     Feature model for storing features the user may want to highlight,
     e.g. past projects, skills
