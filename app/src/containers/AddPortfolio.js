@@ -1,5 +1,5 @@
 import React from 'react';
-import '../BasePage.css';
+import './BasePage.css';
 
 
 function AddPortfolio(){

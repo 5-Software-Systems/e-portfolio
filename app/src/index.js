@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BasePage from './BasePage.js'
+import BasePage from './containers/BasePage.js'
 import LandingButtons from './components/LandingButtons.js'
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route } from "react-router-dom";

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import EPortfolioPreview from "./containers/EPortfolioPreview";
-import AddPortfolio from "./containers/AddPortfolio";
+import EPortfolioPreview from "./EPortfolioPreview";
+import AddPortfolio from "./AddPortfolio";
+import "./BasePage.css";
 
 function BasePage(){
 
