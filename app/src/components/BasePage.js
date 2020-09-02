@@ -1,6 +1,7 @@
 import React, {useEffect, useState, Fragment} from "react";
 import EPortfolioPreview from "../containers/EPortfolioPreview";
 import AddPortfolio from "../containers/AddPortfolio";
+import Logout from "../containers/Logout";
 import "../styles/BasePage.css";
 import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
@@ -56,6 +57,10 @@ export default function BasePage(){
                         <div className="navbar-brand-wrapper d-flex w-50">
                             <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
                             <h1 className="pt-1">ePortfolio</h1>
+                        </div>
+                        <div className="navbar-menu-wrapper navbar-nav">
+                            <h5 className="m-auto pr-5">Welcome {user.name_first}</h5>
+                            <Logout />
                         </div>
                     </div>
                 </nav>
