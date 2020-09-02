@@ -1,7 +1,6 @@
 /** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
 
-import React, { useState, useEffect, Fragment } from "react";
-import { Button } from "react-bootstrap";
+import React, { Fragment } from "react";
 import LoginForm, { LoginButton, CloseButton } from "./Login_Form";
 import './Pop-up.css'
 

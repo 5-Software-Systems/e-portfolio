@@ -49,7 +49,7 @@ class MyGrid extends React.Component {
             <div key="b" data-grid={{i: 'b', x: 4, y: 1, w: 1, h: 3}}>
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-              <div key="c" data-grid={{i: 'c', x: 0, y: 4, w: 2, h: 1}}>
+            <div key="c" data-grid={{i: 'c', x: 0, y: 4, w: 2, h: 1}}>
                 <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} height='100%' draggable='false' />
             </div>
               <div key="d" data-grid={{i: 'd', x: 1, y: 1, w: 2, h: 1}}>

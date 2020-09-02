@@ -11,7 +11,7 @@ export default function Login() {
                     <div className="container">
                         <div className="navbar-brand-wrapper d-flex w-50">
                             <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" class="pr-4" /></a>
-                            <h1 className="pt-1">E-portfolio</h1>
+                            <h1 className="pt-1">ePortfolio</h1>
                         </div>
                     </div>
                 </nav>

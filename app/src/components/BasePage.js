@@ -2,34 +2,33 @@ import React, {useEffect, useState, Fragment} from "react";
 import EPortfolioPreview from "../containers/EPortfolioPreview";
 import AddPortfolio from "../containers/AddPortfolio";
 import "../styles/BasePage.css";
+import Cookies from 'universal-cookie';
+import { useHistory } from "react-router-dom";
 
 export default function BasePage(){
 
-    //enter user id here 
-    var userID = "c0e6aa7b-db70-4675-88d9-699bee38f154"
-
-    const [user, setUser] = useState([]);
-
-    const fetchUser = async () => {
-        const data = await fetch('/api/user/'+ userID);
-        const user = await data.json();
-        console.log(user.user);
-        setUser(user.user);
+    const cookies = new Cookies();
+    var Auth;
+    const history = useHistory();
+    if ((Auth = cookies.get('authorization')) == null) {
+        history.push("/");
     }
 
-    //grab profiles
+    //grab profiles and user
+    const [user, setUser] = useState([]);
     const [profiles, setProfiles] = useState([]);
-
     const fetchProfiles = async() => {
-        const data = await fetch('/api/user/' + userID + '/portfolio');
-        const profile = await data.json();
-        console.log(profile.portfolios);
+        const user_data = await fetch('/api/auth/user' , {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
+        const user = await user_data.json();
+        setUser(user);
+
+        const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio');
+        const profile = await prof_data.json();
         setProfiles(profile.portfolios);
     }
 
     //store db
     useEffect( () =>{
-        fetchUser();
         fetchProfiles();
     }, [])
 
@@ -55,8 +54,8 @@ export default function BasePage(){
                 <nav className="navbar navbar-expand-lg pl-3 pl-sm-0">
                     <div className="container">
                         <div className="navbar-brand-wrapper d-flex w-50">
-                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" class="pr-4" /></a>
-                            <h1 className="pt-1">E-portfolio</h1>
+                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
+                            <h1 className="pt-1">ePortfolio</h1>
                         </div>
                     </div>
                 </nav>
