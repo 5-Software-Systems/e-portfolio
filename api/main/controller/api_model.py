@@ -67,4 +67,4 @@ auth_token = namespace.model(
     model=dict([bearer_auth_token])
 )
 auth_token_header = namespace.parser()
-auth_token_header.add_argument('Authorization', type=str, location='headers')
+auth_token_header.add_argument('Authorization', type=str, location='headers', required=True, help='Bearer <token>')
