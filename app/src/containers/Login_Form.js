@@ -8,6 +8,7 @@ import {
     Button,
 } from "react-bootstrap";
 import './Pop-up.css'
+import Cookies from 'universal-cookie';
 
 
 function useFormFields(initialState) {
@@ -51,7 +52,30 @@ export default function LoginForm() {
         };
         const response = await fetch('api/auth/login', requestOptions);
         const data = await response.json();
-        console.log(data);
+        console.log(data.message);
+
+
+        //test cookie/authentication implemenetation (seems quite insecure rn though?)
+        if (data.message.toLowerCase() == 'successfully logged in.') {
+            const auth64 = data.Authorization.split('.');
+            const auth64Payload = JSON.parse(atob(auth64[1]));
+
+            //get profile ID
+            const ProfileIDrequestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            }
+
+            const ProfileIDresponse = await fetch('api/user', ProfileIDrequestOptions);
+            const users = await ProfileIDresponse.json();
+            const profile = users.users[auth64Payload.sub-1];
+            const cookies = new Cookies();
+
+            cookies.set('public_id', auth64Payload.sub, {path:'/', maxAge:600}); //temp 5 minute expiry for cookie
+
+            // TODO: Store token instead of id
+
+        }
     }
 
     function renderForm() {
