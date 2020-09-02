@@ -36,7 +36,7 @@ export default function Landing() {
                                         <img src={process.env.PUBLIC_URL + "/images/About_Center.svg"} alt="" className="img-icons" />
                                         <h5 className="py-3">Example1</h5>
                                         <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                                        <a href="/"><p className="readmore-link">Read more...</p></a>
+                                        <a href="/profile"><p className="readmore-link">Read more...</p></a>
                                     </div>
                                 </div>
                                 <div className="grid-margin d-flex justify-content-start">
@@ -44,7 +44,7 @@ export default function Landing() {
                                         <img src={process.env.PUBLIC_URL + "/images/About_Right.svg"} alt="" className="img-icons" />
                                         <h5 className="py-3">Example1</h5>
                                         <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                                        <a href="/"><p className="readmore-link">Read more...</p></a>
+                                        <a href="/portfolio"><p className="readmore-link">Read more...</p></a>
                                     </div>
                                 </div>
                             </div>
