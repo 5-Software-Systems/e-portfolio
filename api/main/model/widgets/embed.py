@@ -10,9 +10,9 @@ class Website(WidgetBase):
     e.g. past projects, skills
     """
 
-    __tablename__ = 'website'
+    __tablename__ = 'embed'
 
     id = db.Column(None, ForeignKey('widget.id'), primary_key=True)
     external_url = db.Column(db.String(100))
 
-    __mapper_args__ = {'polymorphic_identity': 'website'}
+    __mapper_args__ = {'polymorphic_identity': 'embed'}
