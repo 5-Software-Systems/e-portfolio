@@ -1,15 +1,10 @@
 import datetime
 import uuid
-import jwt
 
 from sqlalchemy.orm import relationship
 
 from . import Model
 from .. import db, flask_bcrypt
-
-from ...config import SECRET_KEY
-from .blacklist import BlacklistToken
-from ..util.exception import TokenExpired, TokenInvalid, TokenBlacklisted
 
 
 class User(Model):
@@ -36,38 +31,3 @@ class User(Model):
 
     def check_password(self, password):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
-
-    def encode_auth_token(self):
-        """
-        Generates the Auth Token
-        :return: string
-        """
-        payload = {
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
-            'iat': datetime.datetime.utcnow(),
-            'sub': self.public_id
-        }
-        return jwt.encode(
-            payload,
-            SECRET_KEY,
-            algorithm='HS256'
-        )
-
-    @staticmethod
-    def decode_auth_token(auth_token):
-        """
-        Decodes the auth_token
-        :param auth_token:
-        :return: integer|string
-        """
-        try:
-            payload = jwt.decode(auth_token, SECRET_KEY)
-        except jwt.ExpiredSignatureError:
-            raise TokenExpired
-        except jwt.InvalidTokenError:
-            raise TokenInvalid
-
-        if BlacklistToken.check_blacklist(auth_token):
-            raise TokenBlacklisted
-
-        return payload
