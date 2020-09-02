@@ -9,7 +9,7 @@ export default function Landing() {
                 <div className="container">
                       <h1 className="font-weight-semibold">E-portfolio Landing page.</h1>
                       <h6 className="font-weight-normal text-muted pb-3">An electronic portfolio is a collection of electronic evidence assembled and managed by a user, usually on the Web.</h6>
-                      <img src="/images/Hero_Image.svg" alt="" className="img-fluid" />
+                      <img src={process.env.PUBLIC_URL + "/images/Hero_Image.svg"} alt="" className="img-fluid" />
                 </div>
             </div>
             <div className="content-wrapper">
@@ -22,14 +22,14 @@ export default function Landing() {
                         <div className="d-md-flex justify-content-between">
                             <div className="grid-margin d-flex justify-content-end">
                                 <div className="features-width">
-                                    <img src="/images/About_Left.svg" alt="" className="img-icons" />
+                                    <img src={process.env.PUBLIC_URL + "/images/About_Left.svg"} alt="" className="img-icons" />
                                     <Test />
                                     <a href="/"><p className="readmore-link">Read more...</p></a>
                                 </div>
                             </div>
                             <div className="grid-margin d-flex justify-content-center">
                                 <div className="features-width">
-                                    <img src="/images/About_Center.svg" alt="" className="img-icons" />
+                                    <img src={process.env.PUBLIC_URL + "/images/About_Center.svg"} alt="" className="img-icons" />
                                     <h5 className="py-3">Example1</h5>
                                     <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
                                     <a href="/"><p className="readmore-link">Read more...</p></a>
@@ -37,7 +37,7 @@ export default function Landing() {
                             </div>
                             <div className="grid-margin d-flex justify-content-start">
                                 <div className="features-width">
-                                    <img src="/images/About_Right.svg" alt="" className="img-icons" />
+                                    <img src={process.env.PUBLIC_URL + "/images/About_Right.svg"} alt="" className="img-icons" />
                                     <h5 className="py-3">Example1</h5>
                                     <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
                                     <a href="/"><p className="readmore-link">Read more...</p></a>
