@@ -1,6 +1,6 @@
 /** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
 
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment}  from "react";
 import {
     FormGroup,
     FormControl,
@@ -8,6 +8,7 @@ import {
     Button,
 } from "react-bootstrap";
 import './Pop-up.css'
+import { useHistory } from "react-router-dom";
 
 
 function useFormFields(initialState) {
@@ -26,15 +27,20 @@ function useFormFields(initialState) {
 
 export default function Signup() {
     const [fields, handleFieldChange] = useFormFields({
-        login_email: "",
-        login_password: "",
+        signup_firstname: "",
+        signup_lastname: "",
+        signup_email: "",
+        signup_password: "",
+        signup_confirmPassword: "",
     });
-
     function validateForm() {
         return (
-            fields.login_email.length > 0 &&
-            fields.login_password.length > 0 &&
-            validateEmail(fields.login_email)
+            fields.signup_firstname.length > 0 &&
+            fields.signup_lastname.length > 0 &&
+            fields.signup_email.length > 0 &&
+            fields.signup_password.length > 0 &&
+            fields.signup_confirmPassword === fields.signup_password &&
+            validateEmail(fields.signup_email)
         );
     }
 
@@ -47,29 +53,49 @@ export default function Signup() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.login_email, password: fields.login_password})
+            body: JSON.stringify({email: fields.signup_email, password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
         };
-        const response = await fetch('api/auth/login', requestOptions);
+        const response = await fetch('api/user', requestOptions);
         const data = await response.json();
         console.log(data);
     }
 
-    function openFormLogin() {
-      document.getElementById("log_in_form").style.display = "block"
+    function openFormSignUp() {
+      document.getElementById("sign_up_form").style.display = "block"
       document.getElementById("cover").style.display = "block";
     }
 
-    function closeFormLogin() {
-      document.getElementById("log_in_form").style.display = "none";
+    function closeFormSignUp() {
+      document.getElementById("sign_up_form").style.display = "none";
       document.getElementById("cover").style.display = "none";
     }
 
     function renderForm() {
         return (
-            <div className="form-popup" id="log_in_form">
+            <div className="form-popup" id="sign_up_form">
                 <form action="/action_page.php" className="form-container">
-                    <h1>Login</h1>
-                    <FormGroup controlId="login_email">
+                    <h1>Sign Up</h1>
+
+                    <FormGroup controlId="signup_firstname">
+                        <FormLabel>First Name</FormLabel>
+                        <FormControl
+                            type="text"
+                            values = {fields.firstname}
+                            onChange={handleFieldChange}
+                            autoComplete="name"
+                        />
+                    </FormGroup>
+                    <FormGroup controlId="signup_lastname">
+                        <FormLabel>Last Name</FormLabel>
+                        <FormControl
+                            type="text"
+                            values = {fields.lastname}
+                            onChange={handleFieldChange}
+                            autoComplete="surname"
+                        />
+                    </FormGroup>
+
+                    <FormGroup controlId="signup_email">
                         <FormLabel>Email</FormLabel>
                         <FormControl
                             type="email"
@@ -78,14 +104,23 @@ export default function Signup() {
                             autoComplete="email"
                         />
                     </FormGroup>
-                    <FormGroup controlId="login_password">
+                    <FormGroup controlId="signup_password">
                         <FormLabel>Password</FormLabel>
                         <FormControl
                             type="password"
-                            values = {fields.password}
+                            value={fields.password}
                             onChange={handleFieldChange}
                             autoComplete="password"
                     />
+                    </FormGroup>
+                    <FormGroup controlId="signup_confirmPassword">
+                        <FormLabel>Confirm Password</FormLabel>
+                        <FormControl
+                            type="password"
+                            onChange={handleFieldChange}
+                            value={fields.confirmPassword}
+                            autoComplete="password"
+                        />
                     </FormGroup>
 
                     <SubmitButton />
@@ -93,7 +128,7 @@ export default function Signup() {
                     <Button
                         className="btn cancel"
                         variant="primary"
-                        onClick={closeFormLogin}
+                        onClick={closeFormSignUp}
                         type="button"
                     >Close</Button>
                 </form>
@@ -103,6 +138,7 @@ export default function Signup() {
 
     function SubmitButton() {
         const [isLoading, setLoading] = useState(false);
+        const history = useHistory();
 
         useEffect(() => {
             if (isLoading && validateForm()) {
@@ -114,7 +150,7 @@ export default function Signup() {
             }
         }, [isLoading]);
 
-        const handleClick = () => setLoading(true);
+        const handleClick = () => {setLoading(true); history.push("/login"); };
 
         return (
             <Button
@@ -129,21 +165,21 @@ export default function Signup() {
         );
     }
 
-    function LoginButton() {
+    function SignupButton() {
         return (
             <Button
                 className="btn btn-info m-2"
                 variant="primary"
-                onClick={openFormLogin}
+                onClick={openFormSignUp}
             >
-                Log In
+                Sign Up
             </Button>
-        );
+           );
     }
 
     return (
         <Fragment>
-            <LoginButton />
+            <SignupButton />
             {renderForm()}
             <div className="cover" id="cover"></div>
         </Fragment>
