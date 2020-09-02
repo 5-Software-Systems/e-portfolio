@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import EPortfolioPreview from "./EPortfolioPreview";
 import AddPortfolio from "./AddPortfolio";
-import "./BasePage.css";
+import "../styles/BasePage.css";
 
 function BasePage(){
 
