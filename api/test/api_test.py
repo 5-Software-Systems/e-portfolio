@@ -6,6 +6,7 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), '')
 
 api = 'http://127.0.0.1:5000/api'
 status = '{}/status'.format(api)
+auth = '{}/auth'.format(api)
 user = '{}/user'.format(api)
 portfolio = '{}/portfolio'.format(api)
 widget = '{}/widget'.format(api)
@@ -16,12 +17,18 @@ POST = 'post'
 PATCH = 'patch'
 
 
-def test_endpoint(url, method='get', data=None, print_res=True, output=None):
-    r = requests.request(method, url, json=data)
+def test_endpoint(url, method='get', data=None, headers=None, print_res=False, output=None):
+    r = requests.request(method, url, headers=headers, json=data)
     print('{:<7}{:<10}{}'.format(r.status_code, method.upper(), url))
     if print_res:
         print(r.text)
-    assert 200 <= int(r.status_code) < 300
+    if not 200 <= int(r.status_code) < 300:
+        raise Exception(
+            '{}\n{}\n\n{} Error\n{}'.format(
+                r.request.url, r.request.body,
+                r.status_code, r.text
+            )
+        )
     if output:
         assert output == r.json()
     return r
@@ -64,7 +71,50 @@ def run_tests():
     patch_user = test_endpoint(
         '/'.join([user, user_public_id]),
         PATCH,
-        {'email': "email_change"},
+        {'name_first': "name_first_change"},
+    )
+
+    # AUTH
+    login = test_endpoint(
+        '/'.join([auth, 'login']),
+        POST,
+        {"email": "email",
+         "password": "password"
+         },
+    )
+
+    check_user = test_endpoint(
+        '/'.join([auth, 'user']),
+        GET,
+        headers={'Authorization': 'Bearer {}'.format(login.json().get('Authorization'))},
+    )
+
+    req_reset = test_endpoint(
+        '/'.join([auth, 'reset']),
+        POST,
+        {'email': 'email'},
+    )
+
+    # reset_pw = test_endpoint(
+    #     '/'.join([auth, 'reset']),
+    #     PUT,
+    #     {"public_id": check_user.json().get('public_id'),
+    #      "password": "password_change"
+    #      },
+    # )
+    #
+    # new_login = test_endpoint(
+    #     '/'.join([auth, 'login']),
+    #     POST,
+    #     {"email": "email",
+    #      "password": "password_change"
+    #      },
+    # )
+
+    logout = test_endpoint(
+        '/'.join([auth, 'logout']),
+        POST,
+        headers={'Authorization': 'Bearer {}'.format(login.json().get('Authorization'))},
     )
 
     # PORTFOLIO

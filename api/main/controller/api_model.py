@@ -2,8 +2,13 @@ from flask_restplus import Namespace
 
 from .api_field import *
 
+
 namespace = Namespace('model')
 
+response = namespace.model(
+    name='response',
+    model=dict([response_status, response_message])
+)
 
 widget = namespace.model(
     name='widget',
@@ -57,6 +62,14 @@ user_portfolio = namespace.model(
 user_auth = namespace.model(
     name='auth_details',
     model=dict([email, password])
+)
+user_email = namespace.model(
+    name='user_email',
+    model=dict([email])
+)
+pw_reset = namespace.model(
+    name='pw_reset',
+    model=dict([public_id, password])
 )
 auth_response = namespace.model(
     name='auth_response',
