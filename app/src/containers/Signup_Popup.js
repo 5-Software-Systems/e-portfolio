@@ -144,13 +144,14 @@ export default function Signup() {
             if (isLoading && validateForm()) {
                 handleSubmit().then(() => {
                     setLoading(false);
+                    history.push("/login");
                 });
             } else if (isLoading && !validateForm()) {
                 setLoading(false);
             }
         }, [isLoading]);
 
-        const handleClick = () => {setLoading(true); history.push("/login"); };
+        const handleClick = () => {setLoading(true); };
 
         return (
             <Button
