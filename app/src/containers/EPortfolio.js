@@ -7,7 +7,8 @@ import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 
-import {TextToHTML} from "../components/Widgets/TextWidget";
+import MotherWidget from '../components/Widgets/MotherWidget.js'
+
 
 export default function EPortfolio() {
     
@@ -58,10 +59,10 @@ export default function EPortfolio() {
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
                 {widgets.map(widget =>(
                     < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
-                        <p>{widget.type}</p>
+                        <MotherWidget widget={widget}/>
                     </ div>
                 ))}
-            </ReactGridLayout>     
+            </ReactGridLayout>
         </div>
     );
 };
