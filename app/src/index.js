@@ -5,8 +5,7 @@ import Landing from './containers/Landing';
 import BasePage from './containers/BasePage';
 import EPortfolio from './containers/EPortfolio';
 import LoginForm from './components/Login_Form';
-import PopupLogin from './components/Login_Popup';
-import PopupSignup from './components/Signup_Popup';
+import Popup from './components/Popup';
 import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter as Router,
@@ -39,8 +38,8 @@ function HomePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
-                            <PopupSignup />
-                            <PopupLogin />
+                            <Popup name="log_in"/>
+                            <Popup name="sign_up"/>
                         </Fragment> }
           body = { <Landing /> }
           />
@@ -50,7 +49,10 @@ function HomePage() {
 function LoginPage() {
     return (
         <BaseTemplate
-          body = { <LoginForm /> }
+          body = { <form action="/action_page.php" className="form-container m-auto">
+                        <LoginForm />
+                   </form>
+                 }
           />
     );
 }

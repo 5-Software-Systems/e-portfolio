@@ -7,24 +7,10 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import Cookies from 'universal-cookie';
-import { useHistory } from "react-router-dom";
 import '../styles/Pop-up.css';
-
-
-function useFormFields(initialState) {
-    const [fields, setValues] = useState(initialState);
-
-    return [
-        fields,
-        function(event) {
-            setValues({
-                ...fields,
-                [event.target.id]: event.target.value
-            });
-        }
-    ];
-}
+import { validateEmail, useFormFields } from "../util/form";
+import { useHistory } from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 export default function LoginForm() {
     const [fields, handleFieldChange] = useFormFields({
@@ -45,11 +31,6 @@ export default function LoginForm() {
         return (false);
     }
 
-    function validateEmail(email) {
-        const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(String(email).toLowerCase());
-    }
-
     async function handleSubmit() {
         const requestOptions = {
             method: 'POST',
@@ -66,32 +47,6 @@ export default function LoginForm() {
         }
     }
 
-    function renderForm() {
-        return (
-            <form action="/action_page.php" className="form-container m-auto">
-                <h1>Login</h1>
-                <FormGroup controlId="login_email">
-                    <FormLabel>Email</FormLabel>
-                    <FormControl
-                        type="email"
-                        values = {fields.email}
-                        onChange={handleFieldChange}
-                        autoComplete="email"/>
-                </FormGroup>
-                <FormGroup controlId="login_password">
-                    <FormLabel>Password</FormLabel>
-                    <FormControl
-                        type="password"
-                        values = {fields.password}
-                        onChange={handleFieldChange}
-                        autoComplete="password"/>
-                </FormGroup>
-
-                <SubmitButton />
-            </form>
-        );
-    }
-
     function SubmitButton() {
         const [isLoading, setLoading] = useState(false);
         const history = useHistory();
@@ -104,6 +59,7 @@ export default function LoginForm() {
                             history.push("/profile");
                         } else {
                             alert("Error loading Profile");
+                            history.push("/login");
                         }
                         setLoading(false);
                     });
@@ -130,7 +86,24 @@ export default function LoginForm() {
 
     return (
         <Fragment>
-            {renderForm()}
+            <h1>Login</h1>
+            <FormGroup controlId="login_email">
+                <FormLabel>Email</FormLabel>
+                <FormControl
+                    type="email"
+                    values = {fields.email}
+                    onChange={handleFieldChange}
+                    autoComplete="email"/>
+            </FormGroup>
+            <FormGroup controlId="login_password">
+                <FormLabel>Password</FormLabel>
+                <FormControl
+                    type="password"
+                    values = {fields.password}
+                    onChange={handleFieldChange}
+                    autoComplete="password"/>
+            </FormGroup>
+            <SubmitButton />
         </Fragment>
     );
 }
@@ -145,24 +118,6 @@ export function LoginButton() {
             Log In
         </Button>
     );
-}
-
-export function CloseButton() {
-    return (
-        <Button
-            className="btn cancel"
-            variant="primary"
-            onClick={closeFormLogin}
-            type="button"
-        >
-            Close
-        </Button>
-    );
-}
-
-export function closeFormLogin() {
-  document.getElementById("log_in_form").style.display = "none";
-  document.getElementById("cover").style.display = "none";
 }
 
 export function openFormLogin() {
