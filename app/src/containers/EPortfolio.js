@@ -21,6 +21,13 @@ export default function EPortfolio() {
     const [user, setUser] = useState([]);
     const [profiles, setProfiles] = useState([]);
     const [widgets, setWidget] = useState([]);
+
+    console.log(widgets) ;
+    console.log('bruhmoment');
+    console.log(window.location.href);
+    const URL = window.location.href.split('/');
+    const PID = URL[URL.length - 1]
+    console.log(PID);
     
     const fetchWidgets = async() => {
         const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
@@ -31,7 +38,7 @@ export default function EPortfolio() {
         const profile = await prof_data.json();
         setProfiles(profile.portfolios);
 
-        const widget_data = await fetch('/api/portfolio/' + profile.portfolios[0].public_id + '/widget');
+        const widget_data = await fetch('/api/portfolio/' + PID + '/widget');
         const widgets = await widget_data.json();
         setWidget(widgets.widgets);
         
@@ -42,8 +49,6 @@ export default function EPortfolio() {
     useEffect( () =>{
         fetchWidgets();
     }, [])
-
-    console.log(widgets) 
 
     const width = 280;
     const height = 315;
