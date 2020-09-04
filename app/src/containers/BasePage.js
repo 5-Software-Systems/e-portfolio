@@ -30,6 +30,8 @@ export default function BasePage() {
         fetchProfiles();
     }, [])
 
+    console.log(profiles)
+
     return (
         <div>
             <div className ="title banner">
