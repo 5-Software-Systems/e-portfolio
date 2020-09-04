@@ -5,6 +5,7 @@ import Landing from './containers/Landing';
 import BasePage from './containers/BasePage';
 import EPortfolio from './containers/EPortfolio';
 import LoginForm from './components/Login_Form';
+import SignupForm from './components/Signup_Form';
 import Popup from './components/Popup';
 import * as serviceWorker from './serviceWorker';
 import {
@@ -19,6 +20,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/login" component={LoginPage}/>
+                <Route exact path="/signup" component={SignUpPage}/>
                 <Route exact path="/profile" component={ProfilePage}/>
                 <Route exact path="/portfolio" component={PortfolioPage}/>
                 <Route path="/" component={BaseTemplate}/>
@@ -51,6 +53,17 @@ function LoginPage() {
         <BaseTemplate
           body = { <form action="/action_page.php" className="form-container m-auto">
                         <LoginForm />
+                   </form>
+                 }
+          />
+    );
+}
+
+function SignUpPage() {
+    return (
+        <BaseTemplate
+          body = { <form action="/action_page.php" className="form-container m-auto">
+                        <SignupForm />
                    </form>
                  }
           />
