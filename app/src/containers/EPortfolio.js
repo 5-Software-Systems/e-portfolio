@@ -55,13 +55,13 @@ export default function EPortfolio() {
                     ePOO PAGE
                 </h1>
             </div>
-            <div>
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
                 {widgets.map(widget =>(
-                    < EPortfolioPreview name={widget.type} id={widget.public_id}/>
+                    < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
+                        <p>{widget.type}</p>
+                    </ div>
                 ))}
-            </div>
-            
-                
+            </ReactGridLayout>     
         </div>
     );
 };
