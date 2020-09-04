@@ -20,7 +20,7 @@ export function MotherWidget({widget}) {
 
     } else if (widget.type == 'embed') {
         return (
-            <EmbedToHTML src={widget.data.external_url} width={'100%'} height={'100%'} />
+            <EmbedToHTML src={widget.data.external_url} />
         )
     } else if (widget.type == 'project') {
         return (

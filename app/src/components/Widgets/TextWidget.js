@@ -5,9 +5,7 @@ export function TextToHTML({text}) {
 
     
     return (
-        <div id='textWidget'>
-            <p>{text}</p>
-        </div>
+        <p>{text}</p>
     );
 }
 

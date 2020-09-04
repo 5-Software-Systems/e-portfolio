@@ -19,10 +19,8 @@ export default function LoginForm() {
     });
 
     function validateForm() {
-        return (true);
         if (fields.login_email.length <= 0) {
             alert("No email entered");
-            
         } else if (! validateEmail(fields.login_email)) {
             alert("Invalid email entered");
         } else if (fields.login_password.length <= 0) {
