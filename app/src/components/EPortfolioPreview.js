@@ -2,13 +2,14 @@ import React from 'react';
 import '../styles/BasePage.css';
 
 
-function EPortfolioPreview({name, date, img}){
+function EPortfolioPreview(props){
+    const link = "/portfolio/" + props.id;
     return(
-        <a href="/portfolio">
+        <a href={ link }>
             <div className="eportfoliopreview content-wrapper">
-                <h3>{name}</h3>
-                <p> {date} </p>
-                <img src={img} alt='' height='150'/>
+                <h3>{props.name}</h3>
+                <p> {props.id} </p>
+                <img src={props.img} alt='' height='150'/>
             </div>
         </a>
     )

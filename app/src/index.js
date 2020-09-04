@@ -1,18 +1,21 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import BaseTemplate from './containers/BaseTemplate';
-import Landing from './containers/Landing';
-import BasePage from './containers/BasePage';
-import EPortfolio from './containers/EPortfolio';
-import LoginForm from './components/Login_Form';
-import SignupForm from './components/Signup_Form';
-import Popup from './components/Popup';
 import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
+// Containers
+import BaseTemplate from './containers/BaseTemplate';
+import Landing from './containers/Landing';
+import BasePage from './containers/BasePage';
+import EPortfolio from './containers/EPortfolio';
+// Components
+import Popup from './components/Popup';
+import LoginForm, { LoginButton } from './components/Login_Form';
+import SignupForm, { SignupButton } from './components/Signup_Form';
+import Logout from './components/Logout';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -21,8 +24,8 @@ ReactDOM.render(
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/login" component={LoginPage}/>
                 <Route exact path="/signup" component={SignUpPage}/>
-                <Route exact path="/profile" component={ProfilePage}/>
-                <Route exact path="/portfolio" component={PortfolioPage}/>
+                <Route path="/profile" component={ProfilePage}/>
+                <Route path="/portfolio/" component={PortfolioPage}/>
                 <Route path="/" component={BaseTemplate}/>
             </Switch>
         </Router>
@@ -40,8 +43,12 @@ function HomePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
-                            <Popup name="log_in"/>
-                            <Popup name="sign_up"/>
+                            <Popup name="log_in" button=<LoginButton />>
+                                <LoginForm />
+                            </Popup>
+                            <Popup name="sign_up" button=<SignupButton />>
+                                <SignupForm />
+                            </Popup>
                         </Fragment> }
           body = { <Landing /> }
           />
@@ -73,6 +80,9 @@ function SignUpPage() {
 function ProfilePage() {
     return (
         <BaseTemplate
+          nav_right = { <Fragment>
+                            <Logout />
+                        </Fragment> }
           body = { <BasePage /> }
           />
     );

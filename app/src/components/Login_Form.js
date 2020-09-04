@@ -9,8 +9,8 @@ import {
 } from "react-bootstrap";
 import '../styles/Pop-up.css';
 import { validateEmail, useFormFields } from "../util/form";
+import { authorize, isAuthorized } from "../util/cookies";
 import { useHistory } from "react-router-dom";
-import Cookies from 'universal-cookie';
 
 export default function LoginForm() {
     const [fields, handleFieldChange] = useFormFields({
@@ -35,16 +35,12 @@ export default function LoginForm() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.login_email, password: fields.login_password})
+            body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
         };
         const response = await fetch('api/auth/login', requestOptions);
-        const data = await response.json();
+        const recvd_data = await response.json();
 
-        //test cookie/authentication implementation
-        if (data.message.toLowerCase() === 'successfully logged in.') {
-            const auth64 = data.Authorization;
-            new Cookies().set('authorization', auth64, {path:'/', maxAge:600}); //temp 5 minute expiry for cookie
-        }
+        authorize(recvd_data);
     }
 
     function SubmitButton() {
@@ -55,10 +51,9 @@ export default function LoginForm() {
             if (isLoading) {
                 if (validateForm()) {
                     handleSubmit().then(() => {
-                        if (new Cookies().get('authorization') !== null) {
+                        if (isAuthorized()) {
                             history.push("/profile");
                         } else {
-                            alert("Error loading Profile");
                             history.push("/login");
                         }
                         setLoading(false);

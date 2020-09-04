@@ -1,15 +1,14 @@
-import React, {useEffect, useState } from "react";
+import React, {useEffect, useState, Fragment } from "react";
 import EPortfolioPreview from "../components/EPortfolioPreview";
 import AddPortfolio from "../components/AddPortfolio";
 import "../styles/BasePage.css";
-import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
+import { isAuthorized } from "../util/cookies";
 
-export default function BasePage(){
-
-    var Auth;
+export default function BasePage() {
     const history = useHistory();
-    if ((Auth = new Cookies().get('authorization')) == null) {
+    const Auth = isAuthorized();
+    if (! Auth) {
         history.push("/login");
     }
 
@@ -29,7 +28,7 @@ export default function BasePage(){
     //store db
     useEffect( () =>{
         fetchProfiles();
-    })
+    }, [])
 
     return (
         <div>
@@ -38,7 +37,7 @@ export default function BasePage(){
             </div>
             <div className="basepage container">
                 {profiles.map(profile =>(
-                    < EPortfolioPreview name={profile.title} date={profile.public_id}/>
+                    < EPortfolioPreview name={profile.title} id={profile.public_id}/>
                 ))}
                 < AddPortfolio />
             </div>

@@ -1,14 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
-import './Pop-up.css';
-import Cookies from 'universal-cookie';
+import { isAuthorized, deauthorize } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function Logout() {
-    const cookies = new Cookies();
-    var Auth;
     const history = useHistory();
-    if ((Auth = cookies.get('authorization')) == null) {
+    const Auth = isAuthorized();
+    if (! Auth) {
         history.push("/");
     }
 
@@ -18,11 +16,9 @@ export default function Logout() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
         };
-        const response = await fetch('api/auth/logout', requestOptions);
-        const data = await response.json();
-        console.log(data.message)
+        await fetch('api/auth/logout', requestOptions);
         // clear cookies
-        cookies.remove('authorization');
+        deauthorize();
         // logout redirect to home
         history.push("/");
     }

@@ -30,19 +30,13 @@ export default function SignupForm() {
         );
     }
 
-    function validateEmail(email) {
-        const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(String(email).toLowerCase());
-    }
-
     async function handleSubmit() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: fields.signup_email, password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
+            body: JSON.stringify({email: String(fields.signup_email).toLowerCase(), password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
         };
-        const response = await fetch('api/user', requestOptions);
-        const data = await response.json();
+        await fetch('api/user', requestOptions);
     }
 
     function SubmitButton() {

@@ -2,21 +2,11 @@
 
 import React, { useState, useEffect, Fragment } from "react";
 import { Button } from "react-bootstrap";
-import LoginForm, { LoginButton } from "./Login_Form";
-import SignupForm, { SignupButton } from "./Signup_Form";
 
 export default function Popup(props) {
     const name = props.name;
-    var button;
-    var form;
-
-    if (name == "log_in") {
-        button = <LoginButton />;
-        form = <LoginForm />;
-    } else if (name == "sign_up") {
-        button = <SignupButton />;
-        form = <SignupForm />;
-    }
+    const openButton = props.button;
+    const content = props.children;
 
     function CloseButton() {
         const [isClose, setClose] = useState(false);
@@ -27,7 +17,7 @@ export default function Popup(props) {
                 document.getElementById("cover").style.display = "none";
                 setClose(false);
             }
-        });
+        }, [isClose]);
 
         const handleClick = () => {setClose(true); };
 
@@ -45,10 +35,10 @@ export default function Popup(props) {
 
     return (
         <Fragment>
-            { button }
+            { openButton }
             <div className="form-popup" id={name + "_form"}>
                 <form action="/action_page.php" className="form-container">
-                    { form }
+                    { content }
                     <CloseButton />
                 </form>
             </div>

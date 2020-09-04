@@ -31,7 +31,10 @@ export default function Landing() {
                             <div className="grid-margin d-flex justify-content-end">
                                 <div className="features-width">
                                     <img src={process.env.PUBLIC_URL + "/images/About_Left.svg"} alt="" className="img-icons" />
-                                    <Test />
+                                    <div>
+                                        <Test />
+                                        <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                                    </div>
                                     <a href="/login"><p className="readmore-link">Read more...</p></a>
                                 </div>
                             </div>
