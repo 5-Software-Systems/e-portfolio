@@ -7,9 +7,9 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import './Pop-up.css'
 import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
+import '../styles/Pop-up.css';
 
 
 function useFormFields(initialState) {
@@ -33,11 +33,16 @@ export default function LoginForm() {
     });
 
     function validateForm() {
-        return (
-            fields.login_email.length > 0 &&
-            fields.login_password.length > 0 &&
-            validateEmail(fields.login_email)
-        );
+        if (fields.login_email.length <= 0) {
+            alert("No email entered");
+        } else if (! validateEmail(fields.login_email)) {
+            alert("Invalid email entered");
+        } else if (fields.login_password.length <= 0) {
+            alert("No password entered");
+        } else {
+            return (true);
+        }
+        return (false);
     }
 
     function validateEmail(email) {
@@ -55,18 +60,15 @@ export default function LoginForm() {
         const data = await response.json();
 
         //test cookie/authentication implementation
-        if (data.message.toLowerCase() == 'successfully logged in.') {
+        if (data.message.toLowerCase() === 'successfully logged in.') {
             const auth64 = data.Authorization;
-            const cookies = new Cookies();
-
-            cookies.set('authorization', auth64, {path:'/', maxAge:600}); //temp 5 minute expiry for cookie
-
+            new Cookies().set('authorization', auth64, {path:'/', maxAge:600}); //temp 5 minute expiry for cookie
         }
     }
 
     function renderForm() {
         return (
-            <Fragment>
+            <form action="/action_page.php" className="form-container m-auto">
                 <h1>Login</h1>
                 <FormGroup controlId="login_email">
                     <FormLabel>Email</FormLabel>
@@ -86,7 +88,7 @@ export default function LoginForm() {
                 </FormGroup>
 
                 <SubmitButton />
-            </Fragment>
+            </form>
         );
     }
 
@@ -95,15 +97,21 @@ export default function LoginForm() {
         const history = useHistory();
 
         useEffect(() => {
-            if (isLoading && validateForm()) {
-                handleSubmit().then(() => {
+            if (isLoading) {
+                if (validateForm()) {
+                    handleSubmit().then(() => {
+                        if (new Cookies().get('authorization') !== null) {
+                            history.push("/profile");
+                        } else {
+                            alert("Error loading Profile");
+                        }
+                        setLoading(false);
+                    });
+                } else {
                     setLoading(false);
-                    history.push("/profile");
-                });
-            } else if (isLoading && !validateForm()) {
-                setLoading(false);
+                }
             }
-        }, [isLoading]);
+        }, [isLoading, history]);
 
         const handleClick = () => setLoading(true);
 

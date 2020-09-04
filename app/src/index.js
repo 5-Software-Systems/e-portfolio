@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import Landing from './components/Landing';
-import Login from './components/Login';
-import BasePage from './components/BasePage';
-import EPortfolio from './components/EPortfolio';
+import BaseTemplate from './containers/BaseTemplate';
+import Landing from './containers/Landing';
+import BasePage from './containers/BasePage';
+import EPortfolio from './containers/EPortfolio';
+import LoginForm from './components/Login_Form';
+import PopupLogin from './components/Login_Popup';
+import PopupSignup from './components/Signup_Popup';
 import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter as Router,
@@ -13,7 +16,15 @@ import {
 
 ReactDOM.render(
     <React.StrictMode>
-        {Content_Routing()}
+        <Router>
+            <Switch>
+                <Route exact path="/" component={HomePage}/>
+                <Route exact path="/login" component={LoginPage}/>
+                <Route exact path="/profile" component={ProfilePage}/>
+                <Route exact path="/portfolio" component={PortfolioPage}/>
+                <Route path="/" component={BaseTemplate}/>
+            </Switch>
+        </Router>
     </React.StrictMode>,
   document.getElementById('content')
 );
@@ -24,25 +35,36 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-function Content_Routing() {
+function HomePage() {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <Landing />
-                </Route>
-                <Route exact path="/login">
-                    <Login />
-                </Route>
-                <Route exact path="/profile">
-                    <BasePage />
-                </Route>
-                <Route exact path="/portfolio">
-                    <EPortfolio />
-                </Route>
-                <Route path="/">
-                </Route>
-            </Switch>
-        </Router>
+        <BaseTemplate
+          nav_right = { <Fragment>
+                            <PopupSignup />
+                            <PopupLogin />
+                        </Fragment> }
+          body = { <Landing /> }
+          />
+    );
+}
+
+function LoginPage() {
+    return (
+        <BaseTemplate
+          body = { <LoginForm /> }
+          />
+    );
+}
+
+function ProfilePage() {
+    return (
+        <BaseTemplate
+          body = { <BasePage /> }
+          />
+    );
+}
+
+function PortfolioPage() {
+    return (
+        <EPortfolio />
     );
 }

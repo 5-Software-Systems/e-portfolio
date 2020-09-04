@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import './Pop-up.css'
+import '../styles/Pop-up.css';
 import { useHistory } from "react-router-dom";
 
 
@@ -149,7 +149,7 @@ export default function Signup() {
             } else if (isLoading && !validateForm()) {
                 setLoading(false);
             }
-        }, [isLoading]);
+        }, [isLoading, history]);
 
         const handleClick = () => {setLoading(true); };
 

@@ -2,16 +2,15 @@
 
 import React, { Fragment } from "react";
 import LoginForm, { LoginButton, CloseButton } from "./Login_Form";
-import './Pop-up.css'
 
-export default function Login() {
+export default function Login(props) {
 
     return (
         <Fragment>
             <LoginButton />
             <div className="form-popup" id="log_in_form">
                 <form action="/action_page.php" className="form-container">
-                    <LoginForm />
+                    {props.children}
                     <CloseButton />
                 </form>
             </div>
