@@ -1,27 +1,26 @@
 import React, { Fragment } from 'react';
-import { Link } from "react-router-dom";
-import LoginForm, { openFormLogin } from "../containers/Login_Form";
+import '../styles/Pop-up.css';
 
-
-export default function Login() {
+export default function BaseTemplate(props) {
     return (
         <Fragment>
             <header>
                 <nav className="navbar navbar-expand-lg pl-3 pl-sm-0">
                     <div className="container">
                         <div className="navbar-brand-wrapper d-flex w-50">
-                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" class="pr-4" /></a>
+                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
                             <h1 className="pt-1">ePortfolio</h1>
+                        </div>
+                        <div className="navbar-menu-wrapper navbar-nav">
+                            {props.nav_right}
                         </div>
                     </div>
                 </nav>
             </header>
-            <div className="form-container m-auto">
-                {<LoginForm />}
-            </div>
+            {props.body}
             <footer className="border-top ">
                 <p className="text-center text-muted pt-4"><a href="/" className="px-1">FiveCent Software Systems.</a></p>
             </footer>
         </Fragment>
     );
-};
+}
