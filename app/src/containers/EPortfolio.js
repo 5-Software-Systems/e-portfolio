@@ -22,12 +22,10 @@ export default function EPortfolio() {
     const [profiles, setProfiles] = useState([]);
     const [widgets, setWidget] = useState([]);
 
-    console.log(widgets) ;
-    console.log('bruhmoment');
-    console.log(window.location.href);
+    
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
-    console.log(PID);
+
     
     const fetchWidgets = async() => {
         const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
@@ -58,7 +56,7 @@ export default function EPortfolio() {
         <div className='wholePage'>
             <div>
                 <h1 className="impact">
-                    ePOO PAGE
+                    EPORTFOLIO PAGE
                 </h1>
             </div>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >

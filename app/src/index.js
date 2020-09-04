@@ -27,6 +27,7 @@ ReactDOM.render(
                 <Route exact path="/signup" component={SignUpPage}/>
                 <Route path="/profile" component={ProfilePage}/>
                 <Route path="/portfolio/" component={PortfolioPage}/>
+                <Route exact path="/demo" component={EPortfolioDemo}/>
                 <Route path="/" component={BaseTemplate}/>
             </Switch>
         </Router>

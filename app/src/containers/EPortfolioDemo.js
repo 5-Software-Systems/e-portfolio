@@ -15,26 +15,10 @@ class MyGrid extends React.Component {
         data: 'loading...'
     }
 
-    componentDidMount() {
-        this.fetchData();
-    };
-
-    fetchData = async () => {
-        const response = await fetch("api/portfolio/" + await getPortfolioID());
-        const json = await response.json();
-        //const result = json.portfolio.state.data.widget[0].data.about;
-        //this.setState({data: json.portfolio});
-        //console.log(this.state.data.widget[0].data.about);
-        const that = json.portfolio.widget[0].data.about;
-        this.setState({data: that})
-        console.log("that:");
-        console.log(that);
-    }
+  
     
-    //test = getWidgets()
    render() {
-       //console.log('before');
-      // layout is an array of objects, see the demo for more complete usage
+       
       const out = (
         <div className='wholePage'>
             <div>
@@ -71,9 +55,8 @@ class MyGrid extends React.Component {
                 <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
             </div>
             <div key="i" data-grid={{i: 'i', x: 2, y: 0, w: 3, h: 1}}>
-                {console.log('help')}
-                {console.log(this.state)}
-                <TextToHTML header="Welcome to My Page!" text={this.state.data}/>
+
+                <TextToHTML header="Welcome to My Page!" text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}/>
             </div>
             </ReactGridLayout>
         </div>
@@ -84,20 +67,6 @@ class MyGrid extends React.Component {
   }
 
 
-  // later
-async function getPortfolioID() {
-
-    const user = 'c0e6aa7b-db70-4675-88d9-699bee38f154'
-
-    const requestOptions = {
-        method: "GET",
-        headers: {'Content-Type': 'application/json'}
-    }
-
-    const res = await (await fetch('api/user/' + user + '/portfolio', requestOptions)).json();
-
-    return (res.portfolios[0].public_id);
-}
 
 
 
