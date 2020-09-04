@@ -4,7 +4,7 @@ import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 
-import {TextToHTML} from "./Widgets/TextWidget";
+import {TextToHTML} from "../components/Widgets/TextWidget";
 
 class MyGrid extends React.Component {
 

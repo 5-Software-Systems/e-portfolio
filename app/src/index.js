@@ -11,6 +11,7 @@ import BaseTemplate from './containers/BaseTemplate';
 import Landing from './containers/Landing';
 import BasePage from './containers/BasePage';
 import EPortfolio from './containers/EPortfolio';
+import EPortfolioDemo from './containers/EPortfolioDemo';
 // Components
 import Popup from './components/Popup';
 import LoginForm, { LoginButton } from './components/Login_Form';
@@ -43,10 +44,10 @@ function HomePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
-                            <Popup name="log_in" button=<LoginButton />>
+                            <Popup name="log_in" button={<LoginButton />}>
                                 <LoginForm />
                             </Popup>
-                            <Popup name="sign_up" button=<SignupButton />>
+                            <Popup name="sign_up" button={<SignupButton />}>
                                 <SignupForm />
                             </Popup>
                         </Fragment> }
