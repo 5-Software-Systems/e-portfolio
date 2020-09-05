@@ -7,9 +7,9 @@ function DemoPreview(){
     return(
         <a href={ link }>
             <div className="eportfoliopreview">
-                <h3>{"Demo Page"}</h3>
-                <p> {"this could be us but we playin"} </p>
-                <img src={"https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/face-with-pleading-eyes_1f97a.png"} alt='' height='100%' width='100%' />
+                <h3>Demo Page</h3>
+                <p>Showcase of what is possible</p>
+                <img src={"https://emojis.slackmojis.com/emojis/images/1464135017/461/fb-wow.gif?1464135017"} alt='' height='100%' width='100%' />
             </div>
         </a>
     )

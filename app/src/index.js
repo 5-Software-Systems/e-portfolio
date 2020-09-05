@@ -17,6 +17,7 @@ import Popup from './components/Popup';
 import LoginForm, { LoginButton } from './components/Login_Form';
 import SignupForm, { SignupButton } from './components/Signup_Form';
 import Logout from './components/Logout';
+import Welcome from './components/Welcome';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -34,12 +35,6 @@ ReactDOM.render(
     </React.StrictMode>,
   document.getElementById('content')
 );
-
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
 
 function HomePage() {
     return (
@@ -83,6 +78,7 @@ function ProfilePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
+                            <Welcome />
                             <Logout />
                         </Fragment> }
           body = { <BasePage /> }
@@ -95,3 +91,8 @@ function PortfolioPage() {
         <EPortfolio />
     );
 }
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

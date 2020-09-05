@@ -11,16 +11,10 @@ export default function Logout() {
     }
 
     async function handleLogout() {
-        // register logout with backend
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
-        };
-        await fetch('api/auth/logout', requestOptions);
         // clear cookies
-        deauthorize();
-        // logout redirect to home
-        history.push("/");
+        deauthorize().then(() => {
+            history.push("/");
+        });
     }
 
     return (

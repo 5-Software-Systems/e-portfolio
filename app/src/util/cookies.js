@@ -12,6 +12,14 @@ export function authorize(data) {
     }
 }
 
-export function deauthorize() {
+export async function deauthorize() {
+    const Auth = new Cookies().get('authorization');
+    // register logout with backend
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+    };
+    await fetch('api/auth/logout', requestOptions);
+
     new Cookies().remove('authorization');
 }

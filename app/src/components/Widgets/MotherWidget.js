@@ -6,25 +6,23 @@ import PortfolioToHTML from './PortfolioWidget';
 
 
 export function MotherWidget({widget}) {
-    console.log(widget);
-    console.log(widget.type);
-    if (widget.type == 'about') {
+    const w_data = widget.data;
+    if (widget.type === 'about') {
         return (
-            <TextToHTML text={widget.data.about} />
+            <TextToHTML text={w_data.about} />
         );
 
-    } else if (widget.type == 'image') {
+    } else if (widget.type === 'image') {
         return (
-            <ImageToHTML src={widget.data.image_url} width={'100%'} height={'100%'} />
+            <ImageToHTML src={w_data.image_url} width={'100%'} height={'100%'} />
         );
-
-    } else if (widget.type == 'embed') {
+    } else if (widget.type === 'embed') {
         return (
-            <EmbedToHTML src={widget.data.external_url} />
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
         )
-    } else if (widget.type == 'project') {
+    } else if (widget.type === 'project') {
         return (
-            <PortfolioToHTML name={widget.data.name} desc={widget.data.description} src={widget.data.external_url} />
+            <PortfolioToHTML name={w_data.name} desc={w_data.description} src={"http://"+w_data.external_url} />
         )
     }
 }
