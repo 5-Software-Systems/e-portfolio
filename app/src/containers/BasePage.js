@@ -1,6 +1,7 @@
-import React, {useEffect, useState, Fragment } from "react";
+import React, {useEffect, useState} from "react";
 import EPortfolioPreview from "../components/EPortfolioPreview";
 import AddPortfolio from "../components/AddPortfolio";
+import DemoPreview from "../components/DemoPreview";
 import "../styles/BasePage.css";
 import { useHistory } from "react-router-dom";
 import { isAuthorized } from "../util/cookies";
@@ -13,32 +14,28 @@ export default function BasePage() {
     }
 
     //grab profiles and user
-    const [user, setUser] = useState([]);
     const [profiles, setProfiles] = useState([]);
-    const fetchProfiles = async() => {
-        const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
-        const user = await user_data.json();
-        setUser(user);
-
-        const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio');
-        const profile = await prof_data.json();
-        setProfiles(profile.portfolios);
-    }
 
     //store db
     useEffect( () =>{
+        const fetchProfiles = async() => {
+            const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
+            const user = await user_data.json();
+
+            const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio');
+            const profile = await prof_data.json();
+            setProfiles(profile.portfolios);
+        }
         fetchProfiles();
-    }, [])
+    }, [Auth])
 
     return (
         <div>
-            <div className ="title banner">
-                 <h1>{user.name_first}'s Base Page</h1>
-            </div>
-            <div className="basepage container">
+            <div className="basepage">
                 {profiles.map(profile =>(
-                    < EPortfolioPreview name={profile.title} id={profile.public_id}/>
+                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
                 ))}
+                < DemoPreview />
                 < AddPortfolio />
             </div>
         </div>

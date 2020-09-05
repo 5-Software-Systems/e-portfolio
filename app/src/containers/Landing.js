@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 import Test from '../components/Test';
-import Cookies from 'universal-cookie';
 import { useHistory } from "react-router-dom";
+import { isAuthorized } from "../util/cookies";
 
 
 export default function Landing() {
-    const cookies = new Cookies();
     const history = useHistory();
-    if (cookies.get('authorization') != null) {
+    const Auth = isAuthorized();
+    if (Auth) {
         history.push("/profile");
     }
 

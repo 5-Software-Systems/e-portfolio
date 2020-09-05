@@ -11,11 +11,13 @@ import BaseTemplate from './containers/BaseTemplate';
 import Landing from './containers/Landing';
 import BasePage from './containers/BasePage';
 import EPortfolio from './containers/EPortfolio';
+import EPortfolioDemo from './containers/EPortfolioDemo';
 // Components
 import Popup from './components/Popup';
 import LoginForm, { LoginButton } from './components/Login_Form';
 import SignupForm, { SignupButton } from './components/Signup_Form';
 import Logout from './components/Logout';
+import Welcome from './components/Welcome';
 
 ReactDOM.render(
     <React.StrictMode>
@@ -26,6 +28,7 @@ ReactDOM.render(
                 <Route exact path="/signup" component={SignUpPage}/>
                 <Route path="/profile" component={ProfilePage}/>
                 <Route path="/portfolio/" component={PortfolioPage}/>
+                <Route exact path="/demo" component={EPortfolioDemo}/>
                 <Route path="/" component={BaseTemplate}/>
             </Switch>
         </Router>
@@ -33,20 +36,14 @@ ReactDOM.render(
   document.getElementById('content')
 );
 
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
-
 function HomePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
-                            <Popup name="log_in" button=<LoginButton />>
+                            <Popup name="log_in" button={<LoginButton />}>
                                 <LoginForm />
                             </Popup>
-                            <Popup name="sign_up" button=<SignupButton />>
+                            <Popup name="sign_up" button={<SignupButton />}>
                                 <SignupForm />
                             </Popup>
                         </Fragment> }
@@ -81,6 +78,7 @@ function ProfilePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
+                            <Welcome />
                             <Logout />
                         </Fragment> }
           body = { <BasePage /> }
@@ -93,3 +91,8 @@ function PortfolioPage() {
         <EPortfolio />
     );
 }
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

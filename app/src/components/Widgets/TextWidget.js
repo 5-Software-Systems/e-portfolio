@@ -1,12 +1,11 @@
 import React from 'react';
 
 
-export function TextToHTML(props) {
+export function TextToHTML({text}) {
+
+    
     return (
-        <div id='textWidget'>
-            <h1>{props.header}</h1>
-            <p>{props.text}</p>
-        </div>
+        <p>{text}</p>
     );
 }
 

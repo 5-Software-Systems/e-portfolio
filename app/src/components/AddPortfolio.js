@@ -3,9 +3,9 @@ import '../styles/BasePage.css';
 
 export default function AddPortfolio(){
     return(
-        <div className="addportfolio content-wrapper">
+        <div className="eportfoliopreview">
             <h3>Add ePortfolio</h3>
-            <img src={process.env.PUBLIC_URL + '/images/plus.png'} alt='' height='150'/>
+            <h1> + </h1>
         </div>
     )
 }
