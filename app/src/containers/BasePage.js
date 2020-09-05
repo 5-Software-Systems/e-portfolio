@@ -33,7 +33,7 @@ export default function BasePage() {
         <div>
             <div className="basepage">
                 {profiles.map(profile =>(
-                    < EPortfolioPreview name={profile.title} id={profile.public_id}/>
+                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
                 ))}
                 < DemoPreview />
                 < AddPortfolio />

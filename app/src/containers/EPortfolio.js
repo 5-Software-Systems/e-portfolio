@@ -10,8 +10,8 @@ import MotherWidget from '../components/Widgets/MotherWidget.js'
 
 
 export default function EPortfolio() {
-    
     const history = useHistory();
+
     const Auth = isAuthorized();
     if (! Auth) {
         history.push("/login");
@@ -29,6 +29,10 @@ export default function EPortfolio() {
         const fetchWidgets = async() => {
             const p_response = await fetch('/api/portfolio/' + PID);
             const p_data = await p_response.json();
+            if (p_data.error) {
+                history.push("/profile");
+                return;
+            }
             setProfile(p_data.portfolio);
 
             const w_response = await fetch('/api/portfolio/' + PID + '/widget');
@@ -37,7 +41,7 @@ export default function EPortfolio() {
         }
 
         fetchWidgets();
-    }, [PID]);
+    }, [PID, history]);
 
     const width = 280;
     const height = 315;
