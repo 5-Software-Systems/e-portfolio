@@ -1,8 +1,16 @@
 import React, {Fragment} from 'react';
-import Test from './Test';
+import Test from '../components/Test';
+import { useHistory } from "react-router-dom";
+import { isAuthorized } from "../util/cookies";
 
 
 export default function Landing() {
+    const history = useHistory();
+    const Auth = isAuthorized();
+    if (Auth) {
+        history.push("/profile");
+    }
+
     return (
         <Fragment>
             <div className="banner">
@@ -23,8 +31,11 @@ export default function Landing() {
                             <div className="grid-margin d-flex justify-content-end">
                                 <div className="features-width">
                                     <img src={process.env.PUBLIC_URL + "/images/About_Left.svg"} alt="" className="img-icons" />
-                                    <Test />
-                                    <a href="/"><p className="readmore-link">Read more...</p></a>
+                                    <div>
+                                        <Test />
+                                        <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+                                    </div>
+                                    <a href="/login"><p className="readmore-link">Read more...</p></a>
                                 </div>
                             </div>
                             <div className="grid-margin d-flex justify-content-center">
@@ -32,7 +43,7 @@ export default function Landing() {
                                     <img src={process.env.PUBLIC_URL + "/images/About_Center.svg"} alt="" className="img-icons" />
                                     <h5 className="py-3">Example1</h5>
                                     <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                                    <a href="/"><p className="readmore-link">Read more...</p></a>
+                                    <a href="/profile"><p className="readmore-link">Read more...</p></a>
                                 </div>
                             </div>
                             <div className="grid-margin d-flex justify-content-start">
@@ -40,14 +51,11 @@ export default function Landing() {
                                     <img src={process.env.PUBLIC_URL + "/images/About_Right.svg"} alt="" className="img-icons" />
                                     <h5 className="py-3">Example1</h5>
                                     <p className="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                                    <a href="/"><p className="readmore-link">Read more...</p></a>
+                                    <a href="/portfolio"><p className="readmore-link">Read more...</p></a>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <footer className="border-top">
-                        <p className="text-center text-muted pt-4"><a href="/" className="px-1">FiveCent Software Systems.</a></p>
-                    </footer>
                 </div>
             </div>
         </Fragment>
