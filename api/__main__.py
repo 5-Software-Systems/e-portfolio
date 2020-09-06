@@ -44,5 +44,5 @@ if args.testapi:
     db.create()
 
 if args.run:
-    port = int(os.environ.get("PORT", 3000))
+    port = int(os.environ.get("PORT", 5000))
     build_app().run(debug=args.debug, host='0.0.0.0', port=port)
