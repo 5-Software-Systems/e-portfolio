@@ -3,6 +3,7 @@ from flask import render_template
 from api.main import create_app, db
 from api import blueprint
 from api.main.model import *
+import os
 
 
 def build_app():
@@ -20,4 +21,5 @@ def build_app():
 
 
 if __name__ == '__main__':
-    build_app().run(debug=True)
+    port = int(os.environ.get("PORT", 80))
+    build_app().run(debug=False, host='0.0.0.0', port=port)

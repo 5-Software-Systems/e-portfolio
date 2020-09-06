@@ -1,6 +1,6 @@
 import argparse
 import sys
-import os
+
 
 from .test import db
 from .test.api_test import run_tests
@@ -44,5 +44,4 @@ if args.testapi:
     db.create()
 
 if args.run:
-    port = int(os.environ.get("PORT", 5000))
-    build_app().run(debug=args.debug, host='0.0.0.0', port=port)
+    build_app().run(debug=args.debug, host='0.0.0.0')
