@@ -21,6 +21,7 @@ def create_app():
         import_name='__main__',
         static_folder=static_folder,
         template_folder=template_folder,
+        static_url_path='/'
     )
 
     config_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../config.py')

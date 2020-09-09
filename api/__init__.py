@@ -37,6 +37,10 @@ def build_app():
     def index():
         return render_template('index.html', token='Hello World')
 
+    @app.route('/test')
+    def test():
+        return '<h1>test</h1>'
+
     @app.route('/assets/<path:path>')
     def public(path):
         return send_from_directory('../app/build', path)
