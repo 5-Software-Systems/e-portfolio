@@ -43,4 +43,4 @@ if args.testapi:
     db.create()
 
 if args.run:
-    build_app().run(debug=args.debug, host="0.0.0.0")
+    build_app().run(debug=args.debug)

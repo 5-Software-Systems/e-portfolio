@@ -41,6 +41,10 @@ def build_app():
     def public(path):
         return send_from_directory('../app/build', path)
 
+    @app.errorhandler(404)
+    def not_found(e):
+        return render_template('index.html', token='Hello World')
+
     with app.app_context():
         db.create_all()
 
