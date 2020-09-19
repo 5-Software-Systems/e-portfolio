@@ -36,6 +36,11 @@
      color: rgb(211, 211, 211);
      font-family: Roboto;
      text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
+     text-align: center;
+}
+
+.eportfolioinfo {
+     align-items: center
 }
 
 .button {
@@ -44,8 +49,35 @@
      border-radius: 10px;
      top: 5px;
      right: 5px;
-     position: absolute
+     position: absolute;
+     outline: 0;
+
+}
+
+.options {
+     position: absolute;
+     top: 30px;
+     right: 5px;
+     border: 1px solid #1a1a1a;
+     border-radius: 1000000px
+}
+   
+ul {
+     list-style: none;
+}
+
+li {
+     text-align: center;
+     background-color: darkgray;
+     outline: 0;
+     border: 1px solid #1a1a1a;
      
 }
 
+
+   
+li:hover {
+     background-color: grey;
+     cursor: pointer;
+}
      
