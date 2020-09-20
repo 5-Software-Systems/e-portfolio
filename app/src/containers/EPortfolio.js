@@ -4,6 +4,8 @@ import React, {useEffect, useState} from "react";
 import ReactGridLayout from 'react-grid-layout';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import {Editor, EditorState, RichUtils} from 'draft-js';
+import 'draft-js/dist/Draft.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
 import { isAuthorized } from "../util/cookies";
@@ -85,7 +87,7 @@ export default function EPortfolio() {
                     < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {bruhmoment()}
+                        {editBox()}
                         </div>
                     </ div>
                 ))}
@@ -95,7 +97,7 @@ export default function EPortfolio() {
 };
 
 
-function bruhmoment() {
+function editBox() {
     return (
         <Popup
             trigger={<button className="button">⚙</button>}
@@ -110,7 +112,7 @@ function bruhmoment() {
             <div className="header"> <h1 className="impact">HELLO OZBARGAINERS</h1> </div>
             <div className="content">
             {' '}
-            cool beans
+                {MyEditor()}
             </div>
             <div className="actions">
             <Popup
@@ -128,6 +130,34 @@ function bruhmoment() {
         </Popup>
     )
 }
+
+function MyEditor() {
+    const [editorState, setEditorState] = React.useState(
+      () => EditorState.createEmpty(),
+    );
+
+    const handleKeyCommand = (command, editorState) => {
+        const newState = RichUtils.handleKeyCommand(editorState, command);
+    
+        if (newState) {
+          return 'handled';
+        }
+    
+        return 'not-handled';
+      }
+
+    const onBoldClick = () => {
+        (RichUtils.toggleInlineStyle(editorState, 'BOLD'));
+      }
+  
+    return (
+        <div> 
+            <button onClick={onBoldClick.bind(this)}>Bold</button>
+            <Editor editorState={editorState} onChange={setEditorState} />  
+        </div>
+        
+    )
+  }
 
 
 
