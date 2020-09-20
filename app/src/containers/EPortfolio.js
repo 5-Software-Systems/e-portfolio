@@ -51,8 +51,9 @@ export default function EPortfolio() {
     const width = 280;
     const height = 315;
     const columns = 6;
-/*
+
     async function addWidget() {
+        console.log("jeff");
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -64,8 +65,9 @@ export default function EPortfolio() {
                                 })
         };
         await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+        window.location.reload(false);
     }
-*/
+
 
     return (
         <div className='wholePage'>
@@ -75,8 +77,8 @@ export default function EPortfolio() {
                         {profile.title}
                     </h1>
                 </div>
-                <div> 
-                    <button className='addWidget'> Add Widget </button>
+                <div className='right'> 
+                    <button className='addWidgetButton' onClick={addWidget} > Add Widget </button>
                 </div>
             </div>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
