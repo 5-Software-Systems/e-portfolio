@@ -1,5 +1,10 @@
+//your mum 
 import React, {useEffect, useState} from "react";
+//-----------dependencies------------------------
 import ReactGridLayout from 'react-grid-layout';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+//------------------------------------------------
 import { useHistory } from "react-router-dom";
 import { isAuthorized } from "../util/cookies";
 import '../styles/widget-styles.css';
@@ -53,6 +58,7 @@ export default function EPortfolio() {
                 <h1 className="impact">
                     {profile.title}
                 </h1>
+                <button onClick={addWidget}> Add Widget </button>                
             </div>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
                 {widgets.map(widget =>(
@@ -64,4 +70,12 @@ export default function EPortfolio() {
         </div>
     );
 };
+
+function addWidget() {
+    return (
+        <div> 
+            <p>hello gamers </p>
+        </div>
+    );
+}
 
