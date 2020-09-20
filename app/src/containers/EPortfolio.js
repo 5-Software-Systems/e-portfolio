@@ -60,8 +60,8 @@ export default function EPortfolio() {
                         {profile.title}
                     </h1>
                 </div>
-                <div> 
-                    <button className='addWidget' onClick={addWidget}> Add Widget </button>
+                <div className='right'> 
+                    <button className='addWidgetButton' onClick={addWidget}> Add Widget </button>
                 </div>
             </div>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
