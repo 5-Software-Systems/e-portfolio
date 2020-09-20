@@ -68,7 +68,6 @@ export default function EPortfolio() {
         window.location.reload(false);
     }
 
-
     return (
         <div className='wholePage'>
             <div className='header'>
@@ -85,12 +84,51 @@ export default function EPortfolio() {
                 {widgets.map(widget =>(
                     < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
                         <MotherWidget widget={widget}/>
+                        <div className ='overlay'>
+                        {bruhmoment()}
+                        </div>
                     </ div>
                 ))}
             </ReactGridLayout>
         </div>
     );
 };
+
+
+function bruhmoment() {
+    return (
+        <Popup
+            trigger={<button className="button">⚙</button>}
+            modal
+            nested
+        >
+        {close => (
+        <div className="modal">
+            <button className="close" onClick={close}>
+            &times;
+            </button>
+            <div className="header"> <h1 className="impact">HELLO OZBARGAINERS</h1> </div>
+            <div className="content">
+            {' '}
+            cool beans
+            </div>
+            <div className="actions">
+            <Popup
+                trigger={<button className="button"> DELETE 🥵 </button>}
+                position="top center"
+                nested
+            >
+                <span>
+                :what:
+                </span>
+            </Popup>
+            </div>
+        </div>
+        )}
+        </Popup>
+    )
+}
+
 
 
 
