@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import {Editor, EditorState, RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import '../styles/ePortfolioIndex.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
 import { isAuthorized } from "../util/cookies";
@@ -100,7 +101,7 @@ export default function EPortfolio() {
 function editBox() {
     return (
         <Popup
-            trigger={<button className="button">⚙</button>}
+            trigger={<button className="settingsButton">⚙</button>}
             modal
             nested
         >
@@ -109,7 +110,7 @@ function editBox() {
             <button className="close" onClick={close}>
             &times;
             </button>
-            <div className="header"> <h1 className="impact">HELLO OZBARGAINERS</h1> </div>
+            <div className="header2"> <h1 className="impact">Hello Ozbargainers</h1> </div>
             <div className="content">
             {' '}
                 {MyEditor()}
