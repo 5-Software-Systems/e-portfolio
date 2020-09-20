@@ -6,6 +6,25 @@
        url('../fonts/roboto/Roboto-Light.ttf') format('TrueType');
 }
 
+.header {
+  background-color: #1a1a1a;
+  overflow: auto;
+}
+
+.header .left {
+  float: left;
+  width: 50%;
+  overflow: auto;
+}
+
+.header .addWidget {
+  width: 10%;
+}
+
+.header h1 {
+  padding-left: 10px;
+  background-color: #1a1a1a;
+}
 
 .wholePage * {
   color: rgb(211, 211, 211);
@@ -20,11 +39,6 @@
 
 .wholePage {
   background-color: #121212;
-}
-
-.wholePage h1 {
-  padding-left: 10px;
-  background-color: #1a1a1a;
 }
 
 .wholePage p {

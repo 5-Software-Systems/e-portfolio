@@ -54,11 +54,15 @@ export default function EPortfolio() {
 
     return (
         <div className='wholePage'>
-            <div>
-                <h1 className="impact">
-                    {profile.title}
-                </h1>
-                <button onClick={addWidget}> Add Widget </button>                
+            <div className='header'>
+                <div className ='left'>
+                    <h1 className="impact">
+                        {profile.title}
+                    </h1>
+                </div>
+                <div> 
+                    <button className='addWidget' onClick={addWidget}> Add Widget </button>
+                </div>
             </div>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
                 {widgets.map(widget =>(
