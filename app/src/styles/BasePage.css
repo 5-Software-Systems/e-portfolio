@@ -20,12 +20,12 @@
      justify-content: space-around;
      align-items: center;
      position: relative;
-
      overflow: hidden;
      border: 5px solid #1a1a1a;
      background: #1a1a1a;
      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
      border-radius: 20px;
+     transition: background-color, 0.2s;
 }
 
 .eportfoliopreview:hover{
@@ -43,15 +43,20 @@
      align-items: center
 }
 
-.button {
+.button_container {
      color: black;
      border: 0; 
      border-radius: 10px;
-     top: 5px;
-     right: 5px;
+     bottom: 5px;
+     left: 5px;
      position: absolute;
      outline: 0;
+}
 
+.button_container .menu-item {
+    background-color: transparent;
+    border: none;
+    outline: 0;
 }
 
 .options {

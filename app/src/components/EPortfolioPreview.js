@@ -8,45 +8,26 @@ function EPortfolioPreview(props){
     
     const link = "/portfolio/" + props.id;
     
-    //options fucnctionality 
-    //from https://codedaily.io/tutorials/63/Create-a-Dropdown-in-React-that-Closes-When-the-Body-is-Clicked
-    const options = ["Edit", "Delete"]
-    const [isOpen, setOpen] = useState(false);
-    const handleButtonClick = () => {
-        setOpen(!isOpen)
-    };
-
-    //so much shit just to close the options ffs
-    //https://medium.com/@pitipatdop/little-neat-trick-to-capture-click-outside-with-react-hook-ba77c37c7e82 
-    const container = useRef();
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-      }, []);
-    const handleClickOutside = event => {
-        if (container.current && !container.current.contains(event.target)) {
-            setOpen(false)
-        };
-    };
+   
 
     return(
         <div className="eportfoliopreview"> 
-            <div class="button_containter" ref={container}> 
-                <button type="button" class="button" onClick={handleButtonClick}>
-                    ···
-                </button>
-                {isOpen && (
-                    <div class="options"> 
-                    <ul>
-                        {options.map(option => (
-                            <li> {option} </li>
-                        ))}
-                    </ul>
-                </div>
-                )}
-                
+            <div class="button_container" > 
+                <Popup
+                    trigger={<button className="menu-item">  ⚙️  </button>}
+                    position="right bottom"
+                    on="click"
+                    closeOnDocumentClick
+                    mouseLeaveDelay={300}
+                    mouseEnterDelay={0}
+                    contentStyle={{ padding: '0px', border: 'none' }}
+                    arrow={false}
+                    >
+                    <div className="menu">
+                        <div className="menu-item"> Edit</div>
+                        <div className="menu-item"> Deleting you daddy</div>
+                    </div>
+                </Popup>
             </div>
            
             <div class="eportfolioinfo"> 
