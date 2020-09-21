@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import EPortfolioPreview from "../components/EPortfolioPreview";
-import AddPortfolioButton from "../components/AddPortfolio";
+import AddPortfolio from "../components/AddPortfolio";
 import DemoPreview from "../components/DemoPreview";
 import "../styles/BasePage.css";
 import { useHistory } from "react-router-dom";
@@ -36,7 +36,8 @@ export default function BasePage() {
                     < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
                 ))}
                 < DemoPreview />
-                < AddPortfolioButton />
+                < AddPortfolio />
+                
             </div>
         </div>
     );

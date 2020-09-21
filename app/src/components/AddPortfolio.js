@@ -1,59 +1,49 @@
-import React, {Fragment} from 'react';
-import Popup from './Popup';
-import {
-    FormGroup,
-    FormControl,
-    FormLabel,
-    Button,
-} from "react-bootstrap";
+import React, {useEffect, useState}from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
 
-function AddPortfolio(){
+function AddPortfolioInfo(){
     return(
-        <Button 
-        className="btn btn-info m-2"
-        variant="primary" 
-        onClick={openFormAddPortfolio}>
-            <div className="eportfoliopreview">
-                <h3>Add ePortfolio</h3>
-                <h1> + </h1>
-            </div>
-        </Button>
-    )
-}
-
-export default function AddPortfolioButton() {
-    return (
-        <div className="eportfoliopreview"> 
-            <Popup name ='add_portfolio' button={AddPortfolio}>
-                {AddPortfolioForm}
-            </Popup>
+        <div className="eportfoliopreview">
+            <h3>Add ePortfolio</h3>
+            <h1> + </h1>
         </div>
     )
 }
 
-function AddPortfolioForm() {
-    return (
-        <Fragment>
-            <h1>Add a portfolio</h1>
-            <FormGroup controlId="portfolio_name">
-                <FormLabel>Name</FormLabel>
-            </FormGroup>
-            <SubmitButton />
-        </Fragment>
-    );
-}
+export default function AddPortfolio() {
 
-function SubmitButton() {
-    
-    return (
-        <Button>
-            "Submit"
-        </Button>
-    );
-}
+    const [name, setName] = useState()
 
-function openFormAddPortfolio() {
-    document.getElementById("add_portfolio_form").style.display = "block"
-    document.getElementById("cover").style.display = "block";
+    console.log(name);
+
+    return (
+        <Popup
+            trigger={<button className="button"> {AddPortfolioInfo()} </button>}
+            modal
+            nested>
+            {close => (
+            <div className="modal">
+                <button className="close" onClick={close}>
+                &times;
+                </button>
+                <div className="header"> Add Portfolio </div>
+                <div className="content">
+                {' '}
+                <form>
+                    <label>
+                        Portfolio Name:
+                        <input type="text" name="name" value={name} onChange={setName} />
+                    </label>
+                </form>   
+                </div>
+                <div className="actions">
+                <button className="button"> Trigger </button>
+
+                </div>
+            </div>
+            )}
+        </Popup>
+    )
 }
