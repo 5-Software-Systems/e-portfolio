@@ -56,7 +56,6 @@ export default function EPortfolio() {
     const columns = 6;
 
     async function addWidget() {
-        console.log("jeff");
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -88,7 +87,7 @@ export default function EPortfolio() {
                     < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {editBox()}
+                        {editBox(widget.public_id)}
                         </div>
                     </ div>
                 ))}
@@ -98,7 +97,9 @@ export default function EPortfolio() {
 };
 
 
-function editBox() {
+function editBox(PID) {
+    
+
     return (
         <Popup
             trigger={<button className="settingsButton">⚙</button>}
@@ -110,10 +111,10 @@ function editBox() {
             <button className="close" onClick={close}>
             &times;
             </button>
-            <div className="header2"> <h1 className="impact">Hello Ozbargainers</h1> </div>
-            <div className="content">
+        <div className="header2"> <h1 className="impact">Hello Ozbargainer #{PID}</h1> </div>
+            <div className="content2">
             {' '}
-                {MyEditor()}
+                {MyEditor(PID)}
             </div>
             <div className="actions">
             <Popup
@@ -132,7 +133,22 @@ function editBox() {
     )
 }
 
-function MyEditor() {
+function MyEditor(PID) {
+    async function updateWidget(content) {
+        const requestOptions = {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                                    type: "about", 
+                                    data:{
+                                        about: {content}
+                                        }
+                                })
+        };
+        await fetch('/api/widget/' + PID, requestOptions);
+    }
+
+
     const [editorState, setEditorState] = React.useState(
       () => EditorState.createEmpty(),
     );
@@ -150,10 +166,12 @@ function MyEditor() {
     const onBoldClick = () => {
         (RichUtils.toggleInlineStyle(editorState, 'BOLD'));
       }
-  
+      
+      console.log(editorState.getCurrentContent().getPlainText())
+      updateWidget(editorState.getCurrentContent().getPlainText())
     return (
         <div> 
-            <button onClick={onBoldClick.bind(this)}>Bold</button>
+            <button className='popUpFormatButtonPoggers' onClick={onBoldClick.bind(setEditorState)}><h6>Bold</h6></button>
             <Editor editorState={editorState} onChange={setEditorState} />  
         </div>
         

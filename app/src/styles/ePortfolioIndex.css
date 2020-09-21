@@ -6,7 +6,12 @@
 		 url('../fonts/roboto/Roboto-Light.ttf') format('TrueType');
   }
 
-  
+.popUpFormatButtonPoggers {
+	margin-top: 10px;
+	background-color: transparent;
+	border:none;
+}
+
 .popup-content {
 	overflow: hidden;
 	border: 5px solid #1a1a1a;
@@ -27,6 +32,12 @@
 .popup-overlay {
 	background: rgba(0, 0, 0, .5)
 }
+
+.popup-overlay * {
+	color: rgb(211, 211, 211);
+	text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
+	font-family: Roboto;
+  }
 
 [data-popup=tooltip].popup-overlay {
 	background: transparent
