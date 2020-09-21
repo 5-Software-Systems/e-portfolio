@@ -1,6 +1,5 @@
 .idea/
 app/node_modules/
-app/build/
 /venv/
 pip
 *.pyc

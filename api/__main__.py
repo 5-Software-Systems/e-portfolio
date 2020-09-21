@@ -1,7 +1,6 @@
 import argparse
 import sys
 
-
 from .test import db
 from .test.api_test import run_tests
 from . import build_app
@@ -44,4 +43,4 @@ if args.testapi:
     db.create()
 
 if args.run:
-    build_app().run(debug=args.debug, host='0.0.0.0')
+    build_app().run(debug=args.debug)
