@@ -1,4 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
 
 
