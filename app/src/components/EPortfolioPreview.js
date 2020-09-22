@@ -8,7 +8,14 @@ function EPortfolioPreview(props){
     
     const link = "/portfolio/" + props.id;
     
-   
+    async function handleDelete() {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        };
+        await fetch('api/'+ link, requestOptions);
+        console.log("daddy deleted");
+    }
 
     return(
         <div className="eportfoliopreview"> 
@@ -25,7 +32,11 @@ function EPortfolioPreview(props){
                     >
                     <div className="menu">
                         <div className="menu-item"> Edit</div>
-                        <div className="menu-item"> Deleting you daddy</div>
+                        <button className="menu-item" onClick={() => {
+                            handleDelete();
+                            window.location.reload(false);
+                            }
+                        }> Deleting </button>
                     </div>
                 </Popup>
             </div>

@@ -53,7 +53,10 @@ export default function AddPortfolio(PID) {
                 </form>   
                 </div>
                 <div className="actions">
-                <button className="button" onClick={handleSubmit}> Trigger </button>
+                <button className="button" onClick={() => {
+                            handleSubmit();
+                            window.location.reload(false);
+                }}> Trigger </button>
 
                 </div>
             </div>
