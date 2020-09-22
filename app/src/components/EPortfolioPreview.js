@@ -51,8 +51,8 @@ function EPortfolioPreview(props){
                     {' '}
                     <form>
                         <label>
-                            Portfolio Name:
-                            <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                            Portfolio Name:<br />
+                            <input className='basePageTextBox'type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
                         </label>
                     </form>   
                     </div>

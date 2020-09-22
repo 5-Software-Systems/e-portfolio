@@ -33,15 +33,13 @@ export default function BasePage() {
     }, [Auth])
 
     return (
-        <div>
-            <div className="basepage">
-                {profiles.map(profile =>(
-                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
-                ))}
-                < DemoPreview />
-                < AddPortfolio PID = {user}/>
-                
-            </div>
+        <div className="basepage">
+            {profiles.map(profile =>(
+                < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
+            ))}
+            < DemoPreview />
+            < AddPortfolio PID = {user}/>
+            
         </div>
     );
 };

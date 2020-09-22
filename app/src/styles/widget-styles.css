@@ -6,8 +6,11 @@
        url('../fonts/roboto/Roboto-Light.ttf') format('TrueType');
 }
 
-body {
+.eportfolioBody {
+  position: relative;
   background-color: #121212;
+  min-height: 100vh;
+  min-width: 100%;
 }
 
 .header {
@@ -54,31 +57,31 @@ body {
   background-color: #1a1a1a;
 }
 
-.wholePage * {
+.eportfolioPage * {
   color: rgb(211, 211, 211);
   font-family: Roboto;
   text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
 }
 
-.wholePage button {
+.eportfolioPage button {
   background-color:#121212;
   border: none;
   outline: none;
 }
 
-.wholePage button:hover {
+.eportfolioPage button:hover {
   background-color: rgb(0,0,0);
   border: none;
   outline: none;
 }
 
-.wholePage {
+.eportfolioPage {
   background-color: #121212;
   width: auto;
   height: 100%;
 }
 
-.wholePage p {
+.eportfolioPage p {
   padding-left: 15px;
   background-color: #1a1a1a;
 }
@@ -180,13 +183,13 @@ image {
   
 }
 
-.wholePage .settingsButton {
+.eportfolioPage .settingsButton {
   background-color:#121212;
   border-radius: 50%;
   outline: none;
   transition: background-color, 0.5s;
 }
 
-.wholePage .settingsButton:hover {
+.eportfolioPage .settingsButton:hover {
   background-color: #363636;
 }

@@ -34,7 +34,7 @@ export default function AddPortfolio(PID) {
 
     return (
         <Popup
-            trigger={<button className="button"> {AddPortfolioInfo()} </button>}
+            trigger={<button className="addButton"> {AddPortfolioInfo()} </button>}
             modal
             nested>
             {close => (
@@ -47,8 +47,8 @@ export default function AddPortfolio(PID) {
                 {' '}
                 <form>
                     <label>
-                        Portfolio Name:
-                        <input type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
+                        Portfolio Name:<br />
+                        <input className='basePageTextBox' type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
                     </label>
                 </form>   
                 </div>
@@ -56,7 +56,7 @@ export default function AddPortfolio(PID) {
                 <button className="button" onClick={() => {
                             handleSubmit();
                             window.location.reload(false);
-                }}> Trigger </button>
+                }}> Add </button>
 
                 </div>
             </div>

@@ -70,34 +70,36 @@ export default function EPortfolio() {
     }
 
     return (
-        <div className='wholePage'>
-            <header className='header'>
-                <div className ='left'>
-                    <h1 className="impact">
-                        {profile.title}
-                    </h1>
-                </div>
-                <div className='right'> 
-                    <button className='addWidgetButton'
-                        onClick={
-                            () => {
-                                addWidget();
-                                fetchWidgets();
-                            }
-                        } 
-                    > Add Widget </button>
-                </div>
-            </header>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
-                {widgets.map(widget =>(
-                    < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
-                        <MotherWidget widget={widget}/>
-                        <div className ='overlay'>
-                        {editBox(widget.public_id)}
-                        </div>
-                    </ div>
-                ))}
-            </ReactGridLayout>
+        <div className='eportfolioBody'>
+            <div className='eportfolioPage'>
+                <header className='header'>
+                    <div className ='left'>
+                        <h1 className="impact">
+                            {profile.title}
+                        </h1>
+                    </div>
+                    <div className='right'> 
+                        <button className='addWidgetButton'
+                            onClick={
+                                () => {
+                                    addWidget();
+                                    fetchWidgets();
+                                }
+                            } 
+                        > Add Widget </button>
+                    </div>
+                </header>
+                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+                    {widgets.map(widget =>(
+                        < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
+                            <MotherWidget widget={widget}/>
+                            <div className ='overlay'>
+                            {editBox(widget.public_id)}
+                            </div>
+                        </ div>
+                    ))}
+                </ReactGridLayout>
+            </div>
         </div>
     );
 };
