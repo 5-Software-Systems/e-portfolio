@@ -14,13 +14,16 @@ export default function BasePage() {
     }
 
     //grab profiles and user
+    const [user, setUser] = useState();
     const [profiles, setProfiles] = useState([]);
 
     //store db
     useEffect( () =>{
+        
         const fetchProfiles = async() => {
             const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
             const user = await user_data.json();
+            setUser(user.public_id);
 
             const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio');
             const profile = await prof_data.json();
@@ -36,7 +39,8 @@ export default function BasePage() {
                     < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
                 ))}
                 < DemoPreview />
-                < AddPortfolio />
+                < AddPortfolio PID = {user}/>
+                
             </div>
         </div>
     );
