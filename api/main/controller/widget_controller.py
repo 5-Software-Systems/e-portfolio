@@ -50,3 +50,9 @@ class Widget(Resource):
         data = request.json['data']
         widget = widget_service.update_a_widget(public_id=public_id, data=data)
         return widget.marshal(), 200
+
+    @namespace.marshal_with(api_model.response)
+    def delete(self, public_id):
+        """delete a Widget"""
+        res = widget_service.delete_a_widget(public_id)
+        return res, 200

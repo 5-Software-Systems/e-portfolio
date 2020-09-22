@@ -35,6 +35,10 @@ portfolio_new = namespace.model(
     name='portfolio_new',
     model=dict([portfolio_title])
 )
+portfolio_update = namespace.model(
+    name='portfolio_update',
+    model=dict([portfolio_title])
+)
 portfolio_basic = namespace.model(
     name='portfolio_basic',
     model=dict([public_id, portfolio_title])
