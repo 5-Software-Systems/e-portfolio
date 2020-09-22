@@ -26,3 +26,4 @@ Werkzeug==0.16.1
 gunicorn
 psycopg2==2.8.6
 python-dotenv
+sentry_sdk[flask]
