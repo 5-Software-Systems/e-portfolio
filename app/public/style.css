@@ -3061,40 +3061,13 @@ footer a:hover,
   background-color: #221e1e;
 }
 
-.form-control {
-  background-color: #f6f7fb;
-  border: none;
-  font-size: 14px;
-}
-
-.form-control:focus {
-  background-color: #f6f7fb;
-  border: 1px solid #ced4da;
-  box-shadow: none;
-  border: none;
-}
-
 .modal-content {
-  width: 500px;
+  margin: auto;
+  background: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 10px;
 }
 
-@media (max-width: 575px) {
-  .modal-content {
-    width: 300px;
-  }
-}
-
-.modal-content .modal-header {
-  justify-content: center;
-  border: none;
-}
-
-.modal-content .modal-body {
-  padding: 0px 40px;
-}
-
-.modal-content .modal-footer {
-  border: none;
-  justify-content: flex-start;
-  padding: 5px 0px 20px 39px;
+.modal-overlay{
+  background: rgba(0,0,0,0.5);
 }
