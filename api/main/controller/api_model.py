@@ -18,6 +18,10 @@ widget_new = namespace.model(
     name='widget_new',
     model=dict([widget_type, widget_data])
 )
+widget_update = namespace.model(
+    name='widget_update',
+    model=dict([widget_data])
+)
 widget_list = namespace.model(
     name='widget_list',
     model=dict([public_id, widget_type, widget_data])
