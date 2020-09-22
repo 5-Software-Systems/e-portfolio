@@ -43,10 +43,16 @@ class Widget(Resource):
         widget = widget_service.get_a_widget(public_id)
         return widget.marshal(), 200
 
-    @namespace.expect(api_model.widget_new, validate=True)
+    @namespace.expect(api_model.widget_update, validate=True)
     @namespace.marshal_with(api_model.widget, envelope='widget')
     def patch(self, public_id):
         """Update a Widget"""
-        data = request.json
+        data = request.json['data']
         widget = widget_service.update_a_widget(public_id=public_id, data=data)
         return widget.marshal(), 200
+
+    @namespace.marshal_with(api_model.response)
+    def delete(self, public_id):
+        """delete a Widget"""
+        res = widget_service.delete_a_widget(public_id)
+        return res, 200
