@@ -32,22 +32,22 @@ export default function EPortfolio() {
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 
-        //store db
-    useEffect( () =>{
-        const fetchWidgets = async() => {
-            const p_response = await fetch('/api/portfolio/' + PID);
-            const p_data = await p_response.json();
-            if (p_data.error) {
-                history.push("/profile");
-                return;
-            }
-            setProfile(p_data.portfolio);
-
-            const w_response = await fetch('/api/portfolio/' + PID + '/widget');
-            const w_data = await w_response.json();
-            setWidget(w_data.widgets);
+    async function fetchWidgets() {
+        const p_response = await fetch('/api/portfolio/' + PID);
+        const p_data = await p_response.json();
+        if (p_data.error) {
+            history.push("/profile");
+            return;
         }
+        setProfile(p_data.portfolio);
 
+        const w_response = await fetch('/api/portfolio/' + PID + '/widget');
+        const w_data = await w_response.json();
+        setWidget(w_data.widgets);
+    }
+
+        //store db
+    useEffect( () => {
         fetchWidgets();
     }, [PID, history]);
 
@@ -67,21 +67,27 @@ export default function EPortfolio() {
                                 })
         };
         await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
-        window.location.reload(false);
     }
 
     return (
         <div className='wholePage'>
-            <div className='header'>
+            <header className='header'>
                 <div className ='left'>
                     <h1 className="impact">
                         {profile.title}
                     </h1>
                 </div>
                 <div className='right'> 
-                    <button className='addWidgetButton' onClick={addWidget} > Add Widget </button>
+                    <button className='addWidgetButton'
+                        onClick={
+                            () => {
+                                addWidget();
+                                fetchWidgets();
+                            }
+                        } 
+                    > Add Widget </button>
                 </div>
-            </div>
+            </header>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
                 {widgets.map(widget =>(
                     < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
@@ -98,7 +104,22 @@ export default function EPortfolio() {
 
 
 function editBox(PID) {
-    
+    async function deleteWidget() {
+        {
+            const requestOptions = {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json'},
+            };
+            await fetch('/api/widget/' + PID, requestOptions);
+        }
+    }
+
+    const onDeleteClick = () => {
+        (deleteWidget());
+        (window.location.reload(false));
+        //TODO: refresh component instead of page.
+        //TODO: IMPLEMENT APPLY BUTTON FUNCTIONALITY
+    }
 
     return (
         <Popup
@@ -109,23 +130,26 @@ function editBox(PID) {
         {close => (
         <div className="modal">
             <button className="close" onClick={close}>
-            &times;
+            <b>×</b>
             </button>
-        <div className="header2"> <h1 className="impact">Hello Ozbargainer #{PID}</h1> </div>
+            <div className="header2"> 
+                <h1 className="impact">Edit Widget</h1>
+            </div>
             <div className="content2">
             {' '}
                 {MyEditor(PID)}
             </div>
-            <div className="actions">
-            <Popup
-                trigger={<button className="button"> DELETE 🥵 </button>}
-                position="top center"
-                nested
-            >
-                <span>
-                :what:
-                </span>
-            </Popup>
+            <div className='PopupBottom'>
+                <div className='options'>
+                    <div className="actions">
+                        <button className="button" onClick={onDeleteClick}><b className='deleteText'>DELETE</b></button>
+                    </div>
+                </div>
+                <div className='options'>
+                    <div className="actions">
+                        <button className="button" onClick={console.log("temp")}><b>APPLY</b></button>
+                    </div>
+                </div>
             </div>
         </div>
         )}
@@ -133,15 +157,15 @@ function editBox(PID) {
     )
 }
 
-function MyEditor(PID) {
-    async function updateWidget(content) {
+function MyEditor(PID) { 
+    async function updateWidget() {
         const requestOptions = {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                                    type: "about", 
+            body: JSON.stringify({  
+                                    'type': 'about',
                                     data:{
-                                        about: {content}
+                                        about: editorState.getCurrentContent().getPlainText()
                                         }
                                 })
         };
@@ -167,11 +191,16 @@ function MyEditor(PID) {
         (RichUtils.toggleInlineStyle(editorState, 'BOLD'));
       }
       
+    const onSendClick = () => {
+        (updateWidget());
+        (window.location.reload(false));
+    }
+
       console.log(editorState.getCurrentContent().getPlainText())
-      updateWidget(editorState.getCurrentContent().getPlainText())
     return (
         <div> 
-            <button className='popUpFormatButtonPoggers' onClick={onBoldClick.bind(setEditorState)}><h6>Bold</h6></button>
+            <button className='popUpFormatButton' onClick={onBoldClick.bind(setEditorState)}><h6>Bold</h6></button>
+            <button className='popUpFormatButton' onClick={onSendClick.bind(editorState)}><h6>Send</h6></button>
             <Editor editorState={editorState} onChange={setEditorState} />  
         </div>
         

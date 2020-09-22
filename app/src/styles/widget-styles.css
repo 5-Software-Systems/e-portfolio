@@ -6,6 +6,10 @@
        url('../fonts/roboto/Roboto-Light.ttf') format('TrueType');
 }
 
+body {
+  background-color: #121212;
+}
+
 .header {
   background-color: #1a1a1a;
   overflow: auto;
@@ -85,7 +89,7 @@ image {
 }
 
 .react-grid-layout {
-  background: #121212;
+  background: transparent;
   position: relative;
   transition: height 200ms ease;
   padding-left: 10px;
@@ -172,6 +176,8 @@ image {
   z-index: 1;
   left: 5px;
   bottom: 5px;
+  border-radius: 50%;
+  
 }
 
 .wholePage .settingsButton {
