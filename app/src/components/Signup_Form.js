@@ -123,20 +123,3 @@ export default function SignupForm() {
         </Fragment>
     );
 }
-
-export function SignupButton() {
-    return (
-        <Button
-            className="btn btn-info m-2"
-            variant="primary"
-            onClick={openFormSignUp}
-        >
-            Sign Up
-        </Button>
-       );
-}
-
-function openFormSignUp() {
-  document.getElementById("sign_up_form").style.display = "block"
-  document.getElementById("cover").style.display = "block";
-}

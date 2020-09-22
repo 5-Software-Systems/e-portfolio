@@ -14,8 +14,8 @@ import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
 // Components
 import Popup from './components/Popup';
-import LoginForm, { LoginButton } from './components/Login_Form';
-import SignupForm, { SignupButton } from './components/Signup_Form';
+import LoginForm from './components/Login_Form';
+import SignupForm from './components/Signup_Form';
 import Logout from './components/Logout';
 import Welcome from './components/Welcome';
 
@@ -40,10 +40,8 @@ function HomePage() {
     return (
         <BaseTemplate
           nav_right = { <Fragment>
-                            <Popup name="log_in" button={<LoginButton />}>
-                                <LoginForm />
-                            </Popup>
-                            <Popup name="sign_up" button={<SignupButton />}>
+                            <Popup name="Login"> <LoginForm /> </Popup>
+                            <Popup name="Sign Up">
                                 <SignupForm />
                             </Popup>
                         </Fragment> }

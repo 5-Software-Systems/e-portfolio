@@ -102,20 +102,3 @@ export default function LoginForm() {
         </Fragment>
     );
 }
-
-export function LoginButton() {
-    return (
-        <Button
-            className="btn btn-info m-2"
-            variant="primary"
-            onClick={openFormLogin}
-        >
-            Log In
-        </Button>
-    );
-}
-
-export function openFormLogin() {
-  document.getElementById("log_in_form").style.display = "block"
-  document.getElementById("cover").style.display = "block";
-}
