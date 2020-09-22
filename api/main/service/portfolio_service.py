@@ -37,3 +37,13 @@ def update_a_portfolio(public_id, data):
     portfolio.patch(**data)
     portfolio.save()
     return portfolio
+
+
+def delete_a_portfolio(public_id):
+    portfolio = get_a_portfolio(public_id)
+    portfolio.delete()
+    return {
+        'status': 'success',
+        'message': 'portfolio deleted'
+    }
+

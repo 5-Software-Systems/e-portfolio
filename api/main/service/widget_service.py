@@ -38,6 +38,15 @@ def update_a_widget(public_id, data):
     return widget
 
 
+def delete_a_widget(public_id):
+    widget = get_a_widget(public_id)
+    widget.delete()
+    return {
+        'status': 'success',
+        'message': 'widget deleted'
+    }
+
+
 def get_types():
     return [
         {'type': 'about',
