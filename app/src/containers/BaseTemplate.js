@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Test from '../components/Test';
 
 export default function BaseTemplate(props) {
     return (
@@ -22,8 +23,9 @@ export default function BaseTemplate(props) {
                 </nav>
             </header>
             {props.body}
-            <footer className="border-top ">
-                <p className="text-center text-muted pt-4"><a href="/">FiveCent Software Systems.</a></p>
+            <footer className="border-top text-center text-muted">
+                <p className="pt-3"><a href="/">FiveCent Software Systems.</a></p>
+                <Test />
             </footer>
         </Fragment>
     );

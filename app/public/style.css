@@ -452,6 +452,10 @@ h6, .h6 {
   height: 100% !important;
 }
 
+.h-150 {
+  height: 150% !important;
+}
+
 .h-auto {
   height: auto !important;
 }
