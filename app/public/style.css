@@ -2673,11 +2673,13 @@ body {
   transform: scale(1.1);
 }
 
-footer a {
+footer a,
+.email {
   color: #ff0000;
 }
 
-footer a:hover {
+footer a:hover,
+.email:hover {
   color: black;
 }
 

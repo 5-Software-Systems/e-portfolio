@@ -14,7 +14,7 @@ export default function Landing() {
         <Fragment>
             <div className="banner">
                 <div className="container pb-5">
-                      <h1 className="font-weight-semibold">Updates.</h1>
+                      <h1 className="font-weight-semibold">Updates</h1>
                       <h6 className="font-weight-normal text-muted pt-3">A place to see updates on the electronic portfolio project, as managed by the FiveCent Software Systems team.</h6>
                       <img src={process.env.PUBLIC_URL + "/images/update.png"} alt="" className="img-fluid w-50" />
                 </div>
