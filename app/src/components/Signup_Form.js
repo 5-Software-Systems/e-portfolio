@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import '../styles/Pop-up.css';
+import '../styles/Form.css';
 import { validateEmail, useFormFields } from "../util/form";
 import { useHistory } from "react-router-dom";
 
@@ -122,21 +122,4 @@ export default function SignupForm() {
             <SubmitButton />
         </Fragment>
     );
-}
-
-export function SignupButton() {
-    return (
-        <Button
-            className="btn btn-info m-2"
-            variant="primary"
-            onClick={openFormSignUp}
-        >
-            Sign Up
-        </Button>
-       );
-}
-
-function openFormSignUp() {
-  document.getElementById("sign_up_form").style.display = "block"
-  document.getElementById("cover").style.display = "block";
 }
