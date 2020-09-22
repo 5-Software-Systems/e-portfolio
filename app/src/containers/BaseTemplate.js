@@ -24,7 +24,7 @@ export default function BaseTemplate(props) {
             </header>
             {props.body}
             <footer className="border-top text-center text-muted">
-                <p className="pt-3"><a href="/">FiveCent Software Systems.</a></p>
+                <p className="pt-3"><a href="/demo">FiveCent Software Systems.</a></p>
                 <Test />
             </footer>
         </Fragment>
