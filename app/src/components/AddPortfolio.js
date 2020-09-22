@@ -12,11 +12,25 @@ function AddPortfolioInfo(){
     )
 }
 
-export default function AddPortfolio() {
+export default function AddPortfolio(PID) {
 
-    const [name, setName] = useState()
+    const [name, setName] = useState('')
 
-    console.log(name);
+    async function handleSubmit() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "title": name
+              })
+        };
+        await fetch('api/user/'+ PID.PID + '/portfolio', requestOptions);
+        console.log(name);
+        console.log(PID);
+    }
+
+
+    
 
     return (
         <Popup
@@ -34,12 +48,12 @@ export default function AddPortfolio() {
                 <form>
                     <label>
                         Portfolio Name:
-                        <input type="text" name="name" value={name} onChange={setName} />
+                        <input type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
                     </label>
                 </form>   
                 </div>
                 <div className="actions">
-                <button className="button"> Trigger </button>
+                <button className="button" onClick={handleSubmit}> Trigger </button>
 
                 </div>
             </div>
