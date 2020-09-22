@@ -7,7 +7,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
-import '../styles/Pop-up.css';
+import '../styles/Form.css';
 import { validateEmail, useFormFields } from "../util/form";
 import { useHistory } from "react-router-dom";
 
