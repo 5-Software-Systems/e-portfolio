@@ -31,9 +31,11 @@ def create_new_widget(data):
     return widget
 
 
-def update_a_widget(public_id, data):
+def update_a_widget(public_id, data: dict):
     widget = get_a_widget(public_id)
-    widget.patch(**data)
+    widget_data = data.pop('data', {})
+    widget_data.update(data)
+    widget.patch(**widget_data)
     widget.save()
     return widget
 
