@@ -1,5 +1,5 @@
 from flask_restplus import Api
-from flask import Blueprint, render_template, send_from_directory
+from flask import Blueprint, render_template
 
 from .main.controller import *
 from .main.service import file_service
@@ -37,19 +37,8 @@ def build_app():
     def index():
         return render_template('index.html', token='Hello World')
 
-    @app.route('/test')
-    def test():
-        return '<h1>test</h1>'
-
-    @app.route('/assets/<path:path>')
-    def public(path):
-        return send_from_directory('../app/build', path)
-
     @app.errorhandler(404)
     def not_found(e):
         return render_template('index.html', token='Hello World')
-
-    with app.app_context():
-        db.create_all()
 
     return app
