@@ -6,14 +6,18 @@ from flask import Flask, render_template
 from api import blueprint, db, flask_bcrypt
 
 
+def rel_path(path):
+    return os.path.join(os.path.dirname(__file__), path)
+
+
 app = Flask(
     import_name='__main__',
-    static_folder='app/build/static',
-    template_folder='app/build',
+    static_folder=rel_path('app/build/static'),
+    template_folder=rel_path('app/build'),
     static_url_path='/'
 )
 
-app.config.from_pyfile(os.path.join(os.path.dirname(__file__), 'api/config.py'))
+app.config.from_pyfile(rel_path('api/config.py'))
 db.init_app(app)
 flask_bcrypt.init_app(app)
 
