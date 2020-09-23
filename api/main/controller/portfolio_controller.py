@@ -40,9 +40,15 @@ class Portfolio(Resource):
         """Get a Portfolio"""
         return portfolio_service.get_a_portfolio(public_id), 200
 
-    @namespace.expect(api_model.portfolio_basic)
-    @namespace.marshal_with(api_model.portfolio, envelope='user')
+    @namespace.expect(api_model.portfolio_update)
+    @namespace.marshal_with(api_model.portfolio_basic, envelope='portfolio')
     def patch(self, public_id):
         """Update a Portfolio"""
         data = request.json
         return portfolio_service.update_a_portfolio(public_id=public_id, data=data), 200
+
+    @namespace.marshal_with(api_model.response)
+    def delete(self, public_id):
+        """delete a portfolio"""
+        res = portfolio_service.delete_a_portfolio(public_id)
+        return res, 200
