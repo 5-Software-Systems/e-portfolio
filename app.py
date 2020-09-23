@@ -12,7 +12,7 @@ def rel_path(path):
 
 app = Flask(
     import_name='__main__',
-    static_folder=rel_path('app/build/static'),
+    static_folder=rel_path('app/build'),
     template_folder=rel_path('app/build'),
     static_url_path='/'
 )
