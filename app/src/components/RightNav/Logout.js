@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { isAuthorized, deauthorize } from "../util/cookies";
+import { isAuthorized, deauthorize } from "../../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function Logout() {

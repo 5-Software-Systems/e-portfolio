@@ -1,15 +1,6 @@
 import React, {Fragment} from 'react';
-import { useHistory } from "react-router-dom";
-import { isAuthorized } from "../util/cookies";
-
 
 export default function Landing() {
-    const history = useHistory();
-    const Auth = isAuthorized();
-    if (Auth) {
-        history.push("/profile");
-    }
-
     return (
         <Fragment>
             <div className="banner">

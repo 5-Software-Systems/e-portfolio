@@ -13,7 +13,7 @@ export default function CustomPopup(props) {
 
     function CloseButton() {
         return (
-            <Button className="btn cancel" variant="primary" onClick={closeModal} type="button">
+            <Button className="btn cancel" onClick={closeModal} type="button">
                 Close
             </Button>
         );
@@ -21,9 +21,9 @@ export default function CustomPopup(props) {
 
     return (
         <div>
-            <button type="button" className="btn btn-info m-2" onClick={() => setOpen(o => !o)}>
+            <Button className="btn btn-info m-2" onClick={() => setOpen(o => !o)} type="button">
                 { name }
-            </button>
+            </Button>
             <Popup className="modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
                 <form action="/action_page.php" className="form-container">
                     { content }

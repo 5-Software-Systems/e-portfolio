@@ -8,9 +8,9 @@ import {TextToHTML} from "../components/Widgets/TextWidget";
 
 class MyGrid extends React.Component {
 
-    width = 280;
-    height = 315;
-    columns = 6;
+    width = 220;
+    height = 300;
+    columns = 5;
     state = {
         data: 'loading...'
     }
@@ -21,7 +21,7 @@ class MyGrid extends React.Component {
         <div className='wholePage'>
             <div>
                 <h1 class="impact">
-                    E-PORTFOLIO PAGE
+                    DEMO PAGE
                 </h1>
             </div>
             <ReactGridLayout className="layout" cols={this.columns} rowHeight={this.height} width={this.columns * this.width} margin={[10,10]} compactType='horizontal' >

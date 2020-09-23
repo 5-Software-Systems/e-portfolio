@@ -1,15 +1,6 @@
 import React, {Fragment} from 'react';
-import { useHistory } from "react-router-dom";
-import { isAuthorized } from "../util/cookies";
-
 
 export default function Landing() {
-    const history = useHistory();
-    const Auth = isAuthorized();
-    if (Auth) {
-        history.push("/profile");
-    }
-
     return (
         <Fragment>
             <div className="banner">
@@ -29,11 +20,6 @@ export default function Landing() {
                         This product is apart of a semester long project hosted within the subject "IT Project" at
                         Unimelb.
                         </p>
-                    </div>
-                    <div className="text-left">
-                        <h3></h3>
-                        <h5></h5>
-                        <p className="py-4"></p>
                     </div>
                 </div>
             </div>

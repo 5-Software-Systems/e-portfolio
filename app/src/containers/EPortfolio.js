@@ -11,7 +11,6 @@ import MotherWidget from '../components/Widgets/MotherWidget.js'
 
 export default function EPortfolio() {
     const history = useHistory();
-
     const Auth = isAuthorized();
     if (! Auth) {
         history.push("/login");

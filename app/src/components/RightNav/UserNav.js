@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { isAuthorized } from "../util/cookies";
+import { Button } from "react-bootstrap";
+import { isAuthorized } from "../../util/cookies";
 
-export default function Welcome() {
+export default function UserNav() {
     const Auth = isAuthorized();
 
     //grab user

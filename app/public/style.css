@@ -2674,12 +2674,12 @@ body {
 }
 
 footer a,
-.email {
+.link {
   color: #ff0000;
 }
 
 footer a:hover,
-.email:hover {
+.link:hover {
   color: black;
 }
 
