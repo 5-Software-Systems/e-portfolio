@@ -67,7 +67,7 @@ export function ProfilePage() {
 export function SettingsPage() {
     return (
         <Fragment>
-            <title>Settings</title>
+            <title>Account Settings</title>
             <BaseTemplate nav_right = { <RightNav /> } >
                 <Settings />
             </BaseTemplate>
