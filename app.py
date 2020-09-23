@@ -7,7 +7,7 @@ from api import blueprint, db, flask_bcrypt
 
 
 def rel_path(path):
-    return os.path.join(os.path.dirname(__file__), path)
+    return os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
 
 app = Flask(
