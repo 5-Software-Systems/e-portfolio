@@ -1,7 +1,7 @@
 import logging
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 from api import blueprint, db, flask_bcrypt
 
@@ -27,6 +27,11 @@ app.register_blueprint(blueprint, url_prefix='/api')
 @app.route('/')
 def index():
     return render_template('index.html', token='Hello World')
+
+
+@app.route('/assets/<path:path>')
+def public(path):
+    return send_from_directory('../app/build', path)
 
 
 @app.errorhandler(404)
