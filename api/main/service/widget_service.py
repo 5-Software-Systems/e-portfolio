@@ -1,8 +1,7 @@
 import sqlalchemy
 
-# not explicitly used, but used in globals().get()
 from . import portfolio_service
-from ..model.widgets import *
+from ..model.widgets import *  # not explicitly used, but used in globals().get()
 from ..model import WidgetBase
 from ..util.exception import WidgetNotFound, RequestError
 
