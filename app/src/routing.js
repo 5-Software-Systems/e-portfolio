@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { isLoggedIn } from "./util/cookies";
-import { useHistory } from "react-router-dom";
 
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
@@ -14,54 +13,41 @@ import EPortfolioDemo from './containers/EPortfolioDemo';
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
 import SignupForm from './components/Signup_Form';
-import Logout from './components/RightNav/Logout';
 import UserNav from './components/RightNav/UserNav';
 
 export function HomePage() {
     return (
-        <BaseTemplate
-          nav_right = { <RightNav /> }
-          body = { <Landing /> }
-          />
+        <BaseTemplate nav_right = { <RightNav /> } >
+            <Landing />
+        </BaseTemplate>
     );
 }
 
 export function LoginPage() {
-    const history = useHistory();
-    if (isLoggedIn()) {
-        history.push("/profile");
-    }
     return (
-        <BaseTemplate
-            body = { <form className="form-container m-auto">
-                        <LoginForm />
-                   </form>
-                   }
-        />
+        <BaseTemplate>
+            <form className="form-container m-auto">
+                <LoginForm />
+            </form>
+        </BaseTemplate>
     );
 }
 
 export function SignUpPage() {
-    const history = useHistory();
-    if (isLoggedIn()) {
-        history.push("/profile");
-    }
     return (
-        <BaseTemplate
-          body = { <form className="form-container m-auto">
-                        <SignupForm />
-                   </form>
-                 }
-        />
+        <BaseTemplate>
+            <form className="form-container m-auto">
+                <SignupForm />
+            </form>
+        </BaseTemplate>
     );
 }
 
 export function ProfilePage() {
     return (
-        <BaseTemplate
-          nav_right = { <RightNav /> }
-          body = { <BasePage /> }
-        />
+        <BaseTemplate nav_right = { <RightNav /> } >
+            <BasePage />
+        </BaseTemplate>
     );
 }
 
@@ -73,19 +59,17 @@ export function PortfolioPage() {
 
 export function UpdatesPage() {
     return (
-        <BaseTemplate
-          nav_right = { <RightNav /> }
-          body = { <UpdatePage /> }
-        />
+        <BaseTemplate nav_right = { <RightNav /> }>
+            <UpdatePage />
+        </BaseTemplate>
     );
 }
 
 export function ContactUsPage() {
     return (
-        <BaseTemplate
-          nav_right = { <RightNav /> }
-          body = { <ContactPage /> }
-        />
+        <BaseTemplate nav_right = { <RightNav /> }>
+            <ContactPage />
+        </BaseTemplate>
     );
 }
 
@@ -106,7 +90,6 @@ function RightNav() {
         return (
             <Fragment>
                 <UserNav />
-                <Logout />
             </Fragment>
         );
     } else {

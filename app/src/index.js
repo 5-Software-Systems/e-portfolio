@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import { isLoggedIn } from "./util/cookies";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import {
     HomePage,
@@ -30,20 +32,45 @@ ReactDOM.render(
                 <Route
                     exact
                     path="/login"
-                    component={LoginPage}
+                    render={() => {
+                        return (
+                            isLoggedIn() ?
+                            <Redirect to="/profile" /> :
+                            <LoginPage />
+                        )
+                    }}
                 />
                 <Route
                     exact
                     path="/signup"
-                    component={SignUpPage}
+                    render={() => {
+                        return (
+                            isLoggedIn() ?
+                            <Redirect to="/profile" /> :
+                            <SignUpPage />
+                        )
+                    }}
                 />
                 <Route
+                    exact
                     path="/profile"
-                    component={ProfilePage}
+                    render={() => {
+                        return (
+                            isLoggedIn() ?
+                            <ProfilePage /> :
+                            <Redirect to="/" />
+                        )
+                    }}
                 />
                 <Route
                     path="/portfolio/"
-                    component={PortfolioPage}
+                    render={() => {
+                        return (
+                            isLoggedIn() ?
+                            <PortfolioPage /> :
+                            <Redirect to="/" />
+                        )
+                    }}
                 />
                 <Route
                     exact

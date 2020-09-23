@@ -1,5 +1,3 @@
-/** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
-
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Popup from 'reactjs-popup';

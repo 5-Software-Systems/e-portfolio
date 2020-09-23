@@ -9,7 +9,7 @@ export default function Landing() {
                       <h6 className="font-weight-normal text-muted pt-3">A place to see updates on the electronic portfolio project, as managed by the FiveCent Software Systems team.</h6>
                       <img src={process.env.PUBLIC_URL + "/images/update.png"} alt="" className="img-fluid w-50" />
                 </div>
-                <div className="container">
+                <div className="container pb-3">
                     <div className="text-left font-weight-normal w-75">
                         <h3>Updates Feature</h3>
                         <h5>22/9/2020</h5>

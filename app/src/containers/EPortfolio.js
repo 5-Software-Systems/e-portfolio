@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ReactGridLayout from 'react-grid-layout';
 import { useHistory } from "react-router-dom";
-import { isAuthorized } from "../util/cookies";
 import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
@@ -11,19 +10,14 @@ import MotherWidget from '../components/Widgets/MotherWidget.js'
 
 export default function EPortfolio() {
     const history = useHistory();
-    const Auth = isAuthorized();
-    if (! Auth) {
-        history.push("/login");
-    }
 
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
 
-    
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 
-        //store db
+    //store db
     useEffect( () =>{
         const fetchWidgets = async() => {
             const p_response = await fetch('/api/portfolio/' + PID);

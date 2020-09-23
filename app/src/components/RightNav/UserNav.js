@@ -1,27 +1,45 @@
 import React, {useEffect, useState} from "react";
 import { Button } from "react-bootstrap";
-import { isAuthorized } from "../../util/cookies";
+import { useHistory } from "react-router-dom";
+import Popup from 'reactjs-popup';
+import { isAuthorized, deauthorize } from "../../util/cookies";
+import '../../styles/usernav.css';
 
 export default function UserNav() {
-    const Auth = isAuthorized();
+    const history = useHistory();
 
-    //grab user
-    const [user, setUser] = useState([]);
+    async function handleLogout() {
+        // clear cookies
+        deauthorize().then(() => {
+            history.push("/");
+        });
+    }
 
-    //store db
-    useEffect( () =>{
-        const fetchUser = async() => {
-            const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
-            const user = await user_data.json();
-            setUser(user);
-        }
+    function toProfile() {
+        history.push("/profile");
+    }
 
-        fetchUser();
-    }, [Auth])
+    function toSettings() {
+        history.push("/settings");
+    }
 
     return (
-        <h5 className="m-auto pr-4">
-            Welcome {user.name_first}
-        </h5>
+
+        <Popup
+            trigger={<Button className="menu_icon btn-info m-2" type="button">≡</Button>}
+            position="left top"
+            on="hover"
+            closeOnDocumentClick
+            mouseLeaveDelay={400}
+            mouseEnterDelay={10}
+            contentStyle={{ padding: '10px', border: 'none' }}
+            arrow={false}
+        >
+            <div className="menu">
+                <div className="menu-item" onClick={toProfile}> Profile Gallery</div>
+                <div className="menu-item" onClick={toSettings}> Account Settings</div>
+                <div className="menu-item" onClick={handleLogout}> Logout</div>
+            </div>
+        </Popup>
     );
 };

@@ -5,7 +5,7 @@ export function isAuthorized() {
 }
 
 export function isLoggedIn() {
-    if (new Cookies().get('logged_in')) {
+    if (new Cookies().get('logged_in') === "1") {
         return true;
     }
     return false;

@@ -70,8 +70,6 @@ class MyGrid extends React.Component {
 
 export default function EPortfolio() {
     return (
-        <div>
-            <MyGrid/>
-        </div>
+        <MyGrid/>
     );
 };
