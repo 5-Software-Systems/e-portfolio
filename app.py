@@ -1,4 +1,5 @@
 import logging
+import os
 
 from flask import Flask, render_template
 
@@ -12,7 +13,7 @@ app = Flask(
     static_url_path='/'
 )
 
-app.config.from_pyfile('api/config.py')
+app.config.from_pyfile(os.path.join(os.path.dirname(__file__), 'api/config.py'))
 db.init_app(app)
 flask_bcrypt.init_app(app)
 
