@@ -58,16 +58,18 @@ Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmj
 Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
 `cd ..` _(return to parent dir)_\
 `python -m venv venv`\
-`venv\Scripts\pip install -r requirements.txt'`\
-`venv\Scripts\python -m api --reset --populate`
+`venv\Scripts\pip install -r requirements.txt'`
 
 
 ### Running
 
 ##### Development
 
-API (back-end) \
-`venv\Scripts\python -m api --run --debug
+Start API (back-end) \
+`venv\Scripts\python manage.py runserver --debug
+`\
+Create database (after model changes) (back-end) \
+`venv\Scripts\python manage.py reset
 `
 
 APP (front-end) \
@@ -86,8 +88,8 @@ APP (front-end) \
 
 API (back-end) \
 In separate processes: \
-`venv\Scripts\python -m api --run --debug`\
-`venv\Scripts\python -m api --testapi`
+`venv\Scripts\python manage.py runserver --debug`\
+`venv\Scripts\python manage.py testapi`
 
 
 ### Deploying

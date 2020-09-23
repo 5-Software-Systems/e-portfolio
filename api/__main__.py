@@ -1,9 +1,11 @@
+raise DeprecationWarning("use 'python manage.py'")
+
 import argparse
 import sys
 
-from .test import db
-from .test.api_test import run_tests
-from . import build_app
+from api.test import db as dbtest
+from api.test.api_test import run_tests
+from app import app, db
 
 parser = argparse.ArgumentParser()
 
@@ -28,19 +30,19 @@ if len(sys.argv) < 2:
     exit()
 
 if args.reset:
-    db.delete()
-    db.create()
+    dbtest.delete()
+    dbtest.create(app, db)
 
 if args.populate:
-    db.populate()
+    dbtest.populate(app)
 
 if args.testapi:
-    db.delete()
-    db.create()
+    dbtest.delete()
+    dbtest.create(app, db)
     run_tests()
     input("Tests done, [ENTER] to clear db")
-    db.delete()
-    db.create()
+    dbtest.delete()
+    dbtest.create(app, db)
 
 if args.run:
-    build_app().run(debug=args.debug)
+    app.run(debug=args.debug)
