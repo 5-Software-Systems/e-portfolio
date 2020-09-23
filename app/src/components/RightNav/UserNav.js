@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Popup from 'reactjs-popup';
-import { isAuthorized, deauthorize } from "../../util/cookies";
+import { deauthorize } from "../../util/cookies";
 import '../../styles/usernav.css';
 
 export default function UserNav() {
@@ -36,7 +36,7 @@ export default function UserNav() {
             arrow={false}
         >
             <div className="menu">
-                <div className="menu-item" onClick={toProfile}> Profile Gallery</div>
+                <div className="menu-item" onClick={toProfile}> Portfolio Gallery</div>
                 <div className="menu-item" onClick={toSettings}> Account Settings</div>
                 <div className="menu-item" onClick={handleLogout}> Logout</div>
             </div>

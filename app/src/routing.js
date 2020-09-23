@@ -7,6 +7,7 @@ import Landing from './containers/Landing';
 import BasePage from './containers/BasePage';
 import UpdatePage from './containers/Updates';
 import ContactPage from './containers/Contact';
+import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
 // Components
@@ -17,37 +18,60 @@ import UserNav from './components/RightNav/UserNav';
 
 export function HomePage() {
     return (
-        <BaseTemplate nav_right = { <RightNav /> } >
-            <Landing />
-        </BaseTemplate>
+        <Fragment>
+            <title>Home</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <Landing />
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
 export function LoginPage() {
     return (
-        <BaseTemplate>
-            <form className="form-container m-auto">
-                <LoginForm />
-            </form>
-        </BaseTemplate>
+        <Fragment>
+            <title>Login</title>
+            <BaseTemplate>
+                <form className="form-container m-auto">
+                    <LoginForm />
+                </form>
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
 export function SignUpPage() {
     return (
-        <BaseTemplate>
-            <form className="form-container m-auto">
-                <SignupForm />
-            </form>
-        </BaseTemplate>
+        <Fragment>
+            <title>Sign Up</title>
+            <BaseTemplate>
+                <form className="form-container m-auto">
+                    <SignupForm />
+                </form>
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
 export function ProfilePage() {
     return (
-        <BaseTemplate nav_right = { <RightNav /> } >
-            <BasePage />
-        </BaseTemplate>
+        <Fragment>
+            <title>Portfolio Gallery</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <BasePage />
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function SettingsPage() {
+    return (
+        <Fragment>
+            <title>Settings</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <Settings />
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
@@ -59,29 +83,50 @@ export function PortfolioPage() {
 
 export function UpdatesPage() {
     return (
-        <BaseTemplate nav_right = { <RightNav /> }>
-            <UpdatePage />
-        </BaseTemplate>
+        <Fragment>
+            <title>Updates</title>
+            <BaseTemplate nav_right = { <RightNav /> }>
+                <UpdatePage />
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
 export function ContactUsPage() {
     return (
-        <BaseTemplate nav_right = { <RightNav /> }>
-            <ContactPage />
-        </BaseTemplate>
+        <Fragment>
+            <title>Contact Us</title>
+            <BaseTemplate nav_right = { <RightNav /> }>
+                <ContactPage />
+            </BaseTemplate>
+        </Fragment>
     );
 }
 
 export function Demo() {
     return (
-        <BaseTemplate
-          nav_right = { <RightNav /> }
-          body = { <div className="container">
-                       <EPortfolioDemo />
-                   </div>
-                 }
-        />
+        <Fragment>
+            <title>Demo</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <div className="container">
+                    <EPortfolioDemo />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function _404Page() {
+    return (
+        <Fragment>
+            <title>Uh Oh...</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <div className="container banner">
+                    <h1 className="font-weight-semibold">The page you're looking for doesn't seem to match any page we know of.</h1>
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
+                </div>
+            </BaseTemplate>
+        </Fragment>
     );
 }
 

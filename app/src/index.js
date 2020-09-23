@@ -13,10 +13,12 @@ import {
     LoginPage,
     SignUpPage,
     ProfilePage,
+    SettingsPage,
     PortfolioPage,
     UpdatesPage,
     ContactUsPage,
-    Demo
+    Demo,
+    _404Page
 } from './routing.js';
 
 //Routing
@@ -33,43 +35,34 @@ ReactDOM.render(
                     exact
                     path="/login"
                     render={() => {
-                        return (
-                            isLoggedIn() ?
-                            <Redirect to="/profile" /> :
-                            <LoginPage />
-                        )
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <LoginPage />)
                     }}
                 />
                 <Route
                     exact
                     path="/signup"
                     render={() => {
-                        return (
-                            isLoggedIn() ?
-                            <Redirect to="/profile" /> :
-                            <SignUpPage />
-                        )
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <SignUpPage />)
                     }}
                 />
                 <Route
                     exact
                     path="/profile"
                     render={() => {
-                        return (
-                            isLoggedIn() ?
-                            <ProfilePage /> :
-                            <Redirect to="/" />
-                        )
+                        return (isLoggedIn() ? <ProfilePage /> : <Redirect to="/" />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/settings"
+                    render={() => {
+                        return (isLoggedIn() ? <SettingsPage /> : <Redirect to="/" />)
                     }}
                 />
                 <Route
                     path="/portfolio/"
                     render={() => {
-                        return (
-                            isLoggedIn() ?
-                            <PortfolioPage /> :
-                            <Redirect to="/" />
-                        )
+                        return (isLoggedIn() ? <PortfolioPage /> : <Redirect to="/" />)
                     }}
                 />
                 <Route
@@ -86,6 +79,10 @@ ReactDOM.render(
                     exact
                     path="/contact"
                     component={ContactUsPage}
+                />
+                <Route
+                    path="/"
+                    component={_404Page}
                 />
             </Switch>
         </Router>
