@@ -8,9 +8,9 @@ import {TextToHTML} from "../components/Widgets/TextWidget";
 
 class MyGrid extends React.Component {
 
-    width = 280;
-    height = 315;
-    columns = 6;
+    width = 220;
+    height = 300;
+    columns = 5;
     state = {
         data: 'loading...'
     }
@@ -20,8 +20,8 @@ class MyGrid extends React.Component {
       const out = (
         <div className='wholePage'>
             <div>
-                <h1 class="impact">
-                    E-PORTFOLIO PAGE
+                <h1 className="impact">
+                    DEMO PAGE
                 </h1>
             </div>
             <ReactGridLayout className="layout" cols={this.columns} rowHeight={this.height} width={this.columns * this.width} margin={[10,10]} compactType='horizontal' >
@@ -29,7 +29,7 @@ class MyGrid extends React.Component {
                 <img src={process.env.PUBLIC_URL + '/images/galaxy.gif'} alt="galaxy" draggable='false' height='100%' />
             </div>
             <div key="b" data-grid={{i: 'b', x: 4, y: 1, w: 1, h: 3}}>
-                <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div key="c" data-grid={{i: 'c', x: 0, y: 4, w: 2, h: 1}}>
                 <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} height='100%' draggable='false' />
@@ -42,11 +42,11 @@ class MyGrid extends React.Component {
                 <p>hey whats up guys its scarce here</p>
             </div>
             <div key="f" data-grid={{i: 'f', x: 2, y: 3, w: 2, h: 1}}>
-                <iframe width='100%' height='100%' title="embed2" src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width='100%' height='100%' title="embed2" src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 <p>hey this is pretty cool</p>
             </div>
             <div key="g" data-grid={{i: 'g', x: 0, y: 0, w: 1, h: 3}}>
-                <iframe width='100%' height='100%' title="embed3" src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe width='100%' height='100%' title="embed3" src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <p>hey this is pretty cool</p>
             </div>
             <div key="h" data-grid={{i: 'h', x: 1, y: 0, w: 1, h: 1}}>
@@ -70,8 +70,6 @@ class MyGrid extends React.Component {
 
 export default function EPortfolio() {
     return (
-        <div>
-            <MyGrid/>
-        </div>
+        <MyGrid/>
     );
 };
