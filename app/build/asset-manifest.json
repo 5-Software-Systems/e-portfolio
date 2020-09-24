@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/assets/static/css/main.34419009.chunk.css",
+    "main.js": "/assets/static/js/main.b8b9e2f7.chunk.js",
+    "main.js.map": "/assets/static/js/main.b8b9e2f7.chunk.js.map",
+    "runtime-main.js": "/assets/static/js/runtime-main.180f0307.js",
+    "runtime-main.js.map": "/assets/static/js/runtime-main.180f0307.js.map",
+    "static/js/2.83ae254b.chunk.js": "/assets/static/js/2.83ae254b.chunk.js",
+    "static/js/2.83ae254b.chunk.js.map": "/assets/static/js/2.83ae254b.chunk.js.map",
+    "index.html": "/assets/index.html",
+    "precache-manifest.fdef32274f81a249d56be1a9a85b44c2.js": "/assets/precache-manifest.fdef32274f81a249d56be1a9a85b44c2.js",
+    "service-worker.js": "/assets/service-worker.js",
+    "static/css/main.34419009.chunk.css.map": "/assets/static/css/main.34419009.chunk.css.map",
+    "static/js/2.83ae254b.chunk.js.LICENSE.txt": "/assets/static/js/2.83ae254b.chunk.js.LICENSE.txt",
+    "static/media/Roboto-Black.ttf": "/assets/static/media/Roboto-Black.5ebb24ee.ttf",
+    "static/media/widget-styles.css": "/assets/static/media/Roboto-Light.88823c20.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.180f0307.js",
+    "static/js/2.83ae254b.chunk.js",
+    "static/css/main.34419009.chunk.css",
+    "static/js/main.b8b9e2f7.chunk.js"
+  ]
+}
