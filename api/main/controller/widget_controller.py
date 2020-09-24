@@ -56,3 +56,10 @@ class Widget(Resource):
         """delete a Widget"""
         res = widget_service.delete_a_widget(public_id)
         return res, 200
+
+
+@namespace.route('/widget/types')
+class WidgetTypes(Resource):
+
+    def get(self):
+        return widget_service.get_types()
