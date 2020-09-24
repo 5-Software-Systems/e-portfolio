@@ -56,16 +56,18 @@ export default function EPortfolio() {
     const columns = 6;
 
     async function addWidget() {
+        const locationA = [3,3,3,3];
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                                    type: "about", 
+                                    type: "about",
+                                    location: locationA,
                                     data:{
                                         about: "New add button on eportfolio today"
-                                        },
+                                        }
                                         //TODO: FIX THIS SHIT BRUH DONT LOCATION NOT BEING SENT WHEN POSTING
-                                    location: [1,1,1,1]
+                                    
                                 })
         };
         await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
