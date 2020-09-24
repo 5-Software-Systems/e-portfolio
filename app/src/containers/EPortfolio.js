@@ -18,6 +18,9 @@ import MotherWidget from '../components/Widgets/MotherWidget.js'
 
 
 export default function EPortfolio() {
+
+
+    // authorise and fetch eportfolio data -----------------------------------
     const history = useHistory();
 
     const Auth = isAuthorized();
@@ -46,10 +49,12 @@ export default function EPortfolio() {
         setWidget(w_data.widgets);
     }
 
-        //store db
+    
     useEffect( () => {
         fetchWidgets();
     }, [PID, history]);
+
+    //------------------------------------------------------------------------
 
     const width = 280;
     const height = 315;
