@@ -63,11 +63,40 @@ export default function EPortfolio() {
                                     type: "about", 
                                     data:{
                                         about: "New add button on eportfolio today"
-                                        }
+                                        },
+                                        //TODO: FIX THIS SHIT BRUH DONT LOCATION NOT BEING SENT WHEN POSTING
+                                    location: [1,1,1,1]
                                 })
         };
         await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
     }
+
+    async function onLayoutChange(layout, layouts) {
+
+
+        console.log(layout);
+        var i;
+        for (i=0; i<layout.length; i++) {
+            const id = layout[i].i;
+            const location = [layout[i].w, layout[i].h, layout[i].x, layout[i].y];
+            console.log(id);
+            console.log(location);
+
+            const requestOptions = {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify({  
+                                        'type': 'about',
+                                        data:{
+                                            location: location
+                                            }
+                                    })
+            };
+            await fetch('/api/widget/' + id, requestOptions);
+
+        }
+
+      }
 
     return (
         <div className='eportfolioBody'>
@@ -89,9 +118,9 @@ export default function EPortfolio() {
                         > Add Widget </button>
                     </div>
                 </header>
-                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} verticalCompact={false} onLayoutChange={onLayoutChange}>
                     {widgets.map(widget =>(
-                        < div key={widget.public_id} data-grid={{i: widget.public_id, x: 3, y: 1, w: 1, h: 1}}> 
+                        < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
                             {editBox(widget.public_id)}
