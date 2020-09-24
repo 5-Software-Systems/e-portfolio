@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/assets/static/css/main.219e3854.chunk.css",
-    "main.js": "/assets/static/js/main.30016e26.chunk.js",
-    "main.js.map": "/assets/static/js/main.30016e26.chunk.js.map",
-    "runtime-main.js": "/assets/static/js/runtime-main.180f0307.js",
-    "runtime-main.js.map": "/assets/static/js/runtime-main.180f0307.js.map",
-    "static/js/2.7ef92679.chunk.js": "/assets/static/js/2.7ef92679.chunk.js",
-    "static/js/2.7ef92679.chunk.js.map": "/assets/static/js/2.7ef92679.chunk.js.map",
-    "index.html": "/assets/index.html",
-    "precache-manifest.cc8fa5ba96e1d75c85a5206e6a74502b.js": "/assets/precache-manifest.cc8fa5ba96e1d75c85a5206e6a74502b.js",
-    "service-worker.js": "/assets/service-worker.js",
-    "static/css/main.219e3854.chunk.css.map": "/assets/static/css/main.219e3854.chunk.css.map",
-    "static/js/2.7ef92679.chunk.js.LICENSE.txt": "/assets/static/js/2.7ef92679.chunk.js.LICENSE.txt",
-    "static/media/Roboto-Black.ttf": "/assets/static/media/Roboto-Black.5ebb24ee.ttf",
-    "static/media/widget-styles.css": "/assets/static/media/Roboto-Light.88823c20.ttf"
+    "main.css": "/static/css/main.d8b89622.chunk.css",
+    "main.js": "/static/js/main.56c6db61.chunk.js",
+    "main.js.map": "/static/js/main.56c6db61.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.92ee656d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.92ee656d.js.map",
+    "static/js/2.7ef92679.chunk.js": "/static/js/2.7ef92679.chunk.js",
+    "static/js/2.7ef92679.chunk.js.map": "/static/js/2.7ef92679.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.e5eff2260ccc06ff70f09f90485846f8.js": "/precache-manifest.e5eff2260ccc06ff70f09f90485846f8.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.d8b89622.chunk.css.map": "/static/css/main.d8b89622.chunk.css.map",
+    "static/js/2.7ef92679.chunk.js.LICENSE.txt": "/static/js/2.7ef92679.chunk.js.LICENSE.txt",
+    "static/media/Roboto-Black.ttf": "/static/media/Roboto-Black.5ebb24ee.ttf",
+    "static/media/widget-styles.css": "/static/media/Roboto-Light.88823c20.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.180f0307.js",
+    "static/js/runtime-main.92ee656d.js",
     "static/js/2.7ef92679.chunk.js",
-    "static/css/main.219e3854.chunk.css",
-    "static/js/main.30016e26.chunk.js"
+    "static/css/main.d8b89622.chunk.css",
+    "static/js/main.56c6db61.chunk.js"
   ]
 }

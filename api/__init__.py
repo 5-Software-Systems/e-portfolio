@@ -1,10 +1,10 @@
 from flask_restplus import Api
-from flask import Blueprint, render_template
+from flask import Blueprint
 
+from .main import db, flask_bcrypt
 from .main.controller import *
 from .main.service import file_service
 from .main.util.exception import ServerError
-from .main import create_app, db
 
 blueprint = Blueprint('api', __name__)
 
@@ -27,18 +27,3 @@ def handle_server_error(e: ServerError):
                'error': e.__class__.__name__,
                'message': e.error_message,
            }, e.status_code
-
-
-def build_app():
-    app = create_app()
-    app.register_blueprint(blueprint, url_prefix='/api')
-
-    @app.route('/')
-    def index():
-        return render_template('index.html', token='Hello World')
-
-    @app.errorhandler(404)
-    def not_found(e):
-        return render_template('index.html', token='Hello World')
-
-    return app

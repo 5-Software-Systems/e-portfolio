@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import '../styles/Pop-up.css';
+import Test from '../components/Test';
 
 export default function BaseTemplate(props) {
     return (
@@ -7,19 +7,27 @@ export default function BaseTemplate(props) {
             <header>
                 <nav className="navbar navbar-expand-lg pl-3 pl-sm-0">
                     <div className="container">
-                        <div className="navbar-brand-wrapper d-flex w-50">
-                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
+                        <div className="navbar-brand-wrapper d-flex">
+                            <a href="/" tabIndex="-1"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
                             <h1 className="pt-1">ePortfolio</h1>
                         </div>
+                        <ul className="navbar-nav links">
+                            <li><a href="/" tabIndex="-1">Home</a></li>
+                            <li><a href="/updates" tabIndex="-1">Updates</a></li>
+                            <li><a href="/contact" tabIndex="-1">Contact Us</a></li>
+                        </ul>
                         <div className="navbar-menu-wrapper navbar-nav">
                             {props.nav_right}
                         </div>
                     </div>
                 </nav>
             </header>
-            {props.body}
-            <footer className="border-top ">
-                <p className="text-center text-muted pt-4"><a href="/" className="px-1">FiveCent Software Systems.</a></p>
+            <section className="main_content">
+                {props.children}
+            </section>
+            <footer className="border-top text-center text-muted">
+                <p className="pt-3"><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
+                <Test />
             </footer>
         </Fragment>
     );

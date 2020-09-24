@@ -13,7 +13,7 @@ function Test() {
     }, []);
 
     return (
-        <h5 className="py-3">API Status: {test.toString()}</h5>
+        <p>API Status: {test.toString()}</p>
     );
 }
 

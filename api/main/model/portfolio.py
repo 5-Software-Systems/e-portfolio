@@ -18,4 +18,4 @@ class Portfolio(Model):
     title = db.Column(db.String(30), nullable=False)
 
     user = relationship('User')
-    widgets = relationship('WidgetBase')
+    widgets = relationship('WidgetBase', cascade="all, delete")
