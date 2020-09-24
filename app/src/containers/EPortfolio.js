@@ -15,6 +15,7 @@ import '../fonts/roboto/Roboto-Black.ttf';
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import DropDownBox from '../components/Widgets/DropDownBox.js';
+import GetFields from '../components/Widgets/WidgetFields.js';
 
 
 export default function EPortfolio() {
@@ -138,7 +139,9 @@ function editBox(PID) {
                 <h1 className="impact">Edit Widget</h1>
             </div>
             <div className="content2">
-            {' '}
+                {' '}
+                {/** TODO: MAKE THIS INTERACT WITH DROPDOWNBOX LIB*/}
+                <GetFields type='project'/>
                 {MyEditor(PID)}
             </div>
             <div className='PopupBottom'>
