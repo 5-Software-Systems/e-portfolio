@@ -6,15 +6,13 @@ from .test_user import create_user, get_headers
 ####################################################
 
 def test_create_portfolio(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
+    public_id = setupUser(app, client)
 
     res = create_portfolio(app, client, public_id)
     assert res.status_code == 201
 
     public_id = json.loads(res.data)['portfolio']['public_id']
+
     expected = {
         "portfolio": {
             "public_id": public_id,
@@ -25,10 +23,7 @@ def test_create_portfolio(app, client):
 
 
 def test_get_portfolios(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
+    public_id = setupUser(app, client)
 
     res = create_portfolio(app, client, public_id)
     assert res.status_code == 201
@@ -49,10 +44,7 @@ def test_get_portfolios(app, client):
 
 
 def test_get_portfolio(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
+    public_id = setupUser(app, client)
 
     res = create_portfolio(app, client, public_id)
     assert res.status_code == 201
@@ -74,10 +66,7 @@ def test_get_portfolio(app, client):
 
 
 def test_patch_portfolio(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
+    public_id = setupUser(app, client)
 
     res = create_portfolio(app, client, public_id)
     assert res.status_code == 201
@@ -101,10 +90,7 @@ def test_patch_portfolio(app, client):
 
 
 def test_delete_portfolio(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
+    public_id = setupUser(app, client)
 
     res = create_portfolio(app, client, public_id)
     assert res.status_code == 201
@@ -132,3 +118,10 @@ def create_portfolio(app, client, public_id):
     res = client.post('/api/user/' + public_id + '/portfolio',
                       data=json.dumps(data), headers=get_headers())
     return res
+
+def setupUser(app, client):
+    res = create_user(app, client)
+    assert res.status_code == 201
+
+    public_id = json.loads(res.data)['user']['public_id']
+    return public_id
