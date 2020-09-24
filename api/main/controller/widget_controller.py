@@ -47,7 +47,7 @@ class Widget(Resource):
     @namespace.marshal_with(api_model.widget, envelope='widget')
     def patch(self, public_id):
         """Update a Widget"""
-        data = request.json['data']
+        data = request.json
         widget = widget_service.update_a_widget(public_id=public_id, data=data)
         return widget.marshal(), 200
 
