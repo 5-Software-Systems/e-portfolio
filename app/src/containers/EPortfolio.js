@@ -11,9 +11,10 @@ import '../styles/ePortfolioIndex.css';
 import { useHistory } from "react-router-dom";
 import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
-import '../fonts/roboto/Roboto-Black.ttf'
+import '../fonts/roboto/Roboto-Black.ttf';
 
-import MotherWidget from '../components/Widgets/MotherWidget.js'
+import MotherWidget from '../components/Widgets/MotherWidget.js';
+import DropDownBox from '../components/Widgets/DropDownBox.js';
 
 
 export default function EPortfolio() {
@@ -129,6 +130,7 @@ function editBox(PID) {
         >
         {close => (
         <div className="modal">
+            <DropDownBox/>
             <button className="close" onClick={close}>
             <b>×</b>
             </button>
@@ -156,6 +158,7 @@ function editBox(PID) {
         </Popup>
     )
 }
+
 
 function MyEditor(PID) { 
     async function updateWidget() {
