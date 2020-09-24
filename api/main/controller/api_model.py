@@ -12,19 +12,19 @@ response = namespace.model(
 
 widget = namespace.model(
     name='widget',
-    model=dict([public_id, widget_type, widget_data])
+    model=dict([public_id, widget_type, location, widget_data])
 )
 widget_new = namespace.model(
     name='widget_new',
-    model=dict([widget_type, widget_data])
+    model=dict([widget_type, location, widget_data])
 )
 widget_update = namespace.model(
     name='widget_update',
-    model=dict([widget_data])
+    model=dict([location, widget_data])
 )
 widget_list = namespace.model(
     name='widget_list',
-    model=dict([public_id, widget_type, widget_data])
+    model=dict([public_id, widget_type, location, widget_data])
 )
 widget_type = namespace.model(
     name='widget_type',

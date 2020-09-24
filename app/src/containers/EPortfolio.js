@@ -9,7 +9,6 @@ import 'draft-js/dist/Draft.css';
 import '../styles/ePortfolioIndex.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
-import { isAuthorized } from "../util/cookies";
 import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
@@ -23,15 +22,9 @@ export default function EPortfolio() {
     // authorise and fetch eportfolio data -----------------------------------
     const history = useHistory();
 
-    const Auth = isAuthorized();
-    if (! Auth) {
-        history.push("/login");
-    }
-
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
 
-    
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 

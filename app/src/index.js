@@ -1,108 +1,94 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
+import { isLoggedIn } from "./util/cookies";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
-// Containers
-import BaseTemplate from './containers/BaseTemplate';
-import Landing from './containers/Landing';
-import BasePage from './containers/BasePage';
-import UpdatePage from './containers/Updates';
-import ContactPage from './containers/Contact';
-import EPortfolio from './containers/EPortfolio';
-import EPortfolioDemo from './containers/EPortfolioDemo';
-// Components
-import Popup from './components/Popup';
-import LoginForm from './components/Login_Form';
-import SignupForm from './components/Signup_Form';
-import Logout from './components/Logout';
-import Welcome from './components/Welcome';
+import {
+    HomePage,
+    LoginPage,
+    SignUpPage,
+    ProfilePage,
+    SettingsPage,
+    PortfolioPage,
+    UpdatesPage,
+    ContactUsPage,
+    Demo,
+    _404Page
+} from './routing.js';
 
+//Routing
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <Switch>
-                <Route exact path="/" component={HomePage}/>
-                <Route exact path="/login" component={LoginPage}/>
-                <Route exact path="/signup" component={SignUpPage}/>
-                <Route path="/profile" component={ProfilePage}/>
-                <Route path="/portfolio/" component={EPortfolio}/>
-                <Route exact path="/demo" component={EPortfolioDemo}/>
-                <Route exact path="/updates" component={UpdatesPage}/>
-                <Route exact path="/contact" component={ContactUsPage}/>
-                <Route path="/" component={BaseTemplate}/>
+                <Route
+                    exact
+                    path="/"
+                    component={HomePage}
+                />
+                <Route
+                    exact
+                    path="/login"
+                    render={() => {
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <LoginPage />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/signup"
+                    render={() => {
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <SignUpPage />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/profile"
+                    render={() => {
+                        return (isLoggedIn() ? <ProfilePage /> : <Redirect to="/" />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/settings"
+                    render={() => {
+                        return (isLoggedIn() ? <SettingsPage /> : <Redirect to="/" />)
+                    }}
+                />
+                <Route
+                    path="/portfolio/"
+                    render={() => {
+                        return (isLoggedIn() ? <PortfolioPage /> : <Redirect to="/" />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/demo"
+                    component={Demo}
+                />
+                <Route
+                    exact
+                    path="/updates"
+                    component={UpdatesPage}
+                />
+                <Route
+                    exact
+                    path="/contact"
+                    component={ContactUsPage}
+                />
+                <Route
+                    path="/"
+                    component={_404Page}
+                />
             </Switch>
         </Router>
     </React.StrictMode>,
   document.getElementById('content')
 );
-
-function HomePage() {
-    return (
-        <BaseTemplate
-          nav_right = { <Fragment>
-                            <Popup name="Login"> <LoginForm /> </Popup>
-                            <Popup name="Sign Up">
-                                <SignupForm />
-                            </Popup>
-                        </Fragment> }
-          body = { <Landing /> }
-          />
-    );
-}
-
-function LoginPage() {
-    return (
-        <BaseTemplate
-          body = { <form action="/action_page.php" className="form-container m-auto">
-                        <LoginForm />
-                   </form>
-                 }
-          />
-    );
-}
-
-function SignUpPage() {
-    return (
-        <BaseTemplate
-          body = { <form action="/action_page.php" className="form-container m-auto">
-                        <SignupForm />
-                   </form>
-                 }
-          />
-    );
-}
-
-function ProfilePage() {
-    return (
-        <BaseTemplate
-          nav_right = { <Fragment>
-                            <Welcome />
-                            <Logout />
-                        </Fragment> }
-          body = { <BasePage /> }
-          />
-    );
-}
-
-function UpdatesPage() {
-    return (
-        <BaseTemplate
-          body = { <UpdatePage /> }
-          />
-    );
-}
-
-function ContactUsPage() {
-    return (
-        <BaseTemplate
-          body = { <ContactPage /> }
-          />
-    );
-}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

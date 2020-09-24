@@ -1,35 +1,30 @@
 import json
 import os
 
-import sqlalchemy
-
-from ..main import create_app, db
-
-from ..main.service.file_service import save_file
-
 from ..main.model import *
 
-app = create_app()
 
-
-def reset():
-    delete()
-    create()
+def clean(app, db):
+    with app.app_context():
+        meta = db.metadata
+        for table in reversed(meta.sorted_tables):
+            db.session.execute(table.delete())
+        db.session.commit()
 
 
 def delete():
     try:
-        os.remove(os.path.join(os.path.dirname(__file__), '../eportfolio.db'))
+        os.remove('eportfolio.db')
     except FileNotFoundError:
         pass
 
 
-def create():
+def create(app, db):
     with app.app_context():
         db.create_all()
 
 
-def populate():
+def populate(app):
     data_dir = os.path.join(os.path.dirname(__file__), 'data')
     with app.app_context():
         to_do = [data_file for data_file in os.listdir(data_dir) if data_file.endswith('.json')]
@@ -41,12 +36,3 @@ def populate():
             for record in data:
                 obj = model(**record)
                 obj.save()
-
-        exit()
-
-        # Files
-        with open('assets/IMG_4374.JPG', 'rb') as f:
-            image_binary = f.read()
-
-        save_file(u1['public_id'], 'IMG_4374.JPG', image_binary)
-        save_file(u2['public_id'], 'IMG_4374.JPG', image_binary)
