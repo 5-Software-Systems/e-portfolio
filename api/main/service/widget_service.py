@@ -1,9 +1,12 @@
+import os
+
 import sqlalchemy
 
 from . import portfolio_service
 from ..model.widgets import *  # not explicitly used, but used in globals().get()
 from ..model import WidgetBase
 from ..util.exception import WidgetNotFound, RequestError
+from ..util.funcs import rel_path
 
 
 def get_all_portfolio_widgets(portfolio_public_id):
@@ -49,9 +52,12 @@ def delete_a_widget(public_id):
 
 
 def get_types():
-    return [
-        {'type': 'about',
-         'data_fields': ['about']},
-        {'type': 'image',
-         'data_fields': ['image_url']},
-    ]
+    files = os.listdir(rel_path('../model/widgets', __file__))
+    files = map(lambda x: x.replace('.py', ''), files)
+    files = filter(lambda f: f not in ['widget', '__init__', '__pycache__'], files)
+    types = []
+    for file in files:
+        obj = globals().get(file.title())
+        cols = {col.name: col.type.__str__() for col in filter(lambda col: col.name != 'id', obj.__table__.columns)}
+        types.append({'type': file, 'data': cols})
+    return types
