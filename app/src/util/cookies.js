@@ -12,7 +12,7 @@ export function isLoggedIn() {
 }
 
 export function authorize(data) {
-    //test cookie/authentication implementation
+    //util cookie/authentication implementation
     if (data.message.toLowerCase() === 'successfully logged in.') {
         const auth64 = data.Authorization;
         new Cookies().set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie

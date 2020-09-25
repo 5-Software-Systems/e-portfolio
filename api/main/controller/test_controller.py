@@ -5,9 +5,9 @@ from ..service import test_service
 from .api_field import *
 
 namespace = Namespace(
-    name='test',
-    path='/test',
-    description='test/template namespace'
+    name='util',
+    path='/util',
+    description='util/template namespace'
 )
 
 
@@ -17,7 +17,7 @@ class Test1(Resource):
     Play around here
     """
 
-    @namespace.doc('test endpoint1')
+    @namespace.doc('util endpoint1')
     def get(self):
         return test_service.service_test1(), 200
 
@@ -28,6 +28,6 @@ class Test2(Resource):
     Play around here
     """
 
-    @namespace.doc('test endpoint2')
+    @namespace.doc('util endpoint2')
     def get(self):
         return test_service.service_test2(), 200
