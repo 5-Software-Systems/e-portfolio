@@ -5,6 +5,10 @@ import React, {useEffect, useState} from 'react';
 export default function GetFields(props) {
     const [fields, setFields] = useState([]);
 
+    const [text, setText] = useState("you bloody bastard");
+
+
+
     async function fetchWidgetTypes() {
         const response = await fetch('/api/widget/types');
         const data = await response.json();
@@ -26,13 +30,12 @@ export default function GetFields(props) {
 
     return (
         <div>
-            {console.log(Object.keys(fields))}
             <form>
                 {Object.keys(fields).map(field =>(
                     <label>
                         {field}:
                         <br />
-                        <input className='basePageTextBox' value={"you bloody bastard"} />
+                        <input className='basePageTextBox' type="text" value={text} onChange={(e) => setText(e.target.value)} />
                         <br />
                         <br />
                     </label>
