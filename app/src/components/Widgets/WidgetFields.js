@@ -5,8 +5,19 @@ import React, {useEffect, useState} from 'react';
 export default function GetFields(props) {
     const [fields, setFields] = useState([]);
 
-    const [text, setText] = useState("you bloody bastard");
+    const [text, setText] = useState({});
 
+
+    function setTextList(field, txt) {
+        var textOBJ = text;
+        textOBJ[field] = txt;
+        setText(textOBJ);
+        console.log(textOBJ);
+        console.log(text);
+        if (props.onChange) {
+            props.onChange(textOBJ);
+        }
+    }
 
 
     async function fetchWidgetTypes() {
@@ -35,7 +46,7 @@ export default function GetFields(props) {
                     <label>
                         {field}:
                         <br />
-                        <input className='basePageTextBox' type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                        <input className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} />
                         <br />
                         <br />
                     </label>

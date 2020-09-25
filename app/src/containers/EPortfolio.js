@@ -27,6 +27,8 @@ export default function EPortfolio() {
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
 
+    const [movable, setMovable] = useState(true);
+
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 
@@ -42,6 +44,7 @@ export default function EPortfolio() {
         const w_response = await fetch('/api/portfolio/' + PID + '/widget');
         const w_data = await w_response.json();
         setWidget(w_data.widgets);
+        setMovable(true);
     }
 
     
@@ -74,14 +77,10 @@ export default function EPortfolio() {
 
     async function onLayoutChange(layout, layouts) {
 
-
-        console.log(layout);
         var i;
         for (i=0; i<layout.length; i++) {
             const id = layout[i].i;
             const location = [layout[i].w, layout[i].h, layout[i].x, layout[i].y];
-            console.log(id);
-            console.log(location);
 
             const requestOptions = {
                 method: 'PATCH',
@@ -94,6 +93,11 @@ export default function EPortfolio() {
 
         }
 
+      }
+
+      async function switchFalse() {
+        console.log("bruh moment *******************************************************************")
+        setMovable(false);
       }
 
     return (
@@ -116,12 +120,13 @@ export default function EPortfolio() {
                         > Add Widget </button>
                     </div>
                 </header>
-                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} verticalCompact={false} onLayoutChange={onLayoutChange}>
+                {console.log('movable? :' + movable)}
+                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} verticalCompact={false} onLayoutChange={onLayoutChange} isDraggable={movable} isResizable={movable}>
                     {widgets.map(widget =>(
                         < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            <EditBox PID={widget.public_id}/>
+                            <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()}/>
                             </div>
                         </ div>
                     ))}
@@ -133,6 +138,9 @@ export default function EPortfolio() {
 
 
 function EditBox(props) {
+    const [dropDownType, setDropDownType] = useState('about');
+    const [data, setData] = useState({});
+
     async function deleteWidget() {
         {
             const requestOptions = {
@@ -143,46 +151,78 @@ function EditBox(props) {
         }
     }
 
-    const onDeleteClick = () => {
-        (deleteWidget());
-        (window.location.reload(false));
-        //TODO: refresh component instead of page.
-        //TODO: IMPLEMENT APPLY BUTTON FUNCTIONALITY
+    async function updateWidget() {
+        console.log('patching: ')
+        console.log(data);
+        const requestOptions = {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({  
+                                    data
+                                })
+        };
+        await fetch('/api/widget/' + props.PID, requestOptions);
     }
 
-    const [dropDownType, setDropDownType] = useState('about');
+    const onDeleteClick = () => {
+        (deleteWidget());
+        (callUpdate());
+
+    }
+
+    const onApplyClick = () => {
+        (updateWidget());
+        (callUpdate());
+    }
+
+    function callUpdate() {
+        console.log("yeetingasdsada");
+        console.log(props);
+        if (props.onChange) {
+            console.log("yeeting");
+            props.onChange();
+        }
+    }
+
+    function openWidgetSettings() {
+        console.log("widget settings opened");
+        if (props.onOpenSettings) {
+            props.onOpenSettings();
+        }
+
+    }
 
     return (
         <Popup
             trigger={<button className="settingsButton">⚙</button>}
             modal
             nested
+            closeOnDocumentClick={false}
+            onOpen={openWidgetSettings}
         >
         {close => (
         <div className="modal">
             <DropDownBox value={dropDownType} onChange={(e) => setDropDownType(e.target.value)}/>
-            <button className="close" onClick={close}>
+            <button className="close" onClick={() => {callUpdate(); close();}}>
             <b>×</b>
             </button>
             <div className="header2"> 
                 <h1 className="impact">Edit Widget</h1>
             </div>
             <div className="content2">
-                {' '}
-                {/** TODO: MAKE THIS INTERACT WITH DROPDOWNBOX LIB*/}
-                
-                <GetFields type={dropDownType}/>
-                {MyEditor(props.PID)}
+                {' '}    
+                <GetFields type={dropDownType} onChange={(e) => setData(e)}/>
+                {console.log(data)}
             </div>
             <div className='PopupBottom'>
                 <div className='options'>
                     <div className="actions">
-                        <button className="button" onClick={onDeleteClick}><b className='deleteText'>DELETE</b></button>
+                        <button className="button" onClick={() => {onDeleteClick(); close();}}><b className='deleteText'>DELETE</b></button>
                     </div>
                 </div>
                 <div className='options'>
                     <div className="actions">
-                        <button className="button" onClick={console.log("temp")}><b>APPLY</b></button>
+                        <button className="button" onClick={() => {onApplyClick(); close();}}><b>APPLY</b></button>
                     </div>
                 </div>
             </div>
@@ -230,8 +270,6 @@ function MyEditor(PID) {
         (updateWidget());
         (window.location.reload(false));
     }
-
-      console.log(editorState.getCurrentContent().getPlainText())
     return (
         <div> 
             <button className='popUpFormatButton' onClick={onBoldClick.bind(setEditorState)}><h6>Bold</h6></button>
