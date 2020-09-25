@@ -67,7 +67,7 @@ export default function EPortfolio() {
                                     type: "about",
                                     location: locationA,
                                     data:{
-                                        about: "New add button on eportfolio today"
+                                        about: "Je suis un nouveau widget. 私は新しいウィジェットです。我是一個新的小部件。Tôi là một widget mới"
                                         }
                                     
                                 })

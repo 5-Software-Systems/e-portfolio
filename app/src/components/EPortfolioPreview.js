@@ -77,7 +77,7 @@ function EPortfolioPreview(props){
                 trigger={<button className="menu-item">  ⚙️  </button>}
                 position="right bottom"
                 on={['hover', 'focus']}
-                mouseLeaveDelay={0}
+                mouseLeaveDelay={100}
                 mouseEnterDelay={0}
                 contentStyle={{ padding: '0px', border: 'none' }}
                 arrow={false}

@@ -30,8 +30,28 @@ export default function AddPortfolio(props) {
                 "title": name
               })
         };
-        await fetch('api/user/'+ props.PID + '/portfolio', requestOptions);
+        const portfolio = await fetch('api/user/'+ props.PID + '/portfolio', requestOptions);
+
+        const data = await portfolio.json();
+
+        console.log(data);
+        
+        const postInitialWidget = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                        type: "about",
+                        location: [1,1,0,0],
+                        data:{
+                            about: "I am a widget! \n\n Feel free to resize me from the bottom right corner. \n You can also drag me around to change my position. \n\n You can also change what I display using the cog on the bottom left. \n You can also delete me 🥺 \n\n Also, if you want more widgets, click the 'Add Widget' button on the top right of your screen!"
+                            }
+                        
+                    })
+        };
+        await fetch('/api/portfolio/' + data.portfolio.public_id + '/widget', postInitialWidget);
     }
+    
+
     
 
     return (
