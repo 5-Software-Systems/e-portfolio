@@ -22,7 +22,7 @@ export default function GetFields(props) {
 
     useEffect( () => {
         fetchWidgetTypes();
-    }, []);
+    }, [props]);
 
     return (
         <div>

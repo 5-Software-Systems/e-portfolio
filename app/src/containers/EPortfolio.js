@@ -170,7 +170,7 @@ function EditBox(props) {
             <div className="content2">
                 {' '}
                 {/** TODO: MAKE THIS INTERACT WITH DROPDOWNBOX LIB*/}
-                {console.log("CURRENT TYPE: " + dropDownType)}
+                
                 <GetFields type={dropDownType}/>
                 {MyEditor(props.PID)}
             </div>
