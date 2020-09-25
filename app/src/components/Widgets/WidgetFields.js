@@ -40,8 +40,7 @@ export default function GetFields(props) {
     }, [props]);
 
     return (
-        <div>
-            <form>
+            <div>
                 {Object.keys(fields).map(field =>(
                     <label>
                         {field}:
@@ -51,7 +50,6 @@ export default function GetFields(props) {
                         <br />
                     </label>
                 ))}
-            </form>
-        </div>
+            </div>
     )
 }

@@ -105,8 +105,10 @@ export default function EPortfolio() {
             <div className='eportfolioPage'>
                 <header className='header'>
                     <div className ='left'>
-                        <h1 className="impact">
-                            {profile.title}
+                        <h1 className="impact" >
+                            <a href="/profile">
+                                {profile.title}
+                            </a>
                         </h1>
                     </div>
                     <div className='right'> 
