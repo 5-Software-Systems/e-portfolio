@@ -12,9 +12,15 @@ function AddPortfolioInfo(){
     )
 }
 
-export default function AddPortfolio(PID) {
+export default function AddPortfolio(props) {
 
     const [name, setName] = useState('')
+
+    function update() {
+        if (props.onUpdate) {
+            props.onUpdate();
+        }
+    }
 
     async function handleSubmit() {
         const requestOptions = {
@@ -24,18 +30,15 @@ export default function AddPortfolio(PID) {
                 "title": name
               })
         };
-        await fetch('api/user/'+ PID.PID + '/portfolio', requestOptions);
-        console.log(name);
-        console.log(PID);
+        await fetch('api/user/'+ props.PID + '/portfolio', requestOptions);
     }
-
-
     
 
     return (
         <Popup
             trigger={<button className="addButton"> {AddPortfolioInfo()} </button>}
             modal
+            closeOnDocumentClick={false}
             nested>
             {close => (
             <div className="modal">
@@ -55,9 +58,9 @@ export default function AddPortfolio(PID) {
                 <div className="actions">
                 <button className="button" onClick={() => {
                             handleSubmit();
-                            window.location.reload(false);
+                            close(); 
+                            update();
                 }}> Add </button>
-
                 </div>
             </div>
             )}

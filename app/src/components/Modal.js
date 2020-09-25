@@ -16,7 +16,7 @@ export default () => (
         <div className="content">
           {' '}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
+          Dolorem, repellat quidem ut cock, minima sint vel eveniet quibusdam voluptates
           delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
           <br />
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit

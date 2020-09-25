@@ -8,11 +8,18 @@ import { isAuthorized } from "../util/cookies";
 export default function BasePage() {
     const Auth = isAuthorized();
 
-    //grab profiles and user
+    //check for updates
+    const [update, setUpdate] = useState(false);
+
+    function setUpdateTrue() {
+        setUpdate(!update);
+    }
+
+    //store user and portfolio
     const [user, setUser] = useState();
     const [profiles, setProfiles] = useState([]);
 
-    //store db
+    //fetch user and portfolios 
     useEffect( () =>{
         
         const fetchProfiles = async() => {
@@ -25,15 +32,18 @@ export default function BasePage() {
             setProfiles(profile.portfolios);
         }
         fetchProfiles();
-    }, [Auth])
+    }, [Auth, update])
+
+    //-----------------------------------------------------------------------------------------------------
+    
 
     return (
         <div className="basepage">
             {profiles.map(profile =>(
-                < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id}/>
+                < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} onUpdate={(e) => setUpdateTrue()}/>
             ))}
             < DemoPreview />
-            < AddPortfolio PID = {user}/>
+            < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>
             
         </div>
     );

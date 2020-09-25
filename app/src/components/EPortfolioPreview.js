@@ -16,7 +16,6 @@ function EPortfolioPreview(props){
             headers: { 'Content-Type': 'application/json' },
         };
         await fetch('api/'+ link, requestOptions);
-        console.log("daddy deleted");
     }
 
     //edit funciton 
@@ -31,16 +30,17 @@ function EPortfolioPreview(props){
               })
         };
         await fetch('api/'+ link, requestOptions);
-        console.log("edited");
     }
+    
 
     function editButton() {
+        
         return (
             <Popup
-                trigger={<button className="button"> Edit </button>}
+                trigger={<button className="button" > Edit </button>}
                 modal
                 nested
-                closeOnDocumentClick>
+                closeOnDocumentClick={false}>
                 {close => (
                 <div className="modal">
                     <button className="close" onClick={close}>
@@ -49,17 +49,18 @@ function EPortfolioPreview(props){
                     <div className="header"> Add Portfolio </div>
                     <div className="content">
                     {' '}
-                    <form>
+                    <div>
                         <label>
                             Portfolio Name:<br />
                             <input className='basePageTextBox'type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
                         </label>
-                    </form>   
+                    </div>   
                     </div>
                     <div className="actions">
                     <button className="button" onClick={() => {
                                 handleEdit();
-                                window.location.reload(false);
+                                close();
+                                update();
                     }}> Apply </button>
 
                     </div>
@@ -75,25 +76,35 @@ function EPortfolioPreview(props){
             <Popup
                 trigger={<button className="menu-item">  ⚙️  </button>}
                 position="right bottom"
-                on="click"
-                closeOnDocumentClick
-                mouseLeaveDelay={300}
+                on={['hover', 'focus']}
+                mouseLeaveDelay={0}
                 mouseEnterDelay={0}
                 contentStyle={{ padding: '0px', border: 'none' }}
                 arrow={false}
                 nested
                 >
-                <div className="menu">
-                    <div className="menu-item"> {editButton()} </div>
-                    <button className="menu-item" onClick={() => {
-                        handleDelete();
-                        window.location.reload(false);
-                        }
-                    }> Delete </button>
-                </div>
+                {close => (
+                    <div className="menu">
+                        <div className="menu-item"> {editButton()} </div>
+                        <button className="menu-item" onClick={() => {
+                            handleDelete();
+                            close();
+                            update();
+                        }}> Delete </button>
+                    </div>
+                )}
+                
             </Popup>
         )
     }
+
+    function update() {
+        if (props.onUpdate) {
+            props.onUpdate();
+        }
+    }
+
+    
 
 
     return(
@@ -103,7 +114,7 @@ function EPortfolioPreview(props){
                     <div>
                         <h3>{props.name}</h3>
                         <p> {props.id} </p>
-                        <img src={props.img} alt='' height='150'/>
+                        <img src={props.img} alt='image goes here' height='150'/>
                     </div>
                 </a>
             </div>
