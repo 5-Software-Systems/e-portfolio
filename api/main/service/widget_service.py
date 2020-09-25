@@ -1,10 +1,12 @@
+import os
+
 import sqlalchemy
 
-# not explicitly used, but used in globals().get()
 from . import portfolio_service
-from ..model.widgets import *
+from ..model.widgets import *  # not explicitly used, but used in globals().get()
 from ..model import WidgetBase
 from ..util.exception import WidgetNotFound, RequestError
+from ..util.funcs import rel_path
 
 
 def get_all_portfolio_widgets(portfolio_public_id):
@@ -20,21 +22,32 @@ def get_a_widget(public_id):
 
 
 def create_new_widget(data):
-    widget_class = globals().get(data['type'].title())
+    widget_class = globals().get(data.pop('type').title())
     if widget_class is None:
         raise RequestError('Widget type not found')
     try:
-        widget = widget_class(**data['data'])
+        widget_data = data.pop('data', {})
+        widget_data.update(data)
+        widget = widget_class(**widget_data)
         widget.save()
-    except sqlalchemy.exc.IntegrityError:
-        raise RequestError('Data parameters missing')
+    except TypeError as e:
+        raise RequestError(e.__str__())
+    except sqlalchemy.exc.IntegrityError as e:
+        raise RequestError(e.args[0].__str__())
     return widget
 
 
-def update_a_widget(public_id, data):
+def update_a_widget(public_id, data: dict):
     widget = get_a_widget(public_id)
-    widget.patch(**data)
-    widget.save()
+    widget_data = data.pop('data', {})
+    widget_data.update(data)
+    try:
+        widget.patch(**widget_data)
+        widget.save()
+    except TypeError as e:
+        raise RequestError(e.__str__())
+    except sqlalchemy.exc.IntegrityError as e:
+        raise RequestError(e.args[0].__str__())
     return widget
 
 
@@ -48,9 +61,12 @@ def delete_a_widget(public_id):
 
 
 def get_types():
-    return [
-        {'type': 'about',
-         'data_fields': ['about']},
-        {'type': 'image',
-         'data_fields': ['image_url']},
-    ]
+    files = os.listdir(rel_path('../model/widgets', __file__))
+    files = map(lambda x: x.replace('.py', ''), files)
+    files = filter(lambda f: f not in ['widget', '__init__', '__pycache__'], files)
+    types = []
+    for file in files:
+        obj = globals().get(file.title())
+        cols = {col.name: col.type.__str__() for col in filter(lambda col: col.name != 'id', obj.__table__.columns)}
+        types.append({'type': file, 'data': cols})
+    return types
