@@ -13,7 +13,8 @@
     "react-grid-layout": "^1.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "universal-cookie": "^4.0.3"
+    "universal-cookie": "^4.0.3",
+    "reactjs-popup": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,8 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "reactjs-popup": "^2.0.4"
   }
 }
