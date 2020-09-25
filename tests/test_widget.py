@@ -2,6 +2,7 @@ import json
 
 from .test_portfolio import create_user, create_portfolio, get_headers
 
+
 ####################################################
 ############## TEST FUNCTIONS ######################
 ####################################################
@@ -18,8 +19,9 @@ def test_create_about_widget(app, client):
         "widget": {
             "public_id": public_id,
             "type": "about",
+            "location": [1, 2, 3, 4],
             "data": {
-                "about": "test about"
+                "about": "util about"
             }
         }
     }
@@ -47,7 +49,6 @@ def test_create_unknown_widget(app, client):
     assert expected == json.loads(res.get_data(as_text=True))
 
 
-#TODO stop this from creating a server error
 def test_create_bad_parameter_widget(app, client):
     public_id = setupUserPortfolio(app, client)
     data = {
@@ -59,9 +60,8 @@ def test_create_bad_parameter_widget(app, client):
     res = client.post('/api/portfolio/' + public_id + '/widget',
                       data=json.dumps(data),
                       headers=get_headers())
-    print(res.data)
-    assert res.status_code == 500
-
+    # print(res.data)
+    assert res.status_code == 400
 
 
 def test_get_widgets(app, client):
@@ -80,8 +80,9 @@ def test_get_widgets(app, client):
             {
                 "public_id": public_id,
                 "type": "about",
+                "location": [1, 2, 3, 4],
                 "data": {
-                    "about": "test about"
+                    "about": "util about"
                 }
             }
         ]
@@ -99,8 +100,9 @@ def test_get_a_widget(app, client):
         "widget": {
             "public_id": public_id,
             "type": "about",
+            "location": [1, 2, 3, 4],
             "data": {
-                "about": "test about"
+                "about": "util about"
             }
         }
     }
@@ -123,6 +125,7 @@ def test_patch_widget(app, client):
         "widget": {
             "public_id": public_id,
             "type": "about",
+            "location": [1, 2, 3, 4],
             "data": {
                 "about": "patched about"
             }
@@ -131,7 +134,6 @@ def test_patch_widget(app, client):
     assert expected == json.loads(res.get_data(as_text=True))
 
 
-#TODO stop this from returning status code 200
 def test_patch_widget_wrong_params(app, client):
     public_id = setupWidget(app, client)
 
@@ -141,8 +143,8 @@ def test_patch_widget_wrong_params(app, client):
         }
     }
     res = client.patch('/api/widget/' + public_id, data=json.dumps(data), headers=get_headers())
-    print(res.data)
-    assert res.status_code == 200
+    # print(res.data)
+    assert res.status_code == 400
 
 
 def test_delete_widget(app, client):
@@ -156,6 +158,7 @@ def test_delete_widget(app, client):
         "message": "widget deleted"
     }
     assert expected == json.loads(res.get_data(as_text=True))
+
 
 def test_delete_unkown_widget(app, client):
     res = client.delete('/api/widget/unknown')
@@ -178,6 +181,7 @@ def setupUserPortfolio(app, client):
     public_id = json.loads(res.data)['portfolio']['public_id']
     return public_id
 
+
 def setupWidget(app, client):
     public_id = setupUserPortfolio(app, client)
 
@@ -188,13 +192,13 @@ def setupWidget(app, client):
     return public_id
 
 
-
 def create_about_widget(app, client, public_id):
     data = {
-          "type": "about",
-          "data": {
-                "about": "test about"
-          }
+        "type": "about",
+        "location": [1, 2, 3, 4],
+        "data": {
+            "about": "util about"
+        }
     }
 
     res = client.post('/api/portfolio/' + public_id + '/widget',

@@ -1,6 +1,7 @@
 import json
 from .test_user import create_user, get_headers
 
+
 ####################################################
 ############## TEST FUNCTIONS ######################
 ####################################################
@@ -35,8 +36,8 @@ def test_get_portfolios(app, client):
     expected = {
         "portfolios": [
             {
-              "public_id": public_id,
-              "title": "title"
+                "public_id": public_id,
+                "title": "title"
             }
         ]
     }
@@ -55,14 +56,13 @@ def test_get_portfolio(app, client):
     assert res.status_code == 200
 
     expected = {
-          "portfolio": {
-                "public_id": public_id,
-                "title": "title",
-                "widget": []
-          }
+        "portfolio": {
+            "public_id": public_id,
+            "title": "title",
+            "widget": []
+        }
     }
     assert expected == json.loads(res.get_data(as_text=True))
-
 
 
 def test_patch_portfolio(app, client):
@@ -118,6 +118,7 @@ def create_portfolio(app, client, public_id):
     res = client.post('/api/user/' + public_id + '/portfolio',
                       data=json.dumps(data), headers=get_headers())
     return res
+
 
 def setupUser(app, client):
     res = create_user(app, client)

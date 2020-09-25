@@ -1,5 +1,6 @@
 import json
 
+
 ####################################################
 ############## TEST FUNCTIONS ######################
 ####################################################
@@ -28,14 +29,14 @@ def test_get_a_user(app, client):
     res = client.get('/api/user/' + public_id)
     assert res.status_code == 200
     expected = {
-                  "user": {
-                    "public_id": public_id,
-                    "email": "email",
-                    "name_first": "first_name",
-                    "name_last": "last_name",
-                    "registered_on": registered_on
-                  }
-                }
+        "user": {
+            "public_id": public_id,
+            "email": "email",
+            "name_first": "first_name",
+            "name_last": "last_name",
+            "registered_on": registered_on
+        }
+    }
     assert expected == json.loads(res.get_data(as_text=True))
 
 
@@ -46,26 +47,26 @@ def test_patch_user(app, client):
     public_id = json.loads(r.data)['user']['public_id']
     registered_on = json.loads(r.data)['user']['registered_on']
 
-
     data = {
-            "email": "patched_email",
-            "name_first": "patched_first_name",
-            "name_last": "patched_last_name"
-            }
+        "email": "patched_email",
+        "name_first": "patched_first_name",
+        "name_last": "patched_last_name"
+    }
 
     res = client.patch('/api/user/' + public_id, data=json.dumps(data), headers=get_headers())
     assert res.status_code == 200
 
     expected = {
-                  "user": {
-                    "public_id": public_id,
-                    "email": "patched_email",
-                    "name_first": "patched_first_name",
-                    "name_last": "patched_last_name",
-                    "registered_on": registered_on
-                  }
-                }
+        "user": {
+            "public_id": public_id,
+            "email": "patched_email",
+            "name_first": "patched_first_name",
+            "name_last": "patched_last_name",
+            "registered_on": registered_on
+        }
+    }
     assert expected == json.loads(res.get_data(as_text=True))
+
 
 ####################################################
 ############ HELPER FUNCTIONS ######################
@@ -78,6 +79,7 @@ def get_headers():
         'Accept': mimetype
     }
     return headers
+
 
 def create_user(app, client):
     data = {

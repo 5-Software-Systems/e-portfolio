@@ -2,6 +2,7 @@ import json
 
 from .test_user import create_user, get_headers
 
+
 ####################################################
 ############## TEST FUNCTIONS ######################
 ####################################################
@@ -43,9 +44,9 @@ def test_unknown_user_login(app, client):
     assert res.status_code == 401
 
     expected = {
-                "error": "LoginNotFound",
-                "message": "Login details incorrect, check and try again"
-                }
+        "error": "LoginNotFound",
+        "message": "Login details incorrect, check and try again"
+    }
     assert expected == json.loads(res.get_data(as_text=True))
 
 
@@ -58,7 +59,8 @@ def test_logout(app, client):
     client.post('/api/auth/logout')
     assert res.status_code == 200
 
-#TODO get this to work
+
+# TODO get this to work
 # def test_check_token(app, client):
 #     res = login(app, client)
 #     assert res.status_code == 200
@@ -76,16 +78,8 @@ def test_logout(app, client):
 #     print(res.data)
 #     assert res.status_code == 200
 
-#TODO find a way to not send emails for password resets
-#def test_password_reset(app, client):
-
-
-
-
-
-
-
-
+# TODO find a way to not send emails for password resets
+# def test_password_reset(app, client):
 
 
 ####################################################
