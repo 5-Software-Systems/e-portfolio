@@ -22,14 +22,18 @@ def get_a_widget(public_id):
 
 
 def create_new_widget(data):
-    widget_class = globals().get(data['type'].title())
+    widget_class = globals().get(data.pop('type').title())
     if widget_class is None:
         raise RequestError('Widget type not found')
     try:
-        widget = widget_class(**data['data'])
+        widget_data = data.pop('data', {})
+        widget_data.update(data)
+        widget = widget_class(**widget_data)
         widget.save()
-    except sqlalchemy.exc.IntegrityError:
-        raise RequestError('Data parameters missing')
+    except TypeError as e:
+        raise RequestError(e.__str__())
+    except sqlalchemy.exc.IntegrityError as e:
+        raise RequestError(e.args[0].__str__())
     return widget
 
 
@@ -37,8 +41,13 @@ def update_a_widget(public_id, data: dict):
     widget = get_a_widget(public_id)
     widget_data = data.pop('data', {})
     widget_data.update(data)
-    widget.patch(**widget_data)
-    widget.save()
+    try:
+        widget.patch(**widget_data)
+        widget.save()
+    except TypeError as e:
+        raise RequestError(e.__str__())
+    except sqlalchemy.exc.IntegrityError as e:
+        raise RequestError(e.args[0].__str__())
     return widget
 
 

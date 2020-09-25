@@ -56,7 +56,7 @@ export default function EPortfolio() {
     const columns = 6;
 
     async function addWidget() {
-        const locationA = [3,3,3,3];
+        const locationA = [1,1,0,0];
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -66,7 +66,6 @@ export default function EPortfolio() {
                                     data:{
                                         about: "New add button on eportfolio today"
                                         }
-                                        //TODO: FIX THIS SHIT BRUH DONT LOCATION NOT BEING SENT WHEN POSTING
                                     
                                 })
         };
@@ -88,7 +87,7 @@ export default function EPortfolio() {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({  
-                                        'type': 'about',
+                                        
                                         data:{
                                             location: location
                                             }

@@ -146,7 +146,7 @@ def run_tests():
         '/'.join([portfolio, portfolio_public_id, 'widget']),
         POST,
         {"type": "about",
-         "data": {"about": "this is about my test"}}
+         "data": {"about": "this is about my util"}}
     )
     widget_public_id = create_widget.json()['widget']['public_id']
 
@@ -161,5 +161,5 @@ def run_tests():
     patch_widget = test_endpoint(
         '/'.join([widget, widget_public_id]),
         PATCH,
-        {'about': 'this is a change in my test'}
+        {'about': 'this is a change in my util'}
     )

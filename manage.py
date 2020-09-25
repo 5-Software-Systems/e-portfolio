@@ -1,8 +1,8 @@
 from flask_script import Manager
 
 from app import app, db
-from api.test import db as dbtest
-from api.test import api_test
+from api.util import db as dbtest
+from api.util import api_
 
 manager = Manager(app)
 
@@ -20,8 +20,8 @@ def populate():
 
 
 @manager.command
-def testapi():
-    api_test.run_tests()
+def clean():
+    dbtest.clean(app, db)
 
 
 if __name__ == "__main__":

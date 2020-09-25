@@ -43,6 +43,8 @@ class Model(db.Model):
         for key, val in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, val)
+            else:
+                raise TypeError('{} is an invalid keyword argument for {}'.format(key, self.__class__.__name__))
 
     def delete(self, commit=True):
         db.session.delete(self)
