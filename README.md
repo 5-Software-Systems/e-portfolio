@@ -91,6 +91,10 @@ In separate processes: \
 `venv\Scripts\python manage.py runserver --debug`\
 `venv\Scripts\python manage.py testapi`
 
+Unit Tests: \
+`pytest tests/`\
+For more detail: `pytest tests/ -vv`
+
 
 ### Deploying
 
