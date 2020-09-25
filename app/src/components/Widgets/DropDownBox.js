@@ -10,16 +10,22 @@ export default function DropDownBox(props) {
         setWidgetTypes(data);
     }
 
+
+
     useEffect( () => {
         fetchWidgetTypes();
     }, []);
 
     return (
-        <select name="types" id="pavle" onChange={props.onChange} >
-            {console.log(widgetTypes)}
-            {widgetTypes.map(widgetType =>(
-                <option value={widgetType.type}>{widgetType.type}</option>
-            ))}
-        </select>
+        <div> 
+            <select name="types" id="pavle" onChange={props.onChange}>
+                {console.log(widgetTypes)}
+                {widgetTypes.map(widgetType =>(
+                    <option value={widgetType.type}>{widgetType.type}</option>
+                ))}
+            </select>
+        </div>
+        
+        
     )
 }

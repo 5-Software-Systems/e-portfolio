@@ -121,7 +121,7 @@ export default function EPortfolio() {
                         < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            {EditBox(widget.public_id)}
+                            <EditBox PID={widget.public_id}/>
                             </div>
                         </ div>
                     ))}
@@ -132,14 +132,14 @@ export default function EPortfolio() {
 };
 
 
-function EditBox(PID) {
+function EditBox(props) {
     async function deleteWidget() {
         {
             const requestOptions = {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json'},
             };
-            await fetch('/api/widget/' + PID, requestOptions);
+            await fetch('/api/widget/' + props.PID, requestOptions);
         }
     }
 
@@ -150,7 +150,7 @@ function EditBox(PID) {
         //TODO: IMPLEMENT APPLY BUTTON FUNCTIONALITY
     }
 
-    const [dropDownType, setDropDownType] = useState();
+    const [dropDownType, setDropDownType] = useState('about');
 
     return (
         <Popup
@@ -160,7 +160,7 @@ function EditBox(PID) {
         >
         {close => (
         <div className="modal">
-            <DropDownBox />
+            <DropDownBox value={dropDownType} onChange={(e) => setDropDownType(e.target.value)}/>
             <button className="close" onClick={close}>
             <b>×</b>
             </button>
@@ -170,8 +170,9 @@ function EditBox(PID) {
             <div className="content2">
                 {' '}
                 {/** TODO: MAKE THIS INTERACT WITH DROPDOWNBOX LIB*/}
+                {console.log("CURRENT TYPE: " + dropDownType)}
                 <GetFields type={dropDownType}/>
-                {MyEditor(PID)}
+                {MyEditor(props.PID)}
             </div>
             <div className='PopupBottom'>
                 <div className='options'>
