@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-export default function DropDownBox() {
+export default function DropDownBox(props) {
 
     const [widgetTypes, setWidgetTypes] = useState([]);
 
@@ -15,7 +15,7 @@ export default function DropDownBox() {
     }, []);
 
     return (
-        <select name="types" id="pavle">
+        <select name="types" id="pavle" onChange={props.onChange} >
             {console.log(widgetTypes)}
             {widgetTypes.map(widgetType =>(
                 <option value={widgetType.type}>{widgetType.type}</option>

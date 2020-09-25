@@ -87,10 +87,7 @@ export default function EPortfolio() {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({  
-                                        
-                                        data:{
-                                            location: location
-                                            }
+                                        location: location
                                     })
             };
             await fetch('/api/widget/' + id, requestOptions);
@@ -124,7 +121,7 @@ export default function EPortfolio() {
                         < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            {editBox(widget.public_id)}
+                            {EditBox(widget.public_id)}
                             </div>
                         </ div>
                     ))}
@@ -135,7 +132,7 @@ export default function EPortfolio() {
 };
 
 
-function editBox(PID) {
+function EditBox(PID) {
     async function deleteWidget() {
         {
             const requestOptions = {
@@ -153,6 +150,8 @@ function editBox(PID) {
         //TODO: IMPLEMENT APPLY BUTTON FUNCTIONALITY
     }
 
+    const [dropDownType, setDropDownType] = useState();
+
     return (
         <Popup
             trigger={<button className="settingsButton">⚙</button>}
@@ -161,7 +160,7 @@ function editBox(PID) {
         >
         {close => (
         <div className="modal">
-            <DropDownBox/>
+            <DropDownBox />
             <button className="close" onClick={close}>
             <b>×</b>
             </button>
@@ -171,7 +170,7 @@ function editBox(PID) {
             <div className="content2">
                 {' '}
                 {/** TODO: MAKE THIS INTERACT WITH DROPDOWNBOX LIB*/}
-                <GetFields type='project'/>
+                <GetFields type={dropDownType}/>
                 {MyEditor(PID)}
             </div>
             <div className='PopupBottom'>
@@ -199,7 +198,6 @@ function MyEditor(PID) {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({  
-                                    'type': 'about',
                                     data:{
                                         about: editorState.getCurrentContent().getPlainText()
                                         }
