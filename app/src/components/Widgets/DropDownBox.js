@@ -18,7 +18,7 @@ export default function DropDownBox(props) {
 
     return (
         <div> 
-            <select name="types" id="pavle" onChange={props.onChange}>
+            <select name="types" id="pavle" onChange={props.onChange} value={props.value}>
                 {widgetTypes.map(widgetType =>(
                     <option value={widgetType.type}>{widgetType.type}</option>
                 ))}

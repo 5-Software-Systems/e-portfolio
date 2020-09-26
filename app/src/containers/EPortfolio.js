@@ -20,8 +20,8 @@ export default function EPortfolio() {
 
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
-
     const [movable, setMovable] = useState(true);
+    const [editMode, setEditMode] = useState(false);
 
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
@@ -89,9 +89,19 @@ export default function EPortfolio() {
 
       }
 
-      async function switchFalse() {
-        console.log("bruh moment *******************************************************************")
+      function switchFalse() {
         setMovable(false);
+      }
+
+      function toggleEdit() {
+          setEditMode(!editMode);
+      }
+
+      function editModeToggleText() {
+          if (editMode) {
+            return "Switch to Preview Mode"
+          }
+          return "Switch to Edit Mode"
       }
 
     return (
@@ -106,23 +116,33 @@ export default function EPortfolio() {
                         </h1>
                     </div>
                     <div className='right'> 
+                    <button className='addWidgetButton'
+                            onClick={
+                                () => {
+                                    toggleEdit();
+                            } 
+                        }
+                        > {editModeToggleText()} </button>
+                        {editMode ?
                         <button className='addWidgetButton'
                             onClick={
                                 () => {
                                     addWidget();
                                     fetchWidgets();
                                 }
-                            } 
+                            }
                         > Add Widget </button>
+                        : <div></div>
+                        }
+                        
                     </div>
                 </header>
-                {console.log('movable? :' + movable)}
-                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} verticalCompact={false} onLayoutChange={onLayoutChange} isDraggable={movable} isResizable={movable}>
+                <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} onLayoutChange={onLayoutChange} isDraggable={movable && editMode} isResizable={movable && editMode}>
                     {widgets.map(widget =>(
                         < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} portfolioID ={PID}/>
+                            {editMode ? <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
                             </div>
                         </ div>
                     ))}

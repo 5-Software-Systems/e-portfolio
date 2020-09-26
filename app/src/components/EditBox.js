@@ -14,8 +14,9 @@ import GetFields from './Widgets/WidgetFields.js';
 
 
 export default function EditBox(props) {
-  const [dropDownType, setDropDownType] = useState('about');
+  const [dropDownType, setDropDownType] = useState(props.widgetType);
   const [data, setData] = useState({});
+  const [changeCount, setChangeCount] = useState(0);
 
   async function deleteWidget() {
       {
@@ -28,8 +29,6 @@ export default function EditBox(props) {
   }
 
   async function updateWidget() {
-      console.log('patching: ')
-      console.log(data);
       deleteWidget();
       const requestOptions = {
           method: 'POST',
@@ -55,21 +54,24 @@ export default function EditBox(props) {
   }
 
   function callUpdate() {
-      console.log("yeetingasdsada");
-      console.log(props);
       if (props.onChange) {
-          console.log("yeeting");
           props.onChange();
       }
   }
 
   function openWidgetSettings() {
-      console.log("widget settings opened");
       if (props.onOpenSettings) {
           props.onOpenSettings();
       }
 
   }
+
+  function onDropdownChange(e) {
+    var old=changeCount;
+    setDropDownType(e.target.value);
+    setChangeCount(old + 1);
+  }
+
 
   return (
       <Popup
@@ -81,7 +83,7 @@ export default function EditBox(props) {
       >
       {close => (
       <div className="modal">
-          <DropDownBox value={dropDownType} onChange={(e) => setDropDownType(e.target.value)}/>
+          <DropDownBox value={dropDownType} onChange={(e) => onDropdownChange(e)}/>
           <button className="close" onClick={() => {callUpdate(); close();}}>
           <b>×</b>
           </button>
@@ -90,8 +92,7 @@ export default function EditBox(props) {
           </div>
           <div className="content2">
               {' '}    
-              <GetFields type={dropDownType} onChange={(e) => setData(e)}/>
-              {console.log(data)}
+              <GetFields type={dropDownType} changed={changeCount} data={data} defaultData={props.widgetData} onChange={(e) => setData(e)}/>
           </div>
           <div className='PopupBottom'>
               <div className='options'>

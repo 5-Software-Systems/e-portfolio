@@ -4,16 +4,12 @@ import React, {useEffect, useState} from 'react';
 
 export default function GetFields(props) {
     const [fields, setFields] = useState([]);
-
-    const [text, setText] = useState({});
-
+    const [text, setText] = useState(props.data);
 
     function setTextList(field, txt) {
         var textOBJ = text;
         textOBJ[field] = txt;
         setText(textOBJ);
-        console.log(textOBJ);
-        console.log(text);
         if (props.onChange) {
             props.onChange(textOBJ);
         }
@@ -35,9 +31,24 @@ export default function GetFields(props) {
         }
     }
 
+    function getDefaultData() {
+        var bruhmoment;
+        if (props.changed == 0) {
+            bruhmoment =  props.defaultData;
+        } else {
+            bruhmoment = {};
+        }
+        return bruhmoment;
+    }
+
+
     useEffect( () => {
         fetchWidgetTypes();
     }, [props]);
+
+    useEffect( () => {
+        setText({});
+    }, [props.type]);
 
     return (
             <div>
@@ -45,7 +56,7 @@ export default function GetFields(props) {
                     <label>
                         {field}:
                         <br />
-                        <input className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} />
+                        <input className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} defaultValue={getDefaultData()[field]}/>
                         <br />
                         <br />
                     </label>
