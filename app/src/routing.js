@@ -32,9 +32,9 @@ export function LoginPage() {
         <Fragment>
             <title>Login</title>
             <BaseTemplate>
-                <form className="form-container m-auto">
+                <div className="form-container m-auto">
                     <LoginForm />
-                </form>
+                </div>
             </BaseTemplate>
         </Fragment>
     );
@@ -45,9 +45,9 @@ export function SignUpPage() {
         <Fragment>
             <title>Sign Up</title>
             <BaseTemplate>
-                <form className="form-container m-auto">
+                <div className="form-container m-auto">
                     <SignupForm />
-                </form>
+                </div>
             </BaseTemplate>
         </Fragment>
     );

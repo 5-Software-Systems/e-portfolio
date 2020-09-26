@@ -23,10 +23,10 @@ export default function CustomPopup(props) {
                 { name }
             </Button>
             <Popup className="modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
-                <form action="/action_page.php" className="form-container">
+                <div className="form-container">
                     { content }
                     <CloseButton />
-                </form>
+                </div>
             </Popup>
         </div>
     );

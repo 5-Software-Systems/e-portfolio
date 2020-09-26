@@ -1,7 +1,8 @@
 /** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
 
-import React, { useState, useEffect, Fragment }  from "react";
+import React, { useState, useEffect }  from "react";
 import {
+    Form,
     FormGroup,
     FormControl,
     FormLabel,
@@ -70,7 +71,7 @@ export default function SignupForm() {
     }
 
     return (
-        <Fragment>
+        <Form noValidate>
             <h1>Sign Up</h1>
 
             <FormGroup controlId="signup_firstname">
@@ -120,6 +121,6 @@ export default function SignupForm() {
                 />
             </FormGroup>
             <SubmitButton />
-        </Fragment>
+        </Form>
     );
 }
