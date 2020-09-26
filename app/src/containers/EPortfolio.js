@@ -128,7 +128,7 @@ export default function EPortfolio() {
                         < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()}/>
+                            <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} portfolioID ={PID}/>
                             </div>
                         </ div>
                     ))}
@@ -156,14 +156,17 @@ function EditBox(props) {
     async function updateWidget() {
         console.log('patching: ')
         console.log(data);
+        deleteWidget();
         const requestOptions = {
-            method: 'PATCH',
+            method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({  
-                                    data
+                                    type: dropDownType,
+                                    location: props.widgetLocation,
+                                    data          
                                 })
         };
-        await fetch('/api/widget/' + props.PID, requestOptions);
+        await fetch('/api/portfolio/' + props.portfolioID + '/widget', requestOptions);
     }
 
     const onDeleteClick = () => {
