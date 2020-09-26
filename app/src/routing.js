@@ -31,7 +31,7 @@ export function LoginPage() {
     return (
         <Fragment>
             <title>Login</title>
-            <BaseTemplate>
+            <BaseTemplate nav_right = {<p>Don't have an account? <a href="/signup" className="link">Sign Up!</a></p>} >
                 <div className="form-container m-auto">
                     <LoginForm />
                 </div>
@@ -44,7 +44,7 @@ export function SignUpPage() {
     return (
         <Fragment>
             <title>Sign Up</title>
-            <BaseTemplate>
+            <BaseTemplate nav_right = {<p>Have an account? <a href="/login">Login.</a></p>}>
                 <div className="form-container m-auto">
                     <SignupForm />
                 </div>

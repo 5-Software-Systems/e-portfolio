@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Form,
     FormGroup,
@@ -77,7 +77,7 @@ export default function LoginForm() {
     }
 
     return (
-        <Form noValidate>
+        <Form>
             <h1>Login</h1>
             <FormGroup controlId="login_email">
                 <FormLabel>Email</FormLabel>
@@ -85,7 +85,8 @@ export default function LoginForm() {
                     type="email"
                     values = {fields.email}
                     onChange={handleFieldChange}
-                    autoComplete="email"/>
+                    autoComplete="email"
+                    required/>
             </FormGroup>
             <FormGroup controlId="login_password">
                 <FormLabel>Password</FormLabel>
@@ -93,7 +94,8 @@ export default function LoginForm() {
                     type="password"
                     values = {fields.password}
                     onChange={handleFieldChange}
-                    autoComplete="password"/>
+                    autoComplete="password"
+                    required/>
             </FormGroup>
             <SubmitButton />
         </Form>

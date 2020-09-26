@@ -4,18 +4,39 @@
   background-color: white;
 }
 
-.form-container input[type=email], .form-container input[type=password], .form-container input[type=text] {
+.form-container input[type=email],
+.form-container input[type=password],
+.form-container input[type=text] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
+  border-radius: 2px;
   background-color: #f1f1f1;
 }
 
 /* When the inputs get focus, do something */
-.form-container input[type=text]:hover, .form-container input[type=password]:hover, .form-container input[type=email]:hover {
+.form-container input[type=text]:hover,
+.form-container input[type=password]:hover,
+.form-container input[type=email]:hover {
   background-color: #ddd;
   outline: none;
+}
+
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:invalid:required,
+.form-container input[type=password]:invalid:required,
+.form-container input[type=email]:invalid:required {
+  background-color: #ddd;
+  border: 3px solid #eb2b25;
+}
+
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:valid:required,
+.form-container input[type=password]:valid:required,
+.form-container input[type=email]:valid:required {
+  background-color: #ddd;
+  border: 2px solid #1ace73;
 }
 
 /* Set a style for the submit/login button */
