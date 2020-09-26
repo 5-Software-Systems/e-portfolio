@@ -1,11 +1,7 @@
-//your mum 
+//your mum and dad
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import ReactGridLayout from 'react-grid-layout';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import {Editor, EditorState, RichUtils} from 'draft-js';
-import 'draft-js/dist/Draft.css';
 import '../styles/ePortfolioIndex.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
@@ -14,9 +10,7 @@ import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf';
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
-import DropDownBox from '../components/Widgets/DropDownBox.js';
-import GetFields from '../components/Widgets/WidgetFields.js';
-
+import EditBox from '../components/EditBox.js';
 
 export default function EPortfolio() {
 
@@ -138,152 +132,6 @@ export default function EPortfolio() {
     );
 };
 
-
-function EditBox(props) {
-    const [dropDownType, setDropDownType] = useState('about');
-    const [data, setData] = useState({});
-
-    async function deleteWidget() {
-        {
-            const requestOptions = {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json'},
-            };
-            await fetch('/api/widget/' + props.PID, requestOptions);
-        }
-    }
-
-    async function updateWidget() {
-        console.log('patching: ')
-        console.log(data);
-        deleteWidget();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({  
-                                    type: dropDownType,
-                                    location: props.widgetLocation,
-                                    data          
-                                })
-        };
-        await fetch('/api/portfolio/' + props.portfolioID + '/widget', requestOptions);
-    }
-
-    const onDeleteClick = () => {
-        (deleteWidget());
-        (callUpdate());
-
-    }
-
-    const onApplyClick = () => {
-        (updateWidget());
-        (callUpdate());
-    }
-
-    function callUpdate() {
-        console.log("yeetingasdsada");
-        console.log(props);
-        if (props.onChange) {
-            console.log("yeeting");
-            props.onChange();
-        }
-    }
-
-    function openWidgetSettings() {
-        console.log("widget settings opened");
-        if (props.onOpenSettings) {
-            props.onOpenSettings();
-        }
-
-    }
-
-    return (
-        <Popup
-            trigger={<button className="settingsButton">⚙</button>}
-            modal
-            nested
-            closeOnDocumentClick={false}
-            onOpen={openWidgetSettings}
-        >
-        {close => (
-        <div className="modal">
-            <DropDownBox value={dropDownType} onChange={(e) => setDropDownType(e.target.value)}/>
-            <button className="close" onClick={() => {callUpdate(); close();}}>
-            <b>×</b>
-            </button>
-            <div className="header2"> 
-                <h1 className="impact">Edit Widget</h1>
-            </div>
-            <div className="content2">
-                {' '}    
-                <GetFields type={dropDownType} onChange={(e) => setData(e)}/>
-                {console.log(data)}
-            </div>
-            <div className='PopupBottom'>
-                <div className='options'>
-                    <div className="actions">
-                        <button className="button" onClick={() => {onDeleteClick(); close();}}><b className='deleteText'>DELETE</b></button>
-                    </div>
-                </div>
-                <div className='options'>
-                    <div className="actions">
-                        <button className="button" onClick={() => {onApplyClick(); close();}}><b>APPLY</b></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        )}
-        </Popup>
-    )
-}
-
-
-function MyEditor(PID) { 
-    async function updateWidget() {
-        const requestOptions = {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify({  
-                                    data:{
-                                        about: editorState.getCurrentContent().getPlainText()
-                                        }
-                                })
-        };
-        await fetch('/api/widget/' + PID, requestOptions);
-    }
-
-
-    const [editorState, setEditorState] = React.useState(
-      () => EditorState.createEmpty(),
-    );
-
-    const handleKeyCommand = (command, editorState) => {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
-    
-        if (newState) {
-          return 'handled';
-        }
-    
-        return 'not-handled';
-      }
-
-    const onBoldClick = () => {
-        (RichUtils.toggleInlineStyle(editorState, 'BOLD'));
-      }
-      
-    const onSendClick = () => {
-        (updateWidget());
-        (window.location.reload(false));
-    }
-    return (
-        <div> 
-            <button className='popUpFormatButton' onClick={onBoldClick.bind(setEditorState)}><h6>Bold</h6></button>
-            <button className='popUpFormatButton' onClick={onSendClick.bind(editorState)}><h6>Send</h6></button>
-            <Editor editorState={editorState} onChange={setEditorState} />  
-        </div>
-        
-    )
-  }
 
 
 
