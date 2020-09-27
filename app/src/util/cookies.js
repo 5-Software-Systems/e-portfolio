@@ -11,8 +11,11 @@ export function isLoggedIn() {
     return false;
 }
 
-export function authorize(data) {
+export async function authorize(requestOptions) {
     //util cookie/authentication implementation
+    const response = await fetch('api/auth/login', requestOptions);
+    const data = await response.json();
+
     if (data.message.toLowerCase() === 'successfully logged in.') {
         const auth64 = data.Authorization;
         new Cookies().set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
