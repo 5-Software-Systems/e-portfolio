@@ -72,8 +72,7 @@ export default function SignupForm() {
                     onChange={handleFieldChange}
                     placeholder="Name"
                     autoComplete="name"
-                    required
-                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"/>
+                    required/>
             </FormGroup>
             <FormGroup controlId="signup_lastname">
                 <FormLabel>Last Name<p className="required">*</p></FormLabel>
@@ -93,7 +92,9 @@ export default function SignupForm() {
                     onChange={handleFieldChange}
                     placeholder="Email"
                     autoComplete="email"
-                    required/>
+                    required
+                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
+                />
             </FormGroup>
             <FormGroup controlId="signup_password">
                 <FormLabel>Password<p className="required">*</p></FormLabel>

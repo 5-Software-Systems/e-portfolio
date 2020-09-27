@@ -17,6 +17,7 @@ export default function LoginForm() {
         login_password: "",
     });
     const [isLoading, setLoading] = useState(false);
+    const [isIncorrect, setIncorrect] = useState(false);
     let history = useHistory();
 
     useEffect(() => {
@@ -41,14 +42,17 @@ export default function LoginForm() {
         if (isLoading) {
             if (validateForm) {
                 handleSubmit().then(() => {
+                    setLoading(false);
                     if (isLoggedIn()) {
+                        setIncorrect(false);
                         history.push("/profile");
                     } else {
-                        history.push("/login");
+                        setIncorrect(true);
                     }
                 });
             } else {
                 setLoading(false);
+                setIncorrect(true);
             }
         }
     }, [isLoading, history, fields]);
@@ -70,7 +74,8 @@ export default function LoginForm() {
                     placeholder="Email"
                     autoComplete="email"
                     required
-                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"/>
+                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
+                />
             </FormGroup>
             <FormGroup controlId="login_password">
                 <FormLabel>Password<p className="required">*</p></FormLabel>
@@ -82,6 +87,7 @@ export default function LoginForm() {
                     autoComplete="password"
                     required/>
             </FormGroup>
+            {isIncorrect ? <p className="invalidResp">Incorrect username or password, please try again.</p> : null }
             <Button
                 className="btn"
                 type="submit"
