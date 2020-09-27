@@ -69,7 +69,8 @@ export default function LoginForm() {
                     onChange={handleFieldChange}
                     placeholder="Email"
                     autoComplete="email"
-                    required/>
+                    required
+                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"/>
             </FormGroup>
             <FormGroup controlId="login_password">
                 <FormLabel>Password</FormLabel>
