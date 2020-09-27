@@ -1,4 +1,4 @@
-//your mum and dad
+//your mum and dad and step-brother
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import ReactGridLayout from 'react-grid-layout';
@@ -61,7 +61,7 @@ export default function EPortfolio() {
                                     type: "about",
                                     location: locationA,
                                     data:{
-                                        about: "Je suis un nouveau widget. 私は新しいウィジェットです。我是一個新的小部件。Tôi là một widget mới"
+                                        about: "New Widget!"
                                         }
                                     
                                 })
@@ -143,6 +143,7 @@ export default function EPortfolio() {
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
                             {editMode ? <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
+                            {editMode ? <div className ='blocker'> penis </div> : <div></div>}
                             </div>
                         </ div>
                     ))}

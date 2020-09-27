@@ -148,3 +148,10 @@
 	color: #cf6679;
   }
 
+  .blocker {
+	  height: 100%;
+	  width: 100%; 
+	  background-color: darkgreen;
+	  position: absolute;
+  }
+
