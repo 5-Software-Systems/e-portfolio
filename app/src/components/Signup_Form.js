@@ -21,6 +21,7 @@ export default function SignupForm() {
         signup_confirmPassword: "",
     });
     const [isLoading, setLoading] = useState(false);
+    const [isIncorrect, setIncorrect] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -47,10 +48,13 @@ export default function SignupForm() {
 
         if (isLoading) {
             if (validateForm()) {
+                setIncorrect(false);
+                setLoading(false);
                 handleSubmit().then(() => {
                     history.push("/login");
                 });
             } else {
+                setIncorrect(true);
                 setLoading(false);
             }
         }
@@ -116,6 +120,7 @@ export default function SignupForm() {
                     autoComplete="password"
                     required/>
             </FormGroup>
+            {isIncorrect ? <p className="invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
             <Button
                 className="btn"
                 type="submit"
