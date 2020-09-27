@@ -49,8 +49,16 @@ export default function EditBox(props) {
   }
 
   const onApplyClick = () => {
+    console.log(data);
+    console.log(Object.keys(data).length === 0);
+    //bug roundabout coldfix 
+    if (Object.keys(data).length === 0) {
+        window.alert('Nothing entered! 😱 Please try again 😅');
+    }
+    else {
       (updateWidget());
       (callUpdate());
+    }
   }
 
   function callUpdate() {
@@ -71,6 +79,7 @@ export default function EditBox(props) {
     setDropDownType(e.target.value);
     setChangeCount(old + 1);
   }
+
 
 
   return (

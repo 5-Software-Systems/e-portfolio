@@ -36,9 +36,19 @@ export default function GetFields(props) {
         if (props.changed == 0) {
             bruhmoment =  props.defaultData;
         } else {
-            bruhmoment = {};
+            bruhmoment = '';
         }
         return bruhmoment;
+    }
+
+    function undefinedText(text) {
+        var output;
+        if (text === undefined) {
+            output = '';
+        } else {
+            output = text;
+        }
+        return output;
     }
 
 
