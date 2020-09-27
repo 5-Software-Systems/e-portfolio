@@ -65,7 +65,7 @@ export default function SignupForm() {
         <Form onSubmit={handleClick}>
             <h1>Sign Up</h1>
             <FormGroup controlId="signup_firstname">
-                <FormLabel>First Name</FormLabel>
+                <FormLabel>First Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
                     values = {fields.firstname}
@@ -76,7 +76,7 @@ export default function SignupForm() {
                     pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"/>
             </FormGroup>
             <FormGroup controlId="signup_lastname">
-                <FormLabel>Last Name</FormLabel>
+                <FormLabel>Last Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
                     values = {fields.lastname}
@@ -86,7 +86,7 @@ export default function SignupForm() {
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_email">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email<p className="required">*</p></FormLabel>
                 <FormControl
                     type="email"
                     values = {fields.email}
@@ -96,7 +96,7 @@ export default function SignupForm() {
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_password">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
                     value={fields.password}
@@ -106,7 +106,7 @@ export default function SignupForm() {
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_confirmPassword">
-                <FormLabel>Confirm Password</FormLabel>
+                <FormLabel>Confirm Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
                     onChange={handleFieldChange}

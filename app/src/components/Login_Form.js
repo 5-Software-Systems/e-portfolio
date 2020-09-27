@@ -62,7 +62,7 @@ export default function LoginForm() {
         <Form onSubmit={handleClick}>
             <h1>Login</h1>
             <FormGroup controlId="login_email">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email<p className="required">*</p></FormLabel>
                 <FormControl
                     type="email"
                     values = {fields.email}
@@ -73,7 +73,7 @@ export default function LoginForm() {
                     pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"/>
             </FormGroup>
             <FormGroup controlId="login_password">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
                     values = {fields.password}
