@@ -1,21 +1,35 @@
 .form-container {
-  max-width: 300px;
+  width: 350px;
   padding: 10px;
   background-color: white;
 }
 
-.form-container input[type=email], .form-container input[type=password], .form-container input[type=text] {
+.form-container input[type=email],
+.form-container input[type=password],
+.form-container input[type=text] {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  padding: 10px;
+  margin: 5px 0 15px 0;
   border: none;
+  border-radius: 8px;
   background-color: #f1f1f1;
+  outline: none;
 }
 
-/* When the inputs get focus, do something */
-.form-container input[type=text]:hover, .form-container input[type=password]:hover, .form-container input[type=email]:hover {
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:invalid:required,
+.form-container input[type=password]:invalid:required,
+.form-container input[type=email]:invalid:required {
   background-color: #ddd;
-  outline: none;
+  border: 3px solid #eb2b25;
+}
+
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:valid:required,
+.form-container input[type=password]:valid:required,
+.form-container input[type=email]:valid:required {
+  background-color: #ddd;
+  border: 3px solid #1ace73;
 }
 
 /* Set a style for the submit/login button */
@@ -34,10 +48,22 @@
   background-color: #eb2b25;
 }
 
-.form-container .btn:hover, .open-button:hover {
-  opacity: 1;
-}
-
 .form-container .cancel:hover, .open-button:hover {
   opacity: 0.88;
+}
+
+.required{
+  display: inline;
+  color: #ff0000;
+}
+
+.invalidResp {
+  color: #d00000;
+  background: #ffb0b0;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  padding: 5px 5px;
+  border-radius: 8px;
+  border: 2px solid #ff3030;
 }

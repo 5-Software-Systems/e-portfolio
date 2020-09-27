@@ -22,7 +22,7 @@ export default function BaseTemplate(props) {
                     </div>
                 </nav>
             </header>
-            <section className="main_content">
+            <section className="main_content pb-3">
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
