@@ -14,10 +14,14 @@ export default function BasePage() {
     //store db
     useEffect( () =>{
         const fetchProfiles = async() => {
-            const user_data = await fetch('/api/auth/user', {headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}});
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const user_data = await fetch('/api/auth/user', requestOptions);
             const user = await user_data.json();
 
-            const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio');
+            const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio', requestOptions);
             const profile = await prof_data.json();
             setProfiles(profile.portfolios);
         }

@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/BasePage.css';
 
 
-function DemoPreview(){
+export default function DemoPreview(){
     const link = "/demo";
     return(
         <a href={ link }>
@@ -14,5 +14,3 @@ function DemoPreview(){
         </a>
     )
 }
-
-export default DemoPreview;
