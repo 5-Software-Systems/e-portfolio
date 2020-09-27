@@ -1,3 +1,5 @@
+//Inspired by: https://upmostly.com/tutorials/build-a-password-strength-meter-react
+
 import React from 'react';
 import zxcvbn from 'zxcvbn';
 import '../styles/PasswordStrengthMeter.css';
