@@ -31,10 +31,10 @@ export function LoginPage() {
     return (
         <Fragment>
             <title>Login</title>
-            <BaseTemplate>
-                <form className="form-container m-auto">
+            <BaseTemplate nav_right = {<p>Don't have an account? <a href="/signup" className="link">Sign Up!</a></p>} >
+                <div className="form-container m-auto">
                     <LoginForm />
-                </form>
+                </div>
             </BaseTemplate>
         </Fragment>
     );
@@ -44,10 +44,10 @@ export function SignUpPage() {
     return (
         <Fragment>
             <title>Sign Up</title>
-            <BaseTemplate>
-                <form className="form-container m-auto">
+            <BaseTemplate nav_right = {<p>Have an account? <a href="/login">Login.</a></p>}>
+                <div className="form-container m-auto">
                     <SignupForm />
-                </form>
+                </div>
             </BaseTemplate>
         </Fragment>
     );
