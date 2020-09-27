@@ -9,6 +9,7 @@ import {
     Button,
 } from "react-bootstrap";
 import '../styles/Form.css';
+import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { validateEmail, useFormFields } from "../util/form";
 import { useHistory } from "react-router-dom";
 
@@ -72,7 +73,7 @@ export default function SignupForm() {
                 <FormLabel>First Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
-                    values = {fields.firstname}
+                    values = {fields.signup_firstname}
                     onChange={handleFieldChange}
                     placeholder="Name"
                     autoComplete="name"
@@ -82,7 +83,7 @@ export default function SignupForm() {
                 <FormLabel>Last Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
-                    values = {fields.lastname}
+                    values = {fields.signup_lastname}
                     onChange={handleFieldChange}
                     placeholder="Surname"
                     autoComplete="surname"
@@ -92,7 +93,8 @@ export default function SignupForm() {
                 <FormLabel>Email<p className="required">*</p></FormLabel>
                 <FormControl
                     type="email"
-                    values = {fields.email}
+                    className="mb-1"
+                    values = {fields.signup_email}
                     onChange={handleFieldChange}
                     placeholder="Email"
                     autoComplete="email"
@@ -100,11 +102,12 @@ export default function SignupForm() {
                     pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
                 />
             </FormGroup>
+            <PasswordStrengthMeter password={fields.signup_password} />
             <FormGroup controlId="signup_password">
                 <FormLabel>Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
-                    value={fields.password}
+                    value={fields.signup_password}
                     onChange={handleFieldChange}
                     placeholder="Password"
                     autoComplete="password"
@@ -115,7 +118,7 @@ export default function SignupForm() {
                 <FormControl
                     type="password"
                     onChange={handleFieldChange}
-                    value={fields.confirmPassword}
+                    value={fields.signup_confirmPassword}
                     placeholder="Password"
                     autoComplete="password"
                     required/>
