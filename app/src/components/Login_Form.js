@@ -8,7 +8,7 @@ import {
 } from "react-bootstrap";
 import '../styles/Form.css';
 import { validateEmail, useFormFields } from "../util/form";
-import { authorize, isAuthorized } from "../util/cookies";
+import { authorize, isLoggedIn } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
@@ -16,68 +16,50 @@ export default function LoginForm() {
         login_email: "",
         login_password: "",
     });
+    const [isLoading, setLoading] = useState(false);
+    let history = useHistory();
 
-    function validateForm() {
-        if (fields.login_email.length <= 0) {
-            return (false);
-        } else if (! validateEmail(fields.login_email)) {
-            return (false);
-        } else if (fields.login_password.length <= 0) {
-            return (false);
+    useEffect(() => {
+        async function handleSubmit() {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
+            };
+            const response = await fetch('api/auth/login', requestOptions);
+            const recvd_data = await response.json();
+
+            authorize(recvd_data);
         }
-        return (true);
-    }
 
-    async function handleSubmit() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
-        };
-        const response = await fetch('api/auth/login', requestOptions);
-        const recvd_data = await response.json();
+        function validateForm() {
+            return (fields.login_email.length > 0 &&
+                    fields.login_password.length > 0 &&
+                    validateEmail(fields.login_email));
+        }
 
-        authorize(recvd_data);
-    }
-
-    function SubmitButton() {
-        const [isLoading, setLoading] = useState(false);
-        const history = useHistory();
-
-        useEffect(() => {
-            if (isLoading) {
-                if (validateForm()) {
-                    handleSubmit().then(() => {
-                        if (isAuthorized()) {
-                            history.push("/profile");
-                        } else {
-                            history.push("/login");
-                        }
-                        setLoading(false);
-                    });
-                } else {
-                    setLoading(false);
-                }
+        if (isLoading) {
+            if (validateForm) {
+                handleSubmit().then(() => {
+                    if (isLoggedIn()) {
+                        history.push("/profile");
+                    } else {
+                        history.push("/login");
+                    }
+                });
+            } else {
+                setLoading(false);
             }
-        }, [isLoading, history]);
+        }
+    }, [isLoading, history, fields]);
 
-        const handleClick = () => setLoading(true);
-
-        return (
-            <Button
-                className="btn"
-                variant="primary"
-                disabled={isLoading}
-                onClick={!isLoading ? handleClick : null}
-                type="submit"
-            >
-                {isLoading ? 'Loading...' : 'Submit'}
-            </Button>
-        );
-    }
+    const handleClick = (e) => {
+        e.preventDefault();
+        setLoading(true);
+    };
 
     return (
-        <Form>
+        <Form onSubmit={handleClick}>
             <h1>Login</h1>
             <FormGroup controlId="login_email">
                 <FormLabel>Email</FormLabel>
@@ -85,6 +67,7 @@ export default function LoginForm() {
                     type="email"
                     values = {fields.email}
                     onChange={handleFieldChange}
+                    placeholder="Email"
                     autoComplete="email"
                     required/>
             </FormGroup>
@@ -94,10 +77,17 @@ export default function LoginForm() {
                     type="password"
                     values = {fields.password}
                     onChange={handleFieldChange}
+                    placeholder="Password"
                     autoComplete="password"
                     required/>
             </FormGroup>
-            <SubmitButton />
+            <Button
+                className="btn"
+                type="submit"
+                disabled={isLoading}
+            >
+                {isLoading ? 'Loading...' : 'Submit'}
+            </Button>
         </Form>
     );
 }

@@ -20,68 +20,59 @@ export default function SignupForm() {
         signup_password: "",
         signup_confirmPassword: "",
     });
-    function validateForm() {
-        return (
-            fields.signup_firstname.length > 0 &&
-            fields.signup_lastname.length > 0 &&
-            fields.signup_email.length > 0 &&
-            fields.signup_password.length > 0 &&
-            fields.signup_confirmPassword === fields.signup_password &&
-            validateEmail(fields.signup_email)
-        );
-    }
+    const [isLoading, setLoading] = useState(false);
+    const history = useHistory();
 
-    async function handleSubmit() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: String(fields.signup_email).toLowerCase(), password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
-        };
-        await fetch('api/user', requestOptions);
-    }
+    useEffect(() => {
+        async function handleSubmit() {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
+                password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
+            };
+            await fetch('api/user', requestOptions);
+        }
 
-    function SubmitButton() {
-        const [isLoading, setLoading] = useState(false);
-        const history = useHistory();
+        function validateForm() {
+            return (
+                fields.signup_firstname.length > 0 &&
+                fields.signup_lastname.length > 0 &&
+                fields.signup_email.length > 0 &&
+                fields.signup_password.length > 0 &&
+                fields.signup_confirmPassword === fields.signup_password &&
+                validateEmail(fields.signup_email)
+            );
+        }
 
-        useEffect(() => {
-            if (isLoading && validateForm()) {
+        if (isLoading) {
+            if (validateForm()) {
                 handleSubmit().then(() => {
-                    setLoading(false);
                     history.push("/login");
                 });
-            } else if (isLoading && !validateForm()) {
+            } else {
                 setLoading(false);
             }
-        }, [isLoading, history]);
+        }
+    }, [isLoading, history, fields]);
 
-        const handleClick = () => {setLoading(true); };
-
-        return (
-            <Button
-                className="btn"
-                variant="primary"
-                disabled={isLoading}
-                onClick={!isLoading ? handleClick : null}
-                type="submit"
-            >
-                {isLoading ? 'Loading...' : 'Submit'}
-            </Button>
-        );
-    }
+    const handleClick = (e) => {
+        e.preventDefault();
+        setLoading(true);
+    };
 
     return (
-        <Form noValidate>
+        <Form onSubmit={handleClick}>
             <h1>Sign Up</h1>
-
             <FormGroup controlId="signup_firstname">
                 <FormLabel>First Name</FormLabel>
                 <FormControl
                     type="text"
                     values = {fields.firstname}
                     onChange={handleFieldChange}
+                    placeholder="Name"
                     autoComplete="name"
-                />
+                    required/>
             </FormGroup>
             <FormGroup controlId="signup_lastname">
                 <FormLabel>Last Name</FormLabel>
@@ -89,18 +80,19 @@ export default function SignupForm() {
                     type="text"
                     values = {fields.lastname}
                     onChange={handleFieldChange}
+                    placeholder="Surname"
                     autoComplete="surname"
-                />
+                    required/>
             </FormGroup>
-
             <FormGroup controlId="signup_email">
                 <FormLabel>Email</FormLabel>
                 <FormControl
                     type="email"
                     values = {fields.email}
                     onChange={handleFieldChange}
+                    placeholder="Email"
                     autoComplete="email"
-                />
+                    required/>
             </FormGroup>
             <FormGroup controlId="signup_password">
                 <FormLabel>Password</FormLabel>
@@ -108,8 +100,9 @@ export default function SignupForm() {
                     type="password"
                     value={fields.password}
                     onChange={handleFieldChange}
+                    placeholder="Password"
                     autoComplete="password"
-            />
+                    required/>
             </FormGroup>
             <FormGroup controlId="signup_confirmPassword">
                 <FormLabel>Confirm Password</FormLabel>
@@ -117,10 +110,17 @@ export default function SignupForm() {
                     type="password"
                     onChange={handleFieldChange}
                     value={fields.confirmPassword}
+                    placeholder="Password"
                     autoComplete="password"
-                />
+                    required/>
             </FormGroup>
-            <SubmitButton />
+            <Button
+                className="btn"
+                type="submit"
+                disabled={isLoading}
+            >
+                {isLoading ? 'Loading...' : 'Submit'}
+            </Button>
         </Form>
     );
 }
