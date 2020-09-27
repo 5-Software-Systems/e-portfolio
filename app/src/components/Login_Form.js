@@ -87,7 +87,7 @@ export default function LoginForm() {
                     autoComplete="password"
                     required/>
             </FormGroup>
-            {isIncorrect ? <p className="invalidResp">Incorrect username or password, please try again.</p> : null }
+            {isIncorrect ? <p className="response invalidResp">Incorrect username or password, please try again.</p> : null }
             <Button
                 className="btn"
                 type="submit"

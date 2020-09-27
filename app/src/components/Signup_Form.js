@@ -123,7 +123,7 @@ export default function SignupForm() {
                     autoComplete="password"
                     required/>
             </FormGroup>
-            {isIncorrect ? <p className="invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
+            {isIncorrect ? <p className="response invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
             <Button
                 className="btn"
                 type="submit"
