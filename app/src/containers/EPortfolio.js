@@ -21,7 +21,7 @@ export default function EPortfolio() {
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
     const [movable, setMovable] = useState(true);
-    const [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState(true);
 
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]

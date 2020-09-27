@@ -148,6 +148,23 @@
 	color: #cf6679;
   }
 
+  .modal .DropDown {
+	  background-color: transparent;
+	  border: none;
+	  outline: none;
+  }
+
+  .modal .DropDown option {
+	background-color: #363636;
+	outline: none;
+	border: 1px;
+	border-radius: ;
+}
+
+  .modal .DropDown option:checked{
+	color: #121212;
+	}
+
   .blocker {
 	  height: 150%;
 	  width: 150%; 

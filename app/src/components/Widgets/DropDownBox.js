@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import '../../styles/ePortfolioIndex.css';
 
 export default function DropDownBox(props) {
 
@@ -18,9 +19,9 @@ export default function DropDownBox(props) {
 
     return (
         <div> 
-            <select name="types" id="pavle" onChange={props.onChange} value={props.value}>
+            <select className="DropDown" name="types" id="pavle" onChange={props.onChange} value={props.value}>
                 {widgetTypes.map(widgetType =>(
-                    <option value={widgetType.type}>{widgetType.type}</option>
+                    <option className="nani" value={widgetType.type}>{widgetType.type}</option>
                 ))}
             </select>
         </div>

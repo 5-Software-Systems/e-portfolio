@@ -188,6 +188,7 @@ image {
   border-radius: 50%;
   outline: none;
   transition: background-color, 0.5s;
+  transition: all, 2s;
 }
 
 .eportfolioPage .settingsButton:hover {

@@ -37,7 +37,7 @@ function EPortfolioPreview(props){
         
         return (
             <Popup
-                trigger={<button className="button" > Edit </button>}
+                trigger={<button className="menu-item" > Edit </button>}
                 modal
                 nested
                 closeOnDocumentClick={false}>
@@ -85,7 +85,7 @@ function EPortfolioPreview(props){
                 >
                 {close => (
                     <div className="menu">
-                        <div className="menu-item"> {editButton()} </div>
+                        {editButton()}
                         <button className="menu-item" onClick={() => {
                             handleDelete();
                             close();

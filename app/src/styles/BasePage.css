@@ -58,6 +58,14 @@
      outline: 0;
      }
 
+     .menu-item {
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          color: rgb(211, 211, 211);
+     }
+
      .basepage .options {
           position: absolute;
           top: 30px;
