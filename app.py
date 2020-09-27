@@ -1,4 +1,5 @@
 import logging
+import pytest
 
 from flask import Flask, render_template
 
