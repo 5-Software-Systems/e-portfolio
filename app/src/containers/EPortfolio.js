@@ -40,7 +40,7 @@ export default function EPortfolio() {
         }
 
         fetchWidgets();
-    }, [PID, history]);
+    }, [PID, history, Auth]);
 
     const width = 280;
     const height = 315;
