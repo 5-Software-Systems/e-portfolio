@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import '../styles/ePortfolio.css';
+import '../styles/ePortfolio-popup.css';
 //------------------------------------------------
 import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
@@ -92,7 +92,7 @@ export default function EditBox(props) {
           nested
           closeOnDocumentClick={false}
           onOpen={openWidgetSettings}
-          className="ePortfolioWidgetSettings"
+          className="ePortfolio-popup"
       >
       {close => (
       <div className="modal">
