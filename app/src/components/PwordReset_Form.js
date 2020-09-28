@@ -10,8 +10,7 @@ import {
 } from "react-bootstrap";
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
-import { validateEmail, useFormFields } from "../util/form";
-import { useHistory } from "react-router-dom";
+import { useFormFields } from "../util/form";
 import { isAuthorized } from "../util/cookies";
 
 export default function PasswordResetForm() {
@@ -23,7 +22,6 @@ export default function PasswordResetForm() {
     const [isLoading, setLoading] = useState(false);
     const [isComplete, setComplete] = useState(false);
     const Auth = isAuthorized();
-    const history = useHistory();
 
     useEffect(() => {
         async function handleSubmit() {
@@ -61,7 +59,7 @@ export default function PasswordResetForm() {
                 setLoading(false);
             }
         }
-    }, [isLoading, history, fields]);
+    }, [isLoading, fields]);
 
     const handleClick = (e) => {
         e.preventDefault();

@@ -63,7 +63,6 @@ export default function SignupForm() {
         if (isLoading) {
             if (validateForm()) {
                 setIncorrect(false);
-                setLoading(false);
                 handleSubmit().then(() => {
                     history.push("/login");
                 });
