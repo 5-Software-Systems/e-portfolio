@@ -13,7 +13,7 @@ class Project(WidgetBase):
     __tablename__ = 'project'
 
     id = db.Column(None, ForeignKey('widget.id'), primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=True)
     description = db.Column(db.String(500))
     external_url = db.Column(db.String(100))
 
