@@ -106,6 +106,11 @@ export default function EPortfolio(props) {
           return "Switch to Edit Mode"
       }
 
+      function onSettingsUpdate() {
+          fetchWidgets();
+          setMovable(true);
+      }
+
     return (
         <div className='eportfolioBody'>
             <div className='eportfolioPage'>
@@ -147,7 +152,7 @@ export default function EPortfolio(props) {
                             {editMode ? <div className ='blocker'></div> : <div></div>}
                             <MotherWidget widget={widget}/>
                             <div className ='overlay'>
-                            {editMode ? <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
+                            {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
                             </div>
                         </ div>
                     ))}
