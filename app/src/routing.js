@@ -75,9 +75,9 @@ export function SettingsPage() {
     );
 }
 
-export function PortfolioPage() {
+export function PortfolioPage(props) {
     return (
-        <EPortfolio />
+        <EPortfolio preview = {props.preview}/>
     );
 }
 

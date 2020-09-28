@@ -12,7 +12,7 @@ import '../fonts/roboto/Roboto-Black.ttf';
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
 
-export default function EPortfolio() {
+export default function EPortfolio(props) {
 
 
     // authorise and fetch eportfolio data -----------------------------------
@@ -21,7 +21,7 @@ export default function EPortfolio() {
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
     const [movable, setMovable] = useState(true);
-    const [editMode, setEditMode] = useState(true);
+    const [editMode, setEditMode] = useState(!props.preview);
 
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
@@ -116,13 +116,15 @@ export default function EPortfolio() {
                         </h1>
                     </div>
                     <div className='right'> 
-                    <button className='addWidgetButton'
-                            onClick={
-                                () => {
-                                    toggleEdit();
-                            } 
-                        }
-                        > {editModeToggleText()} </button>
+                    {!props.preview ? <button className='addWidgetButton'
+                                        onClick={
+                                            () => {
+                                                toggleEdit();
+                                            } 
+                                        }
+                                        > {editModeToggleText()} </button>
+                    : null}
+                    
                         {editMode ?
                         <button className='addWidgetButton'
                             onClick={
