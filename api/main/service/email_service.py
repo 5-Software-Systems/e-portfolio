@@ -32,6 +32,9 @@ def send_reset_email(user, token):
     url = host + 'password_reset'
     req.prepare(url=url, params={'auth': token})
 
+    if current_app.config['TESTING']:
+        return req.url
+
     file = rel_path('../util/password-reset.html', __file__)
     with open(file) as f:
         html_template = Template(f.read())
@@ -39,3 +42,6 @@ def send_reset_email(user, token):
     email_text = MIMEText(html, 'html')
 
     send_email(user.email, email_text)
+
+    if current_app.config['DEBUG']:
+        return req.url

@@ -13,6 +13,7 @@ name_first = 'name_first', fields.String(description='first name', example='firs
 name_last = 'name_last', fields.String(description='last name', example='last_name')
 password = 'password', fields.String(description='password', example='password')
 registered_on = 'registered_on', fields.DateTime(description='datetime user was registered')
+link = 'link', fields.String(description='url link', example='www.google.com')
 
 # AUTH
 bearer_auth_token = 'bearer_auth_token', fields.String(description='JSON Web Token', example='Bearer <auth_token>')
