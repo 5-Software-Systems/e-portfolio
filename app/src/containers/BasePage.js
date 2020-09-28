@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import EPortfolioPreview from "../components/EPortfolioPreview";
 import AddPortfolio from "../components/AddPortfolio";
-import DemoPreview from "../components/DemoPreview";
 import "../styles/BasePage.css";
 import { isAuthorized } from "../util/cookies";
 
@@ -46,7 +45,6 @@ export default function BasePage() {
             {profiles.map(profile =>(
                 < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} onUpdate={(e) => setUpdateTrue()}/>
             ))}
-            < DemoPreview />
             < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>
             
         </div>

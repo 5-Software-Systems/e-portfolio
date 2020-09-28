@@ -1,8 +1,12 @@
 //ligma
 import React, {useEffect, useState} from 'react';
+import { isAuthorized } from "../../util/cookies";
+
 
 
 export default function GetFields(props) {
+    const Auth = isAuthorized();    
+
     const [fields, setFields] = useState([]);
     const [text, setText] = useState(props.data);
 
@@ -17,7 +21,11 @@ export default function GetFields(props) {
 
 
     async function fetchWidgetTypes() {
-        const response = await fetch('/api/widget/types');
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+        };
+        const response = await fetch('/api/widget/types', requestOptions);
         const data = await response.json();
         getFieldRequirementsForEachWidget(data);
     }
@@ -63,7 +71,7 @@ export default function GetFields(props) {
     return (
             <div>
                 {Object.keys(fields).map(field =>(
-                    <label>
+                    <label key={field}>
                         {field}:
                         <br />
                         <input className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} defaultValue={getDefaultData()[field]}/>

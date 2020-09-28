@@ -2,9 +2,13 @@ import React, {useRef, useState, useEffect} from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
+import { isAuthorized } from "../util/cookies";
+
 
 
 function EPortfolioPreview(props){
+    const Auth = isAuthorized();    
+
     
     const link = "/portfolio/" + props.id;
 
@@ -13,7 +17,7 @@ function EPortfolioPreview(props){
     async function handleDelete() {
         const requestOptions = {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
         };
         await fetch('api/'+ link, requestOptions);
     }
@@ -24,7 +28,7 @@ function EPortfolioPreview(props){
     async function handleEdit() {
         const requestOptions = {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
                 "title": newName
               })

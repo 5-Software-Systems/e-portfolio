@@ -11,9 +11,12 @@ import '../fonts/roboto/Roboto-Black.ttf';
 
 import DropDownBox from './Widgets/DropDownBox.js';
 import GetFields from './Widgets/WidgetFields.js';
+import { isAuthorized } from "../util/cookies";
+
 
 
 export default function EditBox(props) {
+  const Auth = isAuthorized();    
   const [dropDownType, setDropDownType] = useState(props.widgetType);
   const [data, setData] = useState({});
   const [changeCount, setChangeCount] = useState(0);
@@ -22,7 +25,7 @@ export default function EditBox(props) {
       {
           const requestOptions = {
               method: 'DELETE',
-              headers: { 'Content-Type': 'application/json'},
+              headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
           };
           await fetch('/api/widget/' + props.PID, requestOptions);
       }
@@ -32,7 +35,7 @@ export default function EditBox(props) {
       deleteWidget();
       const requestOptions = {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
           body: JSON.stringify({  
                                   type: dropDownType,
                                   location: props.widgetLocation,

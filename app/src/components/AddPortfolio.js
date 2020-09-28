@@ -2,6 +2,8 @@ import React, {useEffect, useState}from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
+import { isAuthorized } from "../util/cookies";
+
 
 function AddPortfolioInfo(){
     return(
@@ -13,6 +15,8 @@ function AddPortfolioInfo(){
 }
 
 export default function AddPortfolio(props) {
+    const Auth = isAuthorized();    
+
 
     const [name, setName] = useState('')
 
@@ -25,7 +29,7 @@ export default function AddPortfolio(props) {
     async function handleSubmit() {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
                 "title": name
               })
@@ -38,7 +42,7 @@ export default function AddPortfolio(props) {
         
         const postInitialWidget = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
                         type: "about",
                         location: [1,1,0,0],

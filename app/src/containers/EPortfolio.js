@@ -25,40 +25,31 @@ export default function EPortfolio(props) {
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 
-    //store db
-    useEffect( () =>{
-        const fetchWidgets = async() => {
-            const requestOptions = {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
-            };
-            const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
-            const p_data = await p_response.json();
-            if (p_data.error) {
-                history.push("/profile");
-                return;
-            }
-            setProfile(p_data.portfolio);
-
-            const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
-            const w_data = await w_response.json();
-            setWidget(w_data.widgets);
+    const fetchWidgets = async() => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+        };
+        const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+        const p_data = await p_response.json();
+        if (p_data.error) {
+            history.push("/profile");
+            return;
         }
         setProfile(p_data.portfolio);
 
-        const w_response = await fetch('/api/portfolio/' + PID + '/widget');
+        const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
         const w_data = await w_response.json();
         setWidget(w_data.widgets);
-        setMovable(true);
     }
 
-    
-    useEffect( () => {
+    //store db
+    useEffect( async () =>{
+        setMovable(true);
         fetchWidgets();
     }, [PID, history, Auth]);
 
-    //------------------------------------------------------------------------
-
+    
     const width = 280;
     const height = 315;
     const columns = 6;
