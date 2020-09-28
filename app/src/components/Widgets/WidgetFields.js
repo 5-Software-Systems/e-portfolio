@@ -74,7 +74,7 @@ export default function GetFields(props) {
                     <label key={field}>
                         {field}:
                         <br />
-                        <input className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} defaultValue={getDefaultData()[field]}/>
+                        <textarea className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} defaultValue={getDefaultData()[field]}/>
                         <br />
                         <br />
                     </label>
