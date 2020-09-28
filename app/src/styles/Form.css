@@ -21,7 +21,7 @@
 .form-container input[type=password]:invalid:required,
 .form-container input[type=email]:invalid:required {
   background-color: #ddd;
-  border: 3px solid #eb2b25;
+  border: 3px solid #ef5551;
 }
 
 /* When the required inputs aren't valid, do something */
@@ -29,7 +29,7 @@
 .form-container input[type=password]:valid:required,
 .form-container input[type=email]:valid:required {
   background-color: #ddd;
-  border: 3px solid #1ace73;
+  border: 3px solid #48d88f;
 }
 
 /* Set a style for the submit/login button */
