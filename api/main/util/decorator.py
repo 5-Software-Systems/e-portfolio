@@ -8,7 +8,6 @@ from ..util.exception import AuthenticationError
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-
         token = split_bearer_token(request.headers.get('Authorization'))
         payload = decode_token(token)
         user = payload.get('login')
@@ -24,10 +23,12 @@ def login_required(f):
 def reset_token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-
         token = split_bearer_token(request.headers.get('Authorization'))
         payload = decode_token(token)
-        user = payload.get('reset')
+        user = any([
+            payload.get('reset'),
+            payload.get('login')
+        ])
 
         if not user:
             raise AuthenticationError

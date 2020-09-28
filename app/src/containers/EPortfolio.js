@@ -106,6 +106,11 @@ export default function EPortfolio(props) {
           return "Switch to Edit Mode"
       }
 
+      function onSettingsUpdate() {
+          fetchWidgets();
+          setMovable(true);
+      }
+
     return (
         <div className='eportfolioBody'>
             <header className='header'>
@@ -116,16 +121,16 @@ export default function EPortfolio(props) {
                         </a>
                     </h1>
                 </div>
-                <div className='right'> 
+                <div className='right'>
                 {!props.preview ? <button className='addWidgetButton'
                                     onClick={
                                         () => {
                                             toggleEdit();
-                                        } 
+                                        }
                                     }
                                     > {editModeToggleText()} </button>
                 : null}
-                
+
                     {editMode ?
                     <button className='addWidgetButton'
                         onClick={
@@ -137,16 +142,16 @@ export default function EPortfolio(props) {
                     > Add Widget </button>
                     : <div></div>
                     }
-                    
+
                 </div>
             </header>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} onLayoutChange={onLayoutChange} isDraggable={movable && editMode} isResizable={movable && editMode}>
                 {widgets.map(widget =>(
-                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}> 
+                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
                         {editMode ? <div className ='blocker'></div> : <div></div>}
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => fetchWidgets()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
+                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
                         </div>
                     </ div>
                 ))}
