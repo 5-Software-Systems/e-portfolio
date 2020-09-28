@@ -11,6 +11,7 @@ import {
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { validateEmail, useFormFields } from "../util/form";
+import { authorize } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function SignupForm() {
@@ -27,13 +28,25 @@ export default function SignupForm() {
 
     useEffect(() => {
         async function handleSubmit() {
-            const requestOptions = {
+            // signup
+            const requestOptions_signup = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
-                password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
+                                      password: fields.signup_password,
+                                      name_first: fields.signup_firstname,
+                                      name_last: fields.signup_lastname})
             };
-            await fetch('api/user', requestOptions);
+            await fetch('api/user', requestOptions_signup);
+
+            // login
+            const requestOptions_login = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
+                                      password: fields.signup_password})
+            };
+            await authorize(requestOptions_login);
         }
 
         function validateForm() {

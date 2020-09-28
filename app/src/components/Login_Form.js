@@ -27,10 +27,7 @@ export default function LoginForm() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
             };
-            const response = await fetch('api/auth/login', requestOptions);
-            const recvd_data = await response.json();
-
-            authorize(recvd_data);
+            await authorize(requestOptions);
         }
 
         function validateForm() {
