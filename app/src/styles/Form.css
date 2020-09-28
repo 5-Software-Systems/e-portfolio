@@ -57,13 +57,24 @@
   color: #ff0000;
 }
 
+.response {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px 6px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+}
+
 .invalidResp {
   color: #d00000;
   background: #ffb0b0;
-  text-align: center;
-  font-size: 14px;
-  margin-bottom: 10px;
-  padding: 5px 5px;
-  border-radius: 8px;
   border: 2px solid #ff3030;
+}
+
+.validResp {
+  color: #fff;
+  background: #1ace73;
+  opacity: 0.8;
+  border: 2px solid #2b8155;
 }
