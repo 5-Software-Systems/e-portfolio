@@ -16,23 +16,38 @@ import { isAuthorized } from "../util/cookies";
 export default function PasswordResetForm() {
     const [fields, handleFieldChange] = useFormFields({
         email: "",
-        old_password: "",
+        old_Password: "",
         new_Password: "",
     });
     const [isLoading, setLoading] = useState(false);
     const [isComplete, setComplete] = useState(false);
+    const [isIncorrect, setIncorrect] = useState(false);
     const Auth = isAuthorized();
 
     useEffect(() => {
         async function handleSubmit() {
+            //verify password
+            const requestOptions_ver = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.email).toLowerCase(), password: fields.old_Password})
+                };
+            console.log(requestOptions_ver);
+            const ver_data = await fetch('/api/auth/login', requestOptions_ver);
+            const data = await ver_data.json();
+            const auth64 = data.Authorization
+            if (data.message === 'Login details incorrect, check and try again') {
+                setIncorrect(true);
+                return;
+            }
+
             //get user id
             const requestOptions_id = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}
+                headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth64}
             };
             const user_data = await fetch('/api/auth/user', requestOptions_id);
             const user = await user_data.json();
-
             //reset
             const requestOptions_reset = {
                 method: 'PUT',
@@ -41,6 +56,7 @@ export default function PasswordResetForm() {
                                       password: fields.new_Password})
             };
             await fetch('api/auth/reset', requestOptions_reset);
+            setComplete(true);
         }
 
         function validateForm() {
@@ -53,10 +69,10 @@ export default function PasswordResetForm() {
             if (validateForm) {
                 handleSubmit().then(() => {
                     setLoading(false);
-                    setComplete(true);
                 });
             } else {
                 setLoading(false);
+                setIncorrect(true);
             }
         }
     }, [isLoading, fields]);
@@ -69,6 +85,31 @@ export default function PasswordResetForm() {
     return (
         <Form onSubmit={handleClick}>
             <h1>Password Reset</h1>
+            <FormGroup controlId="email">
+                <FormLabel>Email<p className="required">*</p></FormLabel>
+                <FormControl
+                    type="email"
+                    onChange={handleFieldChange}
+                    value={fields.email}
+                    placeholder="Email"
+                    autoComplete="email"
+                    required/>
+            </FormGroup>
+            <FormGroup controlId="old_Password">
+                <FormLabel>Old Password<p className="required">*</p></FormLabel>
+                <FormControl
+                    type="password"
+                    onChange={handleFieldChange}
+                    value={fields.old_Password}
+                    placeholder="Old Password"
+                    autoComplete="password"
+                    required/>
+            </FormGroup>
+            {isIncorrect ?
+                <p className="response invalidResp">Incorrect email or password, please try again.</p>
+                :
+                null
+            }
             <PasswordStrengthMeter password={fields.new_Password} />
             <FormGroup controlId="new_Password">
                 <FormLabel>New Password<p className="required">*</p></FormLabel>
@@ -76,7 +117,7 @@ export default function PasswordResetForm() {
                     type="password"
                     onChange={handleFieldChange}
                     value={fields.new_Password}
-                    placeholder="Password"
+                    placeholder="New Password"
                     autoComplete="password"
                     required/>
             </FormGroup>
