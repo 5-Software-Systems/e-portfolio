@@ -6,7 +6,7 @@
 		 url('../fonts/roboto/Roboto-Light.ttf') format('TrueType');
   }
 
-.popUpFormatButton {
+  .ePortfolioWidgetSettings-overlay .popUpFormatButton {
 	margin-top: 10px;
 	background-color: transparent;
 	border:none;
@@ -15,14 +15,14 @@
 	transition: all 0.2s;
 }
 
-.popUpFormatButton:hover {
+.ePortfolioWidgetSettings-overlay .popUpFormatButton:hover {
 	margin-top: 10px;
 	background-color: transparent;
 	border:none;
 	background-color: #121212;
 }
 
-.popup-content {
+.ePortfolioWidgetSettings-overlay .popup-content {
 	overflow: hidden;
 	border: 5px solid #1a1a1a;
 	background: #1a1a1a;
@@ -34,27 +34,27 @@
 	cursor: pointer;
 }
 
-[role=tooltip].popup-content {
+.ePortfolioWidgetSettings-overlay [role=tooltip].popup-content {
 	width: 200px;
 	box-shadow: 0 0 3px rgba(0, 0, 0, .16);
 	border-radius: 5px
 }
 
-.popup-overlay {
+.ePortfolioWidgetSettings-overlay {
 	background: rgba(0, 0, 0, .5)
 }
 
-.popup-overlay * {
+.ePortfolioWidgetSettings-overlay * {
 	color: rgb(211, 211, 211);
 	text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
 	font-family: Roboto;
   }
 
-[data-popup=tooltip].popup-overlay {
+.ePortfolioWidgetSettings-overlay [data-popup=tooltip].popup-overlay {
 	background: transparent
 }
 
-.popup-arrow {
+.ePortfolioWidgetSettings-overlay .popup-arrow {
 	-webkit-filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, .16));
 	filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, .16));
 	color: #fff;
@@ -64,10 +64,10 @@
 	stroke-dashoffset: -54px
 }
 
-.modal {
+.ePortfolioWidgetSettings-overlay .modal {
 	font-size: 12px;
   }
-  .modal > .header2 {
+  .ePortfolioWidgetSettings-overlay .modal > .header2 {
 	color: rgb(211, 211, 211);
 	text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
 	font-family: Roboto;
@@ -77,17 +77,17 @@
 	text-align: center;
 	padding: 5px;
   }
-  .modal > .content {
+  .ePortfolioWidgetSettings-overlay .modal > .content {
 	width: 100%;
 	padding: 10px 5px;
   }
-  .modal > .actions {
+  .ePortfolioWidgetSettings-overlay .modal > .actions {
 	width: 100%;
 	padding: 10px 5px;
 	margin: auto;
 	text-align: center;
   }
-  .modal > .close {
+  .ePortfolioWidgetSettings-overlay .modal > .close {
 	cursor: pointer;
 	position: absolute;
 	display: block;
@@ -106,30 +106,30 @@
 	transition: all, 0.2s;
   }
 
-  .modal .PopupBottom {
+  .ePortfolioWidgetSettings-overlay .modal .PopupBottom {
 	  width: 100%;
 	  height: auto;
 	  float: right;
   }
 
-  .modal .options {
+  .ePortfolioWidgetSettings-overlay .modal .options {
 	  display: inline;
 	  float: right;
 	  margin-left: 5px;
 	  margin-right: 5px;
   }
 
-  .modal > .close * {
+  .ePortfolioWidgetSettings-overlay .modal > .close * {
 	color: rgb(211, 211, 211);
 	text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
 	
   }
 
-  .modal > .close:hover {
+  .ePortfolioWidgetSettings-overlay .modal > .close:hover {
 	background-color: #363636;
   }
 
-  .modal .button {
+  .ePortfolioWidgetSettings-overlay .modal .button {
 	  background-color: transparent;
 	  border: none;
 	  outline: none;
@@ -138,34 +138,35 @@
 	  transition: all, 0.2s;
   }
 
-  .modal .button:hover {
+  .ePortfolioWidgetSettings-overlay .modal .button:hover {
 	background-color: #121212;
 	border: none;
 	outline: none;
 }
 
-  .modal .button > .deleteText {
+  .ePortfolioWidgetSettings-overlay .modal .button > .deleteText {
 	color: #cf6679;
   }
 
-  .modal .DropDown {
+  .ePortfolioWidgetSettings-overlay .modal .DropDown {
 	  background-color: transparent;
 	  border: none;
 	  outline: none;
   }
 
-  .modal .DropDown option {
+  .ePortfolioWidgetSettings-overlay .modal .DropDown option {
 	background-color: #363636;
 	outline: none;
 	border: 1px;
 	border-radius: ;
 }
 
-  .modal .DropDown option:checked{
+  .ePortfolioWidgetSettings-overlay .modal .DropDown option:checked{
 	color: #121212;
 	}
 
-  .blocker {
+  
+.eportfolioBody .blocker {
 	  height: 150%;
 	  width: 150%; 
 	  background-color: transparent;

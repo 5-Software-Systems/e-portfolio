@@ -2,10 +2,10 @@
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import ReactGridLayout from 'react-grid-layout';
-import '../styles/ePortfolioIndex.css';
+import '../styles/ePortfolio.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
-import '../styles/widget-styles.css';
+import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 import { isAuthorized } from "../util/cookies";
