@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import '../../styles/ePortfolio.css';
+import '../../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../../util/cookies";
 
 

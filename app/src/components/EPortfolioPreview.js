@@ -2,6 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
+import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
 
 
@@ -44,14 +45,15 @@ function EPortfolioPreview(props){
                 trigger={<button className="menu-item" > Edit </button>}
                 modal
                 nested
+                className="ePortfolio-popup"
                 closeOnDocumentClick={false}>
                 {close => (
                 <div className="modal">
                     <button className="close" onClick={close}>
                     &times;
                     </button>
-                    <div className="header"> Add Portfolio </div>
-                    <div className="content">
+                    <div className="header2"> <h1>Edit Portfolio</h1> </div>
+                    <div className="content2">
                     {' '}
                     <div>
                         <label>
@@ -86,6 +88,7 @@ function EPortfolioPreview(props){
                 contentStyle={{ padding: '0px', border: 'none' }}
                 arrow={false}
                 nested
+                className="ePortfolio-popup"
                 >
                 {close => (
                     <div className="menu">

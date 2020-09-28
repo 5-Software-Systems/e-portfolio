@@ -62,6 +62,7 @@ export default function AddPortfolio(props) {
         <Popup
             trigger={<button className="addButton"> {AddPortfolioInfo()} </button>}
             modal
+            className="ePortfolio-popup"
             closeOnDocumentClick={false}
             nested>
             {close => (
@@ -69,7 +70,7 @@ export default function AddPortfolio(props) {
                 <button className="close" onClick={close}>
                 &times;
                 </button>
-                <div className="header"> Add Portfolio </div>
+                <div className="header2"> <h1>Add Portfolio</h1> </div>
                 <div className="content">
                 {' '}
                 <form>
