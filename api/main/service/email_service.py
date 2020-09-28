@@ -2,22 +2,18 @@ import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
 
-from flask import request
+from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
 
-load_dotenv()
-gmail_user = os.environ.get('SMTP_EMAIL')
-gmail_password = os.environ.get('SMTP_PASS')
-
 
 def send_email(addr, text: MIMEText):
+    gmail_user, gmail_pass = current_app.config['GMAIL_USER'], current_app.config['GMAIL_PASS']
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(gmail_user, gmail_password)
+    server.login(gmail_user, gmail_pass)
 
     msg = MIMEMultipart()
     msg['From'] = gmail_user
