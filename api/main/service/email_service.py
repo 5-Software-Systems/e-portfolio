@@ -1,4 +1,3 @@
-import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -6,6 +5,8 @@ from email.mime.text import MIMEText
 from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
+
+from ..util.funcs import rel_path
 
 
 def send_email(addr, text: MIMEText):
@@ -31,10 +32,10 @@ def send_reset_email(user, token):
     url = host + 'password_reset'
     req.prepare(url=url, params={'auth': token})
 
-    file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../util/password-reset.html')
+    file = rel_path('../util/password-reset.html', __file__)
     with open(file) as f:
         html_template = Template(f.read())
-    html = html_template.render(link=req.url)
+    html = html_template.render(link=req.url, host=host, name=user.name_first)
     email_text = MIMEText(html, 'html')
 
     send_email(user.email, email_text)
