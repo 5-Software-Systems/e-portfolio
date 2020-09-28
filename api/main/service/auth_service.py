@@ -1,12 +1,12 @@
 import datetime
 
 import jwt
+from flask import current_app
 
 from . import user_service, email_service
 from ..model import User, BlacklistToken
 from ..util.db import save_db_object
 from ..util.exception import *
-from ...config import SECRET_KEY
 
 
 def login_user(data):
@@ -90,14 +90,14 @@ def encode_token(payload: dict, expiry=datetime.timedelta(days=1)):
     })
     return jwt.encode(
         payload,
-        SECRET_KEY,
+        current_app.config['SECRET_KEY'],
         algorithm='HS256'
     )
 
 
 def decode_token(token):
     try:
-        payload = jwt.decode(token, SECRET_KEY)
+        payload = jwt.decode(token, current_app.config['SECRET_KEY'])
     except jwt.ExpiredSignatureError:
         raise TokenExpired
     except jwt.InvalidTokenError:

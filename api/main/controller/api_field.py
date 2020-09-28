@@ -8,7 +8,7 @@ response_message = 'message', fields.String(description='message from the reques
 public_id = 'public_id', fields.String(description='global resource identifier')
 
 # USER
-email = 'email', fields.String(description='email address', example='email')
+email = 'email', fields.String(description='email address', example='email@mail.com')
 name_first = 'name_first', fields.String(description='first name', example='first_name')
 name_last = 'name_last', fields.String(description='last name', example='last_name')
 password = 'password', fields.String(description='password', example='password')

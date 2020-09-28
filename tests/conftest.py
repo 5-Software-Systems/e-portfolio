@@ -1,5 +1,10 @@
 import pytest
-from app import app as flask_app, db
+
+from api.main.util.funcs import rel_path
+from app import db
+from app import create_app
+
+flask_app = create_app(rel_path('config.py', __file__))
 
 
 @pytest.fixture
