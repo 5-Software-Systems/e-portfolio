@@ -8,13 +8,13 @@ export default function BaseTemplate(props) {
                 <nav className="navbar navbar-expand-lg pl-3 pl-sm-0">
                     <div className="container">
                         <div className="navbar-brand-wrapper d-flex">
-                            <a href="/"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
+                            <a href="/" tabIndex="-1"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
                             <h1 className="pt-1">ePortfolio</h1>
                         </div>
                         <ul className="navbar-nav links">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/updates">Updates</a></li>
-                            <li><a href="/contact">Contact Us</a></li>
+                            <li><a href="/" tabIndex="-1">Home</a></li>
+                            <li><a href="/updates" tabIndex="-1">Updates</a></li>
+                            <li><a href="/contact" tabIndex="-1">Contact Us</a></li>
                         </ul>
                         <div className="navbar-menu-wrapper navbar-nav">
                             {props.nav_right}
@@ -22,9 +22,11 @@ export default function BaseTemplate(props) {
                     </div>
                 </nav>
             </header>
-            {props.body}
+            <section className="main_content pb-3">
+                {props.children}
+            </section>
             <footer className="border-top text-center text-muted">
-                <p className="pt-3"><a href="/demo">FiveCent Software Systems.</a></p>
+                <p className="pt-3"><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
                 <Test />
             </footer>
         </Fragment>

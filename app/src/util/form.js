@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function validateEmail(email) {
-    const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)+$/;
     return re.test(String(email).toLowerCase());
 }
 

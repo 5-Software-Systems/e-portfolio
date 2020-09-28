@@ -4,11 +4,19 @@ export function isAuthorized() {
     return new Cookies().get('authorization');
 }
 
+export function isLoggedIn() {
+    if (new Cookies().get('logged_in') === "1") {
+        return true;
+    }
+    return false;
+}
+
 export function authorize(data) {
-    //test cookie/authentication implementation
+    //util cookie/authentication implementation
     if (data.message.toLowerCase() === 'successfully logged in.') {
         const auth64 = data.Authorization;
-        new Cookies().set('authorization', auth64, {path:'/', maxAge:600}); //temp 5 minute expiry for cookie
+        new Cookies().set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        new Cookies().set('logged_in', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
     }
 }
 
@@ -22,4 +30,5 @@ export async function deauthorize() {
     await fetch('api/auth/logout', requestOptions);
 
     new Cookies().remove('authorization');
+    new Cookies().set('logged_in', 0, {path:'/'});
 }

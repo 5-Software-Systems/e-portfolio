@@ -7,10 +7,6 @@ from flask_bcrypt import Bcrypt
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 
-"""
-To create the initial database, just import the db object from an interactive Python shell and run the 
-SQLAlchemy.create_all() method to create the tables and database:
-"""
 db = SQLAlchemy()
 
 flask_bcrypt = Bcrypt()

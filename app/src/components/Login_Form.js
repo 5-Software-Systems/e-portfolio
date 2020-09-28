@@ -1,7 +1,6 @@
-/** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
-
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import {
+    Form,
     FormGroup,
     FormControl,
     FormLabel,
@@ -9,7 +8,7 @@ import {
 } from "react-bootstrap";
 import '../styles/Form.css';
 import { validateEmail, useFormFields } from "../util/form";
-import { authorize, isAuthorized } from "../util/cookies";
+import { authorize, isLoggedIn } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
@@ -17,88 +16,85 @@ export default function LoginForm() {
         login_email: "",
         login_password: "",
     });
+    const [isLoading, setLoading] = useState(false);
+    const [isIncorrect, setIncorrect] = useState(false);
+    let history = useHistory();
 
-    function validateForm() {
-        if (fields.login_email.length <= 0) {
-            alert("No email entered");
-        } else if (! validateEmail(fields.login_email)) {
-            alert("Invalid email entered");
-        } else if (fields.login_password.length <= 0) {
-            alert("No password entered");
-        } else {
-            return (true);
+    useEffect(() => {
+        async function handleSubmit() {
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
+            };
+            const response = await fetch('api/auth/login', requestOptions);
+            const recvd_data = await response.json();
+
+            authorize(recvd_data);
         }
-        return (false);
-    }
 
-    async function handleSubmit() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
-        };
-        const response = await fetch('api/auth/login', requestOptions);
-        const recvd_data = await response.json();
+        function validateForm() {
+            return (fields.login_email.length > 0 &&
+                    fields.login_password.length > 0 &&
+                    validateEmail(fields.login_email));
+        }
 
-        authorize(recvd_data);
-    }
-
-    function SubmitButton() {
-        const [isLoading, setLoading] = useState(false);
-        const history = useHistory();
-
-        useEffect(() => {
-            if (isLoading) {
-                if (validateForm()) {
-                    handleSubmit().then(() => {
-                        if (isAuthorized()) {
-                            history.push("/profile");
-                        } else {
-                            history.push("/login");
-                        }
-                        setLoading(false);
-                    });
-                } else {
+        if (isLoading) {
+            if (validateForm) {
+                handleSubmit().then(() => {
                     setLoading(false);
-                }
+                    if (isLoggedIn()) {
+                        setIncorrect(false);
+                        history.push("/profile");
+                    } else {
+                        setIncorrect(true);
+                    }
+                });
+            } else {
+                setLoading(false);
+                setIncorrect(true);
             }
-        }, [isLoading, history]);
+        }
+    }, [isLoading, history, fields]);
 
-        const handleClick = () => setLoading(true);
-
-        return (
-            <Button
-                className="btn"
-                variant="primary"
-                disabled={isLoading}
-                onClick={!isLoading ? handleClick : null}
-                type="submit"
-            >
-                {isLoading ? 'Loading...' : 'Submit'}
-            </Button>
-        );
-    }
+    const handleClick = (e) => {
+        e.preventDefault();
+        setLoading(true);
+    };
 
     return (
-        <Fragment>
+        <Form onSubmit={handleClick}>
             <h1>Login</h1>
             <FormGroup controlId="login_email">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email<p className="required">*</p></FormLabel>
                 <FormControl
                     type="email"
                     values = {fields.email}
                     onChange={handleFieldChange}
-                    autoComplete="email"/>
+                    placeholder="Email"
+                    autoComplete="email"
+                    required
+                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
+                />
             </FormGroup>
             <FormGroup controlId="login_password">
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
                     values = {fields.password}
                     onChange={handleFieldChange}
-                    autoComplete="password"/>
+                    placeholder="Password"
+                    autoComplete="password"
+                    required/>
             </FormGroup>
-            <SubmitButton />
-        </Fragment>
+            {isIncorrect ? <p className="invalidResp">Incorrect username or password, please try again.</p> : null }
+            <Button
+                className="btn"
+                type="submit"
+                disabled={isLoading}
+            >
+                {isLoading ? 'Loading...' : 'Submit'}
+            </Button>
+        </Form>
     );
 }
