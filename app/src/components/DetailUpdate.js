@@ -96,7 +96,7 @@ export default function DetailUpdate() {
         <Form onSubmit={handleClick}>
             <h1>Update Details</h1>
             <FormGroup controlId="new_Email">
-                <FormLabel>New Email</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl
                     type="email"
                     onChange={handleFieldChange}
@@ -106,7 +106,7 @@ export default function DetailUpdate() {
                 />
             </FormGroup>
             <FormGroup controlId="new_Firstname">
-                <FormLabel>New Firstname</FormLabel>
+                <FormLabel>First name</FormLabel>
                 <FormControl
                     type="text"
                     onChange={handleFieldChange}
@@ -116,7 +116,7 @@ export default function DetailUpdate() {
                 />
             </FormGroup>
             <FormGroup controlId="new_Lastname">
-                <FormLabel>New Lastname</FormLabel>
+                <FormLabel>Last name</FormLabel>
                 <FormControl
                     type="text"
                     onChange={handleFieldChange}
