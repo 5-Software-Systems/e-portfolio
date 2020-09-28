@@ -3,21 +3,20 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from flask import request
+from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
 
-from ...config import GMAIL_USER, GMAIL_PASS
-
 
 def send_email(addr, text: MIMEText):
+    gmail_user, gmail_pass = current_app.config['GMAIL_USER'], current_app.config['GMAIL_PASS']
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(GMAIL_USER, GMAIL_PASS)
+    server.login(gmail_user, gmail_pass)
 
     msg = MIMEMultipart()
-    msg['From'] = GMAIL_USER
+    msg['From'] = gmail_user
     msg['To'] = addr
     msg['Subject'] = "Reset Password"
     msg.attach(text)
