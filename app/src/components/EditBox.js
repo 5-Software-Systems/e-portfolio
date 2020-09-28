@@ -3,9 +3,9 @@ import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import '../styles/ePortfolioIndex.css';
+import '../styles/ePortfolio.css';
 //------------------------------------------------
-import '../styles/widget-styles.css';
+import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf';
 
@@ -92,6 +92,7 @@ export default function EditBox(props) {
           nested
           closeOnDocumentClick={false}
           onOpen={openWidgetSettings}
+          className="ePortfolioWidgetSettings"
       >
       {close => (
       <div className="modal">
