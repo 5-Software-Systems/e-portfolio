@@ -9,7 +9,9 @@ import {
     Button,
 } from "react-bootstrap";
 import '../styles/Form.css';
+import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { validateEmail, useFormFields } from "../util/form";
+import { authorize } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function SignupForm() {
@@ -21,17 +23,30 @@ export default function SignupForm() {
         signup_confirmPassword: "",
     });
     const [isLoading, setLoading] = useState(false);
+    const [isIncorrect, setIncorrect] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
         async function handleSubmit() {
-            const requestOptions = {
+            // signup
+            const requestOptions_signup = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
-                password: fields.signup_password, name_first: fields.signup_firstname, name_last: fields.signup_lastname})
+                                      password: fields.signup_password,
+                                      name_first: fields.signup_firstname,
+                                      name_last: fields.signup_lastname})
             };
-            await fetch('api/user', requestOptions);
+            await fetch('api/user', requestOptions_signup);
+
+            // login
+            const requestOptions_login = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
+                                      password: fields.signup_password})
+            };
+            await authorize(requestOptions_login);
         }
 
         function validateForm() {
@@ -47,10 +62,13 @@ export default function SignupForm() {
 
         if (isLoading) {
             if (validateForm()) {
+                setIncorrect(false);
+                setLoading(false);
                 handleSubmit().then(() => {
                     history.push("/login");
                 });
             } else {
+                setIncorrect(true);
                 setLoading(false);
             }
         }
@@ -68,7 +86,7 @@ export default function SignupForm() {
                 <FormLabel>First Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
-                    values = {fields.firstname}
+                    values = {fields.signup_firstname}
                     onChange={handleFieldChange}
                     placeholder="Name"
                     autoComplete="name"
@@ -78,7 +96,7 @@ export default function SignupForm() {
                 <FormLabel>Last Name<p className="required">*</p></FormLabel>
                 <FormControl
                     type="text"
-                    values = {fields.lastname}
+                    values = {fields.signup_lastname}
                     onChange={handleFieldChange}
                     placeholder="Surname"
                     autoComplete="surname"
@@ -88,7 +106,8 @@ export default function SignupForm() {
                 <FormLabel>Email<p className="required">*</p></FormLabel>
                 <FormControl
                     type="email"
-                    values = {fields.email}
+                    className="mb-1"
+                    values = {fields.signup_email}
                     onChange={handleFieldChange}
                     placeholder="Email"
                     autoComplete="email"
@@ -96,11 +115,12 @@ export default function SignupForm() {
                     pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
                 />
             </FormGroup>
+            <PasswordStrengthMeter password={fields.signup_password} />
             <FormGroup controlId="signup_password">
                 <FormLabel>Password<p className="required">*</p></FormLabel>
                 <FormControl
                     type="password"
-                    value={fields.password}
+                    value={fields.signup_password}
                     onChange={handleFieldChange}
                     placeholder="Password"
                     autoComplete="password"
@@ -111,11 +131,12 @@ export default function SignupForm() {
                 <FormControl
                     type="password"
                     onChange={handleFieldChange}
-                    value={fields.confirmPassword}
+                    value={fields.signup_confirmPassword}
                     placeholder="Password"
                     autoComplete="password"
                     required/>
             </FormGroup>
+            {isIncorrect ? <p className="invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
             <Button
                 className="btn"
                 type="submit"

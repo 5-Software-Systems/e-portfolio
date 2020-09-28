@@ -7,15 +7,14 @@ import '../styles/ePortfolioIndex.css';
 import { useHistory } from "react-router-dom";
 import '../styles/widget-styles.css';
 import '../styles/resizable-styles.css';
-import '../fonts/roboto/Roboto-Black.ttf';
+import '../fonts/roboto/Roboto-Black.ttf'
+import { isAuthorized } from "../util/cookies";
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
 
 export default function EPortfolio(props) {
-
-
-    // authorise and fetch eportfolio data -----------------------------------
+    const Auth = isAuthorized();
     const history = useHistory();
 
     const [profile, setProfile] = useState([]);
@@ -26,12 +25,24 @@ export default function EPortfolio(props) {
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
 
-    async function fetchWidgets() {
-        const p_response = await fetch('/api/portfolio/' + PID);
-        const p_data = await p_response.json();
-        if (p_data.error) {
-            history.push("/profile");
-            return;
+    //store db
+    useEffect( () =>{
+        const fetchWidgets = async() => {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+            const p_data = await p_response.json();
+            if (p_data.error) {
+                history.push("/profile");
+                return;
+            }
+            setProfile(p_data.portfolio);
+
+            const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+            const w_data = await w_response.json();
+            setWidget(w_data.widgets);
         }
         setProfile(p_data.portfolio);
 
@@ -44,7 +55,7 @@ export default function EPortfolio(props) {
     
     useEffect( () => {
         fetchWidgets();
-    }, [PID, history]);
+    }, [PID, history, Auth]);
 
     //------------------------------------------------------------------------
 
