@@ -30,6 +30,8 @@ def get_a_user(public_id):
 
 def get_a_user_by_email(email):
     user = User.query.filter_by(email=email).first()
+    if not user:
+        raise UserNotFound(email)
     return user
 
 
