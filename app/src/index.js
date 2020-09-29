@@ -62,7 +62,9 @@ ReactDOM.render(
                 <Route
                     path="/portfolio/"
                     render={() => {
-                        return (isLoggedIn() ? <PortfolioPage /> : <Redirect to="/" />)
+                        return (
+                                <PortfolioPage preview = {!isLoggedIn()} />
+                                )
                     }}
                 />
                 <Route

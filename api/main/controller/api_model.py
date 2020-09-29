@@ -9,6 +9,10 @@ response = namespace.model(
     name='response',
     model=dict([response_status, response_message])
 )
+link_response = namespace.model(
+    name='response',
+    model=dict([response_status, response_message, link])
+)
 
 widget = namespace.model(
     name='widget',

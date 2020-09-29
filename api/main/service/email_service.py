@@ -6,6 +6,7 @@ from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
 
+from ..util.exception import RequestError
 from ..util.funcs import rel_path
 
 
@@ -22,7 +23,10 @@ def send_email(addr, text: MIMEText):
     msg['Subject'] = "Reset Password"
     msg.attach(text)
 
-    server.send_message(msg)
+    try:
+        server.send_message(msg)
+    except smtplib.SMTPRecipientsRefused as e:
+        raise RequestError(e.args[0]['email'][1])
 
 
 def send_reset_email(user, token):
@@ -32,6 +36,9 @@ def send_reset_email(user, token):
     url = host + 'password_reset'
     req.prepare(url=url, params={'auth': token})
 
+    if current_app.config['TESTING']:
+        return req.url
+
     file = rel_path('../util/password-reset.html', __file__)
     with open(file) as f:
         html_template = Template(f.read())
@@ -39,3 +46,6 @@ def send_reset_email(user, token):
     email_text = MIMEText(html, 'html')
 
     send_email(user.email, email_text)
+
+    if current_app.config['DEBUG']:
+        return req.url
