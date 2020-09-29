@@ -81,7 +81,7 @@ export default function LoginForm() {
                     values = {fields.password}
                     onChange={handleFieldChange}
                     placeholder="Password"
-                    autoComplete="password"
+                    autoComplete="current-password"
                     required/>
             </FormGroup>
             {isIncorrect ? <p className="response invalidResp">Incorrect email or password, please try again.</p> : null }

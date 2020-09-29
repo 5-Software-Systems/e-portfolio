@@ -112,7 +112,7 @@ export default function DetailUpdate() {
                     onChange={handleFieldChange}
                     value={fields.new_Firstname}
                     placeholder={`${user.name_first}`}
-                    autoComplete="name"
+                    autoComplete="given-name"
                 />
             </FormGroup>
             <FormGroup controlId="new_Lastname">
@@ -122,7 +122,7 @@ export default function DetailUpdate() {
                     onChange={handleFieldChange}
                     value={fields.new_Lastname}
                     placeholder={`${user.name_last}`}
-                    autoComplete="surname"
+                    autoComplete="family-name"
                 />
             </FormGroup>
             {isComplete ?
