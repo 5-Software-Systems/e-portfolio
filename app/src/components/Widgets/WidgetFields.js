@@ -8,7 +8,8 @@ export default function GetFields(props) {
     const Auth = isAuthorized();    
 
     const [fields, setFields] = useState([]);
-    const [text, setText] = useState(props.data);
+    const [text, setText] = useState(props.defaultData);
+
 
     function setTextList(field, txt) {
         var textOBJ = text;
@@ -20,8 +21,8 @@ export default function GetFields(props) {
     }
 
     function getDefaultData() {
-        if (props.changed) {
-            return 'abc';
+        if (props.changed != 0) {
+            return {};
         }
         return props.defaultData;
     }
@@ -37,7 +38,6 @@ export default function GetFields(props) {
 //    }
 
     useEffect( () => {
-
         function getFieldRequirementsForEachWidget(data) {
             var i=0;
             for (i = 0; i<data.length; i++) {
@@ -61,7 +61,9 @@ export default function GetFields(props) {
     }, [props, Auth]);
 
     useEffect( () => {
-        setText({});
+        if (props.changed) {
+            setText({});
+        }
     }, [props.type]);
 
     return (
