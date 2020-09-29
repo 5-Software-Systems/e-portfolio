@@ -6,6 +6,7 @@ from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
 
+from ..util.exception import RequestError
 from ..util.funcs import rel_path
 
 
@@ -22,7 +23,10 @@ def send_email(addr, text: MIMEText):
     msg['Subject'] = "Reset Password"
     msg.attach(text)
 
-    server.send_message(msg)
+    try:
+        server.send_message(msg)
+    except smtplib.SMTPRecipientsRefused as e:
+        raise RequestError(e.args[0]['email'][1])
 
 
 def send_reset_email(user, token):

@@ -59,8 +59,9 @@ def test_logout(app, client):
     assert login_res.status_code == 200
 
     auth = json.loads(login_res.data)['Authorization']
-
-    res = client.post('/api/auth/logout', headers={'Authorization': 'Bearer {}'.format(auth)})
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(auth)})
+    res = client.post('/api/auth/logout', headers=headers)
     assert res.status_code == 200
 
 
@@ -69,8 +70,9 @@ def test_check_token(app, client):
     login_res, user_res = login(app, client)
 
     auth = json.loads(login_res.data)['Authorization']
-
-    res = client.get('/api/auth/user', headers={'Authorization': 'Bearer {}'.format(auth)})
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(auth)})
+    res = client.get('/api/auth/user', headers=headers)
 
     assert res.status_code == 200
 
@@ -87,13 +89,14 @@ def test_rest_password(app, client):
     auth = json.loads(login_res.data)['Authorization']
 
     new_password = "new_password"
-    print(json.loads(user_res.data))
+
     data = {
         "public_id": json.loads(user_res.data)['user']['public_id'],
         "password": new_password
     }
-
-    res = client.put('api/auth/password_reset', data=json.dumps(data), headers={'Authorization': 'Bearer {}'.format(auth)})
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(auth)})
+    res = client.put('api/auth/password_reset', data=json.dumps(data), headers=headers)
 
     assert res.status_code == 200
 

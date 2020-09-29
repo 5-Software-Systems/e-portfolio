@@ -94,6 +94,7 @@ class Reset(Resource):
         Change password
         """
         data = request.json
+
         return auth_service.reset_password(data), 200
 
 
