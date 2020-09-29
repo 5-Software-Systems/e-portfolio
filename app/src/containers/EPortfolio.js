@@ -67,8 +67,8 @@ export default function EPortfolio(props) {
     }, [PID, history, Auth]);
 
     
-    const width = 307;
-    const height = 307;
+    const width = 300;
+    const height = 300;
     const columns = 5;
 
     async function addWidget() {
