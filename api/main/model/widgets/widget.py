@@ -17,7 +17,7 @@ class WidgetBase(Model):
     public_id = db.Column(db.String(100), nullable=False, unique=True, default=lambda: str(uuid.uuid4()))
     portfolio_id = db.Column(db.Integer, ForeignKey('portfolio.id'), nullable=False)
     widget_type = db.Column(db.String(100), nullable=False)
-    _location = db.Column(db.String(10), name='location', default="[0,0,0,0]", nullable=True)
+    _location = db.Column(db.String(20), name='location', default=lambda: json.dumps([0, 0, 0, 0]), nullable=True)
 
     portfolio = db.relationship('Portfolio')
 
