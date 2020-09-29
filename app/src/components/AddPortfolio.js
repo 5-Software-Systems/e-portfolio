@@ -37,8 +37,6 @@ export default function AddPortfolio(props) {
         const portfolio = await fetch('api/user/'+ props.PID + '/portfolio', requestOptions);
 
         const data = await portfolio.json();
-
-        console.log(data);
         
         const postInitialWidget = {
             method: 'POST',

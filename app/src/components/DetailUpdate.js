@@ -60,7 +60,6 @@ export default function DetailUpdate() {
                 headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth},
                 body: patch
             };
-            console.log(requestOptions_patch);
             await fetch("/api/user/" + user.public_id, requestOptions_patch);
         }
 

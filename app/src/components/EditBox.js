@@ -50,11 +50,9 @@ export default function EditBox(props) {
   }
 
   const onApplyClick = () => {
-    console.log(data);
-    console.log(Object.keys(data).length === 0);
     //bug roundabout coldfix 
     if (Object.keys(data).length === 0) {
-        window.alert('Nothing entered! 😱 Please try again 😅');
+        window.alert('Nothing new entered!\nTry again');
     }
     else {
       (updateWidget());

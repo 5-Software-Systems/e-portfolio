@@ -63,7 +63,6 @@ class MyGrid extends React.Component {
             </ReactGridLayout>
         </div>
       )
-      //console.log('after');
       return out;
     }
   }
