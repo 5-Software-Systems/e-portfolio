@@ -1,9 +1,12 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import PasswordResetForm from '../components/PwordReset_Form';
+import DetailUpdate from '../components/DetailUpdate';
 
 export default function Settings() {
     return (
-        <Fragment>
-
-        </Fragment>
+        <div className="form-container m-auto">
+            <DetailUpdate />
+            <PasswordResetForm />
+        </div>
     );
 };
