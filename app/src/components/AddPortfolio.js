@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState, Fragment }from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
@@ -7,10 +7,10 @@ import { isAuthorized } from "../util/cookies";
 
 function AddPortfolioInfo(){
     return(
-        <div className="eportfoliopreview">
+        <Fragment>
             <h3>Add ePortfolio</h3>
             <h1> + </h1>
-        </div>
+        </Fragment>
     )
 }
 
@@ -59,36 +59,40 @@ export default function AddPortfolio(props) {
     
 
     return (
-        <Popup
-            trigger={<button className="addButton"> {AddPortfolioInfo()} </button>}
-            modal
-            className="ePortfolio-popup"
-            closeOnDocumentClick={false}
-            nested>
-            {close => (
-            <div className="modal">
-                <button className="close" onClick={close}>
-                &times;
-                </button>
-                <div className="header2"> <h1>Add Portfolio</h1> </div>
-                <div className="content">
-                {' '}
-                <form>
-                    <label>
-                        Portfolio Name:<br />
-                        <input className='basePageTextBox' type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
-                    </label>
-                </form>   
-                </div>
-                <div className="actions">
-                <button className="button" onClick={() => {
-                            handleSubmit();
-                            close(); 
-                            update();
-                }}> Add </button>
-                </div>
+        <div className="eportfoliopreview">
+            <div className="eportfolioinfo">
+                <Popup
+                    trigger={<button className="addButton"> {AddPortfolioInfo()} </button>}
+                    modal
+                    className="ePortfolio-popup"
+                    closeOnDocumentClick={false}
+                    nested>
+                    {close => (
+                    <div className="modal">
+                        <button className="close" onClick={close}>
+                        &times;
+                        </button>
+                        <div className="header2"> <h1>Add Portfolio</h1> </div>
+                        <div className="content">
+                        {' '}
+                        <form>
+                            <label>
+                                Portfolio Name:<br />
+                                <input className='basePageTextBox' type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
+                            </label>
+                        </form>
+                        </div>
+                        <div className="actions">
+                        <button className="button" onClick={() => {
+                                    handleSubmit();
+                                    close();
+                                    update();
+                        }}> Add </button>
+                        </div>
+                    </div>
+                    )}
+                </Popup>
             </div>
-            )}
-        </Popup>
+        </div>
     )
 }

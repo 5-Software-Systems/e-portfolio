@@ -179,12 +179,12 @@
 .ePortfolio-popup-content .menu-item {
 	background-color: #121212;
 	border-radius: #cf6679;
-	}
+}
 
   
 .ePortfolioBody .blocker {
 	  height: 150%;
-	  width: 150%; 
+	  width: 150%;
 	  background-color: transparent;
 	  position: absolute;
 	  z-index: 0;

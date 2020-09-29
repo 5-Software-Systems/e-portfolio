@@ -81,8 +81,6 @@ export default function EditBox(props) {
     setChangeCount(old + 1);
   }
 
-
-
   return (
       <Popup
           trigger={<button className="settingsButton">⚙</button>}

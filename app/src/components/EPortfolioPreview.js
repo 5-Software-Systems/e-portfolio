@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
 import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
@@ -61,7 +60,7 @@ function EPortfolioPreview(props){
                                 onChange={(e) => setNewName(e.target.value)}
                             />
                         </label>
-                    </div>   
+                    </div>
                     </div>
                     <div className="actions">
                     <button className="button" onClick={() => {
@@ -73,7 +72,7 @@ function EPortfolioPreview(props){
                     </div>
                 </div>
                 )}
-            </Popup> 
+            </Popup>
         )
     }
 
@@ -86,10 +85,10 @@ function EPortfolioPreview(props){
                 on={['hover', 'focus']}
                 mouseLeaveDelay={100}
                 mouseEnterDelay={0}
-                contentStyle={{ padding: '0px', border: 'none' }}
+                contentStyle={{ padding: '0px', border: 'none' ,width: '80px'}}
                 arrow={false}
                 nested
-                className="ePortfolio-popup"
+                className="basepage"
                 >
                 {close => (
                     <div className="menu">
@@ -113,16 +112,12 @@ function EPortfolioPreview(props){
     }
 
     return(
-        <div className="eportfoliopreview"> 
-            <div className="eportfolioinfo">
-                <a href={ link }>
-                    <div>
-                        <h3>{props.name}</h3>
-                        <p> {props.id} </p>
-                        <img src={props.img} alt="" height='150'/>
-                    </div>
-                </a>
-            </div>
+        <div className="eportfoliopreview">
+            <a href={ link } className="eportfolioinfo">
+                <h3>{props.name}</h3>
+                <p> {props.id} </p>
+                <img src={props.img} alt="" height='150'/>
+            </a>
             <div className="button_container" >
                 {settingsButton()}
             </div>
