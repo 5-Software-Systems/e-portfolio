@@ -116,7 +116,7 @@ function EPortfolioPreview(props){
 
     return(
         <div className="eportfoliopreview"> 
-            <div class="eportfolioinfo"> 
+            <div className="eportfolioinfo">
                 <a href={ link }>
                     <div>
                         <h3>{props.name}</h3>
@@ -125,7 +125,7 @@ function EPortfolioPreview(props){
                     </div>
                 </a>
             </div>
-            <div class="button_container" > 
+            <div className="button_container" >
                 {settingsButton()}
             </div>
             

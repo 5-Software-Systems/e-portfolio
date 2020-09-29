@@ -1,4 +1,3 @@
-//your mum and dad and step-brother
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
 import ReactGridLayout from 'react-grid-layout';

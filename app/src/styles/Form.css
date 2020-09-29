@@ -78,3 +78,26 @@
   opacity: 0.8;
   border: 2px solid #2b8155;
 }
+
+.form-overlay .modal {
+    font-size: 12px;
+  }
+  .form-overlay .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .form-overlay .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+  }
+
+.form-content {
+    width: 380px;
+    align: center;
+	background-color: #fff;
+	border: 3px solid #f7f8fa;
+}
