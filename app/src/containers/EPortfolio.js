@@ -40,9 +40,6 @@ export default function EPortfolio(props) {
         const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
         const w_data = await w_response.json();
         setWidget(w_data.widgets);
-        console.log("yeeta")
-        console.log(w_data.widgets);
-        console.log("yeetb")
     }
 
     //store db

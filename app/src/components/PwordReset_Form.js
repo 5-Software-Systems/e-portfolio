@@ -32,7 +32,6 @@ export default function PasswordResetForm() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email: String(fields.email).toLowerCase(), password: fields.old_Password})
                 };
-            console.log(requestOptions_ver);
             const ver_data = await fetch('/api/auth/login', requestOptions_ver);
             const data = await ver_data.json();
             const auth64 = data.Authorization
