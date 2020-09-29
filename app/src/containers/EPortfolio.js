@@ -131,14 +131,11 @@ export default function EPortfolio(props) {
     return (
         <div className='eportfolioBody'>
             <header className='header'>
-                <div className ='left'>
-                    <h1 className="impact" >
-                        <a href="/profile">
-                            {profile.title}
-                        </a>
+                <a href="/profile" className="impact">
+                    <h1 >
+                        {profile.title}
                     </h1>
-                </div>
-                <div className='right'>
+                </a>
                 {!props.preview ? <button className='addWidgetButton'
                                     onClick={
                                         () => {
@@ -147,19 +144,16 @@ export default function EPortfolio(props) {
                                     }
                                     > {editModeToggleText()} </button>
                 : null}
-
-                    {editMode ?
-                    <button className='addWidgetButton'
-                        onClick={() => {
-                                addWidget();
-                                fetchWidgets();
-                            }
+                {editMode ?
+                <button className='addWidgetButton'
+                    onClick={() => {
+                            addWidget();
+                            fetchWidgets();
                         }
-                    > Add Widget </button>
-                    : <div></div>
                     }
-
-                </div>
+                > Add Widget </button>
+                : null
+                }
             </header>
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} onLayoutChange={onLayoutChange} isDraggable={movable && editMode} isResizable={movable && editMode}>
                 {widgets.map(widget =>(
