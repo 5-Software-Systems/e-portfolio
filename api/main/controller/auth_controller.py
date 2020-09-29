@@ -68,19 +68,23 @@ class CheckToken(Resource):
 
 
 @namespace.route('/reset')
-class Reset(Resource):
-    """
-    Reset log in details
-    """
+class OldReset(Resource):
 
-    @namespace.expect(api_model.user_email)
-    @namespace.marshal_with(api_model.response)
     def post(self):
         """
-        Reset log in details
+        DEPRECATED
         """
-        data = request.json
-        return auth_service.send_reset_password(data), 200
+        return 'deprecated method, use /auth/password_forgot', 301
+
+    def put(self):
+        """
+        DEPRECATED
+        """
+        return 'deprecated method, use /auth/password_reset', 301
+
+
+@namespace.route('/password_reset')
+class Reset(Resource):
 
     @namespace.expect(api_model.auth_token_header, api_model.pw_reset)
     @namespace.marshal_with(api_model.response)
@@ -90,4 +94,21 @@ class Reset(Resource):
         Change password
         """
         data = request.json
+
         return auth_service.reset_password(data), 200
+
+
+@namespace.route('/password_forgot')
+class Forgot(Resource):
+    """
+    Reset log in details
+    """
+
+    @namespace.expect(api_model.user_email)
+    @namespace.marshal_with(api_model.link_response)
+    def post(self):
+        """
+        Reset log in details
+        """
+        data = request.json
+        return auth_service.forgot_password(data), 200

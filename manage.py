@@ -2,7 +2,6 @@ from flask_script import Manager
 
 from app import app, db
 from api.util import db as dbtest
-from api.util import api_
 
 manager = Manager(app)
 

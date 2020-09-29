@@ -1,12 +1,12 @@
 import datetime
 
 import jwt
+from flask import current_app
 
 from . import user_service, email_service
 from ..model import User, BlacklistToken
 from ..util.db import save_db_object
 from ..util.exception import *
-from ...config import SECRET_KEY
 
 
 def login_user(data):
@@ -49,14 +49,15 @@ def get_logged_in_user(bearer_auth_token):
     return user_service.get_a_user(public_id)
 
 
-def send_reset_password(data):
+def forgot_password(data):
     user = user_service.get_a_user_by_email(data.get('email'))
-    if user:
-        auth_token = encode_token({'reset': user.public_id}, datetime.timedelta(minutes=15))
-        email_service.send_reset_email(user, auth_token)
-    return {'status': 'success',
-            'message': 'Reset link sent if user exists (currently not implemented)',
-            }
+    auth_token = encode_token({'reset': user.public_id}, datetime.timedelta(minutes=15))
+    link = email_service.send_reset_email(user, auth_token)
+    return {
+        'status': 'success',
+        'message': 'Reset link sent (if user exists)',
+        'link': link
+    }
 
 
 def reset_password(data):
@@ -90,14 +91,14 @@ def encode_token(payload: dict, expiry=datetime.timedelta(days=1)):
     })
     return jwt.encode(
         payload,
-        SECRET_KEY,
+        current_app.config['SECRET_KEY'],
         algorithm='HS256'
     )
 
 
 def decode_token(token):
     try:
-        payload = jwt.decode(token, SECRET_KEY)
+        payload = jwt.decode(token, current_app.config['SECRET_KEY'])
     except jwt.ExpiredSignatureError:
         raise TokenExpired
     except jwt.InvalidTokenError:

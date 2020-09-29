@@ -1,23 +1,21 @@
-import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
 
-from flask import request
+from flask import request, current_app
 from requests.models import PreparedRequest
 from jinja2 import Template
 
-load_dotenv()
-gmail_user = os.environ.get('SMTP_EMAIL')
-gmail_password = os.environ.get('SMTP_PASS')
+from ..util.exception import RequestError
+from ..util.funcs import rel_path
 
 
 def send_email(addr, text: MIMEText):
+    gmail_user, gmail_pass = current_app.config['GMAIL_USER'], current_app.config['GMAIL_PASS']
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login(gmail_user, gmail_password)
+    server.login(gmail_user, gmail_pass)
 
     msg = MIMEMultipart()
     msg['From'] = gmail_user
@@ -25,7 +23,10 @@ def send_email(addr, text: MIMEText):
     msg['Subject'] = "Reset Password"
     msg.attach(text)
 
-    server.send_message(msg)
+    try:
+        server.send_message(msg)
+    except smtplib.SMTPRecipientsRefused as e:
+        raise RequestError(e.args[0]['email'][1])
 
 
 def send_reset_email(user, token):
@@ -35,10 +36,16 @@ def send_reset_email(user, token):
     url = host + 'password_reset'
     req.prepare(url=url, params={'auth': token})
 
-    file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../util/password-reset.html')
+    if current_app.config['TESTING']:
+        return req.url
+
+    file = rel_path('../util/password-reset.html', __file__)
     with open(file) as f:
         html_template = Template(f.read())
-    html = html_template.render(link=req.url)
+    html = html_template.render(link=req.url, host=host, name=user.name_first)
     email_text = MIMEText(html, 'html')
 
     send_email(user.email, email_text)
+
+    if current_app.config['DEBUG']:
+        return req.url

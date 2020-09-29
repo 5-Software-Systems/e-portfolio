@@ -103,6 +103,7 @@ export default function EPortfolio(props) {
                                     })
             };
             await fetch('/api/widget/' + id, requestOptions);
+            fetchWidgets();
 
         }
 
