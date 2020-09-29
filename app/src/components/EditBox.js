@@ -1,11 +1,11 @@
 //your mum and dad
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 //-----------dependencies------------------------
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import '../styles/ePortfolioIndex.css';
+import '../styles/ePortfolio-popup.css';
 //------------------------------------------------
-import '../styles/widget-styles.css';
+import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf';
 
@@ -22,13 +22,11 @@ export default function EditBox(props) {
   const [changeCount, setChangeCount] = useState(0);
 
   async function deleteWidget() {
-      {
-          const requestOptions = {
-              method: 'DELETE',
-              headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
-          };
-          await fetch('/api/widget/' + props.PID, requestOptions);
-      }
+      const requestOptions = {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
+      };
+      await fetch('/api/widget/' + props.PID, requestOptions);
   }
 
   async function updateWidget() {
@@ -83,8 +81,6 @@ export default function EditBox(props) {
     setChangeCount(old + 1);
   }
 
-
-
   return (
       <Popup
           trigger={<button className="settingsButton">⚙</button>}
@@ -92,6 +88,7 @@ export default function EditBox(props) {
           nested
           closeOnDocumentClick={false}
           onOpen={openWidgetSettings}
+          className="ePortfolio-popup"
       >
       {close => (
       <div className="modal">

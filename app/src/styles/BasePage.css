@@ -1,140 +1,164 @@
 .basepage {
-     min-height: 100vh;
+     min-height: 68vh;
      display: flex;
      flex-wrap: wrap;
      justify-content: space-around;
      align-items: center;
 }
+ .basepage .title {
+      align-content: center;
+ }
 
-     .basepage .title {
-          align-content: center;
-     }
+ .basepage .eportfoliopreview{
+      width: 10%;
+      min-width: 300px;
+      height: 300px;
+      display: flex;
+      margin: 10px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: #f7f8fa;
+      box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.829);
+      border-radius: 20px;
+      transition: background-color, 0.2s;
+ }
 
-     .basepage .eportfoliopreview{
-          height: 300px;
-          width: 300px;
-          display: flex;
-          margin: 10px;
-          flex-direction: column;
-          justify-content: space-around;
-          align-items: center;
-          position: relative;
-          overflow: hidden;
-          border: 5px solid #1a1a1a;
-          background: #1a1a1a;
-          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
-          border-radius: 20px;
-          transition: background-color, 0.2s;
-     }
+ .basepage .eportfoliopreview:hover{
+      background-color: #f0f1ff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
+      transition: background-color, box-shadow, 0.5s;
+ }
 
-     .basepage .eportfoliopreview:hover{
-          background-color: #000000;
-     }
+ .basepage .eportfoliopreview * {
+      color: #000;
+      font-family: Roboto;
+      text-align: center;
+ }
 
-     .basepage .eportfoliopreview * {
-          color: rgb(211, 211, 211);
-          font-family: Roboto;
-          text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.829);
-          text-align: center;
-     }
+ .basepage .eportfolioinfo {
+      height: 100%;
+      width: 100%;
+      margin: 20px;
+      padding: 0px 20px;
+ }
 
-     .basepage .eportfolioinfo {
-          align-items: center
-     }
+ .basepage .eportfolioinfo > * > h3,
+ .basepage .eportfolioinfo > h3 {
+      align-items: center;
+      font-size: 30px;
+      font-weight: 600;
+ }
 
-     .basepage .button_container {
-          color: black;
-          border: 0; 
-          border-radius: 10px;
-          bottom: 5px;
-          left: 5px;
-          position: absolute;
-          outline: 0;
-     }
+ .basepage .eportfolioinfo > * > h3,
+ .basepage .eportfolioinfo > h3 {
+      align-items: center;
+      font-size: 30px;
+      font-weight: 600;
+ }
 
-     .basepage .button_container .menu-item {
+ .basepage .button_container {
+      color: black;
+      border: 0;
+      bottom: 0px;
+      left: 0px;
+      align: right;
+      position: absolute;
+      outline: 0;
+      width: 40px;
+      height: 40px;
+ }
+
+ .basepage .button_container .menu-item {
+     background-color: transparent;
+     margin: 7.5px;
+     border: 0px;
+     outline: 0;
+ }
+
+ .basepage-content {
+      background-color: #fff;
+      width: 80px;
+ }
+
+ .basepage-content > * > .menu-item {
      background-color: transparent;
      border: none;
+     text-align: left;
      outline: 0;
-     }
+     width: 100%;
+ }
 
-     .menu-item {
-          align-items: center;
-          background-color: transparent;
-          border: none;
-          outline: none;
-          color: rgb(211, 211, 211);
-     }
+  .basepage-content > * > .menu-item:hover {
+      background-color: #f0f1ff;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.829);
+      transition: background-color, box-shadow, 0.5s;
+ }
 
-     .basepage .options {
-          position: absolute;
-          top: 30px;
-          right: 5px;
-          border: 1px solid #1a1a1a;
-          border-radius: 1000000px
-     }
-     
-     .basepage ul {
-          list-style: none;
-     }
+ .basepage .options {
+      position: absolute;
+      top: 30px;
+      right: 5px;
+      border: 1px solid #1a1a1a;
+      border-radius: 1000000px
+ }
 
-     .basepage li {
-          text-align: center;
-          background-color: darkgray;
-          outline: 0;
-          border: 1px solid #1a1a1a;
-          
-     }
+ .basepage ul {
+      list-style: none;
+ }
 
+ .basepage li {
+      text-align: center;
+      background-color: darkgray;
+      outline: 0;
+      border: 1px solid #1a1a1a;
 
-     
-     .basepage li:hover {
-          background-color: grey;
-          cursor: pointer;
-     }
-          
-     .basepage .modal {
-          font-size: 12px;
-     }
-     .basepage .modal > .header {
-          width: 100%;
-          border-bottom: 1px solid gray;
-          font-size: 18px;
-          text-align: center;
-          padding: 5px;
-     }
-     .basepage .modal > .content {
-          width: 100%;
-          padding: 10px 5px;
-     }
-     .basepage .modal > .actions {
-          width: 100%;
-          padding: 10px 5px;
-          margin: auto;
-          text-align: center;
-     }
-     .basepage .modal > .close {
-          cursor: pointer;
-          position: absolute;
-          display: block;
-          padding: 2px 5px;
-          line-height: 20px;
-          right: -10px;
-          top: -10px;
-          font-size: 24px;
-          background: #ffffff;
-          border-radius: 18px;
-          border: 1px solid #cfcece;
-     }
+ }
 
-.basePageTextBox {
-     border-radius: 5px;
-     background-color: rgba(0, 0, 0, 0.363);
-     outline: none;
-     border: none;
-}
+ .basepage li:hover {
+      background-color: grey;
+      cursor: pointer;
+ }
+
+ .basepage .modal {
+      font-size: 12px;
+ }
+ .basepage .modal > .header {
+      width: 100%;
+      border-bottom: 1px solid gray;
+      font-size: 18px;
+      text-align: center;
+      padding: 5px;
+ }
+ .basepage .modal > .content {
+      width: 100%;
+      padding: 10px 5px;
+ }
+ .basepage .modal > .actions {
+      width: 100%;
+      padding: 10px 5px;
+      margin: auto;
+      text-align: center;
+ }
+ .basepage .modal > .close {
+      cursor: pointer;
+      position: absolute;
+      display: block;
+      padding: 2px 5px;
+      line-height: 20px;
+      right: -10px;
+      top: -10px;
+      font-size: 24px;
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #cfcece;
+ }
 
 .addButton {
+     height: 100%;
+     width: 100%;
      outline: none;
      border: none;
      background-color: transparent;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Popup from 'reactjs-popup';
+import '../../styles/Form.css';
 
 export default function CustomPopup(props) {
     const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function CustomPopup(props) {
             <Button className="btn btn-info m-2" onClick={() => setOpen(o => !o)} type="button">
                 { name }
             </Button>
-            <Popup className="modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
+            <Popup className="form modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
                 <div className="form-container">
                     { content }
                     <CloseButton />

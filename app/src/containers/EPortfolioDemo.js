@@ -1,6 +1,6 @@
 import React from "react";
 import ReactGridLayout from 'react-grid-layout';
-import '../styles/widget-styles.css';
+import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 

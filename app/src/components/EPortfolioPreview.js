@@ -1,17 +1,14 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
+import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
 
 
 
 function EPortfolioPreview(props){
-    const Auth = isAuthorized();    
-
-    
+    const Auth = isAuthorized();
     const link = "/portfolio/" + props.id;
-
 
     //delete function 
     async function handleDelete() {
@@ -44,21 +41,26 @@ function EPortfolioPreview(props){
                 trigger={<button className="menu-item" > Edit </button>}
                 modal
                 nested
+                className="ePortfolio-popup"
                 closeOnDocumentClick={false}>
                 {close => (
                 <div className="modal">
                     <button className="close" onClick={close}>
                     &times;
                     </button>
-                    <div className="header"> Add Portfolio </div>
-                    <div className="content">
+                    <div className="header2"> <h1>Edit Portfolio</h1> </div>
+                    <div className="content2">
                     {' '}
                     <div>
                         <label>
                             Portfolio Name:<br />
-                            <input className='basePageTextBox'type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                            <input className='basePageTextBox'
+                                type="text"
+                                value={newName}
+                                onChange={(e) => setNewName(e.target.value)}
+                            />
                         </label>
-                    </div>   
+                    </div>
                     </div>
                     <div className="actions">
                     <button className="button" onClick={() => {
@@ -70,7 +72,7 @@ function EPortfolioPreview(props){
                     </div>
                 </div>
                 )}
-            </Popup> 
+            </Popup>
         )
     }
 
@@ -78,14 +80,15 @@ function EPortfolioPreview(props){
     function settingsButton() {
         return (
             <Popup
-                trigger={<button className="menu-item">  ⚙️  </button>}
+                trigger={<button className="menu-item"><span role="img">⚙</span></button>}
                 position="right bottom"
                 on={['hover', 'focus']}
                 mouseLeaveDelay={100}
                 mouseEnterDelay={0}
-                contentStyle={{ padding: '0px', border: 'none' }}
+                contentStyle={{ padding: '0px', border: 'none' ,width: '80px'}}
                 arrow={false}
                 nested
+                className="basepage"
                 >
                 {close => (
                     <div className="menu">
@@ -108,21 +111,14 @@ function EPortfolioPreview(props){
         }
     }
 
-    
-
-
     return(
-        <div className="eportfoliopreview"> 
-            <div class="eportfolioinfo"> 
-                <a href={ link }>
-                    <div>
-                        <h3>{props.name}</h3>
-                        <p> {props.id} </p>
-                        <img src={props.img} alt='image goes here' height='150'/>
-                    </div>
-                </a>
-            </div>
-            <div class="button_container" > 
+        <div className="eportfoliopreview">
+            <a href={ link } className="eportfolioinfo">
+                <h3>{props.name}</h3>
+                <p> {props.id} </p>
+                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>
+            </a>
+            <div className="button_container" >
                 {settingsButton()}
             </div>
             

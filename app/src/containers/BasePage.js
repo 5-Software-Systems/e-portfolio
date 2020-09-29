@@ -41,12 +41,13 @@ export default function BasePage() {
     
 
     return (
-        <div className="basepage">
-            {profiles.map(profile =>(
-                < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} onUpdate={(e) => setUpdateTrue()}/>
-            ))}
-            < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>
-            
+        <div className="container">
+            <div className="basepage">
+                {profiles.map(profile =>(
+                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} onUpdate={(e) => setUpdateTrue()}/>
+                ))}
+                < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>
+            </div>
         </div>
     );
 };
