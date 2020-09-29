@@ -19,50 +19,46 @@ export default function GetFields(props) {
         }
     }
 
-
-    async function fetchWidgetTypes() {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
-        };
-        const response = await fetch('/api/widget/types', requestOptions);
-        const data = await response.json();
-        getFieldRequirementsForEachWidget(data);
-    }
-
-    function getFieldRequirementsForEachWidget(data) {
-        var i=0;
-        for (i = 0; i<data.length; i++) {
-            if (props.type === data[i].type) {
-                setFields(data[i].data);
-            }
-        }
-    }
-
     function getDefaultData() {
-        var bruhmoment;
-        if (props.changed == 0) {
-            bruhmoment =  props.defaultData;
-        } else {
-            bruhmoment = '';
+        if (props.changed) {
+            return 'abc';
         }
-        return bruhmoment;
+        return props.defaultData;
     }
 
-    function undefinedText(text) {
-        var output;
-        if (text === undefined) {
-            output = '';
-        } else {
-            output = text;
-        }
-        return output;
-    }
-
+//    function undefinedText(text) {
+//        var output;
+//        if (text === undefined) {
+//            output = '';
+//        } else {
+//            output = text;
+//        }
+//        return output;
+//    }
 
     useEffect( () => {
+
+        function getFieldRequirementsForEachWidget(data) {
+            var i=0;
+            for (i = 0; i<data.length; i++) {
+                if (props.type === data[i].type) {
+                    setFields(data[i].data);
+                }
+            }
+        }
+
+        async function fetchWidgetTypes() {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const response = await fetch('/api/widget/types', requestOptions);
+            const data = await response.json();
+            getFieldRequirementsForEachWidget(data);
+        }
+
         fetchWidgetTypes();
-    }, [props]);
+    }, [props, Auth]);
 
     useEffect( () => {
         setText({});
@@ -74,7 +70,12 @@ export default function GetFields(props) {
                     <label key={field}>
                         {field}:
                         <br />
-                        <textarea className='basePageTextBox' type="text" value={text.field} onChange={(e) => setTextList(field, e.target.value)} defaultValue={getDefaultData()[field]}/>
+                        <textarea
+                            className='basePageTextBox'
+                            type="text" value={text.field}
+                            onChange={(e) => setTextList(field, e.target.value)}
+                            defaultValue={getDefaultData()[field]}
+                        />
                         <br />
                         <br />
                     </label>

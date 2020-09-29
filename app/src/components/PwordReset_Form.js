@@ -75,7 +75,7 @@ export default function PasswordResetForm() {
                 setIncorrect(true);
             }
         }
-    }, [isLoading, fields]);
+    }, [isLoading, fields, Auth]);
 
     const handleClick = (e) => {
         e.preventDefault();

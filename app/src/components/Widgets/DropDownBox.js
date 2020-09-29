@@ -8,22 +8,20 @@ export default function DropDownBox(props) {
 
 
     const [widgetTypes, setWidgetTypes] = useState([]);
-
-    async function fetchWidgetTypes() {
-        const requestOptions = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
-        };
-        const response = await fetch('/api/widget/types', requestOptions);
-        const data = await response.json();
-        setWidgetTypes(data);
-    }
-
-
-
     useEffect( () => {
+
+        async function fetchWidgetTypes() {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const response = await fetch('/api/widget/types', requestOptions);
+            const data = await response.json();
+            setWidgetTypes(data);
+        }
+
         fetchWidgetTypes();
-    }, []);
+    }, [Auth]);
 
     return (
         <div> 

@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
@@ -8,11 +8,8 @@ import { isAuthorized } from "../util/cookies";
 
 
 function EPortfolioPreview(props){
-    const Auth = isAuthorized();    
-
-    
+    const Auth = isAuthorized();
     const link = "/portfolio/" + props.id;
-
 
     //delete function 
     async function handleDelete() {
@@ -58,7 +55,11 @@ function EPortfolioPreview(props){
                     <div>
                         <label>
                             Portfolio Name:<br />
-                            <input className='basePageTextBox'type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
+                            <input className='basePageTextBox'
+                                type="text"
+                                value={newName}
+                                onChange={(e) => setNewName(e.target.value)}
+                            />
                         </label>
                     </div>   
                     </div>
@@ -80,7 +81,7 @@ function EPortfolioPreview(props){
     function settingsButton() {
         return (
             <Popup
-                trigger={<button className="menu-item">  ⚙️  </button>}
+                trigger={<button className="menu-item"><span role="img">⚙</span></button>}
                 position="right bottom"
                 on={['hover', 'focus']}
                 mouseLeaveDelay={100}
@@ -111,9 +112,6 @@ function EPortfolioPreview(props){
         }
     }
 
-    
-
-
     return(
         <div className="eportfoliopreview"> 
             <div className="eportfolioinfo">
@@ -121,7 +119,7 @@ function EPortfolioPreview(props){
                     <div>
                         <h3>{props.name}</h3>
                         <p> {props.id} </p>
-                        <img src={props.img} alt='image goes here' height='150'/>
+                        <img src={props.img} alt="" height='150'/>
                     </div>
                 </a>
             </div>

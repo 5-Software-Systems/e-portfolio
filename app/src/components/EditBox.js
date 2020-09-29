@@ -1,5 +1,5 @@
 //your mum and dad
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 //-----------dependencies------------------------
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -22,13 +22,11 @@ export default function EditBox(props) {
   const [changeCount, setChangeCount] = useState(0);
 
   async function deleteWidget() {
-      {
-          const requestOptions = {
-              method: 'DELETE',
-              headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
-          };
-          await fetch('/api/widget/' + props.PID, requestOptions);
-      }
+      const requestOptions = {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
+      };
+      await fetch('/api/widget/' + props.PID, requestOptions);
   }
 
   async function updateWidget() {

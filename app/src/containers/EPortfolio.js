@@ -43,9 +43,27 @@ export default function EPortfolio(props) {
     }
 
     //store db
-    useEffect( async () =>{
+    useEffect( () =>{
+        async function initFetch() {
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+            const p_data = await p_response.json();
+            if (p_data.error) {
+                history.push("/profile");
+                return;
+            }
+            setProfile(p_data.portfolio);
+
+            const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+            const w_data = await w_response.json();
+            setWidget(w_data.widgets);
+        }
+
         setMovable(true);
-        fetchWidgets();
+        initFetch();
     }, [PID, history, Auth]);
 
     
@@ -88,27 +106,27 @@ export default function EPortfolio(props) {
 
         }
 
-      }
+    }
 
-      function switchFalse() {
+    function switchFalse() {
         setMovable(false);
-      }
+    }
 
-      function toggleEdit() {
-          setEditMode(!editMode);
-      }
+    function toggleEdit() {
+        setEditMode(!editMode);
+    }
 
-      function editModeToggleText() {
-          if (editMode) {
+    function editModeToggleText() {
+        if (editMode) {
             return "Switch to Preview Mode"
-          }
-          return "Switch to Edit Mode"
-      }
+        }
+        return "Switch to Edit Mode"
+    }
 
-      function onSettingsUpdate() {
-          fetchWidgets();
-          setMovable(true);
-      }
+    function onSettingsUpdate() {
+        fetchWidgets();
+        setMovable(true);
+    }
 
     return (
         <div className='eportfolioBody'>
@@ -132,8 +150,7 @@ export default function EPortfolio(props) {
 
                     {editMode ?
                     <button className='addWidgetButton'
-                        onClick={
-                            () => {
+                        onClick={() => {
                                 addWidget();
                                 fetchWidgets();
                             }

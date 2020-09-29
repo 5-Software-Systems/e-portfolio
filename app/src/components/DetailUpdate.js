@@ -24,18 +24,19 @@ export default function DetailUpdate() {
         new_Lastname: ""
     });
 
-    async function getUser() {
-        //get user id
-        const requestOptions_id = {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}
-        };
-        const user_data = await fetch('api/auth/user', requestOptions_id);
-        const returned_user = await user_data.json();
-        setUser(returned_user);
-    }
-
     useEffect(() => {
+
+        async function getUser() {
+            //get user id
+            const requestOptions_id = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + Auth}
+            };
+            const user_data = await fetch('api/auth/user', requestOptions_id);
+            const returned_user = await user_data.json();
+            setUser(returned_user);
+        }
+
         async function handleSubmit() {
             //format patch body
             if (fields.new_Email.length !== 0) {
@@ -85,7 +86,7 @@ export default function DetailUpdate() {
         } else {
             getUser();
         }
-    }, [isLoading, fields, Auth, useFormFields]);
+    }, [isLoading, fields, Auth, user]);
 
     const handleClick = (e) => {
         e.preventDefault();
