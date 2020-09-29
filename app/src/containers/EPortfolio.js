@@ -40,6 +40,9 @@ export default function EPortfolio(props) {
         const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
         const w_data = await w_response.json();
         setWidget(w_data.widgets);
+        console.log("yeeta")
+        console.log(w_data.widgets);
+        console.log("yeetb")
     }
 
     //store db
@@ -94,20 +97,38 @@ export default function EPortfolio(props) {
         for (i=0; i<layout.length; i++) {
             const id = layout[i].i;
             const location = [layout[i].w, layout[i].h, layout[i].x, layout[i].y];
-
-            const requestOptions = {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({  
-                                        location: location
-                                    })
-            };
-            await fetch('/api/widget/' + id, requestOptions);
-            fetchWidgets();
-
+            if (!sameArr(widgets[i].location,location)) {
+                const requestOptions = {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json'},
+                    body: JSON.stringify({  
+                                            location: location
+                                        })
+                };
+                await fetch('/api/widget/' + id, requestOptions);
+            }
         }
-
+        updateWidgetLocations(layout);
     }
+
+    function sameArr(arr1, arr2) {
+        for (var i=0; i < arr1.length;i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function updateWidgetLocations(layout) {
+        var i;
+        for (i=0; i<layout.length; i++) {
+            const location = [layout[i].w, layout[i].h, layout[i].x, layout[i].y];
+            var wids = widgets;
+            wids[i].location = location;
+        }
+    }
+
 
     function switchFalse() {
         setMovable(false);
