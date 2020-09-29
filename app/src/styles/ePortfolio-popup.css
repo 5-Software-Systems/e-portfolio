@@ -173,11 +173,10 @@
 }
 
   
-.ePortfolioBody .blocker {
+.blocker {
 	  height: 150%;
 	  width: 150%;
 	  background-color: transparent;
 	  position: absolute;
-	  z-index: 0;
   }
 
