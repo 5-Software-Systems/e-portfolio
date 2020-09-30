@@ -101,7 +101,7 @@ export default function PasswordResetForm() {
                     onChange={handleFieldChange}
                     value={fields.old_Password}
                     placeholder="Old Password"
-                    autoComplete="password"
+                    autoComplete="current-password"
                     required/>
             </FormGroup>
             {isIncorrect ?
@@ -117,7 +117,7 @@ export default function PasswordResetForm() {
                     onChange={handleFieldChange}
                     value={fields.new_Password}
                     placeholder="New Password"
-                    autoComplete="password"
+                    autoComplete="new-password"
                     required/>
             </FormGroup>
             {isComplete ?

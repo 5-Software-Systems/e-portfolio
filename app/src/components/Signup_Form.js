@@ -87,8 +87,8 @@ export default function SignupForm() {
                     type="text"
                     values = {fields.signup_firstname}
                     onChange={handleFieldChange}
-                    placeholder="Name"
-                    autoComplete="name"
+                    placeholder="First Name"
+                    autoComplete="given-name"
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_lastname">
@@ -98,7 +98,7 @@ export default function SignupForm() {
                     values = {fields.signup_lastname}
                     onChange={handleFieldChange}
                     placeholder="Surname"
-                    autoComplete="surname"
+                    autoComplete="family-name"
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_email">
@@ -122,7 +122,7 @@ export default function SignupForm() {
                     value={fields.signup_password}
                     onChange={handleFieldChange}
                     placeholder="Password"
-                    autoComplete="password"
+                    autoComplete="current-password"
                     required/>
             </FormGroup>
             <FormGroup controlId="signup_confirmPassword">
@@ -132,7 +132,7 @@ export default function SignupForm() {
                     onChange={handleFieldChange}
                     value={fields.signup_confirmPassword}
                     placeholder="Password"
-                    autoComplete="password"
+                    autoComplete="current-password"
                     required/>
             </FormGroup>
             {isIncorrect ? <p className="response invalidResp">Incorrect details, Passwords may not be the same.</p> : null }

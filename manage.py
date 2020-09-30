@@ -19,6 +19,11 @@ def populate():
 
 
 @manager.command
+def create():
+    dbtest.create(app, db)
+
+
+@manager.command
 def clean():
     dbtest.clean(app, db)
 
