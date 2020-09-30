@@ -9,9 +9,11 @@ From^
 
 from datetime import datetime, timezone
 
+import sqlalchemy
 from sqlalchemy import orm, exc
 
 from .. import db
+from ..util.exception import RequestError
 
 
 class Model(db.Model):
@@ -33,6 +35,9 @@ class Model(db.Model):
         if commit:
             try:
                 db.session.commit()
+            except sqlalchemy.exc.DataError as e:
+                db.session.rollback()
+                raise RequestError(e.orig.__str__())
             except Exception as e:
                 db.session.rollback()
                 raise e
