@@ -55,10 +55,6 @@
   line-height: 80px;
 }
 
-.eportfolioBody .header .impact:hover {
-  background-color: #f0f1ff;
-  border: 1px solid #bbb;
-}
 
 .eportfolioBody  * {
   color: #000;
