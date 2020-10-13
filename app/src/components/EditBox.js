@@ -43,11 +43,43 @@ export default function EditBox(props) {
       await fetch('/api/portfolio/' + props.portfolioID + '/widget', requestOptions);
   }
 
-  const onDeleteClick = () => {
-      (deleteWidget());
-      (callUpdate());
 
-  }
+  function deletePopup() {
+        
+    return (
+        <Popup
+            trigger={<button className='button' > <b className='deleteText'> DELETE </b>  </button>}
+            modal
+            nested
+            className="ePortfolio-popup"
+            closeOnDocumentClick={false}>
+            {close => (
+            <div className="modal">
+                <button className="close" onClick={close}>
+                &times;
+                </button>
+                <div className="header2"> <h1>Are you sure you want to delete this widget?</h1> </div>
+                <div className="actions">
+                {' '}
+                <div>
+                    <p> 
+                        This action cannot be undone.  
+                    </p>
+                </div>
+                </div>
+                <div className="actions">
+                <button className="button" onClick={() => {
+                            deleteWidget();
+                            callUpdate();
+                            close();
+                }}> <b className='deleteText'> Delete </b> </button>
+
+                </div>
+            </div>
+            )}
+        </Popup>
+    )
+}
 
   const onApplyClick = () => {
     //bug roundabout coldfix 
@@ -104,7 +136,7 @@ export default function EditBox(props) {
           <div className='PopupBottom'>
               <div className='options'>
                   <div className="actions">
-                      <button className="button" onClick={() => {onDeleteClick(); close();}}><b className='deleteText'>DELETE</b></button>
+                      {deletePopup()}
                   </div>
               </div>
               <div className='options'>
