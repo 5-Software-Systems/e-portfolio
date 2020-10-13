@@ -150,11 +150,16 @@ export default function EPortfolio(props) {
     return (
         <div className='eportfolioBody'>
             <header className='header'>
-                <a href="/profile" className="impact">
-                    <h1 >
-                        {profile.title}
-                    </h1>
-                </a>
+                {!props.preview ?
+                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}> 
+                        <a href = '/profile'> ← </a>         
+                    </button>
+                : null}  
+        
+                <h1 className='impact'>
+                    {profile.title}
+                </h1>
+
                 {!props.preview ? <button className='addWidgetButton'
                                     onClick={
                                         () => {
