@@ -72,7 +72,7 @@
   width: auto;
 }
 
-.eportfolioBody p {
+.eportfolioBody p, .eportfolioBody h1 {
   padding-left: 15px;
   background-color: transparent;
 }
