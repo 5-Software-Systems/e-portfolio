@@ -76,6 +76,43 @@ function EPortfolioPreview(props){
         )
     }
 
+    function deletePopup() {
+        
+        return (
+            <Popup
+                trigger={<button className="menu-item" > Delete  </button>}
+                modal
+                nested
+                className="ePortfolio-popup"
+                closeOnDocumentClick={false}>
+                {close => (
+                <div className="modal">
+                    <button className="close" onClick={close}>
+                    &times;
+                    </button>
+                    <div className="header2"> <h1>Are you sure you want to delete this portfolio?</h1> </div>
+                    <div className="actions">
+                    {' '}
+                    <div>
+                        <p> 
+                            This action cannot be undone.  
+                        </p>
+                    </div>
+                    </div>
+                    <div className="actions">
+                    <button className="button" onClick={() => {
+                                handleDelete();
+                                close();
+                                update();
+                    }}> <b className='deleteText'> Delete </b> </button>
+
+                    </div>
+                </div>
+                )}
+            </Popup>
+        )
+    }
+
     //settings button 
     function settingsButton() {
         return (
@@ -98,11 +135,7 @@ function EPortfolioPreview(props){
                             alert("Copied to clipboard");
                         }}> Share </button>
                         {editButton()}
-                        <button className="menu-item" onClick={() => {
-                            handleDelete();
-                            close();
-                            update();
-                        }}> Delete </button>
+                        {deletePopup()}
                     </div>
                 )}
                 
