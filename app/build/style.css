@@ -2681,12 +2681,12 @@ body {
   transform: scale(1.1);
 }
 
-a,
+footer a,
 .link {
   color: #ff0000;
 }
 
-a:hover,
+footer a:hover,
 .link:hover {
   color: black;
 }
