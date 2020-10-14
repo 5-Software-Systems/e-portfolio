@@ -25,6 +25,12 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
 
 
+class LocalTestingConfig(Config):
+    DEBUG = True
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
+
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
@@ -33,8 +39,10 @@ class ProductionConfig(Config):
 
 config_by_name = {
     'local': LocalConfig,
+    'debug': LocalConfig,
     'test': TestingConfig,
-    'prod': ProductionConfig
+    'testlocal': LocalTestingConfig,
+    'production': ProductionConfig
 }
 
 environment = os.environ.get('ENVIRONMENT')
