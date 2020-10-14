@@ -55,7 +55,6 @@ ReactDOM.render(
                     }}
                 />
                 <Route
-                    exact
                     path="/reset/"
                     render={() => {
                         return (isLoggedIn() ? <Redirect to="/profile" /> : <ResetPage />)

@@ -15,7 +15,7 @@ import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
 import SignupForm from './components/Signup_Form';
 import ForgotForm from './components/Forgot_Form';
-import PwordResetForm from './components/PwordReset_Form';
+import PasswordResetForm from './components/PwordReset_Form';
 import UserNav from './components/RightNav/UserNav';
 
 export function HomePage() {
@@ -58,7 +58,7 @@ export function SignUpPage() {
 export function ForgotPage() {
     return (
         <Fragment>
-            <title>Login</title>
+            <title>Forgot Password</title>
             <BaseTemplate nav_right = {<p>Don't have an account? <a href="/signup" className="link">Sign Up!</a></p>} >
                 <div className="form-container m-auto">
                     <ForgotForm />
@@ -74,7 +74,7 @@ export function ResetPage() {
             <title>Password Reset</title>
             <BaseTemplate>
                 <div className="form-container m-auto">
-                    <PwordResetForm />
+                    <PasswordResetForm />
                 </div>
             </BaseTemplate>
         </Fragment>
