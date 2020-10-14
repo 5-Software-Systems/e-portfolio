@@ -13,10 +13,9 @@ import { useFormFields } from "../util/form";
 import { isAuthorized } from "../util/cookies";
 
 export default function DetailUpdate() {
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(true);
     const [isComplete, setComplete] = useState(false);
     const [user, setUser] = useState([]);
-    const Auth = isAuthorized();
 
     const [fields, handleFieldChange] = useFormFields({
         new_Email: "",
@@ -25,6 +24,7 @@ export default function DetailUpdate() {
     });
 
     useEffect(() => {
+        const Auth = isAuthorized();
 
         async function getUser() {
             //get user id
@@ -73,19 +73,18 @@ export default function DetailUpdate() {
         }
 
         if (isLoading) {
-            if (validateForm) {
+            if (validateForm()) {
                 handleSubmit().then(() => {
                     getUser();
                     setLoading(false);
                     setComplete(true);
                 });
             } else {
+                getUser();
                 setLoading(false);
             }
-        } else {
-            getUser();
         }
-    }, [isLoading, fields, Auth, user]);
+    }, [isLoading, fields, user]);
 
     const handleClick = (e) => {
         e.preventDefault();

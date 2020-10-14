@@ -46,7 +46,9 @@ def logout_user(bearer_auth_token):
 def get_logged_in_user(bearer_auth_token):
     auth_token = split_bearer_token(bearer_auth_token)
 
-    public_id = decode_token(auth_token).get('login')
+    payload = decode_token(auth_token)
+    public_id = next(item for item in [payload.get('reset'), payload.get('login')] if item is not None)
+
     if not public_id:
         raise AuthenticationError
 
