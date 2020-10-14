@@ -1,5 +1,8 @@
+import json
+import sys
+
 from flask_restplus import Api
-from flask import Blueprint
+from flask import Blueprint, current_app
 
 from .main import db, flask_bcrypt
 from .main.controller import *
@@ -23,7 +26,10 @@ api.add_namespace(model_namespace)
 
 @api.errorhandler
 def handle_server_error(e: ServerError):
-    return {
-               'error': e.__class__.__name__,
-               'message': e.error_message,
-           }, e.status_code
+    err = {
+        'error': e.__class__.__name__,
+        'message': e.error_message,
+    }
+    if current_app.config['DEBUG']:
+        print(type(e), json.dumps(err, indent=2), file=sys.stderr)
+    return err, e.status_code

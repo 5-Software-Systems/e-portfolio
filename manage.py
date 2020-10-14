@@ -1,9 +1,15 @@
 from flask_script import Manager
 
-from app import app, db
+from app import db, create_app
 from api.util import db as dbtest
 
+app = create_app()
 manager = Manager(app)
+
+
+@manager.command
+def run():
+    app.run()
 
 
 @manager.command
