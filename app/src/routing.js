@@ -14,6 +14,8 @@ import EPortfolioDemo from './containers/EPortfolioDemo';
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
 import SignupForm from './components/Signup_Form';
+import ForgotForm from './components/Forgot_Form';
+import PasswordResetForm from './components/PwordReset_Form';
 import UserNav from './components/RightNav/UserNav';
 
 export function HomePage() {
@@ -47,6 +49,32 @@ export function SignUpPage() {
             <BaseTemplate nav_right = {<p>Have an account? <a href="/login">Login.</a></p>}>
                 <div className="form-container m-auto">
                     <SignupForm />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function ForgotPage() {
+    return (
+        <Fragment>
+            <title>Forgot Password</title>
+            <BaseTemplate nav_right = {<p>Don't have an account? <a href="/signup" className="link">Sign Up!</a></p>} >
+                <div className="form-container m-auto">
+                    <ForgotForm />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function ResetPage() {
+    return (
+        <Fragment>
+            <title>Password Reset</title>
+            <BaseTemplate>
+                <div className="form-container m-auto">
+                    <PasswordResetForm />
                 </div>
             </BaseTemplate>
         </Fragment>
