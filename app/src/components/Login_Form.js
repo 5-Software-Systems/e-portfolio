@@ -84,6 +84,7 @@ export default function LoginForm() {
                     autoComplete="current-password"
                     required/>
             </FormGroup>
+            <a href="/forgot" className="forgot">Forgot Password?</a>
             {isIncorrect ? <p className="response invalidResp">Incorrect email or password, please try again.</p> : null }
             <Button
                 className="btn"

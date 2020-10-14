@@ -12,6 +12,8 @@ import {
     HomePage,
     LoginPage,
     SignUpPage,
+    ForgotPage,
+    ResetPage,
     ProfilePage,
     SettingsPage,
     PortfolioPage,
@@ -43,6 +45,20 @@ ReactDOM.render(
                     path="/signup"
                     render={() => {
                         return (isLoggedIn() ? <Redirect to="/profile" /> : <SignUpPage />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/forgot"
+                    render={() => {
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <ForgotPage />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/reset/"
+                    render={() => {
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <ResetPage />)
                     }}
                 />
                 <Route
