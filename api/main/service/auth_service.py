@@ -4,13 +4,17 @@ import jwt
 from flask import current_app
 
 from . import user_service, email_service
-from ..model import User, BlacklistToken
+from ..model import BlacklistToken
 from ..util.db import save_db_object
 from ..util.exception import *
 
 
 def login_user(data):
-    user = user_service.get_a_user_by_email(data.get('email'))
+    try:
+        user = user_service.get_a_user_by_email(data.get('email'))
+    except UserNotFound:
+        raise LoginNotFound
+
     if not user:
         raise LoginNotFound
     if not user.check_password(data.get('password')):

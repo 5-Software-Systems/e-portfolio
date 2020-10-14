@@ -27,5 +27,7 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          ENVIRONMENT: test
+          TEST_DB_URI: ${{ secrets.TEST_DB_URI }}
         run: |
           pytest
