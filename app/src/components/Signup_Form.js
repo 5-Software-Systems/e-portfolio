@@ -20,7 +20,6 @@ export default function SignupForm() {
         signup_lastname: "",
         signup_email: "",
         signup_password: "",
-        signup_confirmPassword: "",
     });
     const [isLoading, setLoading] = useState(false);
     const [isIncorrect, setIncorrect] = useState(false);
@@ -55,7 +54,6 @@ export default function SignupForm() {
                 fields.signup_lastname.length > 0 &&
                 fields.signup_email.length > 0 &&
                 fields.signup_password.length > 0 &&
-                fields.signup_confirmPassword === fields.signup_password &&
                 validateEmail(fields.signup_email)
             );
         }
@@ -123,16 +121,7 @@ export default function SignupForm() {
                     onChange={handleFieldChange}
                     placeholder="Password"
                     autoComplete="current-password"
-                    required/>
-            </FormGroup>
-            <FormGroup controlId="signup_confirmPassword">
-                <FormLabel>Confirm Password<p className="required">*</p></FormLabel>
-                <FormControl
-                    type="password"
-                    onChange={handleFieldChange}
-                    value={fields.signup_confirmPassword}
-                    placeholder="Password"
-                    autoComplete="current-password"
+                    minLength="5"
                     required/>
             </FormGroup>
             {isIncorrect ? <p className="response invalidResp">Incorrect details, Passwords may not be the same.</p> : null }

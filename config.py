@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Config:
@@ -22,12 +25,6 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
 
 
-class TestingLocalConfig(Config):
-    DEBUG = True
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-
-
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
@@ -36,8 +33,9 @@ class ProductionConfig(Config):
 
 config_by_name = {
     'local': LocalConfig,
-    'debug': LocalConfig,
     'test': TestingConfig,
-    'testlocal': TestingLocalConfig,
-    'production': ProductionConfig
+    'prod': ProductionConfig
 }
+
+environment = os.environ.get('ENVIRONMENT')
+config = config_by_name[environment]

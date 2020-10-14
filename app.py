@@ -1,19 +1,13 @@
-import os
-import sys
-
 import pytest
 
 from flask import Flask, render_template
-from dotenv import load_dotenv
 
-from config import config_by_name
+from config import config
 from api import blueprint, db, flask_bcrypt
 from api.main.util.funcs import rel_path
 
-load_dotenv()
 
-
-def create_app(env=None):
+def create_app():
     app = Flask(
         import_name='__main__',
         static_folder=rel_path('app/build', __file__),
@@ -21,12 +15,8 @@ def create_app(env=None):
         static_url_path='/'
     )
 
-    if env is None:
-        env = os.environ.get('ENVIRONMENT')
-    config = config_by_name[env]
-    print('config:', config, file=sys.stderr)
     app.config.from_object(config)
-
+    print(config)
     db.init_app(app)
     flask_bcrypt.init_app(app)
 
