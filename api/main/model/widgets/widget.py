@@ -19,7 +19,7 @@ class WidgetBase(Model):
     widget_type = db.Column(db.String(100), nullable=False)
     _location = db.Column(db.String(20), name='location', default=lambda: json.dumps([0, 0, 0, 0]), nullable=True)
 
-    portfolio = db.relationship('Portfolio')
+    portfolio = db.relationship('Portfolio', cascade="all, delete")
 
     __mapper_args__ = {
         'polymorphic_identity': 'widget',
