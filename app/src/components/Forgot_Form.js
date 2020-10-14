@@ -23,7 +23,7 @@ export default function LoginForm() {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({email: String(fields.login_email).toLowerCase()})
+                body: JSON.stringify({email: String(fields.email).toLowerCase()})
             };
             //util cookie/authentication implementation
             await fetch('api/auth/password_forgot', requestOptions);

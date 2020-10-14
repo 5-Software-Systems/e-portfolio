@@ -54,9 +54,10 @@ export default function PasswordResetForm() {
                 if (isLoggedIn()) {
                     Auth = isAuthorized();
                 } else {
-                    const URL = window.location.href.split('/');
-                    Auth = URL[URL.length - 1]
+                    const urlParams = window.location.search;
+                    Auth = new URLSearchParams(urlParams).get('auth')
                 }
+                console.log(Auth)
                 handleSubmit(Auth).then(() => {
                     setLoading(false);
                 });
