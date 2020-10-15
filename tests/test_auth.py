@@ -1,6 +1,7 @@
 import json
+from urllib import parse
 
-from .test_user import create_user, get_headers
+from .test_user import create_user, get_headers, user_data
 
 
 ####################################################
@@ -9,53 +10,13 @@ from .test_user import create_user, get_headers
 
 # /auth/login
 def test_login(app, client):
-    login_res, user_res = login(app, client)
+    login_res, user_res = login_verify(app, client)
     assert login_res.status_code == 200
-
-
-# # /auth/login
-# def test_incorrect_password_login(app, client):
-#     res = create_user(app, client)
-#     assert res.status_code == 201
-#
-#     data = {
-#         "email": "email",
-#         "password": "incorrect_password"
-#     }
-#
-#     res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
-#     assert res.status_code == 401
-#
-#     expected = {
-#         "error": "LoginNotFound",
-#         "message": "Login details incorrect, check and try again"
-#     }
-#     assert expected == json.loads(res.get_data(as_text=True))
-
-
-# # /auth/login
-# def test_unknown_user_login(app, client):
-#     res = create_user(app, client)
-#     assert res.status_code == 201
-#
-#     data = {
-#         "email": "unknown_user",
-#         "password": "password"
-#     }
-#
-#     res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
-#     assert res.status_code == 404
-#
-#     expected = {
-#         "error": "LoginNotFound",
-#         "message": "Login details incorrect, check and try again"
-#     }
-#     assert expected == json.loads(res.get_data(as_text=True))
 
 
 # /auth/logout
 def test_logout(app, client):
-    login_res, user_res = login(app, client)
+    login_res, user_res = login_verify(app, client)
     assert login_res.status_code == 200
 
     auth = json.loads(login_res.data)['Authorization']
@@ -67,7 +28,7 @@ def test_logout(app, client):
 
 # /auth/user
 def test_check_token(app, client):
-    login_res, user_res = login(app, client)
+    login_res, user_res = login_verify(app, client)
 
     auth = json.loads(login_res.data)['Authorization']
     headers = get_headers()
@@ -83,8 +44,8 @@ def test_forgot_password(app, client):
     assert res.status_code == 200
 
 
-def test_rest_password(app, client):
-    login_res, user_res = login(app, client)
+def test_reset_password(app, client):
+    login_res, user_res = login_verify(app, client)
 
     auth = json.loads(login_res.data)['Authorization']
 
@@ -101,21 +62,50 @@ def test_rest_password(app, client):
     assert res.status_code == 200
 
 
+def test_verify(app, client):
+    login_res, user_res = login(app, client)
+    assert login_res.status_code == 200
+
+    verify_link = json.loads(login_res.data)['Authorization']
+    parsed = parse.urlparse(verify_link)
+    auth = parse.parse_qs(parsed.query)['auth'][0]
+
+    res = verify(app, client, auth)
+
+    assert res.status_code == 200
+
+
 ####################################################
 ############ HELPER FUNCTIONS ######################
 ####################################################
+
+def login_verify(app, client):
+    res, user_res = login(app, client)
+
+    verify_link = json.loads(res.data)['Authorization']
+    parsed = parse.urlparse(verify_link)
+    auth = parse.parse_qs(parsed.query)['auth'][0]
+
+    res = verify(app, client, auth)
+
+    return res, user_res
+
 
 def login(app, client):
     user_res = create_user(app, client)
     assert user_res.status_code == 201
 
-    data = {
-        "email": "email",
-        "password": "password"
-    }
-
-    res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
+    res = client.post('/api/auth/login', data=json.dumps(user_data), headers=get_headers())
     return res, user_res
+
+
+def verify(app, client, token):
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(token)})
+
+    res = client.put('api/auth/verify', data=json.dumps(user_data), headers=headers)
+
+    return res
 
 
 def forgot_password(app, client):

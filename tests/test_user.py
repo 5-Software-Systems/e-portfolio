@@ -1,5 +1,12 @@
 import json
 
+user_data = {
+    "email": "email@mail.com",
+    "name_first": "first_name",
+    "name_last": "last_name",
+    "password": "password"
+}
+
 
 ####################################################
 ############## TEST FUNCTIONS ######################
@@ -31,7 +38,7 @@ def test_get_a_user(app, client):
     expected = {
         "user": {
             "public_id": public_id,
-            "email": "email",
+            "email": "email@mail.com",
             "name_first": "first_name",
             "name_last": "last_name",
             "registered_on": registered_on
@@ -82,11 +89,5 @@ def get_headers():
 
 
 def create_user(app, client):
-    data = {
-        "email": "email",
-        "name_first": "first_name",
-        "name_last": "last_name",
-        "password": "password"
-    }
-    res = client.post('/api/user', data=json.dumps(data), headers=get_headers())
+    res = client.post('/api/user', data=json.dumps(user_data), headers=get_headers())
     return res

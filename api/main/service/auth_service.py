@@ -4,28 +4,27 @@ import jwt
 from flask import current_app
 
 from . import user_service, email_service
-from ..model import BlacklistToken
+from ..model import BlacklistToken, User
 from ..util.db import save_db_object
 from ..util.exception import *
 
 
 def login_user(data):
-    try:
-        user = user_service.get_a_user_by_email(data.get('email'))
-    except UserNotFound:
-        raise LoginNotFound
+    user = get_user_from_login(data)
 
-    if not user:
-        raise LoginNotFound
-    if not user.check_password(data.get('password')):
-        raise LoginNotFound
+    if not user.verified:
+        return send_verify_email(user)
 
-    auth_token = encode_token({'login': user.public_id}, datetime.timedelta(days=1))
+    auth_token = encode_token(
+        {'user': user.public_id, 'type': 'login'},
+        datetime.timedelta(days=60)
+    )
 
-    return {'status': 'success',
-            'message': 'Successfully logged in.',
-            'Authorization': auth_token.decode()
-            }
+    return {
+        'status': 'success',
+        'message': 'Successfully logged in',
+        'Authorization': auth_token.decode()
+    }
 
 
 def logout_user(bearer_auth_token):
@@ -38,16 +37,32 @@ def logout_user(bearer_auth_token):
     decode_token(auth_token)
     blacklist_token(auth_token)
 
-    return {'status': 'success',
-            'message': 'Successfully logged out'
-            }
+    return {
+        'status': 'success',
+        'message': 'Successfully logged out'
+    }
 
 
-def get_logged_in_user(bearer_auth_token):
+def get_user_from_login(data) -> User:
+    try:
+        user = user_service.get_a_user_by_email(data.get('email'))
+    except UserNotFound:
+        raise LoginNotFound
+
+    if not user:
+        raise LoginNotFound
+
+    if not user.check_password(data.get('password')):
+        raise LoginNotFound
+
+    return user
+
+
+def get_user_from_token(bearer_auth_token) -> User:
     auth_token = split_bearer_token(bearer_auth_token)
 
     payload = decode_token(auth_token)
-    public_id = next(item for item in [payload.get('reset'), payload.get('login')] if item is not None)
+    public_id = payload.get('user')
 
     if not public_id:
         raise AuthenticationError
@@ -57,12 +72,40 @@ def get_logged_in_user(bearer_auth_token):
 
 def forgot_password(data):
     user = user_service.get_a_user_by_email(data.get('email'))
-    auth_token = encode_token({'reset': user.public_id}, datetime.timedelta(minutes=15))
+    auth_token = encode_token(
+        {'user': user.public_id, 'type': 'reset'},
+        datetime.timedelta(minutes=30)
+    )
     link = email_service.send_reset_email(user, auth_token)
     return {
         'status': 'success',
         'message': 'Reset link sent (if user exists)',
         'link': link
+    }
+
+
+def verify_account(data):
+    user = get_user_from_login(data)
+
+    if user.verified:
+        raise UserAlreadyVerified
+
+    user.verified = True
+    user.save()
+
+    return login_user(data)
+
+
+def send_verify_email(user):
+    auth_token = encode_token(
+        {'user': user.public_id, 'type': 'verify'},
+        datetime.timedelta(hours=6)
+    )
+    link = email_service.send_verify_email(user, auth_token)
+    return {
+        'status': 'success',
+        'message': 'Log in correct, but user is not verified, verify link sent',
+        'Authorization': link
     }
 
 
@@ -72,9 +115,10 @@ def reset_password(data):
         raise LoginNotFound
     user.password = data.get('password')
     user.save()
-    return {'status': 'success',
-            'message': 'Password reset, you can now log in'
-            }
+    return {
+        'status': 'success',
+        'message': 'Password reset, you can now log in'
+    }
 
 
 def blacklist_token(auth_token):
@@ -95,23 +139,22 @@ def encode_token(payload: dict, expiry=datetime.timedelta(days=1)):
         'exp': datetime.datetime.utcnow() + expiry,
         'iat': datetime.datetime.utcnow(),
     })
-    return jwt.encode(
-        payload,
-        current_app.config['SECRET_KEY'],
-        algorithm='HS256'
-    )
+    return jwt.encode(payload, current_app.config['SECRET_KEY'])
 
 
 def decode_token(token):
     try:
         payload = jwt.decode(token, current_app.config['SECRET_KEY'])
+
     except jwt.ExpiredSignatureError:
         raise TokenExpired
+
     except jwt.InvalidTokenError:
         raise TokenInvalid
 
     if BlacklistToken.check_blacklist(token):
         raise TokenBlacklisted
+
     if datetime.datetime.utcfromtimestamp(payload['exp']) < datetime.datetime.utcnow():
         raise TokenExpired
 
