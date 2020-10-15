@@ -93,3 +93,8 @@ auth_token = namespace.model(
 )
 auth_token_header = namespace.parser()
 auth_token_header.add_argument('Authorization', type=str, location='headers', required=True, help='Bearer <token>')
+
+file = namespace.model(
+    name='file',
+    model=dict([file_name])
+)

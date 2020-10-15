@@ -12,6 +12,20 @@ namespace = Namespace(
 )
 
 
+@namespace.route('/user/<user_public_id>/file')
+@namespace.param('user_public_id', 'The User identifier')
+class Files(Resource):
+
+    @namespace.expect(api_model.auth_token_header)
+    @namespace.marshal_with(api_model.file, as_list=True, envelope='files')
+    @login_token_required
+    def get(self, user_public_id):
+        """
+        Return list of user's files
+        """
+        return file_service.get_user_files(user_public_id), 200
+
+
 @namespace.route('/user/<user_public_id>/file/<file_name>')
 @namespace.param('user_public_id', 'The User identifier')
 @namespace.param('file_name', 'The File identifier')

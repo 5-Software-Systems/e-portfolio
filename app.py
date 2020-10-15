@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from flask import Flask, render_template
@@ -16,7 +18,7 @@ def create_app():
     )
 
     app.config.from_object(config)
-    print(config)
+    print(config, file=sys.stderr)
     db.init_app(app)
     flask_bcrypt.init_app(app)
 

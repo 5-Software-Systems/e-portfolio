@@ -27,3 +27,5 @@ widget_type = 'type', fields.String(description='type of widget', example='about
 widget_data = 'data', fields.Raw(description='data specific to widget type', example={'p1': 'parameter 1', 'p2': 'parameter 2'})
 
 location = 'location', fields.List(fields.Integer, description='array of 4 [x,y,w,h]', example=[1, 1, 1, 1])
+
+file_name = 'file_name', fields.String(description='name of file', example='example.png')
