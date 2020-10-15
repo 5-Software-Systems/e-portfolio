@@ -23,22 +23,24 @@ export default function PasswordResetForm() {
     const [isComplete, setComplete] = useState(false);
 
     useEffect(() => {
-        async function handleSubmit(auth) {
-            //get user id
-            const requestOptions_id = {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth}
-            };
-            const user_data = await fetch('/api/auth/user', requestOptions_id);
-            const user = await user_data.json();
+        async function handleSubmit(auth, user) {
+            if (user === null) {
+                //get user id
+                const requestOptions_id = {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth}
+                };
+                const user_data = await fetch('/api/auth/user', requestOptions_id);
+                user = await user_data.json().public_id;
+            }
             //reset
             const requestOptions_reset = {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth},
-                body: JSON.stringify({public_id: user.public_id,
+                body: JSON.stringify({public_id: user,
                                       password: fields.new_Password})
             };
-            await fetch('api/auth/password_reset', requestOptions_reset);
+            await fetch('api/user/' + user + '/password_reset', requestOptions_reset);
             setComplete(true);
         }
 
@@ -50,15 +52,16 @@ export default function PasswordResetForm() {
 
         if (isLoading) {
             if (validateForm) {
-                var Auth;
+                var auth;
+                var user = null;
                 if (isLoggedIn()) {
-                    Auth = isAuthorized();
+                    auth = isAuthorized();
                 } else {
-                    const urlParams = window.location.search;
-                    Auth = new URLSearchParams(urlParams).get('auth')
+                    const url = new URLSearchParams(window.location.search);
+                    auth = url.get('auth')
+                    user = url.get('user')
                 }
-                console.log(Auth)
-                handleSubmit(Auth).then(() => {
+                handleSubmit(auth, user).then(() => {
                     setLoading(false);
                 });
             } else {
