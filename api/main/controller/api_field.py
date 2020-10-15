@@ -29,3 +29,5 @@ widget_data = 'data', fields.Raw(description='data specific to widget type', exa
 location = 'location', fields.List(fields.Integer, description='array of 4 [x,y,w,h]', example=[1, 1, 1, 1])
 
 file_name = 'file_name', fields.String(description='name of file', example='example.png')
+
+duration = 'duration', fields.Integer(description='duration (in minutes) for link to work for', example=10080)

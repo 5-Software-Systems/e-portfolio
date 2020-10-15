@@ -1,14 +1,24 @@
-import sqlalchemy
+import datetime
 
-from . import user_service
+import sqlalchemy
+from flask import request
+from requests import PreparedRequest
+
+from . import user_service, auth_service
 from ..model import Portfolio
 from ..util.exception import *
 
 
-def get_a_portfolio(public_id):
-    portfolio = Portfolio.query.filter_by(public_id=public_id).first()
+def get_a_portfolio(user_public_id, portfolio_public_id):
+    user = user_service.get_a_user(user_public_id)
+
+    portfolio = Portfolio.query.filter_by(
+        user_id=user.id,
+        public_id=portfolio_public_id,
+    ).first()
+
     if not portfolio:
-        raise PortfolioNotFound(public_id)
+        raise PortfolioNotFound(portfolio_public_id)
 
     # custom marshalling, portfolio.widget cannot be
     portfolio.widget_list = [w.marshal() for w in portfolio.widgets]
@@ -32,18 +42,36 @@ def create_a_portfolio(user_public_id, data):
     return portfolio
 
 
-def update_a_portfolio(public_id, data):
-    portfolio = get_a_portfolio(public_id)
+def update_a_portfolio(user_public_id, portfolio_public_id, data):
+    portfolio = get_a_portfolio(user_public_id, portfolio_public_id)
     portfolio.patch(**data)
     portfolio.save()
     return portfolio
 
 
-def delete_a_portfolio(public_id):
-    portfolio = get_a_portfolio(public_id)
+def delete_a_portfolio(user_public_id, portfolio_public_id):
+    portfolio = get_a_portfolio(user_public_id, portfolio_public_id)
     portfolio.delete()
     return {
         'status': 'success',
         'message': 'portfolio deleted'
     }
 
+
+def share_a_portfolio(user_public_id, portfolio_public_id, data):
+    portfolio = get_a_portfolio(user_public_id, portfolio_public_id)
+
+    auth_token = auth_service.encode_token(
+        {'portfolio': portfolio.public_id, 'type': 'share'},
+        datetime.timedelta(minutes=data['duration'])
+    ).decode()
+
+    req = PreparedRequest()
+    host = request.host_url
+    req.prepare(url=f'{host}share', params={'portfolio': portfolio.public_id, 'auth': auth_token})
+
+    return {
+        'status': 'success',
+        'message': 'portfolio link created',
+        'link': req.url,
+    }

@@ -2,22 +2,30 @@ import os
 
 import sqlalchemy
 
-from . import portfolio_service
+from . import portfolio_service, user_service
 from ..model.widgets import *  # not explicitly used, but used in globals().get()
-from ..model import WidgetBase
+from ..model import WidgetBase, Portfolio
 from ..util.exception import WidgetNotFound, RequestError
 from ..util.funcs import rel_path
 
 
-def get_all_portfolio_widgets(portfolio_public_id):
-    portfolio = portfolio_service.get_a_portfolio(portfolio_public_id)
+def get_all_portfolio_widgets(user_public_id, portfolio_public_id):
+    portfolio = portfolio_service.get_a_portfolio(user_public_id, portfolio_public_id)
     return portfolio.widgets
 
 
-def get_a_widget(public_id):
-    widget = WidgetBase.query.filter_by(public_id=public_id).first()
+def get_a_widget(user_public_id, widget_public_id):
+    user = user_service.get_a_user(user_public_id)
+
+    widget = WidgetBase\
+        .query\
+        .join(Portfolio, WidgetBase.portfolio_id == Portfolio.id) \
+        .filter(Portfolio.user_id == user.id)\
+        .filter(WidgetBase.public_id == widget_public_id)\
+        .first()
+
     if not widget:
-        raise WidgetNotFound(public_id)
+        raise WidgetNotFound(widget_public_id)
     return widget
 
 
@@ -37,8 +45,8 @@ def create_new_widget(data):
     return widget
 
 
-def update_a_widget(public_id, data: dict):
-    widget = get_a_widget(public_id)
+def update_a_widget(user_public_id, widget_public_id, data: dict):
+    widget = get_a_widget(user_public_id, widget_public_id)
     widget_data = data.pop('data', {})
     widget_data.update(data)
     try:
@@ -51,8 +59,8 @@ def update_a_widget(public_id, data: dict):
     return widget
 
 
-def delete_a_widget(public_id):
-    widget = get_a_widget(public_id)
+def delete_a_widget(user_public_id, widget_public_id):
+    widget = get_a_widget(user_public_id, widget_public_id)
     widget.delete()
     return {
         'status': 'success',

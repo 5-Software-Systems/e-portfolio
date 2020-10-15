@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource, Namespace
 
 from ..service import auth_service
-from ..util.decorator import *
+from ..util.decorator import token_required
 
 from . import api_model
 
@@ -73,7 +73,7 @@ class Reset(Resource):
 
     @namespace.expect(api_model.auth_token_header, api_model.pw_reset, validate=True)
     @namespace.marshal_with(api_model.response)
-    @reset_or_login_token_required
+    @token_required('user', ['login', 'reset'])
     def post(self, user_public_id):
         """
         Change password
@@ -92,7 +92,7 @@ class Forgot(Resource):
 
     @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.response)
-    @verify_token_required
+    @token_required('user', 'verify')
     def post(self, user_public_id):
         """
         Verify account

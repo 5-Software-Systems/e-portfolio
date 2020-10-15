@@ -1,10 +1,10 @@
 from flask import request
 from flask_restplus import Resource, Namespace
 
-from ..service import user_service, portfolio_service, widget_service
+from ..service import user_service
 
 from . import api_model
-from ..util.decorator import login_token_required
+from ..util.decorator import token_required
 
 namespace = Namespace(
     name='user',
@@ -35,14 +35,14 @@ class User(Resource):
 
     @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
-    @login_token_required
+    @token_required('user', 'login')
     def get(self, user_public_id):
         """Get a User"""
         return user_service.get_a_user(user_public_id), 200
 
     @namespace.expect(api_model.user_change, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
-    @login_token_required
+    @token_required('user', 'login')
     def patch(self, user_public_id):
         """Update a User"""
         data = request.json
