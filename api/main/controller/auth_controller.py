@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource, Namespace
 
 from ..service import auth_service
-from ..util.decorator import login_token_required, reset_or_login_token_required, verify_token_required
+from ..util.decorator import *
 
 from . import api_model
 
@@ -15,9 +15,6 @@ namespace = Namespace(
 
 @namespace.route('/login')
 class UserLogin(Resource):
-    """
-    User Login Resource
-    """
 
     @namespace.expect(api_model.user_auth, validate=True)
     @namespace.marshal_with(api_model.auth_response)
@@ -31,13 +28,9 @@ class UserLogin(Resource):
 
 @namespace.route('/logout')
 class LogoutAPI(Resource):
-    """
-    Logout Resource
-    """
 
     @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.auth_response)
-    @login_token_required
     def post(self):
         """
         Log out a user
@@ -49,9 +42,6 @@ class LogoutAPI(Resource):
 
 @namespace.route('/user')
 class CheckToken(Resource):
-    """
-    Check bearer_auth_token
-    """
 
     @namespace.marshal_with(api_model.user_basic)
     @namespace.expect(api_model.auth_token_header)
@@ -64,28 +54,11 @@ class CheckToken(Resource):
         return auth_service.get_user_from_token(bearer_auth_token), 200
 
 
-@namespace.route('/reset')
-class OldReset(Resource):
-
-    def post(self):
-        """
-        DEPRECATED
-        """
-        return 'deprecated method, use /auth/password_forgot', 301
-
-    def put(self):
-        """
-        DEPRECATED
-        """
-        return 'deprecated method, use /auth/password_reset', 301
-
-
 @namespace.route('/password_reset')
 class Reset(Resource):
 
     @namespace.expect(api_model.auth_token_header, api_model.pw_reset)
     @namespace.marshal_with(api_model.response)
-    @reset_or_login_token_required
     def put(self):
         """
         Change password
@@ -113,7 +86,6 @@ class Forgot(Resource):
 
     @namespace.expect(api_model.user_auth, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.auth_response)
-    @verify_token_required
     def put(self):
         """
         Verify account
