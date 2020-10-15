@@ -1,17 +1,21 @@
 [
   {
+    "public_id": "widget_public_id_1",
     "portfolio_id": "1",
     "about": "This is the test account for Marcus' uni email\nThis is my Personal Portfolio"
   },
   {
+    "public_id": "widget_public_id_2",
     "portfolio_id": "2",
     "about": "This is the test account for Marcus' uni email\nThis is my Professional Portfolio"
   },
   {
+    "public_id": "widget_public_id_3",
     "portfolio_id": "3",
     "about": "This is the test account for Fraser's uni email\nThis is my Personal Portfolio"
   },
   {
+    "public_id": "widget_public_id_4",
     "portfolio_id": "4",
     "about": "This is the test account for Fraser's uni email\nThis is my Professional Portfolio"
   }

@@ -40,7 +40,7 @@ class PortfolioWidget(Resource):
 
 @namespace.route('/user/<user_public_id>/widget/<widget_public_id>')
 @namespace.param('user_public_id', 'The User identifier')
-@namespace.param('portfolio_public_id', 'The Portfolio identifier')
+@namespace.param('widget_public_id', 'The Widget identifier')
 class Widget(Resource):
 
     @namespace.expect(api_model.auth_token_header, validate=True)
