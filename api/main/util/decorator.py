@@ -2,7 +2,7 @@ from functools import wraps
 from flask import request
 
 from ..service.auth_service import decode_token, split_bearer_token
-from ..util.exception import AuthenticationError, Forbidden
+from ..util.exception import AuthenticationError, Forbidden, RequestError
 
 
 def token_required(f):
@@ -14,12 +14,15 @@ def token_required(f):
         if not payload.get('type'):
             raise AuthenticationError
 
-        public_user_id = payload.get('user')
-
-        if not public_user_id:
+        token_id = payload.get('user')
+        if not token_id:
             raise AuthenticationError
 
-        if not public_user_id == kwargs.get('user_public_id'):
+        request_id = kwargs.get('user_public_id')
+        if not request_id:
+            raise RequestError
+
+        if not token_id == request_id:
             raise Forbidden
 
         return f(*args, **kwargs)
@@ -36,12 +39,15 @@ def login_token_required(f):
         if not payload.get('type') in ['login']:
             raise AuthenticationError
 
-        public_user_id = payload.get('user')
-
-        if not public_user_id:
+        token_id = payload.get('user')
+        if not token_id:
             raise AuthenticationError
 
-        if not public_user_id == kwargs.get('user_public_id'):
+        request_id = kwargs.get('user_public_id')
+        if not request_id:
+            raise RequestError
+
+        if not token_id == request_id:
             raise Forbidden
 
         return f(*args, **kwargs)
@@ -58,12 +64,15 @@ def reset_or_login_token_required(f):
         if not payload.get('type') in ['verify', 'login']:
             raise AuthenticationError
 
-        public_user_id = payload.get('user')
-
-        if not public_user_id:
+        token_id = payload.get('user')
+        if not token_id:
             raise AuthenticationError
 
-        if not public_user_id == kwargs.get('user_public_id'):
+        request_id = kwargs.get('user_public_id')
+        if not request_id:
+            raise RequestError
+
+        if not token_id == request_id:
             raise Forbidden
 
         return f(*args, **kwargs)
@@ -80,12 +89,15 @@ def verify_token_required(f):
         if not payload.get('type') in ['verify']:
             raise AuthenticationError
 
-        public_user_id = payload.get('user')
-
-        if not public_user_id:
+        token_id = payload.get('user')
+        if not token_id:
             raise AuthenticationError
 
-        if not public_user_id == kwargs.get('user_public_id'):
+        request_id = kwargs.get('user_public_id')
+        if not request_id:
+            raise RequestError
+
+        if not token_id == request_id:
             raise Forbidden
 
         return f(*args, **kwargs)
