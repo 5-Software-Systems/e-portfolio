@@ -76,8 +76,7 @@ def send_verify_email(user, token):
         host=host,
         header='Verify Your Account',
         name=user.name_first,
-        body="Tap the button below to verify your account, the link epxires within 30 minutes. "
-             "If you didn't request a new password, you can safely delete this email.",
+        body="Tap the button below to verify your account, the link epxires within 30 minutes.",
         button_text="Verify Account",
     )
     email_text = MIMEText(html, 'html')
