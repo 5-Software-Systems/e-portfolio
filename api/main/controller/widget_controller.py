@@ -29,10 +29,10 @@ class PortfolioWidget(Resource):
     @namespace.expect(api_model.widget_new, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.widget, envelope='widget')
     @login_token_required
-    def post(self, public_id):
+    def post(self, user_public_id, portfolio_public_id):
         """Create a new Widget"""
         data = request.json
-        portfolio = portfolio_service.get_a_portfolio(public_id)
+        portfolio = portfolio_service.get_a_portfolio(portfolio_public_id)
         data['data']['portfolio_id'] = portfolio.id
         widget = widget_service.create_new_widget(data=data)
         return widget.marshal(), 201

@@ -1,16 +1,12 @@
 import json
 
-from .test_portfolio import create_user, create_portfolio, get_headers
+from .helper import get_headers, set_up_user_portfolio, set_up_widget, create_about_widget
 
-
-####################################################
-############## TEST FUNCTIONS ######################
-####################################################
 
 def test_create_about_widget(app, client):
-    public_id = setupUserPortfolio(app, client)
+    user_public_id, portfolio_public_id, auth = set_up_user_portfolio(app, client)
 
-    res = create_about_widget(app, client, public_id)
+    res = create_about_widget(app, client, user_public_id, portfolio_public_id, auth)
     assert res.status_code == 201
 
     public_id = json.loads(res.data)['widget']['public_id']
@@ -29,12 +25,14 @@ def test_create_about_widget(app, client):
 
 
 def test_get_widgets(app, client):
-    public_id = setupUserPortfolio(app, client)
+    user_public_id, portfolio_public_id, auth = set_up_user_portfolio(app, client)
 
-    res = create_about_widget(app, client, public_id)
+    res = create_about_widget(app, client, user_public_id, portfolio_public_id, auth)
     assert res.status_code == 201
 
-    res = client.get('/api/portfolio/' + public_id + '/widget')
+    res = client.get(
+        f'/api/user/{user_public_id}/portfolio/{portfolio_public_id}/widget', headers=get_headers(auth)
+    )
     assert res.status_code == 200
 
     public_id = json.loads(res.data)['widgets'][0]['public_id']
@@ -55,14 +53,16 @@ def test_get_widgets(app, client):
 
 
 def test_get_a_widget(app, client):
-    public_id = setupWidget(app, client)
+    user_public_id, portfolio_public_id, widget_public_id, auth = set_up_widget(app, client)
 
-    res = client.get('/api/widget/' + public_id)
+    res = client.get(
+        f'/api/user/{user_public_id}/widget/{widget_public_id}', headers=get_headers(auth)
+    )
     assert res.status_code == 200
 
     expected = {
         "widget": {
-            "public_id": public_id,
+            "public_id": widget_public_id,
             "type": "about",
             "location": [1, 2, 3, 4],
             "data": {
@@ -74,7 +74,7 @@ def test_get_a_widget(app, client):
 
 
 def test_patch_widget(app, client):
-    public_id = setupWidget(app, client)
+    user_public_id, portfolio_public_id, widget_public_id, auth = set_up_widget(app, client)
 
     data = {
         "data": {
@@ -82,12 +82,15 @@ def test_patch_widget(app, client):
         }
     }
 
-    res = client.patch('/api/widget/' + public_id, data=json.dumps(data), headers=get_headers())
+    res = client.patch(
+        f'/api/user/{user_public_id}/widget/{widget_public_id}',
+        data=json.dumps(data), headers=get_headers(auth)
+    )
     assert res.status_code == 200
 
     expected = {
         "widget": {
-            "public_id": public_id,
+            "public_id": widget_public_id,
             "type": "about",
             "location": [1, 2, 3, 4],
             "data": {
@@ -99,9 +102,9 @@ def test_patch_widget(app, client):
 
 
 def test_delete_widget(app, client):
-    public_id = setupWidget(app, client)
+    user_public_id, portfolio_public_id, widget_public_id, auth = set_up_widget(app, client)
 
-    res = client.delete('/api/widget/' + public_id)
+    res = client.delete(f'/api/user/{user_public_id}/widget/{widget_public_id}', headers=get_headers(auth))
     assert res.status_code == 200
 
     expected = {
@@ -109,44 +112,3 @@ def test_delete_widget(app, client):
         "message": "widget deleted"
     }
     assert expected == json.loads(res.get_data(as_text=True))
-
-
-####################################################
-############ HELPER FUNCTIONS ######################
-####################################################
-
-def setupUserPortfolio(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
-
-    res = create_portfolio(app, client, public_id)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['portfolio']['public_id']
-    return public_id
-
-
-def setupWidget(app, client):
-    public_id = setupUserPortfolio(app, client)
-
-    res = create_about_widget(app, client, public_id)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['widget']['public_id']
-    return public_id
-
-
-def create_about_widget(app, client, public_id):
-    data = {
-        "type": "about",
-        "location": [1, 2, 3, 4],
-        "data": {
-            "about": "util about"
-        }
-    }
-
-    res = client.post('/api/portfolio/' + public_id + '/widget',
-                      data=json.dumps(data), headers=get_headers())
-    return res

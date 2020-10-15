@@ -22,12 +22,14 @@ class LocalConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
+    PROPAGATE_EXCEPTIONS = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
 
 
 class LocalTestingConfig(Config):
     DEBUG = True
     TESTING = True
+    PROPAGATE_EXCEPTIONS = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 
