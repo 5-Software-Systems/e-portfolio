@@ -61,7 +61,7 @@ def reset_or_login_token_required(f):
         token = split_bearer_token(request.headers.get('Authorization'))
         payload = decode_token(token)
 
-        if not payload.get('type') in ['verify', 'login']:
+        if not payload.get('type') in ['reset', 'login']:
             raise AuthenticationError
 
         token_id = payload.get('user')

@@ -15,9 +15,14 @@ def create_login_verify(app, client):
 
     verify_link = json.loads(auth_res.data)['Authorization']
     parsed = parse.urlparse(verify_link)
+    user_public_id = parse.parse_qs(parsed.query)['user'][0]
     auth = parse.parse_qs(parsed.query)['auth'][0]
 
-    auth_res = verify(app, client, auth)
+    verify_res = verify(app, client, user_public_id, auth)
+
+    assert verify_res.status_code == 200
+
+    auth_res = client.post('/api/auth/login', data=json.dumps(user_data), headers=get_headers())
 
     return auth_res, user_res
 
@@ -30,11 +35,9 @@ def create_login(app, client):
     return auth_res, user_res
 
 
-def verify(app, client, auth):
-    headers = get_headers()
-    headers.update({'Authorization': f'Bearer {auth}'})
+def verify(app, client, user_public_id, auth):
 
-    res = client.put('api/auth/verify', data=json.dumps(user_data), headers=headers)
+    res = client.post(f'/api/user/{user_public_id}/verify', data=json.dumps(user_data), headers=get_headers(auth))
 
     return res
 

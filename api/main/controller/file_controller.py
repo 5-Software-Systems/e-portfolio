@@ -7,13 +7,13 @@ from ..util.decorator import login_token_required
 
 namespace = Namespace(
     name='file',
-    path='/user',
+    path='/',
     description='file related operations'
 )
 
 
-@namespace.route('/<user_public_id>/<file_name>')
-@namespace.param('public_id', 'The User identifier')
+@namespace.route('/user/<user_public_id>/file/<file_name>')
+@namespace.param('user_public_id', 'The User identifier')
 @namespace.param('file_name', 'The File identifier')
 class File(Resource):
 
