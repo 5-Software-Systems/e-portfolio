@@ -46,11 +46,11 @@ export default function EPortfolio(props) {
     //store db
     useEffect( () =>{
         async function initFetch() {
-            const requestOptions = {
+            const requestOptions_user = {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
             };
-            const user_data = await fetch('/api/auth/user', requestOptions);
+            const user_data = await fetch('/api/auth/user', requestOptions_user);
             const user_info = await user_data.json();
             setUser(user_info.public_id);
 
@@ -160,7 +160,7 @@ export default function EPortfolio(props) {
         <div className='eportfolioBody'>
             <header className='header'>
                 {!props.preview ?
-                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}> 
+                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
                         <a href = '/profile'> ← </a>         
                     </button>
                 : null}  
