@@ -1,10 +1,6 @@
-import datetime
-
 import sqlalchemy
-from flask import request
-from requests import PreparedRequest
 
-from . import user_service, auth_service
+from . import user_service
 from ..model import Portfolio
 from ..util.exception import *
 
@@ -55,23 +51,4 @@ def delete_a_portfolio(user_public_id, portfolio_public_id):
     return {
         'status': 'success',
         'message': 'portfolio deleted'
-    }
-
-
-def share_a_portfolio(user_public_id, portfolio_public_id, data):
-    portfolio = get_a_portfolio(user_public_id, portfolio_public_id)
-
-    auth_token = auth_service.encode_token(
-        {'portfolio': portfolio.public_id, 'type': 'share'},
-        datetime.timedelta(minutes=data['duration'])
-    ).decode()
-
-    req = PreparedRequest()
-    host = request.host_url
-    req.prepare(url=f'{host}share', params={'portfolio': portfolio.public_id, 'auth': auth_token})
-
-    return {
-        'status': 'success',
-        'message': 'portfolio link created',
-        'link': req.url,
     }
