@@ -45,6 +45,7 @@ def send_reset_email(user, token):
     html = html_template.render(
         link=req.url,
         host=host,
+        header='Reset Your Password',
         name=user.name_first,
         body="Tap the button below to reset your password. "
              "If you didn't request a new password, you can safely delete this email.",
@@ -73,9 +74,9 @@ def send_verify_email(user, token):
     html = html_template.render(
         link=req.url,
         host=host,
+        header='Verify Your Account',
         name=user.name_first,
-        body="Tap the button below to verify your account, the link epxires within 30 minutes. "
-             "If you didn't request a new password, you can safely delete this email.",
+        body="Tap the button below to verify your account, the link epxires within 30 minutes.",
         button_text="Verify Account",
     )
     email_text = MIMEText(html, 'html')
