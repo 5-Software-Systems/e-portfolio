@@ -16,6 +16,7 @@ export default function EPortfolio(props) {
     const Auth = isAuthorized();
     const history = useHistory();
 
+    const [user, setUser] = useState();
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
     const [movable, setMovable] = useState(true);
@@ -49,7 +50,15 @@ export default function EPortfolio(props) {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
             };
-            const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+            const user_data = await fetch('/api/auth/user', requestOptions);
+            const user_info = await user_data.json();
+            setUser(user_info.public_id);
+
+            const requestOptions = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const p_response = await fetch('/api/user/' + user + '/portfolio/' + PID, requestOptions);
             const p_data = await p_response.json();
             if (p_data.error) {
                 history.push("/profile");
@@ -57,14 +66,14 @@ export default function EPortfolio(props) {
             }
             setProfile(p_data.portfolio);
 
-            const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+            const w_response = await fetch('/api/user/' + user + '/portfolio/' + PID + '/widget', requestOptions);
             const w_data = await w_response.json();
             setWidget(w_data.widgets);
         }
 
         setMovable(true);
         initFetch();
-    }, [PID, history, Auth]);
+    }, [PID, history, Auth, user]);
 
     
     const width = 300;
@@ -85,7 +94,7 @@ export default function EPortfolio(props) {
                                     
                                 })
         };
-        await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+        await fetch('/api/user/' + user + '/portfolio/' + PID + '/widget', requestOptions);
     }
 
     async function onLayoutChange(layout, layouts) {
@@ -102,7 +111,7 @@ export default function EPortfolio(props) {
                                             location: location
                                         })
                 };
-                await fetch('/api/widget/' + id, requestOptions);
+                await fetch('/api/user/' + user + '/widget/' + id, requestOptions);
             }
         }
         updateWidgetLocations(layout);

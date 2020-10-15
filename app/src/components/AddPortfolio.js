@@ -50,7 +50,7 @@ export default function AddPortfolio(props) {
                         
                     })
         };
-        await fetch('/api/portfolio/' + data.portfolio.public_id + '/widget', postInitialWidget);
+        await fetch('/api/user/' + props.PID + '/portfolio/' + data.portfolio.public_id + '/widget', postInitialWidget);
     }
     
 
