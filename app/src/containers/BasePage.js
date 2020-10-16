@@ -32,6 +32,7 @@ export default function BasePage() {
 
             const prof_data = await fetch('/api/user/' + user.public_id + '/portfolio', requestOptions);
             const profile = await prof_data.json();
+            console.log(profile);
             setProfiles(profile.portfolios);
         }
         fetchProfiles();

@@ -88,6 +88,7 @@ export default function EPortfolio(props) {
                                     
                                 })
         };
+        console.log(URL)
         await fetch('/api/user/' + user + '/portfolio/' + PID + '/widget', requestOptions);
     }
 
