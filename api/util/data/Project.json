@@ -1,11 +1,13 @@
 [
   {
+    "public_id": "widget_public_id_8",
     "portfolio_id"  : "1",
     "name": "E-Portfolio",
     "description": "A personal portfolio system built upon Flask and React",
     "location": [1, 1, 0, 0]
   },
   {
+    "public_id": "widget_public_id_9",
     "portfolio_id"  : "3",
     "name": "E-Portfolio",
     "description": "A personal portfolio system built upon Flask and React",

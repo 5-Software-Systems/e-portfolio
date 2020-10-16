@@ -1,17 +1,21 @@
 [
   {
+    "public_id": "portfolio_public_id_1",
     "user_id": "1",
     "title": "Personal"
   },
   {
+    "public_id": "portfolio_public_id_2",
     "user_id": "1",
     "title": "Professional"
   },
   {
+    "public_id": "portfolio_public_id_3",
     "user_id": "2",
     "title": "Personal"
   },
   {
+    "public_id": "portfolio_public_id_4",
     "user_id": "2",
     "title": "Professional"
   }
