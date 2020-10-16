@@ -1,10 +1,12 @@
 [
   {
     "portfolio_id": "1",
-    "external_url": "https://open.spotify.com/embed/playlist/3EfNm0ZNh5QkV8u2VUeg6b"
+    "external_url": "https://open.spotify.com/embed/playlist/3EfNm0ZNh5QkV8u2VUeg6b",
+    "location": [1, 1, 0, 0]
   },
   {
     "portfolio_id": "2",
-    "external_url": "https://html5.gamedistribution.com/a55c9cc9c21e4fc683c8c6857f3d0c75/"
+    "external_url": "https://html5.gamedistribution.com/a55c9cc9c21e4fc683c8c6857f3d0c75/",
+    "location": [1, 1, 0, 0]
   }
 ]

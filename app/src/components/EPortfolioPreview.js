@@ -165,7 +165,7 @@ function EPortfolioPreview(props){
 
     return(
         <div className="eportfoliopreview">
-            <a href={ link } className="eportfolioinfo">
+            <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
                 <p> {props.id} </p>
                 <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>

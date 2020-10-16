@@ -26,7 +26,7 @@ export default function EditBox(props) {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
       };
-      await fetch('/api/widget/' + props.PID, requestOptions);
+      await fetch('/api/user/' + props.userID + '/widget/' + props.PID, requestOptions);
   }
 
   async function updateWidget() {
@@ -40,7 +40,7 @@ export default function EditBox(props) {
                                   data          
                               })
       };
-      await fetch('/api/portfolio/' + props.portfolioID + '/widget', requestOptions);
+      await fetch('/api/user/' + props.userID + '/widget', requestOptions);
   }
 
 

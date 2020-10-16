@@ -16,7 +16,7 @@ export async function authorize(requestOptions) {
     const response = await fetch('api/auth/login', requestOptions);
     const data = await response.json();
 
-    if (data.message.toLowerCase() === 'successfully logged in.') {
+    if (response.status === 200) {
         const auth64 = data.Authorization;
         new Cookies().set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
         new Cookies().set('logged_in', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie

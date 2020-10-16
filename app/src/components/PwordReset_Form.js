@@ -35,7 +35,7 @@ export default function PasswordResetForm() {
             }
             //reset
             const requestOptions_reset = {
-                method: 'PUT',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth},
                 body: JSON.stringify({public_id: user,
                                       password: fields.new_Password})
