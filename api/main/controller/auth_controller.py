@@ -2,7 +2,7 @@ from flask import request
 from flask_restplus import Resource, Namespace
 
 from ..service import auth_service
-from ..util.decorator import login_required, reset_token_required
+from ..util.decorator import login_token_required, reset_or_login_token_required, verify_token_required
 
 from . import api_model
 
@@ -25,7 +25,6 @@ class UserLogin(Resource):
         """
         Log in a user
         """
-        # TODO Validation
         data = request.json
         return auth_service.login_user(data=data), 200
 
@@ -36,14 +35,13 @@ class LogoutAPI(Resource):
     Logout Resource
     """
 
+    @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.auth_response)
-    @namespace.expect(api_model.auth_token_header)
-    @login_required
+    @login_token_required
     def post(self):
         """
         Log out a user
         """
-        # TODO Validation
         bearer_auth_token = request.headers.get('Authorization')
 
         return auth_service.logout_user(bearer_auth_token=bearer_auth_token), 200
@@ -61,10 +59,9 @@ class CheckToken(Resource):
         """
         Get the currently logged in user
         """
-        # TODO Validation
         bearer_auth_token = request.headers.get('Authorization')
 
-        return auth_service.get_logged_in_user(bearer_auth_token), 200
+        return auth_service.get_user_from_token(bearer_auth_token), 200
 
 
 @namespace.route('/reset')
@@ -88,7 +85,7 @@ class Reset(Resource):
 
     @namespace.expect(api_model.auth_token_header, api_model.pw_reset)
     @namespace.marshal_with(api_model.response)
-    @reset_token_required
+    @reset_or_login_token_required
     def put(self):
         """
         Change password
@@ -100,15 +97,26 @@ class Reset(Resource):
 
 @namespace.route('/password_forgot')
 class Forgot(Resource):
-    """
-    Reset log in details
-    """
 
     @namespace.expect(api_model.user_email)
     @namespace.marshal_with(api_model.link_response)
     def post(self):
         """
-        Reset log in details
+        Request a password reset email
         """
         data = request.json
         return auth_service.forgot_password(data), 200
+
+
+@namespace.route('/verify')
+class Forgot(Resource):
+
+    @namespace.expect(api_model.user_auth, api_model.auth_token_header, validate=True)
+    @namespace.marshal_with(api_model.auth_response)
+    @verify_token_required
+    def put(self):
+        """
+        Verify account
+        """
+        data = request.json
+        return auth_service.verify_account(data), 200

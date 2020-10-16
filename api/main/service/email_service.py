@@ -26,7 +26,7 @@ def send_email(addr, text: MIMEText):
     try:
         server.send_message(msg)
     except smtplib.SMTPRecipientsRefused as e:
-        raise RequestError(e.args[0]['email'][1])
+        raise RequestError(e.args[0]['email'][1].decode('utf-8'))
 
 
 def send_reset_email(user, token):
@@ -42,7 +42,43 @@ def send_reset_email(user, token):
     file = rel_path('../util/password-reset.html', __file__)
     with open(file) as f:
         html_template = Template(f.read())
-    html = html_template.render(link=req.url, host=host, name=user.name_first)
+    html = html_template.render(
+        link=req.url,
+        host=host,
+        header='Reset Your Password',
+        name=user.name_first,
+        body="Tap the button below to reset your password. "
+             "If you didn't request a new password, you can safely delete this email.",
+        button_text="Reset Password",
+    )
+    email_text = MIMEText(html, 'html')
+
+    send_email(user.email, email_text)
+
+    if current_app.config['DEBUG']:
+        return req.url
+
+
+def send_verify_email(user, token):
+    req = PreparedRequest()
+    host = request.host_url
+    url = host + 'verify'
+    req.prepare(url=url, params={'auth': token})
+
+    if current_app.config['TESTING']:
+        return req.url
+
+    file = rel_path('../util/password-reset.html', __file__)
+    with open(file) as f:
+        html_template = Template(f.read())
+    html = html_template.render(
+        link=req.url,
+        host=host,
+        header='Verify Your Account',
+        name=user.name_first,
+        body="Tap the button below to verify your account, the link epxires within 30 minutes.",
+        button_text="Verify Account",
+    )
     email_text = MIMEText(html, 'html')
 
     send_email(user.email, email_text)

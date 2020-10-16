@@ -80,3 +80,13 @@ class LoginNotFound(AuthenticationError):
     error_message = 'Login details incorrect, check and try again'
     pass
 
+
+class UserNotVerified(AuthenticationError):
+    status_code = 401
+    error_message = 'User not yet verified, a new link was sent'
+
+
+class UserAlreadyVerified(AuthenticationError):
+    status_code = 409
+    error_message = 'User already verified, just log in'
+

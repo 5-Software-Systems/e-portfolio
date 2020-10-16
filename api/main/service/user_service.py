@@ -44,7 +44,7 @@ def update_a_user(public_id, data):
 
 def generate_token(user):
     auth_token = user.encode_auth_token()
-    return {'message': 'Successfully registered.',
-            'Authorization': auth_token.decode()
-            }
-
+    return {
+        'message': 'Successfully registered.',
+        'Authorization': auth_token.decode()
+    }
