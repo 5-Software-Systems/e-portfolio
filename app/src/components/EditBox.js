@@ -40,7 +40,7 @@ export default function EditBox(props) {
                                   data          
                               })
       };
-      await fetch('/api/user/' + props.userID + '/widget', requestOptions);
+      await fetch('/api/user/' + props.userID + '/portfolio/' + props.portfolioID + '/widget', requestOptions);
   }
 
 
