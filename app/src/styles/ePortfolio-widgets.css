@@ -57,12 +57,10 @@
 
 
 .eportfolioBody  * {
-  color: #000;
   font-family: Roboto;
 }
 
 .eportfolioBody button {
-  background-color:#121212;
   border: none;
   outline: none;
 }

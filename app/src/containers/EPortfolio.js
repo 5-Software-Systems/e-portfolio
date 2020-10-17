@@ -11,6 +11,7 @@ import { isAuthorized } from "../util/cookies";
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
+import Modal from '../components/Widgets/WidgetPopup.js'
 
 export default function EPortfolio(props) {
     const Auth = isAuthorized();
@@ -188,7 +189,8 @@ export default function EPortfolio(props) {
                         {editMode ? <div className ='blocker'></div> : <div></div>}
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
+                        {editMode ?  <Modal name="⚙"/> /**<EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> */: <div></div>}
+                        
                         </div>
                     </ div>
                 ))}
