@@ -105,7 +105,7 @@ export default function GetFields(props) {
     return (
             <div>
                 {Object.keys(fields).map(field =>(
-                    <label key={field}>
+                    <div>
                         {field}:
                         <br />
                         {field === "about" ?
@@ -131,7 +131,7 @@ export default function GetFields(props) {
                         }
                         <br />
                         <br />
-                    </label>
+                    </div>
                 ))}
                 {embedHint()}
                 
