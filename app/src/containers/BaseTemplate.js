@@ -15,6 +15,7 @@ export default function BaseTemplate(props) {
                             <li><a href="/" tabIndex="-1">Home</a></li>
                             <li><a href="/updates" tabIndex="-1">Updates</a></li>
                             <li><a href="/contact" tabIndex="-1">Contact Us</a></li>
+                            <li><a href="/help" tabIndex="-1">Help</a></li>
                         </ul>
                         <div className="navbar-menu-wrapper navbar-nav">
                             {props.nav_right}

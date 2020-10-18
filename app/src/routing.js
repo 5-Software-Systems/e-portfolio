@@ -10,6 +10,7 @@ import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
+import Examples from './containers/Examples'
 // Components
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
@@ -144,12 +145,12 @@ export function Demo() {
     );
 }
 
-export function Examples() {
+export function ExamplesPage() {
     return (
         <Fragment>
             <title>Portfolio Gallery</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <EPortfolioDemo />
+                <Examples />
             </BaseTemplate>
         </Fragment>
     );

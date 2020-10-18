@@ -20,6 +20,7 @@ import {
     UpdatesPage,
     ContactUsPage,
     Demo,
+    ExamplesPage,
     _404Page
 } from './routing.js';
 
@@ -97,6 +98,11 @@ ReactDOM.render(
                     exact
                     path="/contact"
                     component={ContactUsPage}
+                />
+                <Route
+                    exact
+                    path="/help"
+                    component={ExamplesPage}
                 />
                 <Route
                     path="/"
