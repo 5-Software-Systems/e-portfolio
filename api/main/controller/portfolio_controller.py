@@ -4,7 +4,7 @@ from flask_restplus import Resource, Namespace
 from ..service import portfolio_service, user_service
 
 from . import api_model
-from ..util.decorator import login_token_required
+from ..util.decorator import token_required
 
 namespace = Namespace(
     name='portfolio',
@@ -19,20 +19,20 @@ class UserPortfolio(Resource):
 
     @namespace.expect(api_model.auth_token_header)
     @namespace.marshal_list_with(api_model.portfolio_basic, envelope='portfolios')
-    @login_token_required
+    @token_required('user', 'login')
     def get(self, user_public_id):
         """List all User's Portfolios"""
         return portfolio_service.get_all_user_portfolios(user_public_id), 200
 
     @namespace.expect(api_model.portfolio_new, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.portfolio_basic, envelope='portfolio')
-    @login_token_required
+    @token_required('user', 'login')
     def post(self, user_public_id):
         """Create a new Portfolio for a User"""
         data = request.json
         user = user_service.get_a_user(user_public_id)
         data['user_id'] = user.id
-        return portfolio_service.create_a_portfolio(user_public_id=user_public_id, data=data), 201
+        return portfolio_service.create_a_portfolio(user_public_id, data), 201
 
 
 @namespace.route('/user/<user_public_id>/portfolio/<portfolio_public_id>')
@@ -42,23 +42,23 @@ class Portfolio(Resource):
 
     @namespace.expect(api_model.auth_token_header)
     @namespace.marshal_with(api_model.portfolio, envelope='portfolio')
-    @login_token_required
+    @token_required('user', 'login')
     def get(self, user_public_id, portfolio_public_id):
         """Get a Portfolio"""
-        return portfolio_service.get_a_portfolio(portfolio_public_id), 200
+        return portfolio_service.get_a_portfolio(user_public_id, portfolio_public_id), 200
 
     @namespace.expect(api_model.portfolio_update, api_model.auth_token_header)
     @namespace.marshal_with(api_model.portfolio_basic, envelope='portfolio')
-    @login_token_required
+    @token_required('user', 'login')
     def patch(self, user_public_id, portfolio_public_id):
         """Update a Portfolio"""
         data = request.json
-        return portfolio_service.update_a_portfolio(public_id=portfolio_public_id, data=data), 200
+        return portfolio_service.update_a_portfolio(user_public_id, portfolio_public_id, data), 200
 
-    @namespace.expect(api_model.auth_token_header)
+    @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.response)
-    @login_token_required
+    @token_required('user', 'login')
     def delete(self, user_public_id, portfolio_public_id):
         """delete a portfolio"""
-        res = portfolio_service.delete_a_portfolio(portfolio_public_id)
+        res = portfolio_service.delete_a_portfolio(user_public_id, portfolio_public_id)
         return res, 200

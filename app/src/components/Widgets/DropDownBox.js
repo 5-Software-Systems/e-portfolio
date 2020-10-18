@@ -19,7 +19,6 @@ export default function DropDownBox(props) {
             const data = await response.json();
             setWidgetTypes(data);
         }
-
         fetchWidgetTypes();
     }, [Auth]);
 

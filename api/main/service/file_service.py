@@ -8,10 +8,14 @@ from ..util.db import save_db_object
 from ..util.exception import *
 
 
-def save_file(public_id: str, file_name: str, file_binary: bytes):
-    user, _ = user_service.get_a_user(public_id)
-    if not user:
-        raise UserNotFound(public_id)
+def get_user_files(user_public_id):
+    user = user_service.get_a_user(user_public_id)
+    files = File.query.filter_by(user_id=user.id).all()
+    return files
+
+
+def save_file(user_public_id: str, file_name: str, file_binary: bytes):
+    user = user_service.get_a_user(user_public_id)
 
     file = File(user_id=user.id, file_name=file_name, file_binary=file_binary)
     save_db_object(file)
@@ -19,9 +23,7 @@ def save_file(public_id: str, file_name: str, file_binary: bytes):
 
 
 def get_file(public_id: str, file_name: str):
-    user, _ = user_service.get_a_user(public_id)
-    if not user:
-        raise UserNotFound(public_id)
+    user = user_service.get_a_user(public_id)
 
     file = File.query.filter_by(user_id=user.id, file_name=file_name).first()
     if not file:

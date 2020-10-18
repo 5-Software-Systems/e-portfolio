@@ -1,6 +1,8 @@
 [
   {
+    "public_id": "widget_public_id_7",
     "portfolio_id": "3",
-    "image_url": "www.url.com"
+    "image_url": "www.url.com",
+    "location": [1, 1, 0, 0]
   }
 ]

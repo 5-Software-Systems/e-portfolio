@@ -27,7 +27,7 @@ def login_user(data):
     }
 
 
-def logout_user(bearer_auth_token):
+def logout_token(bearer_auth_token):
     """
     :param bearer_auth_token:
         'Bearer <auth_token>'
@@ -84,8 +84,8 @@ def forgot_password(data):
     }
 
 
-def verify_account(data):
-    user = get_user_from_login(data)
+def verify_account(user_public_id):
+    user = user_service.get_a_user(user_public_id)
 
     if user.verified:
         raise UserAlreadyVerified
@@ -93,7 +93,10 @@ def verify_account(data):
     user.verified = True
     user.save()
 
-    return login_user(data)
+    return {
+        'status': 'success',
+        'message': 'Account verified, you may now log in',
+    }
 
 
 def send_verify_email(user):
