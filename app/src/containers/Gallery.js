@@ -4,7 +4,7 @@ import AddPortfolio from "../components/AddPortfolio";
 import "../styles/BasePage.css";
 import { isAuthorized } from "../util/cookies";
 
-export default function BasePage() {
+export default function Gallery() {
     const Auth = isAuthorized();
 
     //check for updates

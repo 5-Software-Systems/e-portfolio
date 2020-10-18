@@ -4,7 +4,7 @@ import { isLoggedIn } from "./util/cookies";
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
 import Landing from './containers/Landing';
-import BasePage from './containers/BasePage';
+import Gallery from './containers/Gallery';
 import UpdatePage from './containers/Updates';
 import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
@@ -86,7 +86,7 @@ export function ProfilePage() {
         <Fragment>
             <title>Portfolio Gallery</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <BasePage />
+                <Gallery />
             </BaseTemplate>
         </Fragment>
     );
@@ -139,6 +139,17 @@ export function Demo() {
                 <div className="container">
                     <EPortfolioDemo />
                 </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function Examples() {
+    return (
+        <Fragment>
+            <title>Portfolio Gallery</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <EPortfolioDemo />
             </BaseTemplate>
         </Fragment>
     );
