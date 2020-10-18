@@ -116,9 +116,9 @@ export default function GetFields(props) {
                             label="Start typing..." 
                             defaultValue={getDefaultData()[field]} 
                             onChange={(e) => {
-                            if (aboutNum == props.changed)
-                                setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))
-                            }
+                                if (aboutNum == props.changed)
+                                    setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))
+                                }
                             }
                         />
                         :
