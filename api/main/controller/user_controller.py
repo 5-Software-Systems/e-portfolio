@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource, Namespace
 
-from ..service import user_service, portfolio_service, widget_service
+from ..service import user_service, portfolio_service, widget_service, auth_service
 
 from . import api_model
 from ..util.decorator import login_token_required
@@ -26,7 +26,9 @@ class UserList(Resource):
     def post(self):
         """Creates a new User"""
         data = request.json
-        return user_service.create_new_user(data=data), 201
+        user = user_service.create_new_user(data=data)
+        auth_service.send_verify_email(user)
+        return user, 201
 
 
 @namespace.route('/user/<user_public_id>')
