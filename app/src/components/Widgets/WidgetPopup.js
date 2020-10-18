@@ -22,8 +22,8 @@ export default function Modal(props) {
   const [modal, setModal] = React.useState(false);
   const classes = withStyles();
   return (
-    <div>
-        <div>
+    <div style={modalStyle}>
+      <div>
         <Button color="rose" round onClick={() => setModal(true)}>
           {props.name}
         </Button>

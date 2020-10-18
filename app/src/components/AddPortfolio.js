@@ -43,9 +43,9 @@ export default function AddPortfolio(props) {
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
                         type: "about",
-                        location: [1,1,0,0],
+                        location: [3,1,0,0],
                         data:{
-                            about: "I am a widget! \n\n Feel free to resize me from the bottom right corner. \n You can also drag me around to change my position. \n\n You can also change what I display using the cog on the bottom left. \n You can also delete me 🥺 \n\n Also, if you want more widgets, click the 'Add Widget' button on the top right of your screen!"
+                            about: '{"blocks":[{"key":"fsk7q","text":"I am a widget!","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2ea43","text":"Feel free to resize me from the bottom right corner.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"blk1i","text":"You can:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4uqhk","text":"drag me around to change my position","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7eg9v","text":"change what I display using the cog on the bottom left","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"qdhj","text":"delete me 🥺","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"12mk8","text":"Also, if you want more widgets, click the \'Add Widget\' button on the top right of your screen!","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'
                             }
                         
                     })

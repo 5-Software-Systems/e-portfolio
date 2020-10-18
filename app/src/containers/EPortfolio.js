@@ -84,7 +84,7 @@ export default function EPortfolio(props) {
                                     type: "about",
                                     location: locationA,
                                     data:{
-                                        about: "New Widget!"
+                                        about: '{"blocks":[{"key":"vg3v","text":"NewWidget","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'
                                         }
                                     
                                 })
@@ -189,8 +189,8 @@ export default function EPortfolio(props) {
                         {editMode ? <div className ='blocker'></div> : <div></div>}
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {editMode ?  <Modal name="⚙"/> /**<EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> */: <div></div>}
-                        
+                        {editMode ?  <Modal name="⚙"/>: <div></div>}
+                        {editMode ?  <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/>: <div></div>}
                         </div>
                     </ div>
                 ))}

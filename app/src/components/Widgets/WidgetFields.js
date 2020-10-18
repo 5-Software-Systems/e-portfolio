@@ -2,6 +2,9 @@
 import React, {useEffect, useState} from 'react';
 import { isAuthorized } from "../../util/cookies";
 
+import MUIRichTextEditor from 'mui-rte';
+import {convertToRaw} from 'draft-js';
+
 
 
 export default function GetFields(props) {
@@ -66,23 +69,46 @@ export default function GetFields(props) {
         }
     }, [props.type]);
 
+    const controls = [
+        "undo", 
+        "redo",
+        "title", 
+        "bold", 
+        "italic", 
+        "underline", 
+        "strikethrough", 
+        "highlight",  
+        "numberList",
+        "bulletList", 
+        "quote", 
+        "code", 
+        "clear",
+        "link",
+        "media"
+    ]
+
     return (
             <div>
                 {Object.keys(fields).map(field =>(
                     <label key={field}>
                         {field}:
                         <br />
+                        {field === "about" ?
+                        <MUIRichTextEditor controls={controls} label="Start typing..." defaultValue={getDefaultData()[field]} onChange={(e) => setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))}/>
+                        :
                         <textarea
                             className='basePageTextBox'
                             type="text" value={text.field}
                             onChange={(e) => setTextList(field, e.target.value)}
                             defaultValue={getDefaultData()[field]}
                         />
+                        }
                         <br />
                         <br />
                     </label>
                 ))}
                 {embedHint()}
+                
             </div>
 
         
