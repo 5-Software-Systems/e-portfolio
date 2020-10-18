@@ -87,6 +87,13 @@ export default function GetFields(props) {
         "media"
     ]
 
+    const inlineControls = [
+        "bold", 
+        "italic", 
+        "underline", 
+        "strikethrough"
+    ]
+
     return (
             <div>
                 {Object.keys(fields).map(field =>(
@@ -94,7 +101,14 @@ export default function GetFields(props) {
                         {field}:
                         <br />
                         {field === "about" ?
-                        <MUIRichTextEditor controls={controls} label="Start typing..." defaultValue={getDefaultData()[field]} onChange={(e) => setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))}/>
+                        <MUIRichTextEditor 
+                            controls={controls} 
+                            inlineToolbar={true}
+                            inlineToolbarControls={inlineControls}
+                            label="Start typing..." 
+                            defaultValue={getDefaultData()[field]} 
+                            onChange={(e) => setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))}
+                        />
                         :
                         <textarea
                             className='basePageTextBox'
