@@ -6,7 +6,6 @@ export default function Settings() {
     return (
         <div className="form-container m-auto">
             <DetailUpdate />
-            <PasswordResetForm />
         </div>
     );
 };

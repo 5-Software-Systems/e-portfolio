@@ -17,6 +17,7 @@ import SignupForm from './components/Signup_Form';
 import ForgotForm from './components/Forgot_Form';
 import PasswordResetForm from './components/PwordReset_Form';
 import UserNav from './components/RightNav/UserNav';
+import Verify from './components/Verify'
 
 export function HomePage() {
     return (
@@ -75,6 +76,19 @@ export function ResetPage() {
             <BaseTemplate>
                 <div className="form-container m-auto">
                     <PasswordResetForm />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function VerifyPage() {
+    return (
+        <Fragment>
+            <title>Login</title>
+            <BaseTemplate>
+                <div className="form-container m-auto">
+                    <Verify />
                 </div>
             </BaseTemplate>
         </Fragment>
