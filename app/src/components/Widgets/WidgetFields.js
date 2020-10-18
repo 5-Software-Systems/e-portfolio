@@ -8,11 +8,14 @@ import {convertToRaw} from 'draft-js';
 
 
 export default function GetFields(props) {
-    const Auth = isAuthorized();    
 
+
+    const Auth = isAuthorized();    
+    
     const [fields, setFields] = useState([]);
     const [text, setText] = useState(props.defaultData);
-
+    const [oldType, setOldType] =useState(props.type);
+    const [aboutNum, setAboutNum]=useState(0);
 
     function setTextList(field, txt) {
         var textOBJ = text;
@@ -21,6 +24,7 @@ export default function GetFields(props) {
         if (props.onChange) {
             props.onChange(textOBJ);
         }
+        console.log(text);
     }
 
     function getDefaultData() {
@@ -64,8 +68,12 @@ export default function GetFields(props) {
     }, [props, Auth]);
 
     useEffect( () => {
-        if (props.changed) {
+        if (props.changed > 0) {
             setText({});
+        }
+
+        if (props.type == 'about') {
+            setAboutNum(props.changed)
         }
     }, [props.type]);
 
@@ -107,7 +115,11 @@ export default function GetFields(props) {
                             inlineToolbarControls={inlineControls}
                             label="Start typing..." 
                             defaultValue={getDefaultData()[field]} 
-                            onChange={(e) => setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))}
+                            onChange={(e) => {
+                            if (aboutNum == props.changed)
+                                setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))
+                            }
+                            }
                         />
                         :
                         <textarea
