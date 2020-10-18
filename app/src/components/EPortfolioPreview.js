@@ -130,7 +130,7 @@ function EPortfolioPreview(props){
                 {close => (
                     <div className="menu">
                         <button className="menu-item" onClick={() => {
-                            copyToClipboard(window.location.host + link);
+                            copyToClipboard(window.location.host + "/portfolio/" + props.id);
                             close();
                             alert("Copied to clipboard");
                         }}> Share </button>
