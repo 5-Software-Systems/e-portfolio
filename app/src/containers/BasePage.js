@@ -3,9 +3,15 @@ import EPortfolioPreview from "../components/EPortfolioPreview";
 import AddPortfolio from "../components/AddPortfolio";
 import "../styles/BasePage.css";
 import { isAuthorized } from "../util/cookies";
+import { useHistory } from "react-router-dom";
 
 export default function BasePage() {
+    const history = useHistory();
     const Auth = isAuthorized();
+
+    if (! Auth) {
+        history.push('/login');
+    }
 
     //check for updates
     const [update, setUpdate] = useState(false);

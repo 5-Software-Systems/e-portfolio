@@ -94,6 +94,7 @@ export default function PasswordResetForm() {
                     value={fields.new_Password}
                     placeholder="New Password"
                     autoComplete="new-password"
+                    minLength="5"
                     required/>
             </FormGroup>
             {isComplete ?
