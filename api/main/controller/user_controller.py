@@ -28,7 +28,7 @@ class UserList(Resource):
         data = request.json
         user = user_service.create_new_user(data=data)
         auth_service.send_verify_email(user)
-        return user, 201
+        return user,201
 
 
 @namespace.route('/user/<user_public_id>')
