@@ -39,7 +39,10 @@ export default function EPortfolioDemo() {
                 <h1 className='impact'>
                     {PID}
                 </h1>
-
+                
+                <button className='addWidgetButton' onClick={ () => {window.location.href='/'}}>
+                    <a href = '/'> Home </a>         
+                </button>
             </header>
             {switchPage(PID)}
         </div>
@@ -174,16 +177,125 @@ function Calvin() {
     const width = 300;
     const height = 300;
     const columns = 5;
+
+    const widgets = [
+        {
+          "public_id": "ce8f4405-7da8-4892-8af3-64b781908b63",
+          "type": "image",
+          "location": [
+            2,
+            1,
+            1,
+            0
+          ],
+          "data": {
+            "image_url": "https://media.discordapp.net/attachments/198751173967216640/767647617462173736/Picture_2.png"
+          }
+        },
+        {
+          "public_id": "aeabb5d9-daa2-4381-ae00-7f21a3351654",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"fsk7q\",\"text\":\"Calvin\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2ea43\",\"text\":\"Developer at FiveCent Software Systems 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":27,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"dst4u\",\"text\":\"He/Him ♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":7,\"length\":2,\"key\":0}],\"data\":{}},{\"key\":\"4cdrj\",\"text\":\"21 years old  🔞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":2,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"blk1i\",\"text\":\"3rd year university student ✨\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"4uqhk\",\"text\":\"Leo ♌\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://emojipedia.org/male-sign/\",\"url\":\"https://emojipedia.org/male-sign/\"}}}}"
+          }
+        },
+        {
+          "public_id": "58e27e33-6e6b-4a08-9060-c4306202a58c",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            3,
+            0
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"1lt1e\",\"text\":\"Essendon 🔴⚫\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"59o5l\",\"text\":\"Rain 🌧\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"fnnhj\",\"text\":\"Blue Cheese 🧀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"cog2m\",\"text\":\"Dislikes \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":9,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"68hn8\",\"text\":\"Summer ☀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"acgt6\",\"text\":\"Seafood 🦞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"9jhjb\",\"text\":\"Fabrice 🙅‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+          }
+        },
+        {
+          "public_id": "7b188eb2-a1c4-4468-95ad-15554e3caa94",
+          "type": "embed",
+          "location": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "data": {
+            "external_url": "https://open.spotify.com/embed/album/5WpDQt6EbpzXbqo9g9P0L6"
+          }
+        },
+        {
+          "public_id": "5996fea4-a010-4dec-8a9b-afee9d9f8ec6",
+          "type": "embed",
+          "location": [
+            2,
+            1,
+            2,
+            1
+          ],
+          "data": {
+            "external_url": "https://www.youtube.com/embed/dGcsHMXbSOA"
+          }
+        },
+        {
+          "public_id": "7778cb18-263e-4b5d-a205-4bfe700c8621",
+          "type": "embed",
+          "location": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "data": {
+            "external_url": "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp"
+          }
+        },
+        {
+          "public_id": "b9612117-061e-465b-8598-1dadd150b5f9",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"                                     ↑\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"ns4m\",\"text\":\"                                    Me\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"16h20\",\"text\":\"<--- Album I was listening to making this portfolio\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"e3mbs\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6ncc0\",\"text\":\"This guy showed me how to write this program ---> \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"113da\",\"text\":\"I wish I could retire, boy that'd be sweet. \",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6g41k\",\"text\":\"                                      ↓\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+          }
+        },
+        {
+          "public_id": "154e06c2-e6f3-43b9-97c9-2a263455a194",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            3,
+            2
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"dvf2u\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1hpm9\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5623p\",\"text\":\"The man who moves a mountain begins by carring small stones.\",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"3ut8j\",\"text\":\"- Calvin :)\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+          }
+        }
+      ]
     
     return (
         <div className='eportfolioBody'>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
-                <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 2, h: 2}}>
-                    <img src={'https://scontent.fmel7-1.fna.fbcdn.net/v/t1.15752-9/71270574_399807817397880_7635407870292393984_n.jpg?_nc_cat=108&_nc_sid=ae9488&_nc_ohc=gTHW244ASwgAX93pSFp&_nc_ht=scontent.fmel7-1.fna&oh=decdf6992befcdf3cca55e617776ae64&oe=5FB2BD1D'} alt="galaxy" draggable='false' height='100%' />
-                </div>
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+                {widgets.map(widget =>(
+                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                        <MotherWidget widget={widget}/> 
+                    </ div>
+                ))}
             </ReactGridLayout>
         </div>
-    );  
+    ); 
 }
   
 function Tutorial() {
