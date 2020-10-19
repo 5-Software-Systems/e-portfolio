@@ -5,6 +5,8 @@ import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 
+import MotherWidget from '../components/Widgets/MotherWidget.js';
+
 export default function EPortfolioDemo() {
     const URL = window.location.href.split('/');
     const PID = URL[URL.length - 1]
@@ -50,13 +52,70 @@ function Echidna() {
     const width = 300;
     const height = 300;
     const columns = 5;
+
+    const widgets = [
+        {
+          "public_id": "5ee15077-b8ab-4f54-b6e0-8029b120729f",
+          "type": "embed",
+          "location": [
+            5,
+            3,
+            0,
+            2
+          ],
+          "data": {
+            "external_url": "https://www.youtube.com/embed/yHjdIXN9v2g"
+          }
+        },
+        {
+          "public_id": "21f0c5a2-5d0d-4b55-970b-acd6bcb8cabd",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"9ouf5\",\"text\":\"This is an Echidna\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1d33n\",\"text\":\"They are found in Australia \",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"e4s31\",\"text\":\"They are mammals, but lay eggs.\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"c3n7e\",\"text\":\"Source\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":0,\"length\":6,\"key\":0}],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"url\":\"https://en.wikipedia.org/wiki/Echidna\",\"className\":\"MUIRichTextEditor-anchorLink-34\"}}}}"
+          }
+        },
+        {
+          "public_id": "78d20930-82be-40e6-bdea-90898cd5ceef",
+          "type": "about",
+          "location": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "data": {
+            "about": "{\"blocks\":[{\"key\":\"b9h59\",\"text\":\"The Echidna is on the Australian five cent coin. \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"81qlk\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1iv2l\",\"text\":\"Our team is called FiveCent Software Systems.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"f0ir2\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"65m6r\",\"text\":\"Thus, we named this service Echidna.  \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":28,\"length\":7,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+          }
+        },
+        {
+          "public_id": "da500317-cd3d-47f3-bd19-704221460ee6",
+          "type": "image",
+          "location": [
+            4,
+            2,
+            1,
+            0
+          ],
+          "data": {
+            "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Short-beaked_echidna_in_ANBG.jpg/1920px-Short-beaked_echidna_in_ANBG.jpg"
+          }
+        }
+      ]
     
     return (
         <div className='eportfolioBody'>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
-                <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 2, h: 2}}>
-                    <img src={'https://i.pinimg.com/originals/c6/76/d6/c676d6a1c74932b0adfb2e5bc7af73cf.jpg'} alt="galaxy" draggable='false' height='100%' />
-                </div>
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+                {widgets.map(widget =>(
+                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                        <MotherWidget widget={widget}/> 
+                    </ div>
+                ))}
             </ReactGridLayout>
         </div>
     );  
