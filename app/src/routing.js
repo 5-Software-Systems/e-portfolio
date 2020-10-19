@@ -148,7 +148,7 @@ export function Demo() {
 export function ExamplesPage() {
     return (
         <Fragment>
-            <title>Portfolio Gallery</title>
+            <title>Help</title>
             <BaseTemplate nav_right = { <RightNav /> } >
                 <Examples />
             </BaseTemplate>

@@ -4,27 +4,21 @@ import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 
-import {TextToHTML} from "../components/Widgets/TextWidget";
 
-class MyGrid extends React.Component {
+function Demo() {
 
-    width = 220;
-    height = 300;
-    columns = 5;
-    state = {
-        data: 'loading...'
-    }
+    const width = 220;
+    const height = 300;
+    const columns = 5;
     
-   render() {
-       
-      const out = (
-        <div className='wholePage'>
+    return (
+        <div className='eportfolioBody'>
             <div>
                 <h1 className="impact">
-                    DEMO PAGE
+                    Demo (Our First Portfolio)
                 </h1>
             </div>
-            <ReactGridLayout className="layout" cols={this.columns} rowHeight={this.height} width={this.columns * this.width} margin={[10,10]} compactType='horizontal' >
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
             <div key="a" data-grid={{i: 'a', x: 3, y: 1, w: 1, h: 2}}>
                 <img src={process.env.PUBLIC_URL + '/images/galaxy.gif'} alt="galaxy" draggable='false' height='100%' />
             </div>
@@ -50,11 +44,10 @@ class MyGrid extends React.Component {
             <p>hey this is pretty cool</p>
             </div>
             <div key="h" data-grid={{i: 'h', x: 1, y: 0, w: 1, h: 1}}>
-                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={this.width} draggable='false' />
+                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={width} draggable='false' />
             </div>
             <div key="i" data-grid={{i: 'i', x: 2, y: 0, w: 3, h: 1}}>
-
-                <TextToHTML header="Welcome to My Page!" text={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}/>
+                <h1> Welcome to My Page! </h1> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
             </div>
             <div key="gj" data-grid={{i: 'j', x: 0, y: 0, w: 1, h: 3}}>
                 <iframe width='100%' height='100%' title="embed4" src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -62,17 +55,17 @@ class MyGrid extends React.Component {
             </div>
             </ReactGridLayout>
         </div>
-      )
-      return out;
-    }
+    );   
+   
+        
   }
 
 
 
 
 
-export default function EPortfolio() {
+export default function EPortfolioDemo() {
     return (
-        <MyGrid/>
+        <Demo/>
     );
 };
