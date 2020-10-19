@@ -14,6 +14,7 @@ import {
     SignUpPage,
     ForgotPage,
     ResetPage,
+    VerifyPage,
     ProfilePage,
     SettingsPage,
     PortfolioPage,
@@ -59,6 +60,13 @@ ReactDOM.render(
                     path="/password_reset"
                     render={() => {
                         return (isLoggedIn() ? <Redirect to="/profile" /> : <ResetPage />)
+                    }}
+                />
+                <Route
+                    exact
+                    path="/verify"
+                    render={() => {
+                        return (isLoggedIn() ? <Redirect to="/profile" /> : <VerifyPage />)
                     }}
                 />
                 <Route

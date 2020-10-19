@@ -33,8 +33,7 @@ def send_reset_email(user, token):
     # user = user_service.get_a_user(public_id)
     req = PreparedRequest()
     host = request.host_url
-    url = host + 'password_reset'
-    req.prepare(url=url, params={'auth': token})
+    req.prepare(url=f'{host}password_reset', params={'user': user.public_id, 'auth': token})
 
     if current_app.config['TESTING']:
         return req.url
@@ -62,8 +61,7 @@ def send_reset_email(user, token):
 def send_verify_email(user, token):
     req = PreparedRequest()
     host = request.host_url
-    url = host + 'verify'
-    req.prepare(url=url, params={'auth': token})
+    req.prepare(url=f'{host}verify', params={'user': user.public_id, 'auth': token})
 
     if current_app.config['TESTING']:
         return req.url

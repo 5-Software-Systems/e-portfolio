@@ -2,61 +2,37 @@ from functools import wraps
 from flask import request
 
 from ..service.auth_service import decode_token, split_bearer_token
-from ..util.exception import AuthenticationError
+from ..util.exception import AuthenticationError, Forbidden, RequestError
 
 
-def login_token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = split_bearer_token(request.headers.get('Authorization'))
-        payload = decode_token(token)
+def token_required(key, permissions):
+    """
+    :param key: the key for the resource being protected eg. user, portfolio
+    :param permissions: list of permissions eg. login, reset, verify
+    :return:
+    """
+    def token_required(f):
+        @wraps(f)
+        def decorated(*args, **kwargs):
+            token = split_bearer_token(request.headers.get('Authorization'))
+            payload = decode_token(token)
 
-        if not payload.get('type') in ['login']:
-            raise AuthenticationError
+            if not payload.get('type') in permissions:
+                raise AuthenticationError
 
-        user = payload.get('user')
+            token_id = payload.get(key)
+            if not token_id:
+                raise AuthenticationError
 
-        if not user:
-            raise AuthenticationError
+            request_id = kwargs.get(f'{key}_public_id')
+            if not request_id:
+                raise RequestError
 
-        return f(*args, **kwargs)
+            if not token_id == request_id:
+                raise Forbidden
 
-    return decorated
+            return f(*args, **kwargs)
 
+        return decorated
 
-def reset_or_login_token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = split_bearer_token(request.headers.get('Authorization'))
-        payload = decode_token(token)
-
-        if not payload.get('type') in ['verify', 'login']:
-            raise AuthenticationError
-
-        user = payload.get('user')
-
-        if not user:
-            raise AuthenticationError
-
-        return f(*args, **kwargs)
-
-    return decorated
-
-
-def verify_token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = split_bearer_token(request.headers.get('Authorization'))
-        payload = decode_token(token)
-
-        if not payload.get('type') in ['verify']:
-            raise AuthenticationError
-
-        user = payload.get('user')
-
-        if not user:
-            raise AuthenticationError
-
-        return f(*args, **kwargs)
-
-    return decorated
+    return token_required

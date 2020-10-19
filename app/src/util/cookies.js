@@ -11,15 +11,29 @@ export function isLoggedIn() {
     return false;
 }
 
+export function isVerified() {
+    if (new Cookies().get('unverified') === "1") {
+        return false;
+    }
+    return true;
+}
+
 export async function authorize(requestOptions) {
     //util cookie/authentication implementation
     const response = await fetch('api/auth/login', requestOptions);
     const data = await response.json();
+    const cookie = new Cookies()
 
-    if (data.message.toLowerCase() === 'successfully logged in.') {
+    if (data.message === "Successfully logged in") {
         const auth64 = data.Authorization;
-        new Cookies().set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
-        new Cookies().set('logged_in', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        cookie.set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        cookie.set('logged_in', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+    }
+
+    if (data.message === "Log in correct, but user is not verified, verify link sent") {
+        cookie.set('unverified', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+    } else {
+        cookie.set('unverified', 0, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
     }
 }
 

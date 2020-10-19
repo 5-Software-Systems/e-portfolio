@@ -1,6 +1,4 @@
-/** Code adapted from https://serverless-stack.com/chapters/create-the-signup-form.html */
-
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect, Fragment }  from "react";
 import {
     Form,
     FormGroup,
@@ -11,7 +9,6 @@ import {
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { validateEmail, useFormFields } from "../util/form";
-import { authorize } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function SignupForm() {
@@ -23,6 +20,7 @@ export default function SignupForm() {
     });
     const [isLoading, setLoading] = useState(false);
     const [isIncorrect, setIncorrect] = useState(false);
+    const [isComplete, setComplete] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
@@ -37,15 +35,6 @@ export default function SignupForm() {
                                       name_last: fields.signup_lastname})
             };
             await fetch('api/user', requestOptions_signup);
-
-            // login
-            const requestOptions_login = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
-                                      password: fields.signup_password})
-            };
-            await authorize(requestOptions_login);
         }
 
         function validateForm() {
@@ -62,7 +51,7 @@ export default function SignupForm() {
             if (validateForm()) {
                 setIncorrect(false);
                 handleSubmit().then(() => {
-                    history.push("/login");
+                    setComplete(true);
                 });
             } else {
                 setIncorrect(true);
@@ -79,59 +68,66 @@ export default function SignupForm() {
     return (
         <Form onSubmit={handleClick}>
             <h1>Sign Up</h1>
-            <FormGroup controlId="signup_firstname">
-                <FormLabel>First Name<p className="required">*</p></FormLabel>
-                <FormControl
-                    type="text"
-                    values = {fields.signup_firstname}
-                    onChange={handleFieldChange}
-                    placeholder="First Name"
-                    autoComplete="given-name"
-                    required/>
-            </FormGroup>
-            <FormGroup controlId="signup_lastname">
-                <FormLabel>Last Name<p className="required">*</p></FormLabel>
-                <FormControl
-                    type="text"
-                    values = {fields.signup_lastname}
-                    onChange={handleFieldChange}
-                    placeholder="Surname"
-                    autoComplete="family-name"
-                    required/>
-            </FormGroup>
-            <FormGroup controlId="signup_email">
-                <FormLabel>Email<p className="required">*</p></FormLabel>
-                <FormControl
-                    type="email"
-                    className="mb-1"
-                    values = {fields.signup_email}
-                    onChange={handleFieldChange}
-                    placeholder="Email"
-                    autoComplete="email"
-                    required
-                    pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
-                />
-            </FormGroup>
-            <PasswordStrengthMeter password={fields.signup_password} />
-            <FormGroup controlId="signup_password">
-                <FormLabel>Password<p className="required">*</p></FormLabel>
-                <FormControl
-                    type="password"
-                    value={fields.signup_password}
-                    onChange={handleFieldChange}
-                    placeholder="Password"
-                    autoComplete="current-password"
-                    minLength="5"
-                    required/>
-            </FormGroup>
-            {isIncorrect ? <p className="response invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
-            <Button
-                className="btn"
-                type="submit"
-                disabled={isLoading}
-            >
-                {isLoading ? 'Loading...' : 'Submit'}
-            </Button>
+            {isComplete ?
+                <p className="response">Check your email for a link to verify your account before logging in.
+                                   If it doesn't appear within a few minutes, check your spam folder.</p>
+                :
+                <Fragment>
+                    <FormGroup controlId="signup_firstname">
+                        <FormLabel>First Name<p className="required">*</p></FormLabel>
+                        <FormControl
+                            type="text"
+                            values = {fields.signup_firstname}
+                            onChange={handleFieldChange}
+                            placeholder="First Name"
+                            autoComplete="given-name"
+                            required/>
+                    </FormGroup>
+                    <FormGroup controlId="signup_lastname">
+                        <FormLabel>Last Name<p className="required">*</p></FormLabel>
+                        <FormControl
+                            type="text"
+                            values = {fields.signup_lastname}
+                            onChange={handleFieldChange}
+                            placeholder="Surname"
+                            autoComplete="family-name"
+                            required/>
+                    </FormGroup>
+                    <FormGroup controlId="signup_email">
+                        <FormLabel>Email<p className="required">*</p></FormLabel>
+                        <FormControl
+                            type="email"
+                            className="mb-1"
+                            values = {fields.signup_email}
+                            onChange={handleFieldChange}
+                            placeholder="Email"
+                            autoComplete="email"
+                            required
+                            pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
+                        />
+                    </FormGroup>
+                    <PasswordStrengthMeter password={fields.signup_password} />
+                    <FormGroup controlId="signup_password">
+                        <FormLabel>Password<p className="required">*</p></FormLabel>
+                        <FormControl
+                            type="password"
+                            value={fields.signup_password}
+                            onChange={handleFieldChange}
+                            placeholder="Password"
+                            autoComplete="current-password"
+                            minLength="5"
+                            required/>
+                    </FormGroup>
+                    {isIncorrect ? <p className="response invalidResp">Incorrect details, Passwords may not be the same.</p> : null }
+                    <Button
+                        className="btn"
+                        type="submit"
+                        disabled={isLoading}
+                    >
+                        {isLoading ? 'Loading...' : 'Submit'}
+                    </Button>
+                </Fragment>
+            }
         </Form>
     );
 }
