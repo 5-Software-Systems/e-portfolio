@@ -9,7 +9,7 @@ import UpdatePage from './containers/Updates';
 import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
-import EPortfolioDemo from './containers/EPortfolioDemo';
+import EPortfolioDemo from './containers/DemoPages';
 import Examples from './containers/Examples'
 // Components
 import Popup from './components/RightNav/Popup';
@@ -134,14 +134,10 @@ export function ContactUsPage() {
 
 export function Demo() {
     return (
-        <Fragment>
+        <div>
             <title>Demo</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container">
-                    <EPortfolioDemo />
-                </div>
-            </BaseTemplate>
-        </Fragment>
+                <EPortfolioDemo />
+        </div>
     );
 }
 

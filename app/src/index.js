@@ -105,6 +105,11 @@ ReactDOM.render(
                     component={ExamplesPage}
                 />
                 <Route
+                    exact
+                    path="/help/:name"
+                    component={Demo}
+                />
+                <Route
                     path="/"
                     component={_404Page}
                 />

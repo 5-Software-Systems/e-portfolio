@@ -1,23 +1,76 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import ReactGridLayout from 'react-grid-layout';
 import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 
+export default function EPortfolioDemo() {
+    const URL = window.location.href.split('/');
+    const PID = URL[URL.length - 1]
+    const history = useHistory();
 
-function Demo() {
+    function switchPage(PID) {
+        switch(PID) {
+            case 'echidna': 
+                return <Echidna/>
+            case 'demo':
+                return <Demo/>
+            case 'calvin':
+                return <Calvin/>
+            case 'tutorial':
+                return <Tutorial/>
+            default:
+                history.push("/404");
+                return;
+        }
+    }
 
-    const width = 220;
+    return (
+        <div className='eportfolioBody'>
+            <header className='header'>
+                
+                <button className='addWidgetButton' onClick={ () => {window.location.href='/help'}}>
+                    <a href = '/help'> ← </a>         
+                </button>
+                 
+                <h1 className='impact'>
+                    {PID}
+                </h1>
+
+            </header>
+            {switchPage(PID)}
+        </div>
+    );
+};
+
+//example pages are below --------------------------------------------------------------------------------------------------------------------------------
+
+function Echidna() {
+    const width = 300;
     const height = 300;
     const columns = 5;
     
     return (
         <div className='eportfolioBody'>
-            <div>
-                <h1 className="impact">
-                    Demo (Our First Portfolio)
-                </h1>
-            </div>
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+                <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 2, h: 2}}>
+                    <img src={'https://i.pinimg.com/originals/c6/76/d6/c676d6a1c74932b0adfb2e5bc7af73cf.jpg'} alt="galaxy" draggable='false' height='100%' />
+                </div>
+            </ReactGridLayout>
+        </div>
+    );  
+}
+
+function Demo() {
+
+    const width = 300;
+    const height = 300;
+    const columns = 5;
+    
+    return (
+        <div className='eportfolioBody'>
+
             <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
             <div key="a" data-grid={{i: 'a', x: 3, y: 1, w: 1, h: 2}}>
                 <img src={process.env.PUBLIC_URL + '/images/galaxy.gif'} alt="galaxy" draggable='false' height='100%' />
@@ -55,17 +108,42 @@ function Demo() {
             </div>
             </ReactGridLayout>
         </div>
-    );   
-   
-        
-  }
+    );         
+}
 
-
-
-
-
-export default function EPortfolioDemo() {
+function Calvin() {
+    const width = 300;
+    const height = 300;
+    const columns = 5;
+    
     return (
-        <Demo/>
-    );
-};
+        <div className='eportfolioBody'>
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+                <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 2, h: 2}}>
+                    <img src={'https://scontent.fmel7-1.fna.fbcdn.net/v/t1.15752-9/71270574_399807817397880_7635407870292393984_n.jpg?_nc_cat=108&_nc_sid=ae9488&_nc_ohc=gTHW244ASwgAX93pSFp&_nc_ht=scontent.fmel7-1.fna&oh=decdf6992befcdf3cca55e617776ae64&oe=5FB2BD1D'} alt="galaxy" draggable='false' height='100%' />
+                </div>
+            </ReactGridLayout>
+        </div>
+    );  
+}
+  
+function Tutorial() {
+    const width = 300;
+    const height = 300;
+    const columns = 5;
+    
+    return (
+        <div className='eportfolioBody'>
+
+            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+            <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 1, h: 1}}>
+                <h1> tutorial page </h1> <p>sooper mahreo in riel loife </p>
+                <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/8EQ17_B7kug" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            </div>
+            <div key="b" data-grid={{i: 'b', x: 1, y: 0, w: 1, h: 1}}>
+                <h1> tutorial video goes here </h1> 
+            </div>
+            </ReactGridLayout>
+        </div>
+    );   
+}
