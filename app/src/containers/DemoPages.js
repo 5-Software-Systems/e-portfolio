@@ -246,7 +246,7 @@ function Calvin() {
         },
         {
           "public_id": "7778cb18-263e-4b5d-a205-4bfe700c8621",
-          "type": "embed",
+          "type": "image",
           "location": [
             2,
             1,
@@ -254,7 +254,7 @@ function Calvin() {
             2
           ],
           "data": {
-            "external_url": "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp"
+            "image_url": "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp"
           }
         },
         {
