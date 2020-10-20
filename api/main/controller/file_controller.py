@@ -59,6 +59,6 @@ class File(Resource):
     @token_required('user', 'login')
     def delete(self, user_public_id, file_name):
         """
-        This is technically not restful - UPLOAD IN SWAGGER WON'T WORK
+        This is technically not restful - DELETE IN SWAGGER WON'T WORK
         """
         return file_service.delete_a_file(user_public_id, file_name), 200
