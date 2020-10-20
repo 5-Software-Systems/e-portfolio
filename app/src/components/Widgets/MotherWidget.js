@@ -20,6 +20,21 @@ export function MotherWidget({widget}) {
         return (
             <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
         )
+    }
+     else if (widget.type === 'spotify_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+        )
+    }
+    else if (widget.type === 'instagram_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+        )
+    }
+    else if (widget.type === 'youtube_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+        )
     } else if (widget.type === 'project') {
         return (
             <PortfolioToHTML name={w_data.name} desc={w_data.description} src={"http://"+w_data.external_url} />
