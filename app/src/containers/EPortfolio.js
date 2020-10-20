@@ -16,6 +16,7 @@ export default function EPortfolio(props) {
     const Auth = isAuthorized();
     const history = useHistory();
 
+    const [user, setUser] = useState();
     const [profile, setProfile] = useState([]);
     const [widgets, setWidget] = useState([]);
     const [movable, setMovable] = useState(true);
@@ -29,42 +30,44 @@ export default function EPortfolio(props) {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
         };
-        const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+        const p_response = await fetch('/api/user/' + user + '/portfolio/' + PID, requestOptions);
         const p_data = await p_response.json();
         if (p_data.error) {
             history.push("/profile");
             return;
         }
         setProfile(p_data.portfolio);
-
-        const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
-        const w_data = await w_response.json();
-        setWidget(w_data.widgets);
+        setWidget(p_data.portfolio.widget);
     }
 
     //store db
     useEffect( () =>{
         async function initFetch() {
+            const requestOptions_user = {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
+            };
+            const user_data = await fetch('/api/auth/user', requestOptions_user);
+            const user_info = await user_data.json();
+            setUser(user_info.public_id);
+
             const requestOptions = {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth }
             };
-            const p_response = await fetch('/api/portfolio/' + PID, requestOptions);
+            const p_response = await fetch('/api/user/' + user_info.public_id + '/portfolio/' + PID, requestOptions);
             const p_data = await p_response.json();
             if (p_data.error) {
                 history.push("/profile");
                 return;
             }
             setProfile(p_data.portfolio);
-
-            const w_response = await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
-            const w_data = await w_response.json();
-            setWidget(w_data.widgets);
+            setWidget(p_data.portfolio.widget);
         }
 
         setMovable(true);
         initFetch();
-    }, [PID, history, Auth]);
+    }, [PID, history, Auth, user]);
 
     
     const width = 300;
@@ -75,7 +78,7 @@ export default function EPortfolio(props) {
         const locationA = [1,1,0,0];
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
                                     type: "about",
                                     location: locationA,
@@ -85,7 +88,7 @@ export default function EPortfolio(props) {
                                     
                                 })
         };
-        await fetch('/api/portfolio/' + PID + '/widget', requestOptions);
+        await fetch('/api/user/' + user + '/portfolio/' + PID + '/widget', requestOptions);
     }
 
     async function onLayoutChange(layout, layouts) {
@@ -97,12 +100,12 @@ export default function EPortfolio(props) {
             if (!sameArr(widgets[i].location,location)) {
                 const requestOptions = {
                     method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json'},
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
                     body: JSON.stringify({  
                                             location: location
                                         })
                 };
-                await fetch('/api/widget/' + id, requestOptions);
+                await fetch('/api/user/' + user + '/widget/' + id, requestOptions);
             }
         }
         updateWidgetLocations(layout);
@@ -151,7 +154,7 @@ export default function EPortfolio(props) {
         <div className='eportfolioBody'>
             <header className='header'>
                 {!props.preview ?
-                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}> 
+                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
                         <a href = '/profile'> ← </a>         
                     </button>
                 : null}  
@@ -185,7 +188,7 @@ export default function EPortfolio(props) {
                         {editMode ? <div className ='blocker'></div> : <div></div>}
                         <MotherWidget widget={widget}/>
                         <div className ='overlay'>
-                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID}/> : <div></div>}
+                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
                         </div>
                     </ div>
                 ))}

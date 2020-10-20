@@ -3,7 +3,7 @@ from flask_restplus import Resource, Namespace
 
 from . import api_model
 from ..service import file_service
-from ..util.decorator import login_token_required
+from ..util.decorator import token_required
 
 namespace = Namespace(
     name='file',
@@ -18,7 +18,7 @@ class Files(Resource):
 
     @namespace.expect(api_model.auth_token_header)
     @namespace.marshal_with(api_model.file, as_list=True, envelope='files')
-    @login_token_required
+    @token_required('user', 'login')
     def get(self, user_public_id):
         """
         Return list of user's files
@@ -32,7 +32,7 @@ class Files(Resource):
 class File(Resource):
 
     @namespace.expect(api_model.auth_token_header)
-    @login_token_required
+    @token_required('user', 'login')
     def get(self, user_public_id, file_name):
         """
         This is technically not restful - DOWNLOAD IN SWAGGER WON'T WORK
@@ -44,6 +44,7 @@ class File(Resource):
         return response
 
     @namespace.expect(api_model.auth_token_header)
+    @token_required('user', 'login')
     @namespace.marshal_with(api_model.response)
     @login_token_required
     def put(self, user_public_id, file_name):

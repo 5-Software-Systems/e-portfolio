@@ -8,7 +8,7 @@ import { isAuthorized } from "../util/cookies";
 
 function EPortfolioPreview(props){
     const Auth = isAuthorized();
-    const link = "/portfolio/" + props.id;
+    const link = "user/" + props.user + "/portfolio/" + props.id;
 
     //delete function 
     async function handleDelete() {
@@ -165,7 +165,7 @@ function EPortfolioPreview(props){
 
     return(
         <div className="eportfoliopreview">
-            <a href={ link } className="eportfolioinfo">
+            <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
                 <p> {props.id} </p>
                 <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>

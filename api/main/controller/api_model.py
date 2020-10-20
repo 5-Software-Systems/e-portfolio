@@ -98,3 +98,8 @@ file = namespace.model(
     name='file',
     model=dict([file_name])
 )
+
+share = namespace.model(
+    name='share',
+    model=dict([duration])
+)

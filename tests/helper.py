@@ -1,7 +1,6 @@
 import json
 from urllib import parse
 
-
 user_data = {
     "email": "email@mail.com",
     "name_first": "first_name",
@@ -36,7 +35,6 @@ def create_login(app, client):
 
 
 def verify(app, client, user_public_id, auth):
-
     res = client.post(f'/api/user/{user_public_id}/verify', data=json.dumps(user_data), headers=get_headers(auth))
 
     return res
@@ -62,8 +60,23 @@ def create_portfolio(app, client, user_public_id, auth):
 
     headers = get_headers(auth)
 
-    res = client.post(f'/api/user/{user_public_id}/portfolio',
-                      data=json.dumps(data), headers=headers)
+    res = client.post(f'/api/user/{user_public_id}/portfolio', data=json.dumps(data), headers=headers)
+    return res
+
+
+def share_portfolio(app, client):
+    user_public_id, auth = set_up_user(app, client)
+    res = create_portfolio(app, client, user_public_id, auth)
+    assert res.status_code == 201
+
+    portfolio_public_id = json.loads(res.data)['portfolio']['public_id']
+
+    data = {
+        "duration": 10080
+    }
+
+    res = client.post(f'/api/user/{user_public_id}/portfolio/{portfolio_public_id}/share',
+                      data=json.dumps(data), headers=get_headers(auth))
     return res
 
 
