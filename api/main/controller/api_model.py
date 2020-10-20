@@ -59,7 +59,7 @@ user_new = namespace.model(
 )
 user_basic = namespace.model(
     name='user',
-    model=dict([public_id, email, name_first, name_last, registered_on])
+    model=dict([public_id, email, name_first, name_last, registered_on, link])
 )
 user_change = namespace.model(
     name='user_change',
