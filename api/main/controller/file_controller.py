@@ -46,7 +46,7 @@ class File(Resource):
     @namespace.expect(api_model.auth_token_header)
     @token_required('user', 'login')
     @namespace.marshal_with(api_model.response)
-    @login_token_required
+    @token_required('user', 'login')
     def put(self, user_public_id, file_name):
         """
         This is technically not restful - UPLOAD IN SWAGGER WON'T WORK
@@ -56,7 +56,7 @@ class File(Resource):
 
     @namespace.expect(api_model.auth_token_header)
     @namespace.marshal_with(api_model.response)
-    @login_token_required
+    @token_required('user', 'login')
     def delete(self, user_public_id, file_name):
         """
         This is technically not restful - UPLOAD IN SWAGGER WON'T WORK
