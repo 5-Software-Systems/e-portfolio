@@ -37,13 +37,15 @@ class File(Resource):
         """
         This is technically not restful - DOWNLOAD IN SWAGGER WON'T WORK
         """
-        response = make_response(file_service.get_file(user_public_id, file_name))
+        response = make_response(file_service.get_file_bytes(user_public_id, file_name))
         response.headers.set('Content-Type', 'image/jpeg')
         response.headers.set('Content-Disposition', 'attachment', filename='%s.jpg' % file_name)
 
-        return response, 200
+        return response
 
     @namespace.expect(api_model.auth_token_header)
+    @token_required('user', 'login')
+    @namespace.marshal_with(api_model.response)
     @token_required('user', 'login')
     def put(self, user_public_id, file_name):
         """
@@ -51,3 +53,12 @@ class File(Resource):
         """
         image_binary = request.get_data()
         return file_service.save_file(user_public_id, file_name, image_binary), 201
+
+    @namespace.expect(api_model.auth_token_header)
+    @namespace.marshal_with(api_model.response)
+    @token_required('user', 'login')
+    def delete(self, user_public_id, file_name):
+        """
+        This is technically not restful - DELETE IN SWAGGER WON'T WORK
+        """
+        return file_service.delete_a_file(user_public_id, file_name), 200
