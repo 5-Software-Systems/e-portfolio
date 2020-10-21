@@ -3,6 +3,9 @@ import EmbedToHTML from './EmbedWidget';
 import TextToHTML from './TextWidget';
 import ImageToHTML from './ImageWidget';
 import PortfolioToHTML from './PortfolioWidget';
+import YoutubeToHTML from './EmbedWidgetYoutube';
+import SpotifyToHTML from './EmbedWidgetSpotify';
+import InstagramToHTML from './EmbedWidgetInstagram';
 
 
 export function MotherWidget({widget}) {
@@ -23,17 +26,17 @@ export function MotherWidget({widget}) {
     }
      else if (widget.type === 'spotify_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <SpotifyToHTML src={w_data.external_url} title={widget.public_id} />
         )
     }
     else if (widget.type === 'instagram_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <InstagramToHTML src={w_data.external_url} title={widget.public_id} />
         )
     }
     else if (widget.type === 'youtube_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <YoutubeToHTML src={w_data.external_url} title={widget.public_id} />
         )
     } else if (widget.type === 'project') {
         return (
