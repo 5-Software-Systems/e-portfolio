@@ -99,11 +99,16 @@ def verify_account(user_public_id):
     }
 
 
-def send_verify_email(user):
+def get_verify_token(user):
     auth_token = encode_token(
         {'user': user.public_id, 'type': 'verify'},
         datetime.timedelta(hours=6)
     )
+    return auth_token
+
+
+def send_verify_email(user):
+    auth_token = get_verify_token(user)
     link = email_service.send_verify_email(user, auth_token)
     return {
         'status': 'success',

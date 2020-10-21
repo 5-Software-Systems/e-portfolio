@@ -26,9 +26,7 @@ class UserList(Resource):
     def post(self):
         """Creates a new User"""
         data = request.json
-        user = user_service.create_new_user(data=data)
-        auth_service.send_verify_email(user)
-        return user, 201
+        return user_service.create_new_user(data=data), 201
 
 
 @namespace.route('/user/<user_public_id>')
