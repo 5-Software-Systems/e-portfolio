@@ -22,20 +22,29 @@ export function MotherWidget({widget}) {
         return (
             <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
         )
-    }
-     else if (widget.type === 'spotify_embed') {
+    } else if (widget.type === 'spotify_embed') {
         return (
             <SpotifyToHTML src={w_data.external_url} title={widget.public_id} />
         )
-    }
-    else if (widget.type === 'instagram_embed') {
+    } else if (widget.type === 'instagram_embed') {
         return (
             <InstagramToHTML src={w_data.external_url} title={widget.public_id} />
         )
-    }
-    else if (widget.type === 'youtube_embed') {
+    } else if (widget.type === 'youtube_embed') {
         return (
             <YoutubeToHTML src={w_data.external_url} title={widget.public_id} />
+        )
+    } else if (widget.type === 'linkedin_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+        )
+    } else if (widget.type === 'twitter_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+        )
+    } else if (widget.type === 'applemusic_embed') {
+        return (
+            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
         )
     }
 }
