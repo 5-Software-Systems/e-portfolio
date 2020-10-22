@@ -124,5 +124,34 @@ export default function GetFields(props) {
                 </div>
             )
         }
+
+        if (props.type === "twitter_embed") {
+            return (
+                <div> 
+                    <p>Put in a Twitter link</p>
+                    <p>Go to an Twitter post, and copy the URL</p>
+                    <p>i.e. "https://twitter.com/jack/status/20" or "https://twitter.com/realDonaldTrump/status/1311892190680014849" </p>
+                </div>
+            )
+        }
+
+        if (props.type === "applemusic_embed") {
+            return (
+                <div> 
+                    <p>Put in an AppleMusic link</p>
+                    <p>Go to AppleMusic, and select "Copy Link 🔗"</p>
+                    <p>i.e. "https://music.apple.com/us/album/crank-that-soulja-boy/1443190317?i=1443190324" or "https://music.apple.com/au/album/future-nostalgia/1495799403" </p>
+                    <p>artist don't work :( </p>
+                </div>
+            )
+        }
+
+        if (props.type === "linkedin_embed") {
+            return (
+                <div> 
+                    <h1> it dont work </h1>
+                </div>
+            )
+        }
     }
 }
