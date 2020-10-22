@@ -14,7 +14,6 @@ export function MotherWidget({widget}) {
         return (
             <TextToHTML text={w_data.about} />
         );
-
     } else if (widget.type === 'image') {
         return (
             <ImageToHTML src={w_data.image_url} width={'100%'} height={'100%'} />
@@ -37,10 +36,6 @@ export function MotherWidget({widget}) {
     else if (widget.type === 'youtube_embed') {
         return (
             <YoutubeToHTML src={w_data.external_url} title={widget.public_id} />
-        )
-    } else if (widget.type === 'project') {
-        return (
-            <PortfolioToHTML name={w_data.name} desc={w_data.description} src={"http://"+w_data.external_url} />
         )
     }
 }
