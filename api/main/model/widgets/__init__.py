@@ -6,5 +6,5 @@ from .spotify_embed import Spotify_Embed
 from .youtube_embed import Youtube_Embed
 from .widget import WidgetBase
 from .twitter_embed import Twitter_Embed
-from .applemusic_Embed import Applemusic_Embed
-from .linkedin_Embed import Linkedin_Embed
+from .applemusic_embed import Applemusic_Embed
+from .linkedin_embed import Linkedin_Embed
