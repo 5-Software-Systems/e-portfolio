@@ -56,11 +56,8 @@ export function FileUpload(props) {
             var image = await fetch('api/user/'+ props.userID + '/file/' + files.files[i].file_name, requestOptions);
             file_list.push(image);
         }
-        setFiles(file_list)     
-    }
-
-    async function addToList() {
-        
+        setFiles(file_list);
+        console.log(file_list);  
     }
 
     //update displayed files when new image is uploaded 
@@ -93,7 +90,7 @@ export function FileUpload(props) {
 }
 
 
-export function FilePopUp(userID) {
+export function FilePopUp(props) {
     return (
         <Popup
             trigger={<button className="menu-item" > Select/Upload Image </button>}
@@ -110,7 +107,7 @@ export function FilePopUp(userID) {
                 <div className="content2">
                 {' '}
                     <div>
-                        <FileUpload userID={userID}/>
+                        <FileUpload userID={props.userID}/>
                     </div>
                 </div>
             </div>

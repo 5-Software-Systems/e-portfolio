@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import '../styles/BasePage.css';
 import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
-import { FileUpload, FilePopUp } from "./FileUpload"
+import { FilePopUp } from "./FileUpload"
 
 
 
@@ -62,8 +62,7 @@ function EPortfolioPreview(props){
                             />
                         </label>
                     </div>
-                        <FileUpload userID={props.user}/>
-                        <FilePopUp user={props.user}/>
+                        <FilePopUp userID={props.user}/>
                     </div>
                     <div className="actions">
                     <button className="button" onClick={() => {
