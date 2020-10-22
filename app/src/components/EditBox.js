@@ -131,7 +131,7 @@ export default function EditBox(props) {
           </div>
           <div className="content2">
               {' '}    
-              <GetFields type={dropDownType} changed={changeCount} data={data} defaultData={props.widgetData} onChange={(e) => setData(e)}/>
+              <GetFields user={props.userID} type={dropDownType} changed={changeCount} data={data} defaultData={props.widgetData} onChange={(e) => setData(e)}/>
           </div>
           <div className='PopupBottom'>
               <div className='options'>

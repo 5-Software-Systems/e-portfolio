@@ -1,6 +1,7 @@
 //ligma
 import React, {useEffect, useState} from 'react';
 import { isAuthorized } from "../../util/cookies";
+import {FilePopUp} from "../FileUpload";
 
 
 
@@ -83,6 +84,8 @@ export default function GetFields(props) {
                     </label>
                 ))}
                 {embedHint()}
+                {imageUpload(props.user)}
+
             </div>
 
         
@@ -95,6 +98,16 @@ export default function GetFields(props) {
                     <p>To paste an embed link, just input the src link</p>
                     <p>For example if the embed link is "iframe width="916" height="515" src="https://www.youtube.com/embed/VUzoJrfJQBw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen iframe" the just use the link after "src" </p>
                     <p>i.e. "https://www.youtube.com/embed/VUzoJrfJQBw" without the quotes </p>
+                </div>
+            )
+        }
+    }
+
+    function imageUpload(user) {
+        if (props.type === "image") {
+            return (
+                <div> 
+                    <FilePopUp userID={user}/>
                 </div>
             )
         }
