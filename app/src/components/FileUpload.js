@@ -60,20 +60,44 @@ export function FileUpload(props) {
         console.log(file_list);  
     }
 
-    //update displayed files when new image is uploaded 
-    useEffect( () =>{
-        getFiles();
-    }, [Auth, upload])
+    async function deleteFile() {
+        if (current==='None') {
+            alert('Nothing selected');
+            return;
+        }
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth}
+        };
+        await fetch('/api/user/'+ props.userID + '/file/' + current, requestOptions);
+        setUpload(!upload);
+        setCurrent('None');
+    }
 
+    //selecting an image 
+    const [current, setCurrent] = useState('None');
+
+    function selectImage(url) {
+        var list = url.split('/');
+        var name = list[list.length-1];
+        setCurrent(name);
+    }
+
+     //update displayed files when new image is uploaded 
+     useEffect( () =>{
+        getFiles();
+    }, [Auth, upload, current])
 
     return (
         <div> 
             <div> 
                 <br/>
-                <p> Uploaded images: </p>
+                <p> Uploaded images: {current} selected </p>
                 {files.map(file =>(
                     <span> 
-                        <ImageThumb image={file.url} />
+                        <button onClick={(e) => selectImage(file.url)}> 
+                            <ImageThumb image={file.url} />
+                        </button>
                     </span>
                 ))}
                 <hr/>
@@ -84,6 +108,9 @@ export function FileUpload(props) {
                 <br/>
                 {upload ? <p>Uploaded successfully!</p> : null}            
             </div>
+            <span>
+                <button onClick={deleteFile}> Delete </button>
+            </span>
         </div>
         
     );
