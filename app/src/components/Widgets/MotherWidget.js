@@ -6,7 +6,7 @@ import YoutubeToHTML from './EmbedWidgetYoutube';
 import SpotifyToHTML from './EmbedWidgetSpotify';
 import InstagramToHTML from './EmbedWidgetInstagram';
 //import LinkedinToHTML from './EmbedWidgetLinkedin';
-import TwitterToHTML from './EmbedWidgetTwiiter';
+import TwitterToHTML from './EmbedWidgetTwitter';
 import ApplemusicToHTML from './EmbedWidgetApplemusic';
 
 
