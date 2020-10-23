@@ -82,7 +82,7 @@ export default function AddPortfolio(props) {
                             </button>
                             <div className="header2"> <h1>Add Portfolio</h1> </div>
                             <div className="content">
-                                <Form className='actions' onSubmit={() => {handleClick(); close();}}>
+                                <Form className='actions' onSubmit={() => {close(); handleClick();}}>
                                     <FormGroup controlId="basePageTextBox">
                                         <FormLabel>Portfolio Name:</FormLabel>
                                         <FormControl
