@@ -5,7 +5,7 @@ import ImageToHTML from './ImageWidget';
 import YoutubeToHTML from './EmbedWidgetYoutube';
 import SpotifyToHTML from './EmbedWidgetSpotify';
 import InstagramToHTML from './EmbedWidgetInstagram';
-import LinkedinToHTML from './EmbedWidgetLinkedin';
+//import LinkedinToHTML from './EmbedWidgetLinkedin';
 import TwitterToHTML from './EmbedWidgetTwiiter';
 import ApplemusicToHTML from './EmbedWidgetApplemusic';
 
@@ -36,10 +36,14 @@ export function MotherWidget({widget}) {
         return (
             <YoutubeToHTML src={w_data.external_url} title={widget.public_id} />
         )
+
+    /**
     } else if (widget.type === 'linkedin_embed') {
         return (
             <LinkedinToHTML src={w_data.external_url} title={widget.public_id} />
         )
+    */
+
     } else if (widget.type === 'twitter_embed') {
         return (
             <TwitterToHTML src={w_data.external_url} title={widget.public_id} />

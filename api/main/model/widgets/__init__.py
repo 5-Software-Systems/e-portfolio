@@ -7,4 +7,3 @@ from .youtube_embed import Youtube_Embed
 from .widget import WidgetBase
 from .twitter_embed import Twitter_Embed
 from .applemusic_embed import Applemusic_Embed
-from .linkedin_embed import Linkedin_Embed

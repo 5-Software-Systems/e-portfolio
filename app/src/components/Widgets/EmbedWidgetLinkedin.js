@@ -1,6 +1,9 @@
 import React from 'react';
 
-
+/**
+ * 
+ * @depreciated linkedin sucks
+ */
 export function LinkedinToHTML({src, title="embed", width = '100%', height = '100%'}) {
 
     function getID(URL) {
