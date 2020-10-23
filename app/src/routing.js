@@ -10,6 +10,8 @@ import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
+import Share from './containers/Share';
+import NotFound from './containers/Share';
 // Components
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
@@ -120,6 +122,12 @@ export function SettingsPage() {
 export function PortfolioPage(props) {
     return (
         <EPortfolio preview = {props.preview}/>
+    );
+}
+
+export function SharedPortfolioPage() {
+    return (
+        <Share />
     );
 }
 

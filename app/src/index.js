@@ -18,6 +18,7 @@ import {
     ProfilePage,
     SettingsPage,
     PortfolioPage,
+    SharedPortfolioPage,
     UpdatesPage,
     ContactUsPage,
     Demo,
@@ -86,9 +87,13 @@ ReactDOM.render(
                 <Route
                     path="/portfolio/"
                     render={() => {
-                        return (
-                                <PortfolioPage preview = {!isLoggedIn()} />
-                                )
+                        return (<PortfolioPage preview = {!isLoggedIn()} />)
+                    }}
+                />
+                <Route
+                    path="/share/"
+                    render={() => {
+                        return (<SharedPortfolioPage />)
                     }}
                 />
                 <Route
