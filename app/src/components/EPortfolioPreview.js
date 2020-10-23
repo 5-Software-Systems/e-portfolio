@@ -3,7 +3,14 @@ import Popup from 'reactjs-popup';
 import '../styles/BasePage.css';
 import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
-import { FilePopUp } from "./FileUpload"
+import { FilePopUp } from "./FileUpload";
+import {
+    Form,
+    FormGroup,
+    FormControl,
+    FormLabel,
+    Button,
+} from "react-bootstrap";
 
 
 
@@ -22,14 +29,16 @@ function EPortfolioPreview(props){
     }
 
     //edit funciton 
-    const [newName, setNewName] = useState(props.name)
+    const [newName, setNewName] = useState(props.name);
+    const [newImage, setNewImage] = useState(props.img);
 
     async function handleEdit() {
         const requestOptions = {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
-                "title": newName
+                "title": newName,
+                "background_url": newImage
               })
         };
         await fetch('api/'+ api_link, requestOptions);
@@ -52,26 +61,28 @@ function EPortfolioPreview(props){
                     </button>
                     <div className="header2"> <h1>Edit Portfolio</h1> </div>
                     <div className="content2">
-                    {' '}
-                    <div>
-                        <label>
-                            Portfolio Name:<br />
-                            <input className='basePageTextBox'
-                                type="text"
-                                value={newName}
-                                onChange={(e) => setNewName(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                        <FilePopUp userID={props.user}/>
-                    </div>
-                    <div className="actions">
-                    <button className="button" onClick={() => {
-                                handleEdit();
-                                close();
-                                update();
-                    }}> Apply </button>
-
+                        <Form className='actions' onSubmit={() => {close(); handleEdit(); update();}}>
+                            <FormGroup controlId="basePageTextBox">
+                                <FormLabel>Portfolio Name:</FormLabel>
+                                <FormControl
+                                    type="text"
+                                    values = {newName}
+                                    onChange={(e) => setNewName(e.target.value)}
+                                    defaultValue = {newName}
+                                    />
+                                <br/>
+                                <FormLabel>Preview Image:</FormLabel>
+                                <FormControl
+                                    type="text"
+                                    values = {newImage}
+                                    onChange={(e) => setNewImage(e.target.value)}
+                                    defaultValue = {newImage}
+                                    placeholder="URL"
+                                    />
+                            </FormGroup>
+                            <FilePopUp userID={props.user}/>
+                            <Button className="button" type="submit">Apply</Button>
+                        </Form>
                     </div>
                 </div>
                 )}
@@ -185,7 +196,7 @@ function EPortfolioPreview(props){
             <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
                 <p> {props.id} </p>
-                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>
+                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="not a valid url" height='150'/>
             </a>
             <div className="button_container" >
                 {settingsButton()}

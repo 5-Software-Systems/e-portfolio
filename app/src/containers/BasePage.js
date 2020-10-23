@@ -50,7 +50,7 @@ export default function BasePage() {
         <div className="container">
             <div className="basepage">
                 {profiles.map(profile =>(
-                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} user={user}
+                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} user={user} img={profile.background_url}
                     onUpdate={(e) => setUpdateTrue()}/>
                 ))}
                 < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>
