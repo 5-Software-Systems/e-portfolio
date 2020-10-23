@@ -14,7 +14,8 @@ def test_create_portfolio(app, client):
     expected = {
         "portfolio": {
             "public_id": public_id,
-            "title": "title"
+            "title": "title",
+            "background_url": None
         }
     }
     assert expected == json.loads(res.get_data(as_text=True))
@@ -36,7 +37,8 @@ def test_get_portfolios(app, client):
         "portfolios": [
             {
                 "public_id": public_id,
-                "title": "title"
+                "title": "title",
+                "background_url": None
             }
         ]
     }
@@ -58,6 +60,7 @@ def test_get_portfolio(app, client):
 
     expected = {
         "portfolio": {
+            'background_url': None,
             "public_id": portfolio_public_id,
             "title": "title",
             "widget": []
@@ -87,7 +90,8 @@ def test_patch_portfolio(app, client):
     expected = {
         'portfolio': {
             'public_id': portfolio_public_id,
-            'title': 'patched_title'
+            'title': 'patched_title',
+            'background_url': None,
         }
     }
     assert expected == json.loads(res.get_data(as_text=True))

@@ -21,6 +21,7 @@ auth_token = 'Authorization', fields.String(description='JSON Web Token')
 
 # PORTFOLIO
 portfolio_title = 'title', fields.String(description='title of portfolio')
+background_url = 'background_url', fields.String(description='img url for background')
 
 # WIDGET
 widget_type = 'type', fields.String(description='type of widget', example='about')
