@@ -22,6 +22,7 @@ import {
     UpdatesPage,
     ContactUsPage,
     Demo,
+    PortfolioNotFound,
     _404Page
 } from './routing.js';
 
@@ -94,6 +95,12 @@ ReactDOM.render(
                     path="/share/"
                     render={() => {
                         return (<SharedPortfolioPage />)
+                    }}
+                />
+                <Route
+                    path="/not_found"
+                    render={() => {
+                        return (<PortfolioNotFound />)
                     }}
                 />
                 <Route

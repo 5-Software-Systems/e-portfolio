@@ -119,7 +119,7 @@ function EPortfolioPreview(props){
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
-                "duration": 31557600 // 1 year
+                "duration": 525960 // 1 year
               })
         };
         const url = '/api/user/' + props.user + '/portfolio/' + props.id + '/share';

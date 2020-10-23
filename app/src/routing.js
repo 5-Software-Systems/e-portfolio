@@ -166,6 +166,20 @@ export function Demo() {
     );
 }
 
+export function PortfolioNotFound() {
+    return (
+        <Fragment>
+            <title>Not Found...</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <div className="container banner">
+                    <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
 export function _404Page() {
     return (
         <Fragment>
