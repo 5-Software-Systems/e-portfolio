@@ -2,10 +2,12 @@ import React from 'react';
 import EmbedToHTML from './EmbedWidget';
 import TextToHTML from './TextWidget';
 import ImageToHTML from './ImageWidget';
-import PortfolioToHTML from './PortfolioWidget';
 import YoutubeToHTML from './EmbedWidgetYoutube';
 import SpotifyToHTML from './EmbedWidgetSpotify';
 import InstagramToHTML from './EmbedWidgetInstagram';
+//import LinkedinToHTML from './EmbedWidgetLinkedin';
+import TwitterToHTML from './EmbedWidgetTwitter';
+import ApplemusicToHTML from './EmbedWidgetApplemusic';
 
 
 export function MotherWidget({widget}) {
@@ -34,17 +36,21 @@ export function MotherWidget({widget}) {
         return (
             <YoutubeToHTML src={w_data.external_url} title={widget.public_id} />
         )
+
+    /**
     } else if (widget.type === 'linkedin_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <LinkedinToHTML src={w_data.external_url} title={widget.public_id} />
         )
+    */
+
     } else if (widget.type === 'twitter_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <TwitterToHTML src={w_data.external_url} title={widget.public_id} />
         )
     } else if (widget.type === 'applemusic_embed') {
         return (
-            <EmbedToHTML src={w_data.external_url} title={widget.public_id} />
+            <ApplemusicToHTML src={w_data.external_url} title={widget.public_id} />
         )
     }
 }
