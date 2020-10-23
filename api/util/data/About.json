@@ -6,6 +6,12 @@
     "location": [1, 1, 0, 0]
   },
   {
+    "public_id": "widget_public_id_15",
+    "portfolio_id": "1",
+    "about": "{\"blocks\":[{\"key\":\"fsk7q\",\"text\":\"I am a widget!\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2ea43\",\"text\":\"Feel free to resize me from the bottom right corner.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"blk1i\",\"text\":\"You can:\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"4uqhk\",\"text\":\"drag me around to change my position\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"7eg9v\",\"text\":\"change what I display using the cog on the bottom left\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"qdhj\",\"text\":\"delete me 🥺\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"12mk8\",\"text\":\"Also, if you want more widgets, click the 'Add Widget' button on the top right of your screen!\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+    "location": [1, 1, 0, 0]
+  },
+  {
     "public_id": "widget_public_id_2",
     "portfolio_id": "2",
     "about": "This is the test account for Marcus' uni email\nThis is my Professional Portfolio",

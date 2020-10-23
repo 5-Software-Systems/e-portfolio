@@ -18,9 +18,11 @@ import {
     ProfilePage,
     SettingsPage,
     PortfolioPage,
+    SharedPortfolioPage,
     UpdatesPage,
     ContactUsPage,
     Demo,
+    PortfolioNotFound,
     _404Page
 } from './routing.js';
 
@@ -86,9 +88,19 @@ ReactDOM.render(
                 <Route
                     path="/portfolio/"
                     render={() => {
-                        return (
-                                <PortfolioPage preview = {!isLoggedIn()} />
-                                )
+                        return (<PortfolioPage preview = {!isLoggedIn()} />)
+                    }}
+                />
+                <Route
+                    path="/share/"
+                    render={() => {
+                        return (<SharedPortfolioPage />)
+                    }}
+                />
+                <Route
+                    path="/not_found"
+                    render={() => {
+                        return (<PortfolioNotFound />)
                     }}
                 />
                 <Route
