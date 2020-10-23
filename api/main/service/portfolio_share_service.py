@@ -31,7 +31,7 @@ def share_a_portfolio(user_public_id, portfolio_public_id, data):
 
     req = PreparedRequest()
     host = request.host_url
-    req.prepare(url=f'{host}share', params={'portfolio': portfolio.public_id, 'auth': auth_token})
+    req.prepare(url=f'{host}share/{portfolio.public_id}', params={'auth': auth_token})
 
     return {
         'status': 'success',

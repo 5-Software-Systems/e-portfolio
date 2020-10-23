@@ -26,14 +26,14 @@ export async function authorize(requestOptions) {
 
     if (data.message === "Successfully logged in") {
         const auth64 = data.Authorization;
-        cookie.set('authorization', auth64, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
-        cookie.set('logged_in', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        cookie.set('authorization', auth64, {path:'/', maxAge:86400}); //temp 10 minute expiry for cookie
+        cookie.set('logged_in', 1, {path:'/', maxAge:86400}); //temp 10 minute expiry for cookie
     }
 
     if (data.message === "Log in correct, but user is not verified, verify link sent") {
-        cookie.set('unverified', 1, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        cookie.set('unverified', 1, {path:'/', maxAge:86400}); //temp 10 minute expiry for cookie
     } else {
-        cookie.set('unverified', 0, {path:'/', maxAge:1200}); //temp 10 minute expiry for cookie
+        cookie.set('unverified', 0, {path:'/', maxAge:86400}); //temp 10 minute expiry for cookie
     }
 }
 

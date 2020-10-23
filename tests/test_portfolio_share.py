@@ -13,7 +13,7 @@ def test_get_share_portfolio(app, client):
     assert res.status_code == 201
 
     parsed = parse.urlparse(res.json['link'])
-    portfolio_public_id = parse.parse_qs(parsed.query)['portfolio'][0]
+    portfolio_public_id = parsed.path.split('/')[-1]
     auth = parse.parse_qs(parsed.query)['auth'][0]
 
     res = client.get(f'/api/portfolio_share/{portfolio_public_id}', headers=get_headers(auth))

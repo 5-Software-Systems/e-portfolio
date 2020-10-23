@@ -10,6 +10,8 @@ import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
+import Share from './containers/Share';
+import NotFound from './containers/Share';
 // Components
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
@@ -123,6 +125,12 @@ export function PortfolioPage(props) {
     );
 }
 
+export function SharedPortfolioPage() {
+    return (
+        <Share />
+    );
+}
+
 export function UpdatesPage() {
     return (
         <Fragment>
@@ -152,6 +160,20 @@ export function Demo() {
             <BaseTemplate nav_right = { <RightNav /> } >
                 <div className="container">
                     <EPortfolioDemo />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
+export function PortfolioNotFound() {
+    return (
+        <Fragment>
+            <title>Not Found...</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <div className="container banner">
+                    <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
                 </div>
             </BaseTemplate>
         </Fragment>

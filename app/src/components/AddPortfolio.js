@@ -1,4 +1,11 @@
-import React, { useState, Fragment }from 'react';
+import React, { useState, Fragment } from 'react';
+import {
+    Form,
+    FormGroup,
+    FormControl,
+    FormLabel,
+    Button,
+} from "react-bootstrap";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
@@ -53,7 +60,10 @@ export default function AddPortfolio(props) {
         await fetch('/api/user/' + props.PID + '/portfolio/' + data.portfolio.public_id + '/widget', postInitialWidget);
     }
     
-
+    const handleClick = (e) => {
+        handleSubmit();
+        update();
+    };
     
 
     return (
@@ -66,28 +76,26 @@ export default function AddPortfolio(props) {
                     closeOnDocumentClick={false}
                     nested>
                     {close => (
-                    <div className="modal">
-                        <button className="close" onClick={close}>
-                        &times;
-                        </button>
-                        <div className="header2"> <h1>Add Portfolio</h1> </div>
-                        <div className="content">
-                        {' '}
-                        <form>
-                            <label>
-                                Portfolio Name:<br />
-                                <input className='basePageTextBox' type="text" placeholder="Untitled" value={name} onChange={(e) => setName(e.target.value)} />
-                            </label>
-                        </form>
+                        <div className="modal">
+                            <button className="close" onClick={close}>
+                                &times;
+                            </button>
+                            <div className="header2"> <h1>Add Portfolio</h1> </div>
+                            <div className="content">
+                                <Form className='actions' onSubmit={() => {close(); handleClick();}}>
+                                    <FormGroup controlId="basePageTextBox">
+                                        <FormLabel>Portfolio Name:</FormLabel>
+                                        <FormControl
+                                            type="text"
+                                            values = {name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            placeholder="Untitled"
+                                            required/>
+                                    </FormGroup>
+                                    <Button className="button" type="submit">Add</Button>
+                                </Form>
+                            </div>
                         </div>
-                        <div className="actions">
-                        <button className="button" onClick={() => {
-                                    handleSubmit();
-                                    close();
-                                    update();
-                        }}> Add </button>
-                        </div>
-                    </div>
                     )}
                 </Popup>
             </div>
