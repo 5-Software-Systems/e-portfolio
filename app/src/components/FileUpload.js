@@ -27,7 +27,7 @@ export function FileUpload(props) {
             headers: { 'Content-Type': file.type, 'Authorization': 'bearer ' + Auth},
             body: file
         };
-        await fetch('api/user/'+ props.userID + '/file/' + file.name, requestOptions);
+        await fetch('/api/user/'+ props.userID + '/file/' + file.name, requestOptions);
 
         //switches every upload to update view 
         setUpload(!upload)
@@ -41,7 +41,7 @@ export function FileUpload(props) {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
         };
-        const file_data = await fetch('api/user/'+ props.userID + '/file', requestOptions);
+        const file_data = await fetch('/api/user/'+ props.userID + '/file', requestOptions);
         const files = await file_data.json();
         setFiles(files.files);
 
@@ -53,7 +53,7 @@ export function FileUpload(props) {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth}
             };
-            var image = await fetch('api/user/'+ props.userID + '/file/' + files.files[i].file_name, requestOptions);
+            var image = await fetch('/api/user/'+ props.userID + '/file/' + files.files[i].file_name, requestOptions);
             file_list.push(image);
         }
         setFiles(file_list);
