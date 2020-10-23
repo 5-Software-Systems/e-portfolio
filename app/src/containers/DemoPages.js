@@ -20,6 +20,8 @@ export default function EPortfolioDemo() {
                 return <Demo/>
             case 'calvin':
                 return <Calvin/>
+            case 'team':
+                return <Team/>
             case 'tutorial':
                 return <Tutorial/>
             default:
@@ -296,6 +298,222 @@ function Calvin() {
             </ReactGridLayout>
         </div>
     ); 
+}
+
+function Team() {
+  const width = 300;
+  const height = 300;
+  const columns = 5;
+
+  const widgets = [
+    {
+      "public_id": "99a00e59-edfe-4e9a-8a3e-9a8db73bda5e",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "data": {
+        "image_url": "https://cdn.discordapp.com/attachments/198751173967216640/767647617462173736/Picture_2.png"
+      }
+    },
+    {
+      "public_id": "77dc2309-1ccc-4b50-9ecc-a18568541c18",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        2,
+        1
+      ],
+      "data": {
+        "image_url": "https://cdn.discordapp.com/attachments/198751173967216640/767647241804447744/23012007.jpg"
+      }
+    },
+    {
+      "public_id": "786749a9-3e34-4cef-9fc1-b8a061d30784",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        4,
+        1
+      ],
+      "data": {
+        "image_url": "https://scontent.fmel7-1.fna.fbcdn.net/v/t1.0-9/530510_302333113218573_660232513_n.jpg?_nc_cat=103&ccb=2&_nc_sid=09cbfe&_nc_ohc=YS-FBOydiHIAX87ARSh&_nc_ht=scontent.fmel7-1.fna&oh=0648eab25585b31ab70f8c4b745a24d5&oe=5FB6A98D"
+      }
+    },
+    {
+      "public_id": "986420b4-5eeb-46d2-82f3-6a923af588dd",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        4,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"fdtbd\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"d6v6k\",\"text\":\"           Fraser\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "5c2b5781-2a5c-41aa-88e8-6778b06bb9ed",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        3,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"97for\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"4r312\",\"text\":\"         Marcus\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "27938ff1-ec1f-45f3-9abc-1e7def3ac134",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        2,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"av1vp\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"281j6\",\"text\":\"         Fabrice\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "d35c35c7-333f-4fc8-baae-44c0d84de46e",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"8tb6c\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"59jcj\",\"text\":\"          Calvin\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "563e5611-ab2f-4a34-9465-2103165de799",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"fsk7q\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"c4q15\",\"text\":\"\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"197q0\",\"text\":\"         Nathan\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "634aa341-2032-4049-a53c-6fdc8730759f",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "data": {
+        "image_url": "https://cdn.discordapp.com/attachments/745863014837649460/768996708188160030/unknown.png"
+      }
+    },
+    {
+      "public_id": "313b7018-dcb3-4c78-85ea-fd8b6136045e",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        0,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Roles\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"b1f29\",\"text\":\"Frontend 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5nbdf\",\"text\":\"GitMaster 🔰\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"fcnjd\",\"text\":\"Graphic Designer ✏\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"97b5\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"eurj7\",\"text\":\"Pancakes 🥞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"aclo4\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"c7g8r\",\"text\":\"Hedgehogs 🦔\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "1b4baa78-2059-4461-8a5d-bc53a197f15b",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Roles\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"7nfql\",\"text\":\"Frontend 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5rvqv\",\"text\":\"CSS guy 🅱\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"31dj1\",\"text\":\"Accountant 🤑\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5n2l\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"1nu0o\",\"text\":\"Watermelon 🍉\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5hf6q\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"e732f\",\"text\":\"CSS  🖕\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":5,\"length\":1,\"key\":0}],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://emojipedia.org/middle-finger/\",\"url\":\"https://emojipedia.org/middle-finger/\"}}}}"
+      }
+    },
+    {
+      "public_id": "c361a3a2-9c9e-4cd6-b5b1-844130dfd7bc",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        3,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Roles\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"86n9p\",\"text\":\"Backend 💾\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"3vg6g\",\"text\":\"Testing ⭕\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1f3ho\",\"text\":\"Sound Design 🎚\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6tluu\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"34o3h\",\"text\":\"The Stone Roses 🎶\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"d1147\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"fvgre\",\"text\":\"Pointers 👉\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "4ab1aa43-0641-4087-ba62-eac0ffeb9b76",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        4,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Roles\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"543vv\",\"text\":\"Backend 💾\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"3njfr\",\"text\":\"Deployment 📤\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"rsap\",\"text\":\"Code Monkey 🙈\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5btar\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"dd2ik\",\"text\":\"Tennis 🎾\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"mnhc\",\"text\":\"Dislikes \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":9,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"5icou\",\"text\":\"Cricket 🏏\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "a345aa8d-066e-4e97-9f7d-393e734703a6",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        1,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Roles\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"bri79\",\"text\":\"Frontend 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"dgj2j\",\"text\":\"ScrumMaster 🏉\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"62iah\",\"text\":\"Client Contact 🤡\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"fv4vr\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"auu4j\",\"text\":\"Winter ⛄\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"f2a4t\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"6t9c1\",\"text\":\"Presentations 🥺\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "215124a5-ab6a-4012-b4ac-f220b233d031",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        3,
+        1
+      ],
+      "data": {
+        "image_url": "https://cdn.discordapp.com/attachments/198751173967216640/769096707161980968/unknown.png"
+      }
+    }
+  ]
+  
+  return (
+      <div className='eportfolioBody'>
+          <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+              {widgets.map(widget =>(
+                  < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                      <MotherWidget widget={widget}/> 
+                  </ div>
+              ))}
+          </ReactGridLayout>
+      </div>
+  ); 
 }
   
 function Tutorial() {
