@@ -8,7 +8,8 @@ import { isAuthorized } from "../util/cookies";
 
 function EPortfolioPreview(props){
     const Auth = isAuthorized();
-    const link = "user/" + props.user + "/portfolio/" + props.id;
+    const api_link = "user/" + props.user + "/portfolio/" + props.id;
+    const [shareLink, setShareLink] = useState("");
 
     //delete function 
     async function handleDelete() {
@@ -16,7 +17,7 @@ function EPortfolioPreview(props){
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
         };
-        await fetch('api/'+ link, requestOptions);
+        await fetch('api/'+ api_link, requestOptions);
     }
 
     //edit funciton 
@@ -30,7 +31,7 @@ function EPortfolioPreview(props){
                 "title": newName
               })
         };
-        await fetch('api/'+ link, requestOptions);
+        await fetch('api/'+ api_link, requestOptions);
     }
     
 
@@ -113,6 +114,20 @@ function EPortfolioPreview(props){
         )
     }
 
+    async function get_link() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
+            body: JSON.stringify({
+                "duration": 31557600 // 1 year
+              })
+        };
+        const url = '/api/user/' + props.user + '/portfolio/' + props.id + '/share';
+        const share_link_data = await fetch(url, requestOptions);
+        const share_link = await share_link_data.json();
+        return Promise.resolve(share_link);
+    }
+
     //settings button 
     function settingsButton() {
         return (
@@ -130,15 +145,15 @@ function EPortfolioPreview(props){
                 {close => (
                     <div className="menu">
                         <button className="menu-item" onClick={() => {
-                            copyToClipboard(window.location.host + "/portfolio/" + props.id);
+                            get_link().then(value =>
+                                copyToClipboard(value.link)
+                            );
                             close();
-                            alert("Copied to clipboard");
                         }}> Share </button>
                         {editButton()}
                         {deletePopup()}
                     </div>
                 )}
-                
             </Popup>
         )
     }
