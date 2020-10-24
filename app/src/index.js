@@ -27,14 +27,25 @@ import {
     _404Page
 } from './routing.js';
 
+const defaultTheme = createMuiTheme();
+
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#3F3D56',
     },
   },
-  appBar: {
-    height: 290,
+  overrides: {
+    MuiToolbar: {
+      gutters: {
+        paddingLeft: defaultTheme.spacing.unit * 5,
+        paddingRight: defaultTheme.spacing.unit * 5,
+        [defaultTheme.breakpoints.up('sm')]: {
+          paddingLeft: defaultTheme.spacing.unit * 5,
+          paddingRight: defaultTheme.spacing.unit * 5,
+        },
+      },
+    },
   },
 });
 
