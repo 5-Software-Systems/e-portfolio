@@ -186,10 +186,10 @@ export function _404Page() {
         <Fragment>
             <title>Uh Oh...</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="banner first">
+                <div className="banner second">
                     <div className="container">
                         <h2 className="font-weight-semibold">Error 404:<br/>We can't find the page you're looking.</h2>
-                        <img src={process.env.PUBLIC_URL + "/images/404.svg"} alt="" className="img-fluid pt-5" />
+                        <img src={process.env.PUBLIC_URL + "/images/404v2.svg"} alt="" className="img-fluid pt-5" />
                     </div>
                 </div>
             </BaseTemplate>
