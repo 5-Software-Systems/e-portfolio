@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
-import ReactGridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import '../styles/ePortfolio-popup.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
@@ -11,6 +12,8 @@ import { isAuthorized } from "../util/cookies";
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
+
+const ReactGridLayout = WidthProvider(Responsive);
 
 export default function EPortfolio(props) {
     const history = useHistory();
@@ -51,20 +54,34 @@ export default function EPortfolio(props) {
         <div className='eportfolioBody'>
             <header className='header'>
                 <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
-                    <a href = '/profile'> ← </a>
+                    <a href = '/'> <ArrowBack /> </a>
                 </button>
                 <h1 className='impact'>
                     {profile.title}
                 </h1>
+                <p className="impact">Created by:<br/>Firstname Lastname</p>
             </header>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
-                {widgets.map(widget =>(
-                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
-                        <MotherWidget widget={widget}/>
-                        <div className ='overlay'></div>
-                    </div>
-                ))}
-            </ReactGridLayout>
+            <div className="container mt-2">
+                <ReactGridLayout
+                    className="layout"
+                    cols={columns}
+                    rowHeight={height}
+                    width={columns * width}
+                    margin={[10,10]}
+                    compactType={null}
+                    isDraggable={false}
+                    isResizable={false}
+                    breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                    cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+                >
+                    {widgets.map(widget =>(
+                        < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                            <MotherWidget widget={widget}/>
+                            <div className ='overlay'></div>
+                        </div>
+                    ))}
+                </ReactGridLayout>
+            </div>
         </div>
     );
 };
