@@ -25,7 +25,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -169,15 +169,14 @@ h6, .h6 {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding: 15px;
   margin-right: auto;
   margin-left: auto;
 }
 
 .container {
   max-width: 1140px;
-  background-color: #f7f8fa;
+  background-color: transparent;
 }
 
 .btn {
@@ -263,9 +262,59 @@ h6, .h6 {
   display: flex !important;
 }
 
+.banner {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0px 40px;
+}
+
+.banner h1 {
+  font-size: 50px;
+  max-width: 650px;
+  margin: auto;
+}
+
+.banner h4 {
+  font-size: 14px;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.first {
+  background-color: #f7f8fa;
+  color: #111;
+}
+
+.second {
+  background-color: #3F3D56;
+  color: #fff;
+}
+
+.tile {
+  text-align: left;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  width: 500px;
+  min-width: 50%;
+  padding: 20px;
+}
+
+.flip {
+  text-align: right;
+}
+
 @media (min-width: 576px) {
+  .banner h4 {
+    font-size: 16px;
+  }
+  .banner h1{
+    font-size: 70px;
+  }
   .img-fluid {
-    max-width: 90%;
+    max-width: 80%;
   }
   .m-sm-0 {
     margin: 0 !important;
@@ -612,8 +661,11 @@ h6, .h6 {
 }
 
 @media (min-width: 768px) {
-  .img-fluid {
-    max-width: 80%;
+  .banner h4 {
+    font-size: 20px;
+  }
+  .banner h1{
+    font-size: 90px;
   }
   .m-md-0 {
     margin: 0 !important;
@@ -990,8 +1042,8 @@ h6, .h6 {
 }
 
 @media (min-width: 830px) {
-  .img-fluid {
-    max-width: 70%;
+  .banner h1{
+    font-size: 100px;
   }
   .navbar-expand-lg {
     flex-flow: row nowrap;
@@ -1022,7 +1074,10 @@ h6, .h6 {
 
 @media (min-width: 992px) {
   .img-fluid {
-    max-width: 60%;
+    max-width: 70%;
+  }
+  .banner h4 {
+    font-size: 24px;
   }
   .m-lg-0 {
     margin: 0 !important;
@@ -1370,9 +1425,7 @@ h6, .h6 {
 
 @media (min-width: 1200px) {
   .img-fluid {
-    max-width: 50%;
-    height: auto;
-    padding: auto;
+    max-width: 60%;
   }
   .m-xl-0 {
     margin: 0 !important;
@@ -2596,109 +2649,6 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-h1 {
-  font-size: 40px;
-}
-
-@media (max-width: 756px) {
-  h1 {
-    font-size: 35px;
-  }
-}
-
-h2 {
-  font-size: 35px;
-}
-
-@media (max-width: 756px) {
-  h2 {
-    font-size: 32px;
-  }
-}
-
-h3 {
-  font-size: 30px;
-}
-
-h4 {
-  font-size: 25px;
-}
-
-h5 {
-  font-size: 20px;
-}
-
-h6 {
-  font-size: 17px;
-}
-
-p {
-  font-size: 15px;
-}
-
-.font-weight-medium {
-  font-weight: 500;
-}
-
-.font-weight-semibold {
-  font-weight: 600;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0px;
-  color: #000000;
-}
-
-.banner {
-  background-color: #f7f8fa;
-  text-align: center;
-}
-
-.content-wrapper {
-  padding: 27px 0px;
-}
-
-.features-overview .content-header {
-  padding: 78px 0px 48px 0px;
-  text-align: center;
-}
-
-@media (max-width: 992px) {
-  .features-overview .content-header {
-    padding: 60px 0px;
-  }
-}
-
-.features-overview .readmore-link {
-  font-size: 13px;
-  color: #97a3be;
-  font-weight: 500;
-  transition: color 0.5s ease-in-out;
-}
-
-.features-overview .readmore-link:hover {
-  color: #ff0000;
-}
-
-.features-overview .features-width {
-  flex-basis: 61%;
-}
-
-@media (max-width: 767px) {
-  .features-overview .features-width {
-    flex-basis: 100%;
-  }
-}
-
-.features-overview .img-icons {
-  transition: all 0.4s ease-in-out;
-}
-
-.features-overview .img-icons:hover {
-  transform: scale(1.1);
-}
-
 a,
 .link {
   color: #F95858;
@@ -2776,7 +2726,6 @@ a:hover,
 
 .btn {
   font-size: 0.875rem;
-  font-family: 'Poppins', sans-serif;
   padding: 0.625rem 1.25rem;
   outline: none;
 }

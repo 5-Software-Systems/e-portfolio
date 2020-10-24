@@ -9,7 +9,6 @@ import { isAuthorized } from "../util/cookies";
 function EPortfolioPreview(props){
     const Auth = isAuthorized();
     const api_link = "user/" + props.user + "/portfolio/" + props.id;
-    const [shareLink, setShareLink] = useState("");
 
     //delete function 
     async function handleDelete() {

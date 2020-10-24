@@ -34,15 +34,16 @@ const theme = createMuiTheme({
     primary: {
       main: '#3F3D56',
     },
+    secondary: {
+      main: '#F95858',
+    },
   },
   overrides: {
     MuiToolbar: {
       gutters: {
-        paddingLeft: defaultTheme.spacing.unit * 5,
-        paddingRight: defaultTheme.spacing.unit * 5,
         [defaultTheme.breakpoints.up('sm')]: {
-          paddingLeft: defaultTheme.spacing.unit * 5,
-          paddingRight: defaultTheme.spacing.unit * 5,
+          paddingLeft: defaultTheme.spacing(5),
+          paddingRight: defaultTheme.spacing(5),
         },
       },
     },

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { isLoggedIn } from "./util/cookies";
-import Button from '@material-ui/core/Button';
 
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
@@ -171,9 +170,11 @@ export function PortfolioNotFound() {
         <Fragment>
             <title>Not Found...</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container banner">
+                <div className="banner first">
+                    <div className="container">
                     <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
                     <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid pt-5" />
+                    </div>
                 </div>
             </BaseTemplate>
         </Fragment>
@@ -185,9 +186,11 @@ export function _404Page() {
         <Fragment>
             <title>Uh Oh...</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container banner">
-                    <h1 className="font-weight-semibold">We can't find page you're looking.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/404.svg"} alt="" className="img-fluid pt-5" />
+                <div className="banner first">
+                    <div className="container">
+                        <h2 className="font-weight-semibold">Error 404:<br/>We can't find the page you're looking.</h2>
+                        <img src={process.env.PUBLIC_URL + "/images/404.svg"} alt="" className="img-fluid pt-5" />
+                    </div>
                 </div>
             </BaseTemplate>
         </Fragment>

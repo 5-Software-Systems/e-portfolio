@@ -64,7 +64,7 @@ export default function GetFields(props) {
         if (props.changed) {
             setText({});
         }
-    }, [props.type]);
+    }, [props.type, props.changed]);
 
     return (
             <div>

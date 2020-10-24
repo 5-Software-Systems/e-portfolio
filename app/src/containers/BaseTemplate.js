@@ -3,17 +3,16 @@ import Test from '../components/Test';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
+import { useHistory } from "react-router-dom";
 
 
 export default function BaseTemplate(props) {
     return (
         <Fragment>
             <ButtonAppBar nav_right={props.nav_right}/>
-            <section className="main_content py-5">
+            <section className="main_content">
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
@@ -37,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ButtonAppBar(props) {
+  const history = useHistory();
   const classes = useStyles();
 
   return (
@@ -48,9 +48,9 @@ function ButtonAppBar(props) {
               <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
             </a>
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Echidna
-          </Typography>
+          <h6 className={classes.title}>Echidna</h6>
+          <Button color="inherit" onClick={() => {history.push("/contact")}}>Contact Us</Button>
+          <Button color="inherit" onClick={() => {history.push("/updates")}}>Updates</Button>
           {props.nav_right}
         </Toolbar>
       </AppBar>

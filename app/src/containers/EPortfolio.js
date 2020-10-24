@@ -166,14 +166,6 @@ export default function EPortfolio(props) {
                     {profile.title}
                 </h1>
 
-                {!props.preview ? <button className='addWidgetButton'
-                                    onClick={
-                                        () => {
-                                            toggleEdit();
-                                        }
-                                    }
-                                    > {editModeToggleText()} </button>
-                : null}
                 {editMode ?
                 <button className='addWidgetButton'
                     onClick={() => {
@@ -184,11 +176,18 @@ export default function EPortfolio(props) {
                 > Add Widget </button>
                 : null
                 }
+                {!props.preview ? <button className='addWidgetButton'
+                                    onClick={
+                                        () => {
+                                            toggleEdit();
+                                        }
+                                    }
+                                    > {editModeToggleText()} </button>
+                : null}
             </header>
             <div className="container mt-2">
                 <ReactGridLayout
                     className="layout"
-                    cols={columns}
                     rowHeight={height}
                     width={columns * width}
                     margin={[10,10]} compactType={null}

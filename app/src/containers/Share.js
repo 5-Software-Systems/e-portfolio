@@ -8,10 +8,8 @@ import { useHistory } from "react-router-dom";
 import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
-import { isAuthorized } from "../util/cookies";
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
-import EditBox from '../components/EditBox.js';
 
 const ReactGridLayout = WidthProvider(Responsive);
 
@@ -64,7 +62,6 @@ export default function EPortfolio(props) {
             <div className="container mt-2">
                 <ReactGridLayout
                     className="layout"
-                    cols={columns}
                     rowHeight={height}
                     width={columns * width}
                     margin={[10,10]}
