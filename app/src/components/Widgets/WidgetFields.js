@@ -10,8 +10,11 @@ export default function GetFields(props) {
     const Auth = isAuthorized();    
 
     const [fields, setFields] = useState([]);
-    const [text, setText] = useState(props.defaultData);
+    const [text, setText] = useState({});
 
+    useEffect( () => {
+        setText(props.defaultData);
+    }, [props.defaultData]);
 
     function setTextList(field, txt) {
         var textOBJ = text;
@@ -58,13 +61,14 @@ export default function GetFields(props) {
             const data = await response.json();
             getFieldRequirementsForEachWidget(data);
         }
-
+        
         fetchWidgetTypes();
     }, [props, Auth]);
 
     useEffect( () => {
         if (props.changed) {
             setText({});
+            props.onChange({});
         }
     }, [props.type]);
 
@@ -76,9 +80,9 @@ export default function GetFields(props) {
                         <br />
                         <textarea
                             className='basePageTextBox'
-                            type="text" value={text.field}
+                            type="text"
                             onChange={(e) => setTextList(field, e.target.value)}
-                            defaultValue={getDefaultData()[field]}
+                            value={text[field]}
                         />
                         <br />
                         <br />
@@ -162,7 +166,7 @@ export default function GetFields(props) {
         if (props.type === "image") {
             return (
                 <div> 
-                    <FilePopUp userID={user}/>
+                    <FilePopUp userID={user} setImage={(e) => {setTextList('image_url', e)}}/>
                 </div>
             )
         }

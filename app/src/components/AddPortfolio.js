@@ -84,27 +84,31 @@ export default function AddPortfolio(props) {
                                 &times;
                             </button>
                             <div className="header2"> <h1>Add Portfolio</h1> </div>
-                            <div className="content">
-                                <Form className='actions' onSubmit={() => {close(); handleClick();}}>
+                            <div className="content2">
+                                <Form className='cunny' onSubmit={() => {close(); handleClick();}}>
                                     <FormGroup controlId="basePageTextBox">
-                                        <FormLabel>Portfolio Name:</FormLabel>
+                                        <FormLabel><h5>Portfolio Name:</h5></FormLabel>
                                         <FormControl
                                             type="text"
-                                            values = {name}
+                                            value = {name}
                                             onChange={(e) => setName(e.target.value)}
                                             placeholder="Untitled"
                                             required/>
                                         <br/>
-                                        <FormLabel>Preview Image:</FormLabel>
+                                        <br/>
+                                        <FormLabel><h5>Preview Image:</h5></FormLabel>
                                         <FormControl
                                             type="text"
-                                            values = {image}
+                                            value = {image}
                                             onChange={(e) => setImage(e.target.value)}
                                             placeholder="URL"
                                             />
                                     </FormGroup>
-                                    <FilePopUp userID={props.PID}/>
-                                    <Button className="button" type="submit">Add</Button>
+                                    <br/>
+                                    <FilePopUp userID={props.PID} setImage={(e) => {setImage(e)}}/>
+                                    <div className='actions'>
+                                        <button className="button" type="submit"><b>ADD</b></button>
+                                    </div>
                                 </Form>
                             </div>
                         </div>

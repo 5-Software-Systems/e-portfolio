@@ -61,27 +61,28 @@ function EPortfolioPreview(props){
                     </button>
                     <div className="header2"> <h1>Edit Portfolio</h1> </div>
                     <div className="content2">
-                        <Form className='actions' onSubmit={() => {close(); handleEdit(); update();}}>
+                        <Form className='cunny' onSubmit={() => {close(); handleEdit(); update();}}>
                             <FormGroup controlId="basePageTextBox">
-                                <FormLabel>Portfolio Name:</FormLabel>
+                                <FormLabel><h5>Portfolio Name:</h5></FormLabel>
                                 <FormControl
                                     type="text"
-                                    values = {newName}
+                                    value = {newName}
                                     onChange={(e) => setNewName(e.target.value)}
-                                    defaultValue = {newName}
                                     />
                                 <br/>
-                                <FormLabel>Preview Image:</FormLabel>
+                                <br/>
+                                <FormLabel><h5>Preview Image:</h5> </FormLabel>
                                 <FormControl
                                     type="text"
-                                    values = {newImage}
+                                    value = {newImage}
                                     onChange={(e) => setNewImage(e.target.value)}
-                                    defaultValue = {newImage}
                                     />
                             </FormGroup>
-                            <FilePopUp userID={props.user} setImage={() => {setNewImage(); console.log(newImage)}}/>
-                            <Button className="button" type="submit">Apply</Button>
-                            <p>{newImage} </p>
+                            <br/>
+                            <FilePopUp userID={props.user} setImage={(e) => {setNewImage(e)}}/>
+                            <div className="actions">
+                                <button className="button" type="submit"><b>APPLY</b></button>
+                            </div>
                         </Form>
                     </div>
                 </div>
@@ -146,11 +147,9 @@ function EPortfolioPreview(props){
     function settingsButton() {
         return (
             <Popup
-                trigger={<button className="menu-item"><span role="img">⚙</span></button>}
+                trigger={<button className="settingsButton"><span role="img">⚙</span></button>}
                 position="right bottom"
-                on={['hover', 'focus']}
-                mouseLeaveDelay={100}
-                mouseEnterDelay={0}
+                on={['click']}
                 contentStyle={{ padding: '0px', border: 'none' ,width: '80px'}}
                 arrow={false}
                 nested

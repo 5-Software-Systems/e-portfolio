@@ -3,15 +3,16 @@
 import React, {useEffect, useState} from "react";
 import { isAuthorized } from "../util/cookies";
 import '../styles/ePortfolio-popup.css';
+import '../styles/ImageGallery.css';
 import Popup from 'reactjs-popup';
-
-const Auth = isAuthorized();
 
 /**
  * Component to handle file upload. Works for image
  * uploads, but can be edited to work for any file.
  */
 export function FileUpload(props) {
+
+    const Auth = isAuthorized();
 
     const [upload, setUpload] = useState(false);
 
@@ -105,13 +106,14 @@ export function FileUpload(props) {
      //update displayed files when new image is uploaded 
      useEffect( () =>{
         getFiles();
-    }, [Auth, upload, current])
+    }, [upload])
 
     return (
         <div> 
-            <div> 
+            <div  className = "imageGallery"> 
                 <br/>
-                <p> Uploaded images: {current} selected </p>
+                <p> Selected Image: {current}</p>
+                <hr/>
                 {files.map(file =>(
                     <span > 
                         <button onClick={(e) => selectImage(file.url)}> 
@@ -127,12 +129,14 @@ export function FileUpload(props) {
                 <br/>
                 {upload ? <p>Uploaded successfully!</p> : null}            
             </div>
+            <div className="actions">
             <span>
-                <button onClick={deleteFile}> Delete </button>
-            </span>
-            <span>
-                <button onClick={requestImage}> Select </button>
-            </span>
+                    <button className="button" onClick={requestImage}> <b>SELECT</b> </button>
+                </span>
+                <span>
+                    <button className="button" onClick={deleteFile}> <b className = "deleteText"> DELETE </b></button>
+                </span>
+            </div>
         </div>
         
     );
@@ -142,7 +146,7 @@ export function FileUpload(props) {
 export function FilePopUp(props) {
     return (
         <Popup
-            trigger={<button type="button" className="menu-item" > Select/Upload Image </button>}
+            trigger={<button type="button" className="menu-item button" > <b>SELECT/UPLOAD IMAGE</b></button>}
             modal
             nested
             className="ePortfolio-popup"
@@ -156,7 +160,7 @@ export function FilePopUp(props) {
                 <div className="content2">
                 {' '}
                     <div>
-                        <FileUpload userID={props.userID} close={(e) => close()} setImage={() => props.setImage()}/>
+                        <FileUpload userID={props.userID} close={(e) => close()} setImage={(e) => props.setImage(e)}/>
                     </div>
                 </div>
             </div>
@@ -166,7 +170,7 @@ export function FilePopUp(props) {
 }
 
 const ImageThumb = ({ image }) => {
-    return <img src={image} alt={''} height='100px' />;
+    return <img src={image} alt={''}/>;
 };
 
 //doesnt really work idk why
