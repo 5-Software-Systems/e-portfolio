@@ -1,7 +1,7 @@
 .form-container {
-  width: 350px;
+  max-width: 450px;
   padding: 10px;
-  background-color: white;
+  background-color: transparent;
 }
 
 .form-container input[type=email],
@@ -21,7 +21,7 @@
 .form-container input[type=password]:invalid:required,
 .form-container input[type=email]:invalid:required {
   background-color: #ddd;
-  border: 3px solid #ef5551;
+  border: 3px solid #f9a826;
 }
 
 /* When the required inputs aren't valid, do something */
@@ -29,27 +29,28 @@
 .form-container input[type=password]:valid:required,
 .form-container input[type=email]:valid:required {
   background-color: #ddd;
-  border: 3px solid #48d88f;
+  border: 3px solid #06E690;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #1ace73;
+  background-color: #06E690;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
   margin-bottom:10px;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .form-container .cancel {
-  background-color: #eb2b25;
+  background-color: #F95858;
+  opacity: 1;
 }
 
-.form-container .cancel:hover, .open-button:hover {
-  opacity: 0.88;
+.form-container btn:hover {
+  opacity: 0.9;
 }
 
 .forgot{
@@ -75,7 +76,6 @@
   padding: 10px 6px;
   border-radius: 8px;
   font-size: 0.875rem;
-  font-family: 'Poppins', sans-serif;
   border: 2px solid #333;
 }
 
@@ -87,7 +87,7 @@
 
 .validResp {
   color: #fff;
-  background: #1ace73;
+  background: #26f9a8;
   opacity: 0.8;
   border: 2px solid #2b8155;
 }

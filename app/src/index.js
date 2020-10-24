@@ -32,7 +32,7 @@ const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#3F3D56',
+       main: '#3F3D56',
     },
     secondary: {
       main: '#F95858',

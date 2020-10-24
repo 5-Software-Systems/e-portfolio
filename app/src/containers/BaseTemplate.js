@@ -4,8 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom";
 
 
 export default function BaseTemplate(props) {
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ButtonAppBar(props) {
-  const history = useHistory();
   const classes = useStyles();
 
   return (
@@ -49,8 +46,6 @@ function ButtonAppBar(props) {
             </a>
           </IconButton>
           <h6 className={classes.title}>Echidna</h6>
-          <Button color="inherit" onClick={() => {history.push("/contact")}}>Contact Us</Button>
-          <Button color="inherit" onClick={() => {history.push("/updates")}}>Updates</Button>
           {props.nav_right}
         </Toolbar>
       </AppBar>

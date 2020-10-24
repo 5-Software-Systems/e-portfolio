@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import { isLoggedIn } from "./util/cookies";
+import Button from '@material-ui/core/Button';
+import { useHistory } from "react-router-dom";
 
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
@@ -21,10 +23,17 @@ import UserNav from './components/RightNav/UserNav';
 import Verify from './components/Verify'
 
 export function HomePage() {
+    const history = useHistory();
     return (
         <Fragment>
             <title>Home</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
+            <BaseTemplate nav_right = {
+                <Fragment>
+                    <Button color="inherit" onClick={() => {history.push("/contact")}}>Contact Us</Button>
+                    <Button color="inherit" onClick={() => {history.push("/updates")}}>Updates</Button>
+                    <RightNav />
+                </Fragment>
+            }>
                 <Landing />
             </BaseTemplate>
         </Fragment>
