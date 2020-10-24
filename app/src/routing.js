@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { isLoggedIn } from "./util/cookies";
+import Button from '@material-ui/core/Button';
 
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
@@ -11,7 +12,6 @@ import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/EPortfolioDemo';
 import Share from './containers/Share';
-import NotFound from './containers/Share';
 // Components
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
@@ -173,7 +173,7 @@ export function PortfolioNotFound() {
             <BaseTemplate nav_right = { <RightNav /> } >
                 <div className="container banner">
                     <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid pt-5" />
                 </div>
             </BaseTemplate>
         </Fragment>
@@ -186,8 +186,8 @@ export function _404Page() {
             <title>Uh Oh...</title>
             <BaseTemplate nav_right = { <RightNav /> } >
                 <div className="container banner">
-                    <h1 className="font-weight-semibold">The page you're looking for doesn't seem to match any page we know of.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
+                    <h1 className="font-weight-semibold">We can't find page you're looking.</h1>
+                    <img src={process.env.PUBLIC_URL + "/images/404.svg"} alt="" className="img-fluid pt-5" />
                 </div>
             </BaseTemplate>
         </Fragment>
@@ -196,11 +196,7 @@ export function _404Page() {
 
 function RightNav() {
     if (isLoggedIn()) {
-        return (
-            <Fragment>
-                <UserNav />
-            </Fragment>
-        );
+        return ( <UserNav /> );
     } else {
         return (
             <Fragment>

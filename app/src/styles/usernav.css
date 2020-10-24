@@ -16,10 +16,10 @@
   cursor: pointer;
   padding: 1px;
   height: 28px;
-  color: #333;
+  color: #3F3D56;
   border-bottom: 1px solid #bbb;
 }
 
 .userNav-content .menu-item:hover {
-  color: #1998ff;
+  color: #F95858;
 }

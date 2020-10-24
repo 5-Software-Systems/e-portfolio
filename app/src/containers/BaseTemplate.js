@@ -1,28 +1,19 @@
 import React, { Fragment } from 'react';
 import Test from '../components/Test';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
+import Button from '@material-ui/core/Button';
+
 
 export default function BaseTemplate(props) {
     return (
         <Fragment>
-            <header>
-                <nav className="navbar navbar-expand-lg pl-3 pl-sm-0">
-                    <div className="container">
-                        <div className="navbar-brand-wrapper d-flex">
-                            <a href="/" tabIndex="-1"><img src={process.env.PUBLIC_URL + "/images/Logo.png"} alt="" height="50" className="pr-4" /></a>
-                            <h1 className="pt-1">ePortfolio</h1>
-                        </div>
-                        <ul className="navbar-nav links">
-                            <li><a href="/" tabIndex="-1">Home</a></li>
-                            <li><a href="/updates" tabIndex="-1">Updates</a></li>
-                            <li><a href="/contact" tabIndex="-1">Contact Us</a></li>
-                        </ul>
-                        <div className="navbar-menu-wrapper navbar-nav">
-                            {props.nav_right}
-                        </div>
-                    </div>
-                </nav>
-            </header>
-            <section className="main_content pb-3">
+            <ButtonAppBar nav_right={props.nav_right}/>
+            <section className="main_content py-5">
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
@@ -31,4 +22,38 @@ export default function BaseTemplate(props) {
             </footer>
         </Fragment>
     );
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+function ButtonAppBar(props) {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="end" className={classes.menuButton} color='default' aria-label="menu">
+            <a href="/" tabIndex="-1">
+              <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
+            </a>
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Echidna
+          </Typography>
+          {props.nav_right}
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }

@@ -183,7 +183,7 @@ function EPortfolioPreview(props){
             <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
                 <p> {props.id} </p>
-                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>
+                <img src={props.img ? props.img : "/images/placeholder.svg"} alt="" height='150'/>
             </a>
             <div className="button_container" >
                 {settingsButton()}

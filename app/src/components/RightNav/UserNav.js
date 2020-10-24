@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory } from "react-router-dom";
 import Popup from 'reactjs-popup';
 import { deauthorize } from "../../util/cookies";
@@ -26,7 +26,7 @@ export default function UserNav() {
     return (
         <Popup
             className="userNav"
-            trigger={<Button className="menu_icon btn-info m-2" type="button">≡</Button>}
+            trigger={<MenuIcon />}
             position="left top"
             on="hover"
             closeOnDocumentClick
