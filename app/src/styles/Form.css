@@ -2,6 +2,7 @@
   max-width: 450px;
   padding: 10px;
   background-color: transparent;
+  margin: auto;
 }
 
 .form-container input[type=email],

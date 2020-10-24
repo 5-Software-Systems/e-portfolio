@@ -8,8 +8,8 @@ export default function Landing() {
             <div className="banner first">
                 <div className="container">
                     <h1>Show off your Imagination</h1>
-                    <h4 className="pt-3">Discover Echidna and begin your journey today. Echidna is a tool that allows you to materialise
-                                         your expression and creativity then send it off into the world, proud of what you've made.</h4>
+                    <h4 className="pt-3">Discover Echidna and begin your journey today. Echidna is a tool that allows you to make anything
+                     a portfolio and then share it with the world in all it's glory.</h4>
                     <br/><Button color='secondary' variant='contained' href='/tutorial'>Learn How</Button><br/>
                     <img src={process.env.PUBLIC_URL + "/images/accomplish.svg"} alt="" className="img-fluid" />
                 </div>
