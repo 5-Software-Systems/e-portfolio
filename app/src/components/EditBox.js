@@ -11,6 +11,7 @@ import '../fonts/roboto/Roboto-Black.ttf';
 
 import DropDownBox from './Widgets/DropDownBox.js';
 import GetFields from './Widgets/WidgetFields.js';
+import DeletePopup from './DeletePopup.js';
 import { isAuthorized } from "../util/cookies";
 
 
@@ -43,7 +44,9 @@ export default function EditBox(props) {
       await fetch('/api/user/' + props.userID + '/portfolio/' + props.portfolioID + '/widget', requestOptions);
   }
 
-
+  /**
+   * @depreciated use DeletePopup from DeletePopup.js instead.
+   */
   function deletePopup() {
         
     return (
@@ -136,7 +139,12 @@ export default function EditBox(props) {
           <div className='PopupBottom'>
               <div className='options'>
                   <div className="actions">
-                      {deletePopup()}
+                      <DeletePopup onDelete={() => {
+                                            deleteWidget();
+                                            callUpdate();
+                                            close();
+                                            }}
+                                    toDelete=" this widget"/>
                   </div>
               </div>
               <div className='options'>

@@ -11,6 +11,7 @@ import {
     FormLabel,
     Button,
 } from "react-bootstrap";
+import DeletePopup from './DeletePopup';
 
 
 
@@ -91,7 +92,9 @@ function EPortfolioPreview(props){
         )
     }
     
-
+    /**
+     * @deprecated use DeletePopup from DeletePopup.js instead.
+     */
     function deletePopup() {
         
         return (
@@ -164,7 +167,18 @@ function EPortfolioPreview(props){
                             close();
                         }}> Share </button>
                         {editButton()}
-                        {deletePopup()}
+                        <DeletePopup onDelete = {() => {
+                                                     handleDelete();
+                                                     close();
+                                                     update();
+                                                     }   
+                                                 } 
+                                     toDelete = " this portfolio"
+                                     buttonClassName = "menu-item"
+                                     buttonText = "Delete"
+                                     isBold = {false}
+                                     hasTag = {false}
+                        />
                     </div>
                 )}
             </Popup>

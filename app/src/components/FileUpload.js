@@ -6,6 +6,8 @@ import '../styles/ePortfolio-popup.css';
 import '../styles/ImageGallery.css';
 import Popup from 'reactjs-popup';
 
+import DeletePopup from './DeletePopup.js'
+
 /**
  * Component to handle file upload. Works for image
  * uploads, but can be edited to work for any file.
@@ -134,7 +136,7 @@ export function FileUpload(props) {
                     <button className="button" onClick={requestImage}> <b>SELECT</b> </button>
                 </span>
                 <span>
-                    <button className="button" onClick={deleteFile}> <b className = "deleteText"> DELETE </b></button>
+                    {(current === "None") ? <button className="button" onClick={deleteFile}> <b>DELETE</b> </button> : <DeletePopup onDelete = {() => deleteFile()} toDelete={current}/>}
                 </span>
             </div>
         </div>
