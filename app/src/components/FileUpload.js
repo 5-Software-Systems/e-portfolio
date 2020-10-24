@@ -57,7 +57,6 @@ export function FileUpload(props) {
             file_list.push(image);
         }
         setFiles(file_list);
-        console.log(file_list);  
     }
 
     async function deleteFile() {
@@ -78,9 +77,29 @@ export function FileUpload(props) {
     const [current, setCurrent] = useState('None');
 
     function selectImage(url) {
+        console.log(url);
         var list = url.split('/');
         var name = list[list.length-1];
         setCurrent(name);
+    }
+
+    function requestImage() {
+        if (current==='None') {
+            alert('Nothing selected');
+            return;
+        }
+
+        var url = 'http://' + window.location.host + '/api/user/'+ props.userID + '/file/' + current;
+
+        if (props.setImage) {
+            props.setImage(url);
+            console.log(url);
+        }
+        if (props.close) {
+            props.close();
+        }
+        
+        
     }
 
      //update displayed files when new image is uploaded 
@@ -94,7 +113,7 @@ export function FileUpload(props) {
                 <br/>
                 <p> Uploaded images: {current} selected </p>
                 {files.map(file =>(
-                    <span> 
+                    <span > 
                         <button onClick={(e) => selectImage(file.url)}> 
                             <ImageThumb image={file.url} />
                         </button>
@@ -111,6 +130,9 @@ export function FileUpload(props) {
             <span>
                 <button onClick={deleteFile}> Delete </button>
             </span>
+            <span>
+                <button onClick={requestImage}> Select </button>
+            </span>
         </div>
         
     );
@@ -120,7 +142,7 @@ export function FileUpload(props) {
 export function FilePopUp(props) {
     return (
         <Popup
-            trigger={<button className="menu-item" > Select/Upload Image </button>}
+            trigger={<button type="button" className="menu-item" > Select/Upload Image </button>}
             modal
             nested
             className="ePortfolio-popup"
@@ -134,7 +156,7 @@ export function FilePopUp(props) {
                 <div className="content2">
                 {' '}
                     <div>
-                        <FileUpload userID={props.userID}/>
+                        <FileUpload userID={props.userID} close={(e) => close()} setImage={() => props.setImage()}/>
                     </div>
                 </div>
             </div>

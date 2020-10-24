@@ -77,11 +77,11 @@ function EPortfolioPreview(props){
                                     values = {newImage}
                                     onChange={(e) => setNewImage(e.target.value)}
                                     defaultValue = {newImage}
-                                    placeholder="URL"
                                     />
                             </FormGroup>
-                            <FilePopUp userID={props.user}/>
+                            <FilePopUp userID={props.user} setImage={() => {setNewImage(); console.log(newImage)}}/>
                             <Button className="button" type="submit">Apply</Button>
+                            <p>{newImage} </p>
                         </Form>
                     </div>
                 </div>
@@ -89,6 +89,7 @@ function EPortfolioPreview(props){
             </Popup>
         )
     }
+    
 
     function deletePopup() {
         
@@ -195,7 +196,7 @@ function EPortfolioPreview(props){
         <div className="eportfoliopreview">
             <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
-                <p> {props.id} </p>
+                <br/>
                 <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="not a valid url" height='150'/>
             </a>
             <div className="button_container" >
