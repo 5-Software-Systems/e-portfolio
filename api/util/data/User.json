@@ -5,7 +5,7 @@
     "email": "email@mail.com",
     "name_first": "name_first",
     "name_last": "name_last",
-    "password": "password",
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500",
     "verified": 1
   },
   {
@@ -14,7 +14,7 @@
     "email": "email",
     "name_first": "name_first",
     "name_last": "name_last",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   },
   {
     "id": 3,
@@ -22,7 +22,7 @@
     "email": "fraserbasil@gmail.com",
     "name_first": "Fraser",
     "name_last": "Langton",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   },
   {
     "id": 4,
@@ -30,6 +30,6 @@
     "email": "mlitterick@student.unimelb.edu.au",
     "name_first": "Marcus",
     "name_last": "Litterick",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   }
 ]
