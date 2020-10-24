@@ -182,7 +182,7 @@ export function PortfolioNotFound() {
                 <div className="banner first">
                     <div className="container">
                     <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid pt-5" />
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid" />
                     </div>
                 </div>
             </BaseTemplate>
@@ -198,7 +198,7 @@ export function _404Page() {
                 <div className="banner second">
                     <div className="container">
                         <h2 className="font-weight-semibold">Error 404:<br/>We can't find the page you're looking.</h2>
-                        <img src={process.env.PUBLIC_URL + "/images/404v2.svg"} alt="" className="img-fluid pt-5" />
+                        <img src={process.env.PUBLIC_URL + "/images/404v2.svg"} alt="" className="img-fluid" />
                     </div>
                 </div>
             </BaseTemplate>

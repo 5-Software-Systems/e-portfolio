@@ -14,7 +14,7 @@ export default function BaseTemplate(props) {
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
-                <p className="pt-3"><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
+                <p><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
                 <Test />
             </footer>
         </Fragment>

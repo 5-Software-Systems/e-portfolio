@@ -77,7 +77,6 @@ export default function SignupForm() {
                         <FormLabel>Email<p className="required">*</p></FormLabel>
                         <FormControl
                             type="email"
-                            className="mb-1"
                             values = {fields.signup_email}
                             onChange={handleFieldChange}
                             placeholder="Email"

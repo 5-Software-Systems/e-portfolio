@@ -185,7 +185,7 @@ export default function EPortfolio(props) {
                                     > {editModeToggleText()} </button>
                 : null}
             </header>
-            <div className="container mt-2">
+            <div className="container">
                 <ReactGridLayout
                     className="layout"
                     rowHeight={height}

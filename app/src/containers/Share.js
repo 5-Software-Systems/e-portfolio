@@ -59,7 +59,7 @@ export default function EPortfolio(props) {
                 </h1>
                 <p className="impact">Created by:<br/>Firstname Lastname</p>
             </header>
-            <div className="container mt-2">
+            <div className="container">
                 <ReactGridLayout
                     className="layout"
                     rowHeight={height}
