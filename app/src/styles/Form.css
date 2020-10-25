@@ -1,5 +1,6 @@
 .form-container {
   max-width: 450px;
+  min-width: 300px;
   padding: 10px;
   background-color: transparent;
   margin: auto;
@@ -93,25 +94,28 @@
   border: 2px solid #2b8155;
 }
 
-.form-overlay .modal {
+.form .modal {
     font-size: 12px;
   }
-  .form-overlay .modal > .header {
+  .form .modal > .header {
     width: 100%;
     border-bottom: 1px solid gray;
     font-size: 18px;
     text-align: center;
     padding: 5px;
   }
-  .form-overlay .modal > .content {
+  .form .modal > .content {
     width: 100%;
     padding: 10px 5px;
     margin: auto;
   }
 
 .form-content {
-    width: 380px;
-    align: center;
+    margin: auto;
 	background-color: #fff;
 	border: 3px solid #f7f8fa;
+}
+
+.popup-content {
+  width: auto;
 }

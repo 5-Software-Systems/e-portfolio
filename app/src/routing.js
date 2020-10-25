@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 import { isLoggedIn } from "./util/cookies";
-import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom";
 
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
@@ -19,18 +17,14 @@ import LoginForm from './components/Login_Form';
 import SignupForm from './components/Signup_Form';
 import ForgotForm from './components/Forgot_Form';
 import PasswordResetForm from './components/PwordReset_Form';
-import UserNav from './components/RightNav/UserNav';
 import Verify from './components/Verify'
 
 export function HomePage() {
-    const history = useHistory();
     return (
         <Fragment>
             <title>Home</title>
             <BaseTemplate nav_right = {
                 <Fragment>
-                    <Button color="inherit" onClick={() => {history.push("/contact")}}>Contact Us</Button>
-                    <Button color="inherit" onClick={() => {history.push("/updates")}}>Updates</Button>
                     <RightNav />
                 </Fragment>
             }>
@@ -208,7 +202,7 @@ export function _404Page() {
 
 function RightNav() {
     if (isLoggedIn()) {
-        return ( <UserNav /> );
+        return null;
     } else {
         return (
             <Fragment>

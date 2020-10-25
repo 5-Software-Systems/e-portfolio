@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import Button from '@material-ui/core/Button';
 
 export default function Landing() {
-    // TODO replace fake text with real text
     return (
         <Fragment>
             <div className="banner first">
@@ -18,16 +17,17 @@ export default function Landing() {
                 <img src={process.env.PUBLIC_URL + "/images/window.svg"} alt="" className="tile" />
                 <div className="tile">
                     <h2>Create something you're proud of!</h2>
-                    <h6>In a free hour, when our power of choice is untrammeled and when nothing prevents our being able
-                        to do what we like best, every pleasure is to be welcomed and every pain avoided.</h6>
+                    <h5>You can make your own portfolio exactly the way you want. Just drag & drop one of the many widgets
+                    available, everything including video, music playlists, text and images. With free form size and an
+                    intuitive grid design you'll be impressing people in no time.</h5>
                 </div>
             </div>
             <div className="banner first">
                 <div className="tile flip">
                     <h2>Share with anyone</h2>
-                    <h6>But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain
-                        was born and I will give you a complete account of the system, and expound the actual teachings
-                        of the great explorer of the truth, the master-builder of human happiness.</h6>
+                    <h5>No one likes being an unknown artist, help others find you with Echidna. Our sharing
+                    capabilities allow anyone to view your portfolio once you give them an authorised link.
+                    No matter the topic of your portfolio, anyone will be able to connect.</h5>
                 </div>
                 <img src={process.env.PUBLIC_URL + "/images/share.svg"} alt="" className="tile" />
             </div>
