@@ -4,8 +4,8 @@ import {
     FormGroup,
     FormControl,
     FormLabel,
-    Button,
 } from "react-bootstrap";
+import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { validateEmail, useFormFields } from "../util/form";
@@ -73,6 +73,18 @@ export default function SignupForm() {
                                    If it doesn't appear within a few minutes, check your spam folder.</p>
                 :
                 <Fragment>
+                    <FormGroup controlId="signup_email">
+                        <FormLabel>Email<p className="required">*</p></FormLabel>
+                        <FormControl
+                            type="email"
+                            values = {fields.signup_email}
+                            onChange={handleFieldChange}
+                            placeholder="Email"
+                            autoComplete="email"
+                            required
+                            pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
+                        />
+                    </FormGroup>
                     <FormGroup controlId="signup_firstname">
                         <FormLabel>First Name<p className="required">*</p></FormLabel>
                         <FormControl
@@ -92,19 +104,6 @@ export default function SignupForm() {
                             placeholder="Surname"
                             autoComplete="family-name"
                             required/>
-                    </FormGroup>
-                    <FormGroup controlId="signup_email">
-                        <FormLabel>Email<p className="required">*</p></FormLabel>
-                        <FormControl
-                            type="email"
-                            className="mb-1"
-                            values = {fields.signup_email}
-                            onChange={handleFieldChange}
-                            placeholder="Email"
-                            autoComplete="email"
-                            required
-                            pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)+$"
-                        />
                     </FormGroup>
                     <PasswordStrengthMeter password={fields.signup_password} />
                     <FormGroup controlId="signup_password">

@@ -6,8 +6,8 @@ import {
     FormGroup,
     FormControl,
     FormLabel,
-    Button,
 } from "react-bootstrap";
+import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import { useFormFields } from "../util/form";
 import { isAuthorized } from "../util/cookies";

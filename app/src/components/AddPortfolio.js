@@ -10,6 +10,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import '../styles/BasePage.css';
 import { isAuthorized } from "../util/cookies";
+import { FilePopUp } from "../components/FileUpload";
 
 
 function AddPortfolioInfo(){
@@ -25,7 +26,8 @@ export default function AddPortfolio(props) {
     const Auth = isAuthorized();    
 
 
-    const [name, setName] = useState('')
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
 
     function update() {
         if (props.onUpdate) {
@@ -38,7 +40,8 @@ export default function AddPortfolio(props) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
-                "title": name
+                "title": name,
+                "background_url": image
               })
         };
         const portfolio = await fetch('api/user/'+ props.PID + '/portfolio', requestOptions);
@@ -81,18 +84,31 @@ export default function AddPortfolio(props) {
                                 &times;
                             </button>
                             <div className="header2"> <h1>Add Portfolio</h1> </div>
-                            <div className="content">
-                                <Form className='actions' onSubmit={() => {close(); handleClick();}}>
+                            <div className="content2">
+                                <Form className='cunny' onSubmit={() => {close(); handleClick();}}>
                                     <FormGroup controlId="basePageTextBox">
-                                        <FormLabel>Portfolio Name:</FormLabel>
+                                        <FormLabel><h5>Portfolio Name:</h5></FormLabel>
                                         <FormControl
                                             type="text"
-                                            values = {name}
+                                            value = {name}
                                             onChange={(e) => setName(e.target.value)}
                                             placeholder="Untitled"
                                             required/>
+                                        <br/>
+                                        <br/>
+                                        <FormLabel><h5>Preview Image:</h5></FormLabel>
+                                        <FormControl
+                                            type="text"
+                                            value = {image}
+                                            onChange={(e) => setImage(e.target.value)}
+                                            placeholder="URL"
+                                            />
                                     </FormGroup>
-                                    <Button className="button" type="submit">Add</Button>
+                                    <br/>
+                                    <FilePopUp userID={props.PID} setImage={(e) => {setImage(e)}}/>
+                                    <div className='actions'>
+                                        <button className="button" type="submit"><b>ADD</b></button>
+                                    </div>
                                 </Form>
                             </div>
                         </div>

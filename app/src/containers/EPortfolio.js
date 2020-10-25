@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 //-----------dependencies------------------------
-import ReactGridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 import '../styles/ePortfolio-popup.css';
 //------------------------------------------------
 import { useHistory } from "react-router-dom";
@@ -11,6 +12,8 @@ import { isAuthorized } from "../util/cookies";
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
+
+const ReactGridLayout = WidthProvider(Responsive);
 
 export default function EPortfolio(props) {
     const Auth = isAuthorized();
@@ -140,9 +143,9 @@ export default function EPortfolio(props) {
 
     function editModeToggleText() {
         if (editMode) {
-            return "Switch to Preview Mode"
+            return "Switch to Preview"
         }
-        return "Switch to Edit Mode"
+        return "Switch to Edit"
     }
 
     function onSettingsUpdate() {
@@ -155,7 +158,7 @@ export default function EPortfolio(props) {
             <header className='header'>
                 {!props.preview ?
                     <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
-                        <a href = '/profile'> ← </a>         
+                        <a href = '/profile'> <ArrowBack /> </a>
                     </button>
                 : null}  
         
@@ -163,14 +166,6 @@ export default function EPortfolio(props) {
                     {profile.title}
                 </h1>
 
-                {!props.preview ? <button className='addWidgetButton'
-                                    onClick={
-                                        () => {
-                                            toggleEdit();
-                                        }
-                                    }
-                                    > {editModeToggleText()} </button>
-                : null}
                 {editMode ?
                 <button className='addWidgetButton'
                     onClick={() => {
@@ -181,18 +176,38 @@ export default function EPortfolio(props) {
                 > Add Widget </button>
                 : null
                 }
+                {!props.preview ? <button className='addWidgetButton'
+                                    onClick={
+                                        () => {
+                                            toggleEdit();
+                                        }
+                                    }
+                                    > {editModeToggleText()} </button>
+                : null}
             </header>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} onLayoutChange={onLayoutChange} isDraggable={movable && editMode} isResizable={movable && editMode}>
-                {widgets.map(widget =>(
-                    < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
-                        {editMode ? <div className ='blocker'></div> : <div></div>}
-                        <MotherWidget widget={widget}/>
-                        <div className ='overlay'>
-                        {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
-                        </div>
-                    </ div>
-                ))}
-            </ReactGridLayout>
+            <div className="container">
+                <ReactGridLayout
+                    className="layout"
+                    rowHeight={height}
+                    width={columns * width}
+                    margin={[10,10]} compactType={null}
+                    onLayoutChange={onLayoutChange}
+                    isDraggable={movable && editMode}
+                    isResizable={movable && editMode}
+                    breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                    cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+                >
+                    {widgets.map(widget =>(
+                        < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                            {editMode ? <div className ='blocker'></div> : <div></div>}
+                            <MotherWidget widget={widget}/>
+                            <div className ='overlay'>
+                            {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
+                            </div>
+                        </ div>
+                    ))}
+                </ReactGridLayout>
+            </div>
         </div>
     );
 };

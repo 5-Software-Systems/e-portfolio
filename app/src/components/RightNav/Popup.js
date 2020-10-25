@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import React, { useState, Fragment } from "react";
+import Button from '@material-ui/core/Button';
 import Popup from 'reactjs-popup';
 import '../../styles/Form.css';
 
@@ -7,28 +7,25 @@ export default function CustomPopup(props) {
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
 
-    const name = props.name;
-    const content = props.children;
-
     function CloseButton() {
         return (
-            <Button className="btn cancel" onClick={closeModal} type="button">
+            <Button className="btn cancel" onClick={closeModal}>
                 Close
             </Button>
         );
     }
 
     return (
-        <div>
-            <Button className="btn btn-info m-2" onClick={() => setOpen(o => !o)} type="button">
-                { name }
+        <Fragment>
+            <Button color="inherit" onClick={() => setOpen(o => !o)}>
+                { props.name }
             </Button>
             <Popup className="form modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
                 <div className="form-container">
-                    { content }
+                    { props.children }
                     <CloseButton />
                 </div>
             </Popup>
-        </div>
+        </Fragment>
     );
 }
