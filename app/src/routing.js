@@ -4,12 +4,13 @@ import { isLoggedIn } from "./util/cookies";
 // Containers
 import BaseTemplate from './containers/BaseTemplate';
 import Landing from './containers/Landing';
-import BasePage from './containers/BasePage';
+import Gallery from './containers/Gallery';
 import UpdatePage from './containers/Updates';
 import ContactPage from './containers/Contact';
 import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
-import EPortfolioDemo from './containers/EPortfolioDemo';
+import EPortfolioDemo from './containers/DemoPages';
+import Examples from './containers/Examples'
 import Share from './containers/Share';
 // Components
 import Popup from './components/RightNav/Popup';
@@ -104,7 +105,7 @@ export function ProfilePage() {
         <Fragment>
             <title>Portfolio Gallery</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <BasePage />
+                <Gallery />
             </BaseTemplate>
         </Fragment>
     );
@@ -157,12 +158,19 @@ export function ContactUsPage() {
 
 export function Demo() {
     return (
-        <Fragment>
+        <div>
             <title>Demo</title>
+                <EPortfolioDemo />
+        </div>
+    );
+}
+
+export function ExamplesPage() {
+    return (
+        <Fragment>
+            <title>Help</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container">
-                    <EPortfolioDemo />
-                </div>
+                <Examples />
             </BaseTemplate>
         </Fragment>
     );

@@ -23,6 +23,7 @@ import {
     UpdatesPage,
     ContactUsPage,
     Demo,
+    ExamplesPage,
     PortfolioNotFound,
     _404Page
 } from './routing.js';
@@ -142,6 +143,16 @@ ReactDOM.render(
                         exact
                         path="/contact"
                         component={ContactUsPage}
+                    />
+                    <Route
+                        exact
+                        path="/help"
+                        component={ExamplesPage}
+                    />
+                    <Route
+                        exact
+                        path="/help/:name"
+                        component={Demo}
                     />
                     <Route
                         path="/"

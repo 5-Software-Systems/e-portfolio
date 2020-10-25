@@ -86,7 +86,7 @@ export default function EPortfolio(props) {
                                     type: "about",
                                     location: locationA,
                                     data:{
-                                        about: "New Widget!"
+                                        about: '{"blocks":[{"key":"vg3v","text":"NewWidget","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}'
                                         }
                                     
                                 })

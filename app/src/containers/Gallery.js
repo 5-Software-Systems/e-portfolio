@@ -5,7 +5,7 @@ import "../styles/BasePage.css";
 import { isAuthorized } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
-export default function BasePage() {
+export default function Gallery() {
     const history = useHistory();
     const Auth = isAuthorized();
 
