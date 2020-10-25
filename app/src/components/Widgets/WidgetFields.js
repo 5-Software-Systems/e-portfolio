@@ -1,6 +1,8 @@
 //ligma
 import React, {useEffect, useState} from 'react';
 import { isAuthorized } from "../../util/cookies";
+import {FilePopUp} from "../FileUpload";
+
 
 
 
@@ -8,8 +10,11 @@ export default function GetFields(props) {
     const Auth = isAuthorized();    
 
     const [fields, setFields] = useState([]);
-    const [text, setText] = useState(props.defaultData);
+    const [text, setText] = useState({});
 
+    useEffect( () => {
+        setText(props.defaultData);
+    }, [props.defaultData]);
 
     function setTextList(field, txt) {
         var textOBJ = text;
@@ -56,13 +61,14 @@ export default function GetFields(props) {
             const data = await response.json();
             getFieldRequirementsForEachWidget(data);
         }
-
+        
         fetchWidgetTypes();
     }, [props, Auth]);
 
     useEffect( () => {
         if (props.changed) {
             setText({});
+            props.onChange({});
         }
     }, [props.type, props.changed]);
 
@@ -74,14 +80,15 @@ export default function GetFields(props) {
                         <br />
                         <textarea
                             className='basePageTextBox'
-                            type="text" value={text.field}
+                            type="text"
                             onChange={(e) => setTextList(field, e.target.value)}
-                            defaultValue={getDefaultData()[field]}
+                            value={text[field]}
                         />
                         <br />
                         <br />
                     </label>
                 ))}
+                {imageUpload(props.user)}
                 {Hint()}
             </div>
 
@@ -150,6 +157,16 @@ export default function GetFields(props) {
             return (
                 <div> 
                     <h1> it dont work </h1>
+                </div>
+            )
+        }
+    }
+
+    function imageUpload(user) {
+        if (props.type === "image") {
+            return (
+                <div> 
+                    <FilePopUp userID={user} setImage={(e) => {setTextList('image_url', e)}}/>
                 </div>
             )
         }
