@@ -2,7 +2,7 @@
   {
     "public_id": "widget_public_id_1",
     "portfolio_id": "1",
-    "about": "This is the test account for Marcus' uni email\nThis is my Personal Portfolio",
+    "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"This is the test account \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bmgn7\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
     "location": [1, 1, 0, 0]
   },
   {
@@ -14,7 +14,7 @@
   {
     "public_id": "widget_public_id_2",
     "portfolio_id": "2",
-    "about": "This is the test account for Marcus' uni email\nThis is my Professional Portfolio",
+    "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"This is the test account \",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bmgn7\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
     "location": [1, 1, 0, 0]
   },
   {

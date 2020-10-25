@@ -9,7 +9,7 @@ export default function Landing() {
                     <h1>Show off your Imagination</h1>
                     <h4>Discover Echidna and begin your journey today. Echidna is a tool that allows you to make anything
                      a portfolio and then share it with the world in all it's glory.</h4>
-                    <br/><Button color='secondary' variant='contained' href='/tutorial'>Learn How</Button><br/>
+                    <br/><Button color='secondary' variant='contained' href='/help'>Learn How</Button><br/>
                     <img src={process.env.PUBLIC_URL + "/images/accomplish.svg"} alt="" className="img-fluid" />
                 </div>
             </div>
