@@ -6,8 +6,8 @@ import {
     FormGroup,
     FormControl,
     FormLabel,
-    Button,
 } from "react-bootstrap";
+import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 import { useFormFields } from "../util/form";
@@ -94,6 +94,7 @@ export default function PasswordResetForm() {
                     value={fields.new_Password}
                     placeholder="New Password"
                     autoComplete="new-password"
+                    minLength="5"
                     required/>
             </FormGroup>
             {isComplete ?

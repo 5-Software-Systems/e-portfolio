@@ -11,19 +11,24 @@ import Settings from './containers/Settings';
 import EPortfolio from './containers/EPortfolio';
 import EPortfolioDemo from './containers/DemoPages';
 import Examples from './containers/Examples'
+import Share from './containers/Share';
 // Components
 import Popup from './components/RightNav/Popup';
 import LoginForm from './components/Login_Form';
 import SignupForm from './components/Signup_Form';
 import ForgotForm from './components/Forgot_Form';
 import PasswordResetForm from './components/PwordReset_Form';
-import UserNav from './components/RightNav/UserNav';
+import Verify from './components/Verify'
 
 export function HomePage() {
     return (
         <Fragment>
             <title>Home</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
+            <BaseTemplate nav_right = {
+                <Fragment>
+                    <RightNav />
+                </Fragment>
+            }>
                 <Landing />
             </BaseTemplate>
         </Fragment>
@@ -82,6 +87,19 @@ export function ResetPage() {
     );
 }
 
+export function VerifyPage() {
+    return (
+        <Fragment>
+            <title>Login</title>
+            <BaseTemplate>
+                <div className="form-container m-auto">
+                    <Verify />
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
 export function ProfilePage() {
     return (
         <Fragment>
@@ -107,6 +125,12 @@ export function SettingsPage() {
 export function PortfolioPage(props) {
     return (
         <EPortfolio preview = {props.preview}/>
+    );
+}
+
+export function SharedPortfolioPage() {
+    return (
+        <Share />
     );
 }
 
@@ -152,14 +176,32 @@ export function ExamplesPage() {
     );
 }
 
+export function PortfolioNotFound() {
+    return (
+        <Fragment>
+            <title>Not Found...</title>
+            <BaseTemplate nav_right = { <RightNav /> } >
+                <div className="banner first">
+                    <div className="container">
+                    <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
+                    <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid" />
+                    </div>
+                </div>
+            </BaseTemplate>
+        </Fragment>
+    );
+}
+
 export function _404Page() {
     return (
         <Fragment>
             <title>Uh Oh...</title>
             <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container banner">
-                    <h1 className="font-weight-semibold">The page you're looking for doesn't seem to match any page we know of.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
+                <div className="banner second">
+                    <div className="container">
+                        <h2 className="font-weight-semibold">Error 404:<br/>We can't find the page you're looking.</h2>
+                        <img src={process.env.PUBLIC_URL + "/images/404v2.svg"} alt="" className="img-fluid" />
+                    </div>
                 </div>
             </BaseTemplate>
         </Fragment>
@@ -168,11 +210,7 @@ export function _404Page() {
 
 function RightNav() {
     if (isLoggedIn()) {
-        return (
-            <Fragment>
-                <UserNav />
-            </Fragment>
-        );
+        return null;
     } else {
         return (
             <Fragment>

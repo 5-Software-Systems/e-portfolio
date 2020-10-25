@@ -4,11 +4,11 @@ import {
     FormGroup,
     FormControl,
     FormLabel,
-    Button,
 } from "react-bootstrap";
+import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import { validateEmail, useFormFields } from "../util/form";
-import { authorize, isLoggedIn } from "../util/cookies";
+import { authorize, isLoggedIn, isVerified } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
@@ -18,6 +18,7 @@ export default function LoginForm() {
     });
     const [isLoading, setLoading] = useState(false);
     const [isIncorrect, setIncorrect] = useState(false);
+    const [verified, setVerified] = useState(true);
     let history = useHistory();
 
     useEffect(() => {
@@ -37,19 +38,20 @@ export default function LoginForm() {
         }
 
         if (isLoading) {
+            setIncorrect(false);
+            setVerified(true);
             if (validateForm) {
                 handleSubmit().then(() => {
                     setLoading(false);
                     if (isLoggedIn()) {
-                        setIncorrect(false);
                         history.push("/profile");
-                    } else {
+                    }
+                    if (isVerified()) {
                         setIncorrect(true);
+                    } else {
+                        setVerified(false);
                     }
                 });
-            } else {
-                setLoading(false);
-                setIncorrect(true);
             }
         }
     }, [isLoading, history, fields]);
@@ -86,6 +88,7 @@ export default function LoginForm() {
             </FormGroup>
             <a href="/forgot" className="forgot">Forgot Password?</a>
             {isIncorrect ? <p className="response invalidResp">Incorrect email or password, please try again.</p> : null }
+            {verified ? null : <p className="response invalidResp">User not verified, please check your emails.</p> }
             <Button
                 className="btn"
                 type="submit"

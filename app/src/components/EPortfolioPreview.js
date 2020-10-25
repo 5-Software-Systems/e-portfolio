@@ -3,12 +3,21 @@ import Popup from 'reactjs-popup';
 import '../styles/BasePage.css';
 import '../styles/ePortfolio-popup.css';
 import { isAuthorized } from "../util/cookies";
+import { FilePopUp } from "./FileUpload";
+import {
+    Form,
+    FormGroup,
+    FormControl,
+    FormLabel,
+    Button,
+} from "react-bootstrap";
+import DeletePopup from './DeletePopup';
 
 
 
 function EPortfolioPreview(props){
     const Auth = isAuthorized();
-    const link = "user/" + props.user + "/portfolio/" + props.id;
+    const api_link = "user/" + props.user + "/portfolio/" + props.id;
 
     //delete function 
     async function handleDelete() {
@@ -16,21 +25,23 @@ function EPortfolioPreview(props){
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
         };
-        await fetch('api/'+ link, requestOptions);
+        await fetch('api/'+ api_link, requestOptions);
     }
 
     //edit funciton 
-    const [newName, setNewName] = useState(props.name)
+    const [newName, setNewName] = useState(props.name);
+    const [newImage, setNewImage] = useState(props.img);
 
     async function handleEdit() {
         const requestOptions = {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
             body: JSON.stringify({
-                "title": newName
+                "title": newName,
+                "background_url": newImage
               })
         };
-        await fetch('api/'+ link, requestOptions);
+        await fetch('api/'+ api_link, requestOptions);
     }
     
 
@@ -50,32 +61,39 @@ function EPortfolioPreview(props){
                     </button>
                     <div className="header2"> <h1>Edit Portfolio</h1> </div>
                     <div className="content2">
-                    {' '}
-                    <div>
-                        <label>
-                            Portfolio Name:<br />
-                            <input className='basePageTextBox'
-                                type="text"
-                                value={newName}
-                                onChange={(e) => setNewName(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    </div>
-                    <div className="actions">
-                    <button className="button" onClick={() => {
-                                handleEdit();
-                                close();
-                                update();
-                    }}> Apply </button>
-
+                        <Form className='cunny' onSubmit={() => {close(); handleEdit(); update();}}>
+                            <FormGroup controlId="basePageTextBox">
+                                <FormLabel><h5>Portfolio Name:</h5></FormLabel>
+                                <FormControl
+                                    type="text"
+                                    value = {newName}
+                                    onChange={(e) => setNewName(e.target.value)}
+                                    />
+                                <br/>
+                                <br/>
+                                <FormLabel><h5>Preview Image:</h5> </FormLabel>
+                                <FormControl
+                                    type="text"
+                                    value = {newImage}
+                                    onChange={(e) => setNewImage(e.target.value)}
+                                    />
+                            </FormGroup>
+                            <br/>
+                            <FilePopUp userID={props.user} setImage={(e) => {setNewImage(e)}}/>
+                            <div className="actions">
+                                <button className="button" type="submit"><b>APPLY</b></button>
+                            </div>
+                        </Form>
                     </div>
                 </div>
                 )}
             </Popup>
         )
     }
-
+    
+    /**
+     * @deprecated use DeletePopup from DeletePopup.js instead.
+     */
     function deletePopup() {
         
         return (
@@ -113,15 +131,27 @@ function EPortfolioPreview(props){
         )
     }
 
+    async function get_link() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
+            body: JSON.stringify({
+                "duration": 525960 // 1 year
+              })
+        };
+        const url = '/api/user/' + props.user + '/portfolio/' + props.id + '/share';
+        const share_link_data = await fetch(url, requestOptions);
+        const share_link = await share_link_data.json();
+        return Promise.resolve(share_link);
+    }
+
     //settings button 
     function settingsButton() {
         return (
             <Popup
-                trigger={<button className="menu-item"><span role="img">⚙</span></button>}
+                trigger={<button className="settingsButton"><span role="img">⚙</span></button>}
                 position="right bottom"
-                on={['hover', 'focus']}
-                mouseLeaveDelay={100}
-                mouseEnterDelay={0}
+                on={['click']}
                 contentStyle={{ padding: '0px', border: 'none' ,width: '80px'}}
                 arrow={false}
                 nested
@@ -130,15 +160,26 @@ function EPortfolioPreview(props){
                 {close => (
                     <div className="menu">
                         <button className="menu-item" onClick={() => {
-                            copyToClipboard(window.location.host + link);
+                            get_link().then(value =>
+                                copyToClipboard(value.link)
+                            );
                             close();
-                            alert("Copied to clipboard");
                         }}> Share </button>
                         {editButton()}
-                        {deletePopup()}
+                        <DeletePopup onDelete = {() => {
+                                                     handleDelete();
+                                                     close();
+                                                     update();
+                                                     }   
+                                                 } 
+                                     toDelete = " this portfolio"
+                                     buttonClassName = "menu-item"
+                                     buttonText = "Delete"
+                                     isBold = {false}
+                                     hasTag = {false}
+                        />
                     </div>
                 )}
-                
             </Popup>
         )
     }
@@ -167,8 +208,8 @@ function EPortfolioPreview(props){
         <div className="eportfoliopreview">
             <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
-                <p> {props.id} </p>
-                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="" height='150'/>
+                <br/>
+                <img src={props.img ? props.img : "/images/placeholder.svg"} alt="not a valid url" height='150'/>
             </a>
             <div className="button_container" >
                 {settingsButton()}

@@ -3,9 +3,15 @@ import EPortfolioPreview from "../components/EPortfolioPreview";
 import AddPortfolio from "../components/AddPortfolio";
 import "../styles/BasePage.css";
 import { isAuthorized } from "../util/cookies";
+import { useHistory } from "react-router-dom";
 
 export default function Gallery() {
+    const history = useHistory();
     const Auth = isAuthorized();
+
+    if (! Auth) {
+        history.push('/login');
+    }
 
     //check for updates
     const [update, setUpdate] = useState(false);
@@ -44,7 +50,7 @@ export default function Gallery() {
         <div className="container">
             <div className="basepage">
                 {profiles.map(profile =>(
-                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} user={user}
+                    < EPortfolioPreview key={profile.public_id} name={profile.title} id={profile.public_id} user={user} img={profile.background_url}
                     onUpdate={(e) => setUpdateTrue()}/>
                 ))}
                 < AddPortfolio PID = {user} onUpdate={(f) => setUpdateTrue()}/>

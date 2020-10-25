@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource, Namespace
 
-from ..service import user_service
+from ..service import user_service, auth_service
 
 from . import api_model
 from ..util.decorator import token_required
