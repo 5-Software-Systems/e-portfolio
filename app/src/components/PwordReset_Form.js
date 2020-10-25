@@ -10,7 +10,7 @@ import {
 import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
-import { useFormFields } from "../util/form";
+import { hashPassword, useFormFields } from "../util/form";
 import { isAuthorized, isLoggedIn } from "../util/cookies";
 
 export default function PasswordResetForm() {
@@ -38,7 +38,7 @@ export default function PasswordResetForm() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': "bearer " + auth},
                 body: JSON.stringify({public_id: user,
-                                      password: fields.new_Password})
+                                      password: hashPassword(fields.new_Password)})
             };
             await fetch('api/user/' + user + '/password_reset', requestOptions_reset);
             setComplete(true);
