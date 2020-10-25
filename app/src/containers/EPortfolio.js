@@ -154,59 +154,78 @@ export default function EPortfolio(props) {
     }
 
     return (
-        <div className='eportfolioBody'>
-            <header className='header'>
-                {!props.preview ?
-                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
-                        <a href = '/profile'> <ArrowBack /> </a>
-                    </button>
-                : null}  
-        
-                <h1 className='impact'>
-                    {profile.title}
-                </h1>
+        <div>
+            <div className='eportfolioBody'>
+                <header className='header'>
+                    {!props.preview ?
+                        <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
+                            <a href = '/profile'> <ArrowBack /> </a>
+                        </button>
+                    : null}  
+            
+                    <h1 className='impact'>
+                        {profile.title}
+                    </h1>
 
-                {editMode ?
-                <button className='addWidgetButton'
-                    onClick={() => {
-                            addWidget();
-                            fetchWidgets();
+                    {editMode ?
+                    <button className='addWidgetButton'
+                        onClick={() => {
+                                addWidget();
+                                fetchWidgets();
+                            }
                         }
+                    > Add Widget </button>
+                    : null
                     }
-                > Add Widget </button>
-                : null
-                }
-                {!props.preview ? <button className='addWidgetButton'
-                                    onClick={
-                                        () => {
-                                            toggleEdit();
+                    {!props.preview ? <button className='addWidgetButton'
+                                        onClick={
+                                            () => {
+                                                toggleEdit();
+                                            }
                                         }
-                                    }
-                                    > {editModeToggleText()} </button>
-                : null}
-            </header>
-            <div className="container">
-                <ReactGridLayout
-                    className="layout"
-                    rowHeight={height}
-                    width={columns * width}
-                    margin={[10,10]} compactType={null}
-                    onLayoutChange={onLayoutChange}
-                    isDraggable={movable && editMode}
-                    isResizable={movable && editMode}
-                    breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                    cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
-                >
-                    {widgets.map(widget =>(
-                        < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
-                            {editMode ? <div className ='blocker'></div> : <div></div>}
-                            <MotherWidget widget={widget}/>
-                            <div className ='overlay'>
-                            {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
-                            </div>
-                        </ div>
-                    ))}
-                </ReactGridLayout>
+                                        > {editModeToggleText()} </button>
+                    : null}
+                </header>
+                
+                {/**bg image*/}
+                <div style = {{
+                    zIndex: "0",
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+
+                    backgroundImage: `url(${profile.background_url})`,
+                    backgroundAttachment: "fixed",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "100% 100%"
+                }}>
+                    {/**<img src={profile.background_url} width={'100%'} height={'100%'}/>*/}
+                </div>
+
+                <div className="container">
+                    <ReactGridLayout
+                        className="layout"
+                        rowHeight={height}
+                        width={columns * width}
+                        margin={[10,10]} compactType={null}
+                        onLayoutChange={onLayoutChange}
+                        isDraggable={movable && editMode}
+                        isResizable={movable && editMode}
+                        breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                        cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+                    >
+                        {widgets.map(widget =>(
+                            < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                                {editMode ? <div className ='blocker'></div> : <div></div>}
+                                <MotherWidget widget={widget}/>
+                                <div className ='overlay'>
+                                {editMode ? <EditBox PID={widget.public_id} onChange={(e) => onSettingsUpdate()} onOpenSettings={(e) => switchFalse()} widgetLocation={widget.location} widgetType={widget.type} widgetData={widget.data} portfolioID ={PID} userID={user}/> : <div></div>}
+                                </div>
+                            </ div>
+                        ))}
+                    </ReactGridLayout>
+                </div>
             </div>
         </div>
     );
