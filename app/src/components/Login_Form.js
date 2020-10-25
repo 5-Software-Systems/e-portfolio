@@ -7,7 +7,7 @@ import {
 } from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
-import { validateEmail, useFormFields } from "../util/form";
+import { validateEmail, hashPassword, useFormFields } from "../util/form";
 import { authorize, isLoggedIn, isVerified } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export default function LoginForm() {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: fields.login_password})
+                body: JSON.stringify({email: String(fields.login_email).toLowerCase(), password: hashPassword(fields.login_password)})
             };
             await authorize(requestOptions);
         }

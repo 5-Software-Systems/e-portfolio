@@ -191,5 +191,6 @@
 	  width: 150%;
 	  background-color: transparent;
 	  position: absolute;
+	  z-index: 1;
   }
 

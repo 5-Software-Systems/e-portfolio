@@ -8,7 +8,7 @@ import {
 import Button from '@material-ui/core/Button';
 import '../styles/Form.css';
 import PasswordStrengthMeter from './PasswordStrengthMeter';
-import { validateEmail, useFormFields } from "../util/form";
+import { validateEmail, hashPassword, useFormFields } from "../util/form";
 import { useHistory } from "react-router-dom";
 
 export default function SignupForm() {
@@ -30,7 +30,7 @@ export default function SignupForm() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email: String(fields.signup_email).toLowerCase(),
-                                      password: fields.signup_password,
+                                      password: hashPassword(fields.signup_password),
                                       name_first: fields.signup_firstname,
                                       name_last: fields.signup_lastname})
             };

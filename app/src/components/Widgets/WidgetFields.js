@@ -4,12 +4,18 @@ import { isAuthorized } from "../../util/cookies";
 import {FilePopUp} from "../FileUpload";
 
 
+import MUIRichTextEditor from 'mui-rte';
+import {convertToRaw} from 'draft-js';
+
 
 
 export default function GetFields(props) {
-    const Auth = isAuthorized();    
 
+
+    const Auth = isAuthorized();    
+    
     const [fields, setFields] = useState([]);
+    const [aboutNum, setAboutNum]=useState(0);
     const [text, setText] = useState({});
 
     useEffect( () => {
@@ -23,6 +29,7 @@ export default function GetFields(props) {
         if (props.onChange) {
             props.onChange(textOBJ);
         }
+        console.log(text);
     }
 
     function getDefaultData() {
@@ -66,27 +73,71 @@ export default function GetFields(props) {
     }, [props, Auth]);
 
     useEffect( () => {
-        if (props.changed) {
+        if (props.changed > 0) {
             setText({});
             props.onChange({});
         }
+
+        if (props.type == 'about') {
+            setAboutNum(props.changed)
+        }
     }, [props.type, props.changed]);
+
+    const controls = [
+        "undo", 
+        "redo",
+        "title", 
+        "bold", 
+        "italic", 
+        "underline", 
+        "strikethrough", 
+        "highlight",  
+        "numberList",
+        "bulletList", 
+        "quote", 
+        "code", 
+        "clear",
+        "link",
+        "media"
+    ]
+
+    const inlineControls = [
+        "bold", 
+        "italic", 
+        "underline", 
+        "strikethrough"
+    ]
 
     return (
             <div>
                 {Object.keys(fields).map(field =>(
-                    <label key={field}>
+                    <div>
                         {field}:
                         <br />
+                        {field === "about" ?
+                        <MUIRichTextEditor 
+                            controls={controls} 
+                            inlineToolbar={true}
+                            inlineToolbarControls={inlineControls}
+                            label="Start typing..." 
+                            defaultValue={getDefaultData()[field]} 
+                            onChange={(e) => {
+                                if (aboutNum == props.changed)
+                                    setTextList(field, JSON.stringify(convertToRaw(e.getCurrentContent())))
+                                }
+                            }
+                        />
+                        :
                         <textarea
                             className='basePageTextBox'
                             type="text"
                             onChange={(e) => setTextList(field, e.target.value)}
                             value={text[field]}
                         />
+                        }
                         <br />
                         <br />
-                    </label>
+                    </div>
                 ))}
                 {imageUpload(props.user)}
                 {Hint()}
