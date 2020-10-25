@@ -70,7 +70,7 @@ export default function GetFields(props) {
             setText({});
             props.onChange({});
         }
-    }, [props.type]);
+    }, [props.type, props.changed]);
 
     return (
             <div>

@@ -18,7 +18,6 @@ import DeletePopup from './DeletePopup';
 function EPortfolioPreview(props){
     const Auth = isAuthorized();
     const api_link = "user/" + props.user + "/portfolio/" + props.id;
-    const [shareLink, setShareLink] = useState("");
 
     //delete function 
     async function handleDelete() {
@@ -210,7 +209,7 @@ function EPortfolioPreview(props){
             <a href={ "/portfolio/" + props.id } className="eportfolioinfo">
                 <h3>{props.name}</h3>
                 <br/>
-                <img src={props.img ? props.img : "/images/placeholder.jpg"} alt="not a valid url" height='150'/>
+                <img src={props.img ? props.img : "/images/placeholder.svg"} alt="not a valid url" height='150'/>
             </a>
             <div className="button_container" >
                 {settingsButton()}
