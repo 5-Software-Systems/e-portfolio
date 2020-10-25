@@ -3,6 +3,7 @@ import Test from '../components/Test';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from "react-router-dom";
 import { isLoggedIn, deauthorize } from "../util/cookies";
@@ -46,7 +47,7 @@ export default function BaseTemplate(props) {
     );
 }
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,10 +71,18 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   hide: {
-    display: 'none',
+    visibility: 'none',
+    opacity: 0,
+    transition: theme.transitions.create(['visibility', 'opacity'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.standard,
+    }),
   },
   drawer: {
     flexShrink: 0,
+  },
+  title: {
+    flexGrow: 1,
   },
   drawerPaper: {
     width: drawerWidth,
@@ -108,6 +117,7 @@ function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(! open);
@@ -116,6 +126,13 @@ function PersistentDrawerLeft(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  async function handleLogout() {
+        // clear cookies
+        deauthorize().then(() => {
+            history.push("/");
+        });
+    }
 
   return (
     <div className={classes.root}>
@@ -135,11 +152,16 @@ function PersistentDrawerLeft(props) {
           >
             <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
           </IconButton>
-          <Typography variant="h6" className={classes.content} noWrap>
+          <Typography variant="h6" className={classes.title}>
             Echidna
           </Typography>
           <div className={clsx(open && classes.hide)}>
-              {props.nav_right}
+              {/* this is jank af but it works*/}
+              { isLoggedIn() ?
+                <Button color="inherit" onClick={handleLogout}>Logout</Button>
+              :
+                props.nav_right
+              }
           </div>
         </Toolbar>
       </AppBar>
@@ -153,6 +175,9 @@ function PersistentDrawerLeft(props) {
         }}
       >
         <div className={classes.drawerHeader}>
+          <Typography variant="h6" className={classes.title}>
+            Echidna
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>

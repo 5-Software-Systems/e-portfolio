@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 //-----------dependencies------------------------
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import ArrowBack from '@material-ui/icons/ArrowBack';
@@ -9,7 +9,7 @@ import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 import { isAuthorized } from "../util/cookies";
-import { copyToClipboard } from '../components/EPortfolioPreview';
+import { copyToClipboard, get_link } from '../components/EPortfolioPreview';
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
@@ -74,8 +74,8 @@ export default function EPortfolio(props) {
     }, [PID, history, Auth, user]);
 
     
-    const width = 300;
-    const height = 300;
+    const width = 242;
+    const height = 242;
     const columns = 5;
 
     async function addWidget() {
@@ -133,20 +133,6 @@ export default function EPortfolio(props) {
         }
     }
 
-    async function get_link() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
-            body: JSON.stringify({
-                "duration": 525960 // 1 year
-              })
-        };
-        const url = '/api/user/' + user + '/portfolio/' + PID + '/share';
-        const share_link_data = await fetch(url, requestOptions);
-        const share_link = await share_link_data.json();
-        return Promise.resolve(share_link);
-    }
-
     function switchFalse() {
         setMovable(false);
     }
@@ -168,7 +154,22 @@ export default function EPortfolio(props) {
     }
 
     return (
-        <div>
+        <Fragment>
+            <title>{profile.title}</title>
+            {/**bg image*/}
+            <div style = {{
+                zIndex: "0",
+                position: "fixed",
+                width: "100%",
+                height: "100%",
+
+                backgroundImage: `url(${profile.background_url})`,
+                backgroundAttachment: "fixed",
+                backgroundPosition: "0px 0px",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 100%"
+            }}>
+            </div>
             <div className='eportfolioBody'>
                 <header className='header'>
                     {!props.preview ?
@@ -182,14 +183,20 @@ export default function EPortfolio(props) {
                     </h1>
 
                     {editMode ?
-                    <button className='addWidgetButton'
-                        onClick={() => {
-                                addWidget();
-                                fetchWidgets();
+                        <button className='addWidgetButton'
+                            onClick={() => {
+                                    addWidget();
+                                    fetchWidgets();
+                                }
                             }
-                        }
-                    > Add Widget </button>
-                    : null
+                        > Add Widget </button>
+                    :
+                        <button className='addWidgetButton' onClick={() => {
+                                get_link(user, PID, Auth).then(value =>
+                                    copyToClipboard(value.link)
+                                );}
+                            }
+                        > Share </button>
                     }
                     {!props.preview ? <button className='addWidgetButton'
                                         onClick={
@@ -200,22 +207,6 @@ export default function EPortfolio(props) {
                                         > {editModeToggleText()} </button>
                     : null}
                 </header>
-
-                {/**bg image*/}
-                <div style = {{
-                    zIndex: "0",
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-
-                    backgroundImage: `url(${profile.background_url})`,
-                    backgroundAttachment: "fixed",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "100% 100%"
-                }}>
-                    {/**<img src={profile.background_url} width={'100%'} height={'100%'}/>*/}
-                </div>
 
                 <div className="container">
                     <ReactGridLayout
@@ -241,7 +232,7 @@ export default function EPortfolio(props) {
                     </ReactGridLayout>
                 </div>
             </div>
-        </div>
+        </Fragment>
     );
 };
 

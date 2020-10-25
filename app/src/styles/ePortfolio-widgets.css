@@ -8,8 +8,8 @@
 
 .eportfolioBody {
   position: absolute;
-  background-color: #fff;
-  min-height: 100vh;
+  background-color: transparent;
+  height: calc(100vh - 74px);
   min-width: 100%;
 }
 
@@ -72,11 +72,6 @@
   outline: none;
 }
 
-.eportfolioBody  {
-  background-color: #f7f8fa;
-  width: auto;
-}
-
 .eportfolioBody p, .eportfolioBody h1 {
   padding-left: 15px;
   background-color: transparent;
@@ -84,7 +79,7 @@
 
 
 .eportfolioBody image {
-  object-fit: fill;
+  object-fit: best;
   width: 10px;
 }
 
@@ -105,11 +100,16 @@
   border-radius: 20px;
   transition: all 200ms ease;
   transition-property: left, top;
-  cursor: pointer;
+  cursor: move;
+}
+
+.eportfolioBody .react-grid-item .richtext{
+  padding: 0px 10px;
 }
 
 .eportfolioBody .react-grid-item img{
   width: 100%;
+  border-radius: 20px;
 }
 
 

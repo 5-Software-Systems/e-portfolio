@@ -15,6 +15,9 @@ export default function Verify() {
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + auth , 'user_public_id': user},
             };
             await fetch('/api/user/' + user + '/verify', requestOptions);
+
+            // TODO upload default images for user
+
         }
 
         handleSubmit().then(() => {
@@ -23,4 +26,13 @@ export default function Verify() {
     }, [history]);
 
     return (<Fragment></Fragment>);
+}
+
+async function uploadImage(file, user, auth) {
+    const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': file.type, 'Authorization': 'bearer ' + auth},
+        body: file
+    };
+    await fetch('/api/user/'+ user + '/file/' + file.name, requestOptions);
 }

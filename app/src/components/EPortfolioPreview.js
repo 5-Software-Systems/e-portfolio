@@ -131,20 +131,6 @@ export default function EPortfolioPreview(props){
         )
     }
 
-    async function get_link() {
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
-            body: JSON.stringify({
-                "duration": 525960 // 1 year
-              })
-        };
-        const url = '/api/user/' + props.user + '/portfolio/' + props.id + '/share';
-        const share_link_data = await fetch(url, requestOptions);
-        const share_link = await share_link_data.json();
-        return Promise.resolve(share_link);
-    }
-
     //settings button 
     function settingsButton() {
         return (
@@ -160,7 +146,7 @@ export default function EPortfolioPreview(props){
                 {close => (
                     <div className="menu">
                         <button className="menu-item" onClick={() => {
-                            get_link().then(value =>
+                            get_link(props.user, props.id, Auth).then(value =>
                                 copyToClipboard(value.link)
                             );
                             close();
@@ -218,4 +204,18 @@ export function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+}
+
+export async function get_link(user, portflio_id, auth) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + auth},
+        body: JSON.stringify({
+            "duration": 525960 // 1 year
+          })
+    };
+    const url = '/api/user/' + user + '/portfolio/' + portflio_id + '/share';
+    const share_link_data = await fetch(url, requestOptions);
+    const share_link = await share_link_data.json();
+    return Promise.resolve(share_link);
 }

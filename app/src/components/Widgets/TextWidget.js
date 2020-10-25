@@ -12,7 +12,7 @@ export function TextToHTML({text}) {
 
     
     return (
-        <div>
+        <div className="richtext">
             <MUIRichTextEditor
                 defaultValue={text}
                 toolbar={false}

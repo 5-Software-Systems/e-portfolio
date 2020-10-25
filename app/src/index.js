@@ -32,12 +32,16 @@ const defaultTheme = createMuiTheme();
 
 const theme = createMuiTheme({
   palette: {
+    mode: 'light',
     primary: {
        main: '#3F3D56',
     },
     secondary: {
       main: '#F95858',
     },
+  },
+  zIndex: {
+    appBar: 1100,
   },
   overrides: {
     MuiToolbar: {

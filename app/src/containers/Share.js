@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {Fragment, useEffect, useState} from "react";
 //-----------dependencies------------------------
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import ArrowBack from '@material-ui/icons/ArrowBack';
@@ -44,42 +44,60 @@ export default function EPortfolio(props) {
         initFetch();
     }, [history]);
     
-    const width = 300;
-    const height = 300;
+    const width = 242;
+    const height = 242;
     const columns = 5;
 
     return (
-        <div className='eportfolioBody'>
-            <header className='header'>
-                <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
-                    <a href = '/'> <ArrowBack /> </a>
-                </button>
-                <h1 className='impact'>
-                    {profile.title}
-                </h1>
-                <p></p>
-            </header>
-            <div className="container">
-                <ReactGridLayout
-                    className="layout"
-                    rowHeight={height}
-                    width={columns * width}
-                    margin={[10,10]}
-                    compactType={null}
-                    isDraggable={false}
-                    isResizable={false}
-                    breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                    cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
-                >
-                    {widgets.map(widget =>(
-                        < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
-                            <MotherWidget widget={widget}/>
-                            <div className ='overlay'></div>
-                        </div>
-                    ))}
-                </ReactGridLayout>
+        <Fragment>
+            <title>{profile.title}</title>
+            <title>{profile.title}</title>
+            {/**bg image*/}
+            <div style = {{
+                zIndex: "0",
+                position: "fixed",
+                width: "100%",
+                height: "100%",
+
+                backgroundImage: `url(${profile.background_url})`,
+                backgroundAttachment: "fixed",
+                backgroundPosition: "0px 0px",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "100% 100%"
+            }}>
             </div>
-        </div>
+            <div className='eportfolioBody'>
+                <header className='header'>
+                    <button className='addWidgetButton' onClick={ () => {window.location.href='/profile'}}>
+                        <a href = '/'> <ArrowBack /> </a>
+                    </button>
+                    <h1 className='impact'>
+                        {profile.title}
+                    </h1>
+                    <p></p>
+                </header>
+                <div className="container">
+                    <ReactGridLayout
+                        className="layout"
+                        rowHeight={height}
+                        width={columns * width}
+                        margin={[10,10]}
+                        compactType={null}
+                        isDraggable={false}
+                        isResizable={false}
+                        breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                        cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+                    >
+                        {widgets.map(widget =>(
+                            < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
+                                <MotherWidget widget={widget}/>
+                                <div className ='overlay'></div>
+                            </div>
+                        ))}
+                    </ReactGridLayout>
+                </div>
+            </div>
+        </Fragment>
     );
 };
 

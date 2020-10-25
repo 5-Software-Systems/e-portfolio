@@ -183,7 +183,7 @@ export function PortfolioNotFound() {
             <BaseTemplate nav_right = { <RightNav /> } >
                 <div className="banner first">
                     <div className="container">
-                    <h1 className="font-weight-semibold">The portfolio you're looking is no longer available.</h1>
+                    <h2 className="font-weight-semibold">The portfolio you're looking is no longer available.</h2>
                     <img src={process.env.PUBLIC_URL + "/images/not_found.svg"} alt="" className="img-fluid" />
                     </div>
                 </div>
