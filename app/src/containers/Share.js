@@ -57,7 +57,7 @@ export default function EPortfolio(props) {
                 <h1 className='impact'>
                     {profile.title}
                 </h1>
-                <p className="impact">Created by:<br/>Firstname Lastname</p>
+                <p></p>
             </header>
             <div className="container">
                 <ReactGridLayout

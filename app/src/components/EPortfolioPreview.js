@@ -15,7 +15,7 @@ import DeletePopup from './DeletePopup';
 
 
 
-function EPortfolioPreview(props){
+export default function EPortfolioPreview(props){
     const Auth = isAuthorized();
     const api_link = "user/" + props.user + "/portfolio/" + props.id;
 
@@ -184,20 +184,6 @@ function EPortfolioPreview(props){
         )
     }
 
-    //https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
-    function copyToClipboard(text) {
-        var dummy = document.createElement("textarea");
-        // to avoid breaking orgain page when copying more words
-        // cant copy when adding below this code
-        // dummy.style.display = 'none'
-        document.body.appendChild(dummy);
-        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
-        dummy.value = text;
-        dummy.select();
-        document.execCommand("copy");
-        document.body.removeChild(dummy);
-    }
-
     function update() {
         if (props.onUpdate) {
             props.onUpdate();
@@ -220,4 +206,16 @@ function EPortfolioPreview(props){
     )
 }
 
-export default EPortfolioPreview;
+//https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
+export function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    // to avoid breaking orgain page when copying more words
+    // cant copy when adding below this code
+    // dummy.style.display = 'none'
+    document.body.appendChild(dummy);
+    //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+    dummy.value = text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}

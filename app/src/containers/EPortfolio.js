@@ -9,6 +9,7 @@ import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
 import { isAuthorized } from "../util/cookies";
+import { copyToClipboard } from '../components/EPortfolioPreview';
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
 import EditBox from '../components/EditBox.js';
@@ -132,6 +133,19 @@ export default function EPortfolio(props) {
         }
     }
 
+    async function get_link() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + Auth},
+            body: JSON.stringify({
+                "duration": 525960 // 1 year
+              })
+        };
+        const url = '/api/user/' + user + '/portfolio/' + PID + '/share';
+        const share_link_data = await fetch(url, requestOptions);
+        const share_link = await share_link_data.json();
+        return Promise.resolve(share_link);
+    }
 
     function switchFalse() {
         setMovable(false);
@@ -167,14 +181,19 @@ export default function EPortfolio(props) {
                 </h1>
 
                 {editMode ?
-                <button className='addWidgetButton'
-                    onClick={() => {
-                            addWidget();
-                            fetchWidgets();
+                    <button className='addWidgetButton'
+                        onClick={() => {
+                                addWidget();
+                                fetchWidgets();
+                            }
                         }
-                    }
-                > Add Widget </button>
-                : null
+                    > Add Widget </button>
+                :
+                    <button className="addWidgetButton" onClick={() => {
+                            get_link().then(value =>
+                                copyToClipboard(value.link)
+                            );
+                    }}> Share </button>
                 }
                 {!props.preview ? <button className='addWidgetButton'
                                     onClick={
