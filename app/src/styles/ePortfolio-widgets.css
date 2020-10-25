@@ -90,7 +90,8 @@
 
 
 .eportfolioBody .react-grid-layout {
-  background: transparent;
+  background: rgba(0,0,0,0.2);
+  border-radius: 20px;
   position: relative;
   transition: height 200ms ease;
 }

@@ -1,11 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import ReactGridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import '../styles/ePortfolio-widgets.css';
 import '../styles/resizable-styles.css';
 import '../fonts/roboto/Roboto-Black.ttf'
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 import MotherWidget from '../components/Widgets/MotherWidget.js';
+
+const ReactGridLayout = WidthProvider(Responsive);
 
 export default function EPortfolioDemo() {
     const URL = window.location.href.split('/');
@@ -35,16 +38,14 @@ export default function EPortfolioDemo() {
             <header className='header'>
                 
                 <button className='addWidgetButton' onClick={ () => {window.location.href='/help'}}>
-                    <a href = '/help'> ← </a>         
+                    <a href = '/help'><ArrowBack /></a>
                 </button>
                  
                 <h1 className='impact'>
-                    {PID}
+                    {PID === 'demo' ? 'original demo' : PID}
                 </h1>
                 
-                <button className='addWidgetButton' onClick={ () => {window.location.href='/'}}>
-                    <a href = '/'> Home </a>         
-                </button>
+                <p></p>
             </header>
             {switchPage(PID)}
         </div>
@@ -115,7 +116,17 @@ function Echidna() {
     
     return (
         <div className='eportfolioBody'>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+            <ReactGridLayout
+                className="layout"
+                rowHeight={height}
+                width={columns * width}
+                margin={[10,10]}
+                compactType={null}
+                isDraggable={false}
+                isResizable={false}
+                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+            >
                 {widgets.map(widget =>(
                     < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
                         <MotherWidget widget={widget}/> 
@@ -135,41 +146,49 @@ function Demo() {
     return (
         <div className='eportfolioBody'>
 
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
-            <div key="a" data-grid={{i: 'a', x: 3, y: 1, w: 1, h: 2}}>
-                <img src={process.env.PUBLIC_URL + '/images/galaxy.gif'} alt="galaxy" draggable='false' height='100%' />
-            </div>
-            <div key="b" data-grid={{i: 'b', x: 4, y: 1, w: 1, h: 3}}>
-                <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            </div>
-            <div key="c" data-grid={{i: 'c', x: 0, y: 4, w: 2, h: 1}}>
-                <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} height='100%' draggable='false' />
-            </div>
-              <div key="d" data-grid={{i: 'd', x: 1, y: 1, w: 2, h: 1}}>
-                <img src={'https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320'} alt={'damn'} height='100%' draggable='false' />
-            </div>
-            <div key="e" data-grid={{i: 'e', x: 1, y: 2, w: 2, h: 1}}>
-                <img src={'https://data.whicdn.com/images/286894498/original.gif'} alt={'scarce'} height='100%' draggable='false' />
-                <p>hey whats up guys its scarce here</p>
-            </div>
-            <div key="f" data-grid={{i: 'f', x: 2, y: 3, w: 2, h: 1}}>
-                <iframe width='100%' height='100%' title="embed2" src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <ReactGridLayout
+                className="layout"
+                rowHeight={height}
+                width={columns * width}
+                margin={[10,10]}
+                compactType='horizontal'
+                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+            >
+                <div key="a" data-grid={{i: 'a', x: 3, y: 1, w: 1, h: 2}}>
+                    <img src={'https://media0.giphy.com/media/l0Exm2Wa4TermgtJC/giphy.gif'} alt="galaxy" draggable='false' height='100%' />
+                </div>
+                <div key="b" data-grid={{i: 'b', x: 4, y: 1, w: 1, h: 3}}>
+                    <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div>
+                <div key="c" data-grid={{i: 'c', x: 0, y: 4, w: 2, h: 1}}>
+                    <img src={'https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041'} alt={'bruhmoment'} height='100%' draggable='false' />
+                </div>
+                  <div key="d" data-grid={{i: 'd', x: 1, y: 1, w: 2, h: 1}}>
+                    <img src={'https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320'} alt={'damn'} height='100%' draggable='false' />
+                </div>
+                <div key="e" data-grid={{i: 'e', x: 1, y: 2, w: 2, h: 1}}>
+                    <img src={'https://data.whicdn.com/images/286894498/original.gif'} alt={'scarce'} height='100%' draggable='false' />
+                    <p>hey whats up guys its scarce here</p>
+                </div>
+                <div key="f" data-grid={{i: 'f', x: 2, y: 3, w: 2, h: 1}}>
+                    <iframe width='100%' height='100%' title="embed2" src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <p>hey this is pretty cool</p>
+                </div>
+                <div key="g" data-grid={{i: 'g', x: 0, y: 0, w: 1, h: 3}}>
+                    <iframe width='100%' height='100%' title="embed3" src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <p>hey this is pretty cool</p>
-            </div>
-            <div key="g" data-grid={{i: 'g', x: 0, y: 0, w: 1, h: 3}}>
-                <iframe width='100%' height='100%' title="embed3" src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <p>hey this is pretty cool</p>
-            </div>
-            <div key="h" data-grid={{i: 'h', x: 1, y: 0, w: 1, h: 1}}>
-                <img src={process.env.PUBLIC_URL + '/images/what.gif'} alt={'bruhmoment'} width={width} draggable='false' />
-            </div>
-            <div key="i" data-grid={{i: 'i', x: 2, y: 0, w: 3, h: 1}}>
-                <h1> Welcome to My Page! </h1> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-            </div>
-            <div key="gj" data-grid={{i: 'j', x: 0, y: 0, w: 1, h: 3}}>
-                <iframe width='100%' height='100%' title="embed4" src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            <p>hey this is pretty cool</p>
-            </div>
+                </div>
+                <div key="h" data-grid={{i: 'h', x: 1, y: 0, w: 2, h: 1}}>
+                    <img src={'https://media.tenor.co/images/0e2ff58eb8d23a3d22b9b00505c057dd/raw'} alt={'bruhmoment'} width={width} draggable='false' />
+                </div>
+                <div key="i" data-grid={{i: 'i', x: 2, y: 0, w: 3, h: 1}}>
+                    <h1> Welcome to My Page! </h1> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                </div>
+                <div key="gj" data-grid={{i: 'j', x: 0, y: 0, w: 1, h: 3}}>
+                    <iframe width='100%' height='100%' title="embed4" src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <p>hey this is pretty cool</p>
+                </div>
             </ReactGridLayout>
         </div>
     );         
@@ -289,7 +308,15 @@ function Calvin() {
     
     return (
         <div className='eportfolioBody'>
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+            <ReactGridLayout
+                width={columns * width}
+                margin={[10,10]}
+                compactType={null}
+                isDraggable={false}
+                isResizable={false}
+                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+            >
                 {widgets.map(widget =>(
                     < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
                         <MotherWidget widget={widget}/> 
@@ -505,7 +532,17 @@ function Team() {
   
   return (
       <div className='eportfolioBody'>
-          <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType={null} isDraggable={false} isResizable={false}>
+          <ReactGridLayout
+            className="layout"
+            rowHeight={height}
+            width={columns * width}
+            margin={[10,10]}
+            compactType={null}
+            isDraggable={false}
+            isResizable={false}
+            breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+            cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+          >
               {widgets.map(widget =>(
                   < div key={widget.public_id} data-grid={{i: widget.public_id, w: widget.location[0], h: widget.location[1], x: widget.location[2], y: widget.location[3]}}>
                       <MotherWidget widget={widget}/> 
@@ -524,7 +561,15 @@ function Tutorial() {
     return (
         <div className='eportfolioBody'>
 
-            <ReactGridLayout className="layout" cols={columns} rowHeight={height} width={columns * width} margin={[10,10]} compactType='horizontal' >
+            <ReactGridLayout
+                className="layout"
+                rowHeight={height}
+                width={columns * width}
+                margin={[10,10]}
+                compactType='horizontal'
+                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                cols={{lg: 5, md: 5, sm: 5, xs: 5, xxs: 5}}
+            >
             <div key="a" data-grid={{i: 'a', x: 0, y: 0, w: 1, h: 1}}>
                 <h1> tutorial page </h1> <p>sooper mahreo in riel loife </p>
                 <iframe width="100%" height="100%" title="embed1" src="https://www.youtube.com/embed/8EQ17_B7kug" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

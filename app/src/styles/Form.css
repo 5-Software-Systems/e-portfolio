@@ -116,6 +116,6 @@
 	border: 3px solid #f7f8fa;
 }
 
-.popup-content {
+.form-overlay .popup-content {
   width: auto;
 }

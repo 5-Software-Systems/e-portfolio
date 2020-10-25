@@ -20,6 +20,7 @@ import UpdatesIcon from '@material-ui/icons/DynamicFeed';
 import LoginIcon from '@material-ui/icons/LockOpen';
 import SignUpIcon from '@material-ui/icons/ContactMail';
 import GalleryIcon from '@material-ui/icons/ViewCarousel';
+import HelpIcon from '@material-ui/icons/Help';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -27,6 +28,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Fade from '@material-ui/core/Fade';
 
 
 export default function BaseTemplate(props) {
@@ -102,13 +104,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function PersistentDrawerLeft(props) {
+function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(! open);
   };
 
   const handleDrawerClose = () => {
@@ -129,14 +131,16 @@ export function PersistentDrawerLeft(props) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx(classes.menuButton, open)}
           >
             <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
           </IconButton>
           <Typography variant="h6" className={classes.content} noWrap>
             Echidna
           </Typography>
-          {props.nav_right}
+          <div className={clsx(open && classes.hide)}>
+              {props.nav_right}
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -166,6 +170,10 @@ export function PersistentDrawerLeft(props) {
             <ListItem button key="update" component={Link} to="/updates">
               <ListItemIcon><UpdatesIcon /></ListItemIcon>
               <ListItemText primary="Updates" />
+            </ListItem>
+            <ListItem button key="help" component={Link} to="/help">
+              <ListItemIcon><HelpIcon /></ListItemIcon>
+              <ListItemText primary="Help" />
             </ListItem>
         </List>
         <Divider />

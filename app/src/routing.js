@@ -210,7 +210,7 @@ export function _404Page() {
 
 function RightNav() {
     if (isLoggedIn()) {
-        return null;
+        return (<div></div>);
     } else {
         return (
             <Fragment>
