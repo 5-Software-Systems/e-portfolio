@@ -57,7 +57,6 @@ export default function SharedPortfolio(props) {
   return (
     <Fragment>
       <title>{profile.title}</title>
-      <title>{profile.title}</title>
       {/**bg image*/}
       <div
         style={{
@@ -81,10 +80,7 @@ export default function SharedPortfolio(props) {
               window.location.href = "/profile";
             }}
           >
-            <a href="/">
-              {" "}
-              <ArrowBack />{" "}
-            </a>
+            <ArrowBack />
           </button>
           <h1 className="impact">{profile.title}</h1>
           <p></p>

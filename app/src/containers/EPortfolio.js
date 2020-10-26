@@ -202,10 +202,7 @@ export default function EPortfolio(props) {
                 window.location.href = "/profile";
               }}
             >
-              <a href="/profile">
-                {" "}
-                <ArrowBack />{" "}
-              </a>
+              <ArrowBack />
             </button>
           ) : null}
 
@@ -219,8 +216,7 @@ export default function EPortfolio(props) {
                 fetchWidgets();
               }}
             >
-              {" "}
-              Add Widget{" "}
+              Add Widget
             </button>
           ) : (
             <button
@@ -231,8 +227,7 @@ export default function EPortfolio(props) {
                 );
               }}
             >
-              {" "}
-              Share{" "}
+              Share
             </button>
           )}
           {!props.preview ? (
@@ -242,8 +237,7 @@ export default function EPortfolio(props) {
                 toggleEdit();
               }}
             >
-              {" "}
-              {editModeToggleText()}{" "}
+              {editModeToggleText()}
             </button>
           ) : null}
         </header>
