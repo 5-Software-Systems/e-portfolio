@@ -14,7 +14,7 @@ export default function TwitterToHTML({
       height={height}
       src={link}
       frameBorder="0"
-      title={title}
+      title={src}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     ></iframe>
   );

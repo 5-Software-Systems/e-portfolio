@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import SnackbarProvider from "notistack"
 import { isLoggedIn } from "./util/cookies";
 import {
   BrowserRouter as Router,
@@ -55,7 +54,6 @@ const theme = createMuiTheme({
 
 //Routing
 ReactDOM.render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
 
       <Router>
@@ -136,8 +134,7 @@ ReactDOM.render(
           <Route path="/" component={_404Page} />
         </Switch>
       </Router>
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
   document.getElementById("root")
 );
 

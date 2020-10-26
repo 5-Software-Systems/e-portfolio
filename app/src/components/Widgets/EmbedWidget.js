@@ -12,7 +12,7 @@ export default function EmbedToHTML({
       height={height}
       src={src}
       frameBorder="0"
-      title={title}
+      title={src}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     ></iframe>
   );

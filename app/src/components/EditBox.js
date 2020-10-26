@@ -62,55 +62,55 @@ export default function EditBox(props) {
   }
 
   /**
-   * @depreciated use DeletePopup from DeletePopup.js instead.
+   * @deprecated use DeletePopup from DeletePopup.js instead.
    */
-  function deletePopup() {
-    return (
-      <Popup
-        trigger={
-          <button className="button">
-            {" "}
-            <b className="deleteText"> DELETE </b>{" "}
-          </button>
-        }
-        modal
-        nested
-        className="ePortfolio-popup"
-        closeOnDocumentClick={false}
-      >
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header2">
-              {" "}
-              <h1>Are you sure you want to delete this widget?</h1>{" "}
-            </div>
-            <div className="actions">
-              {" "}
-              <div>
-                <p>This action cannot be undone.</p>
-              </div>
-            </div>
-            <div className="actions">
-              <button
-                className="button"
-                onClick={() => {
-                  deleteWidget();
-                  callUpdate();
-                  close();
-                }}
-              >
-                {" "}
-                <b className="deleteText"> Delete </b>{" "}
-              </button>
-            </div>
-          </div>
-        )}
-      </Popup>
-    );
-  }
+//  function deletePopup() {
+//    return (
+//      <Popup
+//        trigger={
+//          <button className="button">
+//            {" "}
+//            <b className="deleteText"> DELETE </b>{" "}
+//          </button>
+//        }
+//        modal
+//        nested
+//        className="ePortfolio-popup"
+//        closeOnDocumentClick={false}
+//      >
+//        {(close) => (
+//          <div className="modal">
+//            <button className="close" onClick={close}>
+//              &times;
+//            </button>
+//            <div className="header2">
+//              {" "}
+//              <h1>Are you sure you want to delete this widget?</h1>{" "}
+//            </div>
+//            <div className="actions">
+//              {" "}
+//              <div>
+//                <p>This action cannot be undone.</p>
+//              </div>
+//            </div>
+//            <div className="actions">
+//              <button
+//                className="button"
+//                onClick={() => {
+//                  deleteWidget();
+//                  callUpdate();
+//                  close();
+//                }}
+//              >
+//                {" "}
+//                <b className="deleteText"> Delete </b>{" "}
+//              </button>
+//            </div>
+//          </div>
+//        )}
+//      </Popup>
+//    );
+//  }
 
   const onApplyClick = (external_close) => {
     //bug roundabout coldfix
@@ -206,10 +206,10 @@ export default function EditBox(props) {
               </div>
             </div>
             <Snackbar
-              anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
               open={nothing}
               onClose={() => setNothing(false)}
-              key={'centercenter'}
+              key={'bottom'}
               autoHideDuration={3000}
             >
               <Alert severity="error">Nothing entered!</Alert>

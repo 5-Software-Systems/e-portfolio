@@ -27,12 +27,3 @@ export default function Verify() {
 
   return <Fragment></Fragment>;
 }
-
-async function uploadImage(file, user, auth) {
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": file.type, Authorization: "bearer " + auth },
-    body: file,
-  };
-  await fetch("/api/user/" + user + "/file/" + file.name, requestOptions);
-}

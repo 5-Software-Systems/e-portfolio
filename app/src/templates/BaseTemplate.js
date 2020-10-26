@@ -30,7 +30,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Fade from '@material-ui/core/Fade';
 
 
 export default function BaseTemplate(props) {
@@ -233,6 +232,8 @@ function PersistentDrawerLeft(props) {
                 </ListItem>
             </List>
         }
+        <Divider />
+        <Test />
       </Drawer>
     </div>
   );

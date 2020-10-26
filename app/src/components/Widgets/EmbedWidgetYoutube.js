@@ -20,7 +20,7 @@ export default function YoutubeToHTML({
       height={height}
       src={link}
       frameBorder="0"
-      title={title}
+      title={getID(src)}
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     ></iframe>
   );

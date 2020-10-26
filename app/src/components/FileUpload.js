@@ -45,41 +45,6 @@ export function FileUpload(props) {
   //file displaying
   const [files, setFiles] = useState([]);
 
-  async function getFiles() {
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "bearer " + Auth,
-      },
-    };
-    const file_data = await fetch(
-      "/api/user/" + props.userID + "/file",
-      requestOptions
-    );
-    const files = await file_data.json();
-    setFiles(files.files);
-
-    var file_list = [];
-    var i;
-
-    for (i = 0; i < files.files.length; i++) {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "bearer " + Auth,
-        },
-      };
-      var image = await fetch(
-        "/api/user/" + props.userID + "/file/" + files.files[i].file_name,
-        requestOptions
-      );
-      file_list.push(image);
-    }
-    setFiles(file_list);
-  }
-
   async function deleteFile() {
     if (current === "None") {
       setNothing(true);
@@ -134,8 +99,42 @@ export function FileUpload(props) {
 
   //update displayed files when new image is uploaded
   useEffect(() => {
+    async function getFiles() {
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + Auth,
+        },
+      };
+      const file_data = await fetch(
+        "/api/user/" + props.userID + "/file",
+        requestOptions
+      );
+      const files = await file_data.json();
+      setFiles(files.files);
+
+      var file_list = [];
+      var i;
+
+      for (i = 0; i < files.files.length; i++) {
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + Auth,
+          },
+        };
+        var image = await fetch(
+          "/api/user/" + props.userID + "/file/" + files.files[i].file_name,
+          requestOptions
+        );
+        file_list.push(image);
+      }
+      setFiles(file_list);
+    }
     getFiles();
-  }, [upload]);
+  }, [upload, Auth, props.userID]);
 
   return (
     <div>
@@ -154,10 +153,10 @@ export function FileUpload(props) {
         </div>
         <hr />
         <Snackbar
-          anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={nothing}
           onClose={() => setNothing(false)}
-          key={'centercenter'}
+          key={'bottomcenter'}
           autoHideDuration={1500}
         >
           <Alert severity="error">Nothing selected!</Alert>
@@ -232,9 +231,4 @@ export function FilePopUp(props) {
 
 const ImageThumb = ({ image }) => {
   return <img src={image} alt={""} />;
-};
-
-//doesnt really work idk why
-const FileName = ({ url }) => {
-  return <div>{url ? <p> {url.split("/")[-1]} </p> : null}</div>;
 };

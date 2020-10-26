@@ -14,6 +14,7 @@ export default function InstagramToHTML({
       frameborder="0"
       scrolling="no"
       allowtransparency="true"
+      title={src}
     ></iframe>
   );
 }

@@ -9,7 +9,6 @@ import {
   FormGroup,
   FormControl,
   FormLabel,
-  Button,
 } from "react-bootstrap";
 import DeletePopup from "./DeletePopup";
 import Snackbar from '@material-ui/core/Snackbar';
@@ -123,48 +122,48 @@ export default function EPortfolioPreview(props) {
   /**
    * @deprecated use DeletePopup from DeletePopup.js instead.
    */
-  function deletePopup() {
-    return (
-      <Popup
-        trigger={<button className="menu-item"> Delete </button>}
-        modal
-        nested
-        className="ePortfolio-popup"
-        closeOnDocumentClick={false}
-      >
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header2">
-              {" "}
-              <h1>Are you sure you want to delete this portfolio?</h1>{" "}
-            </div>
-            <div className="actions">
-              {" "}
-              <div>
-                <p>This action cannot be undone.</p>
-              </div>
-            </div>
-            <div className="actions">
-              <button
-                className="button"
-                onClick={() => {
-                  handleDelete();
-                  close();
-                  update();
-                }}
-              >
-                {" "}
-                <b className="deleteText"> Delete </b>{" "}
-              </button>
-            </div>
-          </div>
-        )}
-      </Popup>
-    );
-  }
+//  function deletePopup() {
+//    return (
+//      <Popup
+//        trigger={<button className="menu-item"> Delete </button>}
+//        modal
+//        nested
+//        className="ePortfolio-popup"
+//        closeOnDocumentClick={false}
+//      >
+//        {(close) => (
+//          <div className="modal">
+//            <button className="close" onClick={close}>
+//              &times;
+//            </button>
+//            <div className="header2">
+//              {" "}
+//              <h1>Are you sure you want to delete this portfolio?</h1>{" "}
+//            </div>
+//            <div className="actions">
+//              {" "}
+//              <div>
+//                <p>This action cannot be undone.</p>
+//              </div>
+//            </div>
+//            <div className="actions">
+//              <button
+//                className="button"
+//                onClick={() => {
+//                  handleDelete();
+//                  close();
+//                  update();
+//                }}
+//              >
+//                {" "}
+//                <b className="deleteText"> Delete </b>{" "}
+//              </button>
+//            </div>
+//          </div>
+//        )}
+//      </Popup>
+//    );
+//  }
 
   //settings button
   function settingsButton() {
