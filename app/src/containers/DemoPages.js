@@ -557,9 +557,18 @@ function Team() {
       },
     },
     {
+      public_id: "something-b885-4d65-8396-3bb02fafff09",
+      type: "image",
+      location: [5, 2, 0, 12],
+      data: {
+        image_url:
+          "https://lh5.googleusercontent.com/uM9IpsPIXeDsRWYs0sbYp_P6tyYNMSz2YtcWZPrr4KqqGyR8QwE3MK5qy30fHzXGX8MLP6Gq_WTUlKBFJpgvSADIG1eQQ4rPpSYi-7QcKZAEKs_islmdYWOXlJYxh8J17giVCWn_778",
+      },
+    },
+    {
       public_id: "5b56d016-1b79-45e7-953d-cdcb5156c7dc",
       type: "about",
-      location: [3, 1, 1, 12],
+      location: [3, 1, 1, 14],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"etsu7","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"46ui7","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d95e0","text":"                                     Collaboration Tools ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -568,7 +577,7 @@ function Team() {
     {
       public_id: "71653798-d64c-45e5-b4b5-094348b3e36b",
       type: "about",
-      location: [1, 1, 0, 12],
+      location: [1, 1, 0, 14],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"         ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5s9gc","text":"             Slack","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e2c87","text":"Main communication tool","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cde5o","text":"Conversations split into required channels  ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -577,7 +586,7 @@ function Team() {
     {
       public_id: "a5af8be5-d7c4-49c3-9b27-360294372d31",
       type: "about",
-      location: [1, 1, 4, 12],
+      location: [1, 1, 4, 14],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2ak6m","text":"            Zoom","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dl0hr","text":"Major meetings ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d0p40","text":"Meetings with client ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -586,7 +595,7 @@ function Team() {
     {
       public_id: "80b056df-bc60-41a0-b2c3-c7424d7973ce",
       type: "about",
-      location: [1, 1, 0, 13],
+      location: [1, 1, 0, 15],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fa4fs","text":"         Discord","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"72hdh","text":"For quick collaborations ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ff97c","text":"Voice calls ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -595,7 +604,7 @@ function Team() {
     {
       public_id: "a213a84f-9908-42af-847a-b82035ca392d",
       type: "about",
-      location: [1, 1, 1, 13],
+      location: [1, 1, 1, 15],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bchoj","text":"            Trello","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"50ao1","text":"See backlog and progress","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"32ul","text":"Assign tasks","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -604,7 +613,7 @@ function Team() {
     {
       public_id: "497b8509-21d4-42d8-8fed-28461ba0ceec",
       type: "about",
-      location: [1, 1, 2, 13],
+      location: [1, 1, 2, 15],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9snmg","text":"      Google Drive","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9kk3b","text":"Collection of documentation and artifacts","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4iqne","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -613,7 +622,7 @@ function Team() {
     {
       public_id: "05d63a75-e08a-4c3c-a024-f0aae744e486",
       type: "about",
-      location: [1, 1, 3, 13],
+      location: [1, 1, 3, 15],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ajgv","text":"          GitHub","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fu26o","text":"Code repository ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3ko9v","text":"Issues and bugs documentation","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8k7b8","text":"Automatic testing","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -622,7 +631,7 @@ function Team() {
     {
       public_id: "f98a0507-4c0e-40c3-9098-1108cd1a25d0",
       type: "about",
-      location: [1, 1, 4, 13],
+      location: [1, 1, 4, 15],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fui3o","text":"          FunRetro","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fevjk","text":"Retrospectives for sprint reviews ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"85vrj","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -631,7 +640,7 @@ function Team() {
     {
       public_id: "fc8490b1-c7d0-4177-8ee4-e7962eff6415",
       type: "about",
-      location: [5, 1, 0, 14],
+      location: [5, 1, 0, 16],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"46j1c","text":"                                 ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"agrh3","text":"                                                                                  Challenges ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -640,7 +649,7 @@ function Team() {
     {
       public_id: "355c33d3-3b1e-495c-a8fe-303508e54786",
       type: "image",
-      location: [1, 1, 2, 15],
+      location: [1, 1, 2, 17],
       data: {
         image_url:
           "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/tired-face_1f62b.png",
@@ -649,7 +658,7 @@ function Team() {
     {
       public_id: "f5c1545c-d8cf-44b1-a4de-1551bffe5d93",
       type: "about",
-      location: [2, 1, 0, 15],
+      location: [2, 1, 0, 17],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"                                                   Technical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":61,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"3p5pi","text":"Adding deployment architecture after creating other architecture 🏠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3k8ha","text":"Refactoring after new libraries were found 📚","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fgbl","text":"Learning from scratch 📝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7bhu0","text":"Code merges and reviews 🤔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2fp1g","text":"Dependency management 👨‍💼","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5iopa","text":"Bug tracking 🐛","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gvtl","text":"Automatic testing suddenly broke 😳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -658,7 +667,7 @@ function Team() {
     {
       public_id: "2eda70e8-29d8-45d9-a160-de34e7e75c66",
       type: "about",
-      location: [5, 1, 0, 16],
+      location: [5, 1, 0, 18],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"lqe2","text":"                          ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9mi7k","text":"                                                                                   Lessons","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -667,7 +676,7 @@ function Team() {
     {
       public_id: "ef95d301-749a-449d-aad9-c18c217a5fe8",
       type: "about",
-      location: [2, 1, 3, 15],
+      location: [2, 1, 3, 17],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"                                         Logistical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":52,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"donne","text":"Knowing priority of what to do in earlier sprints 🏃‍♀️💨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9fq53","text":"Some of our workflows took practice and weren’t as laid out until sprint 3 〰","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fj7u","text":"Communication between teams 💬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7qqiv","text":"Some client suggestions were out of our scope 🔎","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5pbiu","text":"Time constraints w/ other commitments ⏳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"pd6a","text":"Working from home 💻","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5mnfq","text":"Negative cash flow 📉","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2st80","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -676,7 +685,7 @@ function Team() {
     {
       public_id: "92d7f969-8963-4f29-b7e9-d9059ee77de1",
       type: "about",
-      location: [3, 1, 1, 17],
+      location: [3, 1, 1, 19],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6g6v1","text":"Wait longer to start coding, more research and planning 📃","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bemkf","text":"Document extensively from the start ✍","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ed8bk","text":"Create a CI/CD pipeline in week one. Look into Dev/Ops a lot more 👀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dvatp","text":"Create conceptual designs to give us an idea of the final product 💭","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2vb3o","text":"Git conventions took a while to grasp 😓","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"37brr","text":"Use tools to full extent, i.e. Github functions 🛠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3nvr0","text":"Make tests before implementation ✔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9nb37","text":"Camera on in tutes 📸","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -685,7 +694,7 @@ function Team() {
     {
       public_id: "4e175480-d36e-4029-b280-b9652f3c0819",
       type: "image",
-      location: [1, 1, 0, 18],
+      location: [1, 1, 0, 20],
       data: {
         image_url:
           "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/grinning-face-with-star-eyes_1f929.png",
@@ -694,7 +703,7 @@ function Team() {
     {
       public_id: "1d964a4e-348c-4806-92c0-7ea36cc7de44",
       type: "about",
-      location: [3, 1, 1, 18],
+      location: [3, 1, 1, 20],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8dbdo","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"995ri","text":"                                              Highlights","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"96l4a","text":"                                                    and","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6mest","text":"                                           Cool Features","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -703,7 +712,7 @@ function Team() {
     {
       public_id: "c270d8fe-2dc3-4730-a1c1-8f785fb02982",
       type: "image",
-      location: [1, 1, 4, 18],
+      location: [1, 1, 4, 20],
       data: {
         image_url:
           "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/smiling-face-with-sunglasses_1f60e.png",
@@ -712,7 +721,7 @@ function Team() {
     {
       public_id: "ef59f89f-4101-47c6-bf82-2b5bf12d6095",
       type: "about",
-      location: [2, 1, 0, 19],
+      location: [2, 1, 0, 21],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"               Highlights","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":25,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"br6lp","text":"Team cooperation 🤝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"412n3","text":"Good clients 🥂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"b9hu6","text":"Effective use of tools 🔬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f4cs6","text":"Documentation 📄","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6k1ue","text":"Highly motivated team 💪","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"au00s","text":"Feature workflow 📊","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ibr1","text":"Productive weekly meetings 👨‍❤️‍👨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2pp1j","text":"Use of labels 🅱","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -721,7 +730,7 @@ function Team() {
     {
       public_id: "dd21b6c3-23a1-495b-9ad3-3c5a76758ba4",
       type: "about",
-      location: [2, 1, 3, 19],
+      location: [2, 1, 3, 21],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"                     Features","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":29,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"chf8q","text":"Drag and drop ⚡","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3cp8k","text":"Resize to any dimension ✂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4ien1","text":"Rich text editing 🤑","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f59qp","text":"Custom background 😮","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"as942","text":"Secure sharing 🔐","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8bi27","text":"Social media integration 😉🤳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":25,"length":2,"key":0}],"data":{}},{"key":"5c6eu","text":"Entertainment integration 🎥","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"href":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/","url":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/"}}}}',
@@ -730,7 +739,7 @@ function Team() {
     {
       public_id: "a497ea09-2937-4c3f-837d-0414e8b689ec",
       type: "about",
-      location: [5, 1, 0, 20],
+      location: [5, 1, 0, 22],
       data: {
         about:
           '{"blocks":[{"key":"vg3v","text":"            ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gfg6","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kjvh","text":"                                                                    THANKS FOR WATCHING ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
@@ -739,7 +748,7 @@ function Team() {
     {
       public_id: "8b8d538c-2235-4439-bdf6-11c4e4e38b79",
       type: "image",
-      location: [1, 1, 3, 21],
+      location: [1, 1, 3, 23],
       data: {
         image_url:
           "https://media.tenor.com/images/81282e976a7f44e8fe8308e4c7270d3b/tenor.gif",
@@ -748,7 +757,7 @@ function Team() {
     {
       public_id: "f07dedc6-e3c5-436b-a620-cf3a45bde910",
       type: "image",
-      location: [1, 1, 4, 21],
+      location: [1, 1, 4, 23],
       data: {
         image_url:
           "https://media.tenor.com/images/0ad48dccd47d7dccb16f7ec67b102a94/tenor.gif",
@@ -757,7 +766,7 @@ function Team() {
     {
       public_id: "87c5f268-9566-4648-8622-4067701c16fb",
       type: "image",
-      location: [1, 1, 2, 21],
+      location: [1, 1, 2, 23],
       data: {
         image_url:
           "https://media.tenor.com/images/0ad48dccd47d7dccb16f7ec67b102a94/tenor.gif",
@@ -766,7 +775,7 @@ function Team() {
     {
       public_id: "ca7b93ab-f458-4344-9f87-ff7412f7801b",
       type: "image",
-      location: [1, 1, 0, 21],
+      location: [1, 1, 0, 23],
       data: {
         image_url:
           "https://media.tenor.com/images/0ad48dccd47d7dccb16f7ec67b102a94/tenor.gif",
@@ -775,7 +784,7 @@ function Team() {
     {
       public_id: "037345eb-83be-435a-9c32-b668869df3a6",
       type: "image",
-      location: [1, 1, 1, 21],
+      location: [1, 1, 1, 23],
       data: {
         image_url:
           "https://media.tenor.com/images/0ad48dccd47d7dccb16f7ec67b102a94/tenor.gif",
@@ -784,7 +793,7 @@ function Team() {
     {
       public_id: "ec004666-6a34-464f-9a18-e0d349165689",
       type: "image",
-      location: [1, 1, 2, 19],
+      location: [1, 1, 2, 21],
       data: {
         image_url:
           "https://cdn.discordapp.com/attachments/462586268165996546/769930066590302221/unknown.png",
@@ -793,7 +802,7 @@ function Team() {
     {
       public_id: "4e9827fb-9752-49c6-a058-93873cfc05ab",
       type: "image",
-      location: [1, 1, 0, 17],
+      location: [1, 1, 0, 19],
       data: {
         image_url:
           "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png",
@@ -802,7 +811,7 @@ function Team() {
     {
       public_id: "c26ab7fb-973b-46aa-94a0-2f2cd9e0b737",
       type: "image",
-      location: [1, 1, 4, 17],
+      location: [1, 1, 4, 19],
       data: {
         image_url:
           "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/memo_1f4dd.png",
