@@ -73,28 +73,6 @@
   color: #ff0000;
 }
 
-.response {
-  text-align: center;
-  margin-bottom: 10px;
-  padding: 10px 6px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  border: 2px solid #333;
-}
-
-.invalidResp {
-  color: #d00000;
-  background: #ffb0b0;
-  border: 2px solid #ff3030;
-}
-
-.validResp {
-  color: #fff;
-  background: #26f9a8;
-  opacity: 0.8;
-  border: 2px solid #2b8155;
-}
-
 .form .modal {
     font-size: 12px;
   }

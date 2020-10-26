@@ -7,6 +7,9 @@ import "../../styles/Form.css";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import { hashPassword, useFormFields } from "../../util/form";
 import { isAuthorized, isLoggedIn } from "../../util/cookies";
+import { useHistory } from "react-router-dom";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 export default function PasswordResetForm() {
   const [fields, handleFieldChange] = useFormFields({
@@ -16,6 +19,7 @@ export default function PasswordResetForm() {
   });
   const [isLoading, setLoading] = useState(false);
   const [isComplete, setComplete] = useState(false);
+  let history = useHistory();
 
   useEffect(() => {
     async function handleSubmit(auth, user) {
@@ -102,13 +106,18 @@ export default function PasswordResetForm() {
           required
         />
       </FormGroup>
-      {isComplete ? (
-        <p className="response validResp">Your new password has been set.</p>
-      ) : (
-        <Button className="btn" type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Reset"}
-        </Button>
-      )}
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isComplete}
+        onClose={() => history.push("/login")}
+        key={'topcenter'}
+        autoHideDuration={3000}
+      >
+        <Alert severity="success">Your new password has been set.<br/>Taking you to log in.</Alert>
+      </Snackbar>
+      <Button className="btn" type="submit" disabled={isLoading}>
+        {isLoading ? "Loading..." : "Reset"}
+      </Button>
     </Form>
   );
 }
