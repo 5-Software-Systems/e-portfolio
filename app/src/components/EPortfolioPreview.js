@@ -172,7 +172,7 @@ export default function EPortfolioPreview(props) {
           </button>
         }
         position="right bottom"
-        on={["hover"]}
+        on={["click"]}
         contentStyle={{ padding: "0px", border: "none", width: "80px" }}
         arrow={false}
         nested

@@ -140,13 +140,15 @@ export function FileUpload(props) {
         <br />
         <p> Selected Image: {current}</p>
         <hr />
-        {files.map((file) => (
-          <span>
-            <button onClick={(e) => selectImage(file.url)}>
-              <ImageThumb image={file.url} />
-            </button>
-          </span>
-        ))}
+        <div className="images">
+            {files.map((file) => (
+              <span>
+                <button onClick={(e) => selectImage(file.url)}>
+                  <ImageThumb image={file.url} />
+                </button>
+              </span>
+            ))}
+        </div>
         <hr />
       </div>
       <div id="upload-box">
