@@ -14,6 +14,9 @@ import { copyToClipboard, get_link } from "../components/EPortfolioPreview";
 import MotherWidget from "../components/Widgets/MotherWidget.js";
 import EditBox from "../components/EditBox.js";
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 const ReactGridLayout = WidthProvider(Responsive);
 
 export default function EPortfolio(props) {
@@ -25,6 +28,8 @@ export default function EPortfolio(props) {
   const [widgets, setWidget] = useState([]);
   const [movable, setMovable] = useState(true);
   const [editMode, setEditMode] = useState(!props.preview);
+
+  const [open, setOpen] = useState(false);
 
   const URL = window.location.href.split("/");
   const PID = URL[URL.length - 1];
@@ -202,10 +207,7 @@ export default function EPortfolio(props) {
                 window.location.href = "/profile";
               }}
             >
-              <a href="/profile">
-                {" "}
-                <ArrowBack />{" "}
-              </a>
+              <ArrowBack />
             </button>
           ) : null}
 
@@ -219,20 +221,19 @@ export default function EPortfolio(props) {
                 fetchWidgets();
               }}
             >
-              {" "}
-              Add Widget{" "}
+              Add Widget
             </button>
           ) : (
             <button
               className="addWidgetButton"
               onClick={() => {
-                get_link(user, PID, Auth).then((value) =>
-                  copyToClipboard(value.link)
-                );
+                get_link(user, PID, Auth).then((value) => {
+                  copyToClipboard(value.link);
+                  setOpen(true);
+                });
               }}
             >
-              {" "}
-              Share{" "}
+              Share
             </button>
           )}
           {!props.preview ? (
@@ -242,8 +243,7 @@ export default function EPortfolio(props) {
                 toggleEdit();
               }}
             >
-              {" "}
-              {editModeToggleText()}{" "}
+              {editModeToggleText()}
             </button>
           ) : null}
         </header>
@@ -295,6 +295,15 @@ export default function EPortfolio(props) {
           </ReactGridLayout>
         </div>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        onClose={() => setOpen(false)}
+        key={'topcenter'}
+        autoHideDuration={2000}
+      >
+        <Alert severity="info">Link copied to Clipboard!</Alert>
+      </Snackbar>
     </Fragment>
   );
 }
