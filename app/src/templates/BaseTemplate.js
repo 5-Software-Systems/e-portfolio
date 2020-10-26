@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
   show: {
     transition: theme.transitions.create(['visibility', 'opacity'], {
       easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.standard,
     }),
   },
   hide: {
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0,
     transition: theme.transitions.create(['visibility', 'opacity'], {
       easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.standard,
     }),
   },
   drawer: {
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   content: {
     flexGrow: 1,
@@ -179,7 +179,7 @@ function PersistentDrawerLeft(props) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open)}
+            className={clsx(classes.menuButton, open && classes.hide)}
           >
           <MenuIcon />
           </IconButton>
@@ -196,7 +196,7 @@ function PersistentDrawerLeft(props) {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
