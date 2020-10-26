@@ -18,17 +18,13 @@ export default function CustomPopup(props) {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
 
   function CloseButton() {
     return (
-      <Button className="btn cancel" onClick={handleOpen}>
+      <Button className="btn cancel" onClick={() => setOpen((o) => !o)}>
         Close
       </Button>
     );

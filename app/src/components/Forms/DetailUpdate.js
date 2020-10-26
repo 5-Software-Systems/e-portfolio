@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import "../../styles/Form.css";
 import { useFormFields } from "../../util/form";
 import { isAuthorized } from "../../util/cookies";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 export default function DetailUpdate() {
   const [isLoading, setLoading] = useState(true);
@@ -124,9 +126,15 @@ export default function DetailUpdate() {
           autoComplete="family-name"
         />
       </FormGroup>
-      {isComplete ? (
-        <p className="response validResp">Your details have been updated.</p>
-      ) : null}
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isComplete}
+        onClose={() => setComplete(false)}
+        key={'topcenter'}
+        autoHideDuration={3000}
+      >
+        <Alert severity="success">Your details have been updated.</Alert>
+      </Snackbar>
       <Button className="btn" type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "Update"}
       </Button>
