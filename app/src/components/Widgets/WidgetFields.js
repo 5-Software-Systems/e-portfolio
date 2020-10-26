@@ -24,7 +24,6 @@ export default function GetFields(props) {
     if (props.onChange) {
       props.onChange(textOBJ);
     }
-    console.log(text);
   }
 
   function getDefaultData() {

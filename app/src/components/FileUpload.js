@@ -104,7 +104,6 @@ export function FileUpload(props) {
   const [current, setCurrent] = useState("None");
 
   function selectImage(url) {
-    console.log(url);
     var list = url.split("/");
     var name = list[list.length - 1];
     setCurrent(name);
@@ -237,6 +236,5 @@ const ImageThumb = ({ image }) => {
 
 //doesnt really work idk why
 const FileName = ({ url }) => {
-  console.log(url);
   return <div>{url ? <p> {url.split("/")[-1]} </p> : null}</div>;
 };
