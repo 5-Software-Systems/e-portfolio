@@ -420,7 +420,7 @@ function Team() {
         1
       ],
       "data": {
-        "image_url": "https://cdn.discordapp.com/attachments/745863014837649460/768996708188160030/unknown.png"
+        "image_url": "https://lh3.googleusercontent.com/5Cs4eIvfdilsa41Y-mY0L3yIRLEkVZ1bTGAlNfzi9_AUigbtjqGH3T9qibydd_u1ojabUr5cZ1bNfmDNLYrVlYbyjWZlO_m55WqTejKsmP80Cwo5ztsNIs6v8hGjKfpQnlvJb2ln0VIHyCvcmsJjLgiSPkQA7e4FrBY3rlHHrxzPQRRSAqFXQDnGXFKG41cDKPJctjAzd3SjTjX74inhWG02vtuLY5ZMUc7cv4OW0tZ7CtRn0qWg9I0EquHwiQ1ha35yvfEfbvXnQdyNCQDypGPf5qLu76IN0xZVnKGu6PN8ZBTna-D5C8DB-Pe7PFF8LiFXTIgUUI0pO2JuJYw1rpsLHv2DpdsIYuSUKQ1DXdgIsUiBmbQVRTDZ3AUP9dVEmudQVFde_dIA-PYKEULFG9WDIGOeyOusmAAyQtQNVAg13ZyVslUsOD3oZIs-zJTy8Wp_8sfR2Z1A7oS5aFoCppts08ukZx06b1BIJ6cCKuWPB-KEjFzTpM7KozXYuPZWbU72Du9bizyX6zRfNxXYUQLtxXo_VtZYEi1XsXxHOUhuvOlqAlAKtsdY4H0A-fIAapr74tYdEdup9bJWoxz-U4TjOv75k3xWsfcifsY58_mmAMK1NANZO5N_TEFCCcvHPeYvIOrUjJUZIDITEMAjipTGuTjMvodX-gFFNZXt5Olna5DigwqGo7n7RsHvWA=w1258-h943-no?authuser=0"
       }
     },
     {
