@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { useHistory } from "react-router-dom";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import ArrowBack from "@material-ui/icons/ArrowBack";
@@ -38,6 +38,22 @@ export default function EPortfolioDemo() {
   }
 
   return (
+    <Fragment>
+      {/**bg image*/}
+      <div
+        style={{
+          zIndex: "0",
+          position: "fixed",
+          width: "100%",
+          height: "100%",
+
+          backgroundImage: `url(${"https://media.discordapp.net/attachments/745863014837649460/769811266423750656/Artboard_4.png?width=504&height=672"})`,
+          backgroundAttachment: "fixed",
+          backgroundPosition: "0px 0px",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
+        }}
+      ></div>
       <div className="eportfolioBody">
         <header className="header">
           <button
@@ -55,6 +71,7 @@ export default function EPortfolioDemo() {
         {switchPage(PID)}
         </div>
       </div>
+    </Fragment>
   );
 }
 
