@@ -15,6 +15,7 @@ import List from '@material-ui/core/List';
 import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import ContactIcon from '@material-ui/icons/RecentActors';
 import UpdatesIcon from '@material-ui/icons/DynamicFeed';
@@ -40,8 +41,7 @@ export default function BaseTemplate(props) {
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
-                <p><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
-                <Test />
+                <p><a href="/">FiveCent Software Systems.</a></p>
             </footer>
         </Fragment>
     );
@@ -61,14 +61,21 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    marginRight: -drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
+    marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+  },
+  show: {
+    transition: theme.transitions.create(['visibility', 'opacity'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.standard,
+    }),
   },
   hide: {
     visibility: 'none',
@@ -93,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   content: {
     flexGrow: 1,
@@ -102,14 +109,14 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginRight: drawerWidth,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginRight: 0,
   },
 }));
 
@@ -146,16 +153,20 @@ function PersistentDrawerLeft(props) {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            href="/"
             edge="start"
             className={clsx(classes.menuButton, open)}
           >
-            <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
+              <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="Logo" height="50" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Echidna
           </Typography>
-          <div className={clsx(open && classes.hide)}>
+          <div position="static"
+               className={clsx(classes.show, {
+                 [classes.hide]: open,
+               })}
+          >
               {/* this is jank af but it works*/}
               { isLoggedIn() ?
                 <Button color="inherit" onClick={handleLogout}>Logout</Button>
@@ -163,12 +174,21 @@ function PersistentDrawerLeft(props) {
                 props.nav_right
               }
           </div>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, open && classes.hide)}
+          >
+          <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
         className={classes.drawer}
         variant="persistent"
-        anchor="left"
+        anchor="right"
         open={open}
         classes={{
           paper: classes.drawerPaper,

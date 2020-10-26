@@ -12,6 +12,8 @@ import {
   Button,
 } from "react-bootstrap";
 import DeletePopup from "./DeletePopup";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 export default function EPortfolioPreview(props) {
   const Auth = isAuthorized();
@@ -32,6 +34,8 @@ export default function EPortfolioPreview(props) {
   //edit funciton
   const [newName, setNewName] = useState(props.name);
   const [newImage, setNewImage] = useState(props.img);
+
+  const [open, setOpen] = useState(false);
 
   async function handleEdit() {
     const requestOptions = {
@@ -183,14 +187,14 @@ export default function EPortfolioPreview(props) {
             <button
               className="menu-item"
               onClick={() => {
-                get_link(props.user, props.id, Auth).then((value) =>
-                  copyToClipboard(value.link)
-                );
+                get_link(props.user, props.id, Auth).then((value) => {
+                  copyToClipboard(value.link);
+                  setOpen(true);
+                });
                 close();
               }}
             >
-              {" "}
-              Share{" "}
+              Share
             </button>
             {editButton(() => {close()})}
             <DeletePopup
@@ -229,6 +233,15 @@ export default function EPortfolioPreview(props) {
         />
       </a>
       <div className="button_container">{settingsButton()}</div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={open}
+        onClose={() => setOpen(false)}
+        key={'topcenter'}
+        autoHideDuration={2000}
+      >
+        <Alert severity="info">Link copied to Clipboard!</Alert>
+      </Snackbar>
     </div>
   );
 }

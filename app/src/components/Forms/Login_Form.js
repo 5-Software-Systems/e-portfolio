@@ -5,6 +5,7 @@ import "../../styles/Form.css";
 import { validateEmail, hashPassword, useFormFields } from "../../util/form";
 import { authorize, isLoggedIn, isVerified } from "../../util/cookies";
 import { useHistory } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
 
 export default function LoginForm() {
   const [fields, handleFieldChange] = useFormFields({
@@ -95,14 +96,10 @@ export default function LoginForm() {
         Forgot Password?
       </a>
       {isIncorrect ? (
-        <p className="response invalidResp">
-          Incorrect email or password, please try again.
-        </p>
+        <Alert severity="error">Incorrect email or password, please try again.</Alert>
       ) : null}
       {verified ? null : (
-        <p className="response invalidResp">
-          User not verified, please check your emails.
-        </p>
+        <Alert severity="error">User not verified, please check your emails.</Alert>
       )}
       <Button className="btn" type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "Submit"}

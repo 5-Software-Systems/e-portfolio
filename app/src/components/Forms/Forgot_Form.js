@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import "../../styles/Form.css";
 import { validateEmail, useFormFields } from "../../util/form";
 import { useHistory } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
 
 export default function LoginForm() {
   const [fields, handleFieldChange] = useFormFields({
@@ -69,10 +70,8 @@ export default function LoginForm() {
           </Button>
         </Fragment>
       ) : (
-        <p className="response">
-          Check your email for a link to reset your password. If it doesn't
-          appear within a few minutes, check your spam folder.
-        </p>
+        <Alert severity="info">A password reset email has been sent to your email address, please follow the link to reset your password. <br/>
+          If it doesn't appear within a few minutes, check your spam folder.</Alert>
       )}
     </Form>
   );

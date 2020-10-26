@@ -5,6 +5,7 @@ import "../../styles/Form.css";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
 import { validateEmail, hashPassword, useFormFields } from "../../util/form";
 import { useHistory } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
 
 export default function SignupForm() {
   const [fields, handleFieldChange] = useFormFields({
@@ -66,10 +67,8 @@ export default function SignupForm() {
     <Form onSubmit={handleClick}>
       <h1>Sign Up</h1>
       {isComplete ? (
-        <p className="response">
-          Check your email for a link to verify your account before logging in.
-          If it doesn't appear within a few minutes, check your spam folder.
-        </p>
+        <Alert severity="info">A verification email has been sent to your email address, please follow the link to verify your account before logging in.<br/>
+          If it doesn't appear within a few minutes, check your spam folder.</Alert>
       ) : (
         <Fragment>
           <FormGroup controlId="signup_email">
@@ -128,9 +127,7 @@ export default function SignupForm() {
             />
           </FormGroup>
           {isIncorrect ? (
-            <p className="response invalidResp">
-              Incorrect details, Passwords may not be the same.
-            </p>
+            <Alert severity="error">Incorrect details.</Alert>
           ) : null}
           <Button className="btn" type="submit" disabled={isLoading}>
             {isLoading ? "Loading..." : "Submit"}

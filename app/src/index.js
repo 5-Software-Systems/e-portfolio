@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import SnackbarProvider from "notistack"
 import { isLoggedIn } from "./util/cookies";
 import {
   BrowserRouter as Router,
@@ -40,9 +41,6 @@ const theme = createMuiTheme({
       main: "#F95858",
     },
   },
-  zIndex: {
-    appBar: 1100,
-  },
   overrides: {
     MuiToolbar: {
       gutters: {
@@ -59,6 +57,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />

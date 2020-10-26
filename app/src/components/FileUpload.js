@@ -8,6 +8,9 @@ import Popup from "reactjs-popup";
 
 import DeletePopup from "./DeletePopup.js";
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 /**
  * Component to handle file upload. Works for image
  * uploads, but can be edited to work for any file.
@@ -16,6 +19,7 @@ export function FileUpload(props) {
   const Auth = isAuthorized();
 
   const [upload, setUpload] = useState(false);
+  const [nothing, setNothing] = useState(false);
 
   //file uploading
 
@@ -78,7 +82,7 @@ export function FileUpload(props) {
 
   async function deleteFile() {
     if (current === "None") {
-      alert("Nothing selected");
+      setNothing(true);
       return;
     }
     const requestOptions = {
@@ -100,7 +104,6 @@ export function FileUpload(props) {
   const [current, setCurrent] = useState("None");
 
   function selectImage(url) {
-    console.log(url);
     var list = url.split("/");
     var name = list[list.length - 1];
     setCurrent(name);
@@ -108,7 +111,7 @@ export function FileUpload(props) {
 
   function requestImage() {
     if (current === "None") {
-      alert("Nothing selected");
+      setNothing(true);
       return;
     }
 
@@ -150,6 +153,15 @@ export function FileUpload(props) {
             ))}
         </div>
         <hr />
+        <Snackbar
+          anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+          open={nothing}
+          onClose={() => setNothing(false)}
+          key={'centercenter'}
+          autoHideDuration={1500}
+        >
+          <Alert severity="error">Nothing selected!</Alert>
+        </Snackbar>
       </div>
       <div id="upload-box">
         <input type="file" onChange={handleUpload} />
@@ -224,6 +236,5 @@ const ImageThumb = ({ image }) => {
 
 //doesnt really work idk why
 const FileName = ({ url }) => {
-  console.log(url);
   return <div>{url ? <p> {url.split("/")[-1]} </p> : null}</div>;
 };
