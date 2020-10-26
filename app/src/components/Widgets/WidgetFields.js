@@ -1,4 +1,3 @@
-//ligma
 import React, { useEffect, useState } from "react";
 import { isAuthorized } from "../../util/cookies";
 import { FilePopUp } from "../FileUpload";
@@ -27,7 +26,7 @@ export default function GetFields(props) {
   }
 
   function getDefaultData() {
-    if (props.changed != 0) {
+    if (props.changed !== 0) {
       return {};
     }
     return props.defaultData;
@@ -75,7 +74,7 @@ export default function GetFields(props) {
       props.onChange({});
     }
 
-    if (props.type == "about") {
+    if (props.type === "about") {
       setAboutNum(props.changed);
     }
   }, [props.type, props.changed]);
@@ -114,7 +113,7 @@ export default function GetFields(props) {
               label="Start typing..."
               defaultValue={getDefaultData()[field]}
               onChange={(e) => {
-                if (aboutNum == props.changed)
+                if (aboutNum === props.changed)
                   setTextList(
                     field,
                     JSON.stringify(convertToRaw(e.getCurrentContent()))
@@ -162,7 +161,7 @@ export default function GetFields(props) {
       return (
         <div>
           <p>Put in a Spotify link</p>
-          <p>Go to Spotify, and select "🔗 Copy Song Link"</p>
+          <p>Go to Spotify, and select "<span role="img" aria-label="link">🔗</span> Copy Song Link"</p>
           <p>
             i.e.
             "https://open.spotify.com/track/6ORqU0bHbVCRjXm9AjyHyZ?si=k-6Pl2SZSLWoeKW4AhUaaA"
@@ -203,7 +202,7 @@ export default function GetFields(props) {
       return (
         <div>
           <p>Put in an AppleMusic link</p>
-          <p>Go to AppleMusic, and select "Copy Link 🔗"</p>
+          <p>Go to AppleMusic, and select "Copy Link <span role="img" aria-label="link">🔗</span>"</p>
           <p>
             i.e.
             "https://music.apple.com/us/album/crank-that-soulja-boy/1443190317?i=1443190324"
