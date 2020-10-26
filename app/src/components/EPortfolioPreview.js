@@ -48,7 +48,7 @@ export default function EPortfolioPreview(props) {
     await fetch("api/" + api_link, requestOptions);
   }
 
-  function editButton() {
+  function editButton(outer_close) {
     return (
       <Popup
         trigger={<button className="menu-item"> Edit </button>}
@@ -73,6 +73,7 @@ export default function EPortfolioPreview(props) {
                   close();
                   handleEdit();
                   update();
+                  outer_close();
                 }}
               >
                 <FormGroup controlId="basePageTextBox">
@@ -191,7 +192,7 @@ export default function EPortfolioPreview(props) {
               {" "}
               Share{" "}
             </button>
-            {editButton()}
+            {editButton(() => {close()})}
             <DeletePopup
               onDelete={() => {
                 handleDelete();
