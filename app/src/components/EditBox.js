@@ -212,7 +212,7 @@ export default function EditBox(props) {
               key={'centercenter'}
               autoHideDuration={3000}
             >
-              <Alert severity="warning">Nothing entered!</Alert>
+              <Alert severity="error">Nothing entered!</Alert>
             </Snackbar>
           </div>
         </div>
