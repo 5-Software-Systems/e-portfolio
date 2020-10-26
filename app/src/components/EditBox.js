@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 //-----------dependencies------------------------
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -13,11 +13,15 @@ import GetFields from "./Widgets/WidgetFields.js";
 import DeletePopup from "./DeletePopup.js";
 import { isAuthorized } from "../util/cookies";
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 export default function EditBox(props) {
   const Auth = isAuthorized();
   const [dropDownType, setDropDownType] = useState(props.widgetType);
   const [data, setData] = useState({});
   const [changeCount, setChangeCount] = useState(0);
+  const [nothing, setNothing] = useState(false);
 
   async function deleteWidget() {
     const requestOptions = {
@@ -108,13 +112,14 @@ export default function EditBox(props) {
     );
   }
 
-  const onApplyClick = () => {
+  const onApplyClick = (external_close) => {
     //bug roundabout coldfix
     if (Object.keys(data).length === 0) {
-      window.alert("Nothing new entered!\nTry again");
+      setNothing(true);
     } else {
       updateWidget();
       callUpdate();
+      external_close();
     }
   };
 
@@ -137,6 +142,7 @@ export default function EditBox(props) {
   }
 
   return (
+  <Fragment>
     <Popup
       trigger={<button className="settingsButton">⚙</button>}
       modal
@@ -192,17 +198,26 @@ export default function EditBox(props) {
                 <button
                   className="button"
                   onClick={() => {
-                    onApplyClick();
-                    close();
+                    onApplyClick(() => {close()});
                   }}
                 >
                   <b>APPLY</b>
                 </button>
               </div>
             </div>
+            <Snackbar
+              anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+              open={nothing}
+              onClose={() => setNothing(false)}
+              key={'centercenter'}
+              autoHideDuration={3000}
+            >
+              <Alert severity="warning">Nothing entered!</Alert>
+            </Snackbar>
           </div>
         </div>
       )}
     </Popup>
+  </Fragment>
   );
 }
