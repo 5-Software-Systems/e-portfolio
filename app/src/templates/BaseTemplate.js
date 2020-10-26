@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Test from '../components/Test';
+import Test from '../util/Test';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -175,9 +175,6 @@ function PersistentDrawerLeft(props) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Typography variant="h6" className={classes.title}>
-            Echidna
-          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
