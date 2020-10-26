@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import SnackbarProvider from "notistack"
 import { isLoggedIn } from "./util/cookies";
 import {
   BrowserRouter as Router,
