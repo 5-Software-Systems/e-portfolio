@@ -1,31 +1,58 @@
 import React, { useState, Fragment } from "react";
-import Button from '@material-ui/core/Button';
-import Popup from 'reactjs-popup';
-import '../../styles/Form.css';
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Fade from "@material-ui/core/Fade";
+import "../../styles/Form.css";
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    outline: "none",
+  },
+}));
 
 export default function CustomPopup(props) {
-    const [open, setOpen] = useState(false);
-    const closeModal = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
-    function CloseButton() {
-        return (
-            <Button className="btn cancel" onClick={closeModal}>
-                Close
-            </Button>
-        );
-    }
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function CloseButton() {
     return (
-        <Fragment>
-            <Button color="inherit" onClick={() => setOpen(o => !o)}>
-                { props.name }
-            </Button>
-            <Popup className="form modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
-                <div className="form-container">
-                    { props.children }
-                    <CloseButton />
-                </div>
-            </Popup>
-        </Fragment>
+      <Button className="btn cancel" onClick={handleOpen}>
+        Close
+      </Button>
     );
+  }
+
+  return (
+    <Fragment>
+      <Button color="inherit" onClick={() => setOpen((o) => !o)}>
+        {props.name}
+      </Button>
+      <Modal
+        className={classes.modal}
+        aria-labelledby={props.name}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+      >
+        <Fade in={open}>
+          <div className="form-container">
+            {props.children}
+            <CloseButton />
+          </div>
+        </Fade>
+      </Modal>
+    </Fragment>
+  );
 }
