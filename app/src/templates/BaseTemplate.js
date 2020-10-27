@@ -167,7 +167,10 @@ function PersistentDrawerLeft(props) {
           >
               {/* this is jank af but it works*/}
               { isLoggedIn() ?
-                <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                <Fragment>
+                  <Button color="inherit" component={Link} to="/portfolio">Gallery</Button>
+                  <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                </Fragment>
               :
                 props.nav_right
               }
