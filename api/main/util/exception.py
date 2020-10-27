@@ -57,6 +57,12 @@ class AuthenticationError(ServerError):
     pass
 
 
+class Forbidden(ServerError):
+    status_code = 403
+    error_message = 'Access forbidden'
+    pass
+
+
 class TokenBlacklisted(AuthenticationError):
     status_code = 401
     error_message = 'Token blacklisted. Please log in again.'
@@ -79,4 +85,14 @@ class LoginNotFound(AuthenticationError):
     status_code = 401
     error_message = 'Login details incorrect, check and try again'
     pass
+
+
+class UserNotVerified(AuthenticationError):
+    status_code = 401
+    error_message = 'User not yet verified, a new link was sent'
+
+
+class UserAlreadyVerified(AuthenticationError):
+    status_code = 409
+    error_message = 'User already verified, just log in'
 

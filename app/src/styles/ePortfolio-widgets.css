@@ -8,15 +8,15 @@
 
 .eportfolioBody {
   position: absolute;
-  background-color: #fff;
-  min-height: 100vh;
+  background-color: transparent;
+  height: calc(100vh - 74px);
   min-width: 100%;
 }
 
 .eportfolioBody .header {
-  background-color: #fff;
+  background-color: #3F3D56;
   width: 100%;
-  height: 80px;
+  height: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,72 +24,69 @@
 }
 
 .eportfolioBody .header * {
-  color: #111;
+  color: #fff;
   background-color: transparent;
   font-family: Roboto;
 }
 
-.eportfolioBody .header .addWidgetButton {
+.eportfolioBody .header .addWidgetButton,
+.eportfolioBody .header p{
   border: none;
   float: right;
   width: 25%;
   height: 100%;
+  vertical-align: middle;
 }
 
 .eportfolioBody .header .addWidgetButton:hover {
-  background-color: #f0f1ff;
-  border: 1px solid #bbb;
+  background-color: #60607C;
+  border: 1px solid #3F3D56;
 }
 
 .eportfolioBody .header .impact {
-  text-align: center;
-  min-width: 50%;
-  width: 100%;
-  height: 100%;
   display: inline;
+  vertical-align: middle;
 }
 
 .eportfolioBody .header h1 {
   text-align: center;
-  vertical-align: middle;
-  line-height: 80px;
+  min-width: 50%;
+  width: 100%;
+  height: 100%;
+  line-height: 78px;
 }
 
-.eportfolioBody .header .impact:hover {
-  background-color: #f0f1ff;
-  border: 1px solid #bbb;
+.eportfolioBody .header p {
+  text-align: left;
+  margin: auto;
+  padding: auto;
+  line-height: 40px;
 }
 
 .eportfolioBody  * {
-  color: #000;
   font-family: Roboto;
 }
 
 .eportfolioBody button {
-  background-color:#121212;
   border: none;
   outline: none;
 }
 
-.eportfolioBody  {
-  background-color: #f7f8fa;
-  width: auto;
-}
-
-.eportfolioBody p {
+.eportfolioBody p, .eportfolioBody h1 {
   padding-left: 15px;
   background-color: transparent;
 }
 
 
 .eportfolioBody image {
-  object-fit: fill;
+  object-fit: best;
   width: 10px;
 }
 
 
 .eportfolioBody .react-grid-layout {
-  background: transparent;
+  background: rgba(0,0,0,0.2);
+  border-radius: 20px;
   position: relative;
   transition: height 200ms ease;
 }
@@ -97,17 +94,25 @@
 
 .eportfolioBody .react-grid-item {
   overflow: hidden;
-  border: 5px solid #d7d8da;
+  border: 2px solid #d7d8da;
   background: #f7f8fa;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.829);
   border-radius: 20px;
   transition: all 200ms ease;
   transition-property: left, top;
-  cursor: pointer;
+  cursor: move;
+}
+
+.eportfolioBody .react-grid-item .richtext{
+  padding: 0px 10px;
 }
 
 .eportfolioBody .react-grid-item img{
   width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 
@@ -160,6 +165,7 @@
   bottom: 10px;
   right: 10px;
   cursor: se-resize;
+  z-index: 2;
 }
 
 

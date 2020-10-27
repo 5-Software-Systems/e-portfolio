@@ -1,9 +1,10 @@
 from flask import request
 from flask_restplus import Resource, Namespace
 
-from ..service import user_service, portfolio_service, widget_service
+from ..service import user_service, auth_service
 
 from . import api_model
+from ..util.decorator import token_required
 
 namespace = Namespace(
     name='user',
@@ -20,7 +21,7 @@ class UserList(Resource):
         """List all Users"""
         return user_service.get_all_users()
 
-    @namespace.expect(api_model.user_new, validate=True)
+    @namespace.expect(api_model.user_new, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
     def post(self):
         """Creates a new User"""
@@ -28,18 +29,21 @@ class UserList(Resource):
         return user_service.create_new_user(data=data), 201
 
 
-@namespace.route('/user/<public_id>')
-@namespace.param('public_id', 'The User identifier')
+@namespace.route('/user/<user_public_id>')
+@namespace.param('user_public_id', 'The User identifier')
 class User(Resource):
 
+    @namespace.expect(api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
-    def get(self, public_id):
+    @token_required('user', 'login')
+    def get(self, user_public_id):
         """Get a User"""
-        return user_service.get_a_user(public_id), 200
+        return user_service.get_a_user(user_public_id), 200
 
-    @namespace.expect(api_model.user_change)
+    @namespace.expect(api_model.user_change, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
-    def patch(self, public_id):
+    @token_required('user', 'login')
+    def patch(self, user_public_id):
         """Update a User"""
         data = request.json
-        return user_service.update_a_user(public_id=public_id, data=data), 200
+        return user_service.update_a_user(public_id=user_public_id, data=data), 200

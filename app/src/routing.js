@@ -1,148 +1,264 @@
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import { isLoggedIn } from "./util/cookies";
 
 // Containers
-import BaseTemplate from './containers/BaseTemplate';
-import Landing from './containers/Landing';
-import BasePage from './containers/BasePage';
-import UpdatePage from './containers/Updates';
-import ContactPage from './containers/Contact';
-import Settings from './containers/Settings';
-import EPortfolio from './containers/EPortfolio';
-import EPortfolioDemo from './containers/EPortfolioDemo';
+import BaseTemplate from "./templates/BaseTemplate";
+import Landing from "./containers/Landing";
+import Gallery from "./containers/Gallery";
+import UpdatePage from "./containers/Updates";
+import ContactPage from "./containers/Contact";
+import Settings from "./containers/Settings";
+import EPortfolio from "./containers/EPortfolio";
+import EPortfolioDemo from "./containers/DemoPages";
+import Examples from "./containers/Examples";
+import Share from "./containers/Share";
 // Components
-import Popup from './components/RightNav/Popup';
-import LoginForm from './components/Login_Form';
-import SignupForm from './components/Signup_Form';
-import UserNav from './components/RightNav/UserNav';
+import Popup from "./components/RightNav/Popup";
+import LoginForm from "./components/Forms/Login_Form";
+import SignupForm from "./components/Forms/Signup_Form";
+import ForgotForm from "./components/Forms/Forgot_Form";
+import PasswordResetForm from "./components/Forms/PwordReset_Form";
+import Verify from "./components/Verify";
 
 export function HomePage() {
-    return (
-        <Fragment>
-            <title>Home</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <Landing />
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Home</title>
+      <BaseTemplate
+        nav_right={
+          <Fragment>
+            <RightNav />
+          </Fragment>
+        }
+      >
+        <Landing />
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function LoginPage() {
-    return (
-        <Fragment>
-            <title>Login</title>
-            <BaseTemplate nav_right = {<p>Don't have an account? <a href="/signup" className="link">Sign Up!</a></p>} >
-                <div className="form-container m-auto">
-                    <LoginForm />
-                </div>
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Login</title>
+      <BaseTemplate
+        nav_right={
+          <p>
+            Don't have an account?{" "}
+            <a href="/signup" className="link">
+              Sign Up!
+            </a>
+          </p>
+        }
+      >
+        <div className="form-container m-auto">
+          <LoginForm />
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function SignUpPage() {
-    return (
-        <Fragment>
-            <title>Sign Up</title>
-            <BaseTemplate nav_right = {<p>Have an account? <a href="/login">Login.</a></p>}>
-                <div className="form-container m-auto">
-                    <SignupForm />
-                </div>
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Sign Up</title>
+      <BaseTemplate
+        nav_right={
+          <p>
+            Have an account? <a href="/login">Login.</a>
+          </p>
+        }
+      >
+        <div className="form-container m-auto">
+          <SignupForm />
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
+}
+
+export function ForgotPage() {
+  return (
+    <Fragment>
+      <title>Forgot Password</title>
+      <BaseTemplate
+        nav_right={
+          <p>
+            Don't have an account?{" "}
+            <a href="/signup" className="link">
+              Sign Up!
+            </a>
+          </p>
+        }
+      >
+        <div className="form-container m-auto">
+          <ForgotForm />
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
+}
+
+export function ResetPage() {
+  return (
+    <Fragment>
+      <title>Password Reset</title>
+      <BaseTemplate>
+        <div className="form-container m-auto">
+          <PasswordResetForm />
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
+}
+
+export function VerifyPage() {
+  return (
+    <Fragment>
+      <title>Login</title>
+      <BaseTemplate>
+        <div className="form-container m-auto">
+          <Verify />
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function ProfilePage() {
-    return (
-        <Fragment>
-            <title>Portfolio Gallery</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <BasePage />
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Portfolio Gallery</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <Gallery />
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function SettingsPage() {
-    return (
-        <Fragment>
-            <title>Account Settings</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <Settings />
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Account Settings</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <Settings />
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function PortfolioPage(props) {
-    return (
-        <EPortfolio preview = {props.preview}/>
-    );
+  return <EPortfolio preview={props.preview} />;
+}
+
+export function SharedPortfolioPage() {
+  return <Share />;
 }
 
 export function UpdatesPage() {
-    return (
-        <Fragment>
-            <title>Updates</title>
-            <BaseTemplate nav_right = { <RightNav /> }>
-                <UpdatePage />
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Updates</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <UpdatePage />
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function ContactUsPage() {
-    return (
-        <Fragment>
-            <title>Contact Us</title>
-            <BaseTemplate nav_right = { <RightNav /> }>
-                <ContactPage />
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Contact Us</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <ContactPage />
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function Demo() {
-    return (
-        <Fragment>
-            <title>Demo</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container">
-                    <EPortfolioDemo />
-                </div>
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <div>
+      <title>Demo</title>
+      <EPortfolioDemo />
+    </div>
+  );
+}
+
+export function ExamplesPage() {
+  return (
+    <Fragment>
+      <title>Help</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <Examples />
+      </BaseTemplate>
+    </Fragment>
+  );
+}
+
+export function PortfolioNotFound() {
+  return (
+    <Fragment>
+      <title>Not Found...</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <div className="banner first">
+          <div className="container">
+            <h2 className="font-weight-semibold">
+              The portfolio you're looking is no longer available.
+            </h2>
+            <img
+              src={process.env.PUBLIC_URL + "/images/not_found.svg"}
+              alt=""
+              className="img-fluid"
+            />
+          </div>
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 export function _404Page() {
-    return (
-        <Fragment>
-            <title>Uh Oh...</title>
-            <BaseTemplate nav_right = { <RightNav /> } >
-                <div className="container banner">
-                    <h1 className="font-weight-semibold">The page you're looking for doesn't seem to match any page we know of.</h1>
-                    <img src={process.env.PUBLIC_URL + "/images/not_found.png"} alt="" className="img-fluid pt-5" />
-                </div>
-            </BaseTemplate>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <title>Uh Oh...</title>
+      <BaseTemplate nav_right={<RightNav />}>
+        <div className="banner second">
+          <div className="container">
+            <h2 className="font-weight-semibold">
+              Error 404:
+              <br />
+              We can't find the page you're looking.
+            </h2>
+            <img
+              src={process.env.PUBLIC_URL + "/images/404v2.svg"}
+              alt=""
+              className="img-fluid"
+            />
+          </div>
+        </div>
+      </BaseTemplate>
+    </Fragment>
+  );
 }
 
 function RightNav() {
-    if (isLoggedIn()) {
-        return (
-            <Fragment>
-                <UserNav />
-            </Fragment>
-        );
-    } else {
-        return (
-            <Fragment>
-                <Popup name="Login"> <LoginForm /> </Popup>
-                <Popup name="Sign Up"> <SignupForm /> </Popup>
-            </Fragment>
-        );
-    }
+  if (isLoggedIn()) {
+    return <div></div>;
+  } else {
+    return (
+      <Fragment>
+        <Popup name="Login">
+          {" "}
+          <LoginForm />{" "}
+        </Popup>
+        <Popup name="Sign Up">
+          {" "}
+          <SignupForm />{" "}
+        </Popup>
+      </Fragment>
+    );
+  }
 }

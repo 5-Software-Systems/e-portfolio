@@ -1,7 +1,11 @@
 import json
 import os
+import random
+import sys
+from pathlib import Path
 
 from ..main.model import *
+from ..main.service.file_service import save_file
 
 
 def clean(app, db):
@@ -36,3 +40,20 @@ def populate(app):
             for record in data:
                 obj = model(**record)
                 obj.save()
+
+    try:
+        users = User.query.all()
+        downloads_path = f"{Path.home()}/Downloads"
+
+        for file in os.listdir(downloads_path):
+            if not any([file.endswith(".png"), file.endswith(".jpg")]):
+                continue
+            user = users[random.randint(0, len(users) - 1)]
+
+            with open(f'{downloads_path}/{file}', 'rb') as f:
+                image_binary = f.read()
+
+            save_file(user.public_id, file, image_binary)
+    except Exception as e:
+        print(f'Images not populated correctly {e}', file=sys.stderr)
+        pass

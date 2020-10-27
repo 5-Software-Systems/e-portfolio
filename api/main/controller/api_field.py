@@ -21,9 +21,14 @@ auth_token = 'Authorization', fields.String(description='JSON Web Token')
 
 # PORTFOLIO
 portfolio_title = 'title', fields.String(description='title of portfolio')
+background_url = 'background_url', fields.String(description='img url for background')
 
 # WIDGET
 widget_type = 'type', fields.String(description='type of widget', example='about')
 widget_data = 'data', fields.Raw(description='data specific to widget type', example={'p1': 'parameter 1', 'p2': 'parameter 2'})
 
-location = 'location', fields.List(fields.Integer, description='array of 4 [x,y,w,h]', example=[1, 1, 1, 1])
+location = 'location', fields.List(fields.Integer, description='array of 4 [w,h,x,y]', example=[1, 1, 1, 1])
+
+file_name = 'file_name', fields.String(description='name of file', example='example.png')
+
+duration = 'duration', fields.Integer(description='duration (in minutes) for link to work for', example=10080)

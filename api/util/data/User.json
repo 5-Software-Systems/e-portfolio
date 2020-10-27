@@ -1,30 +1,35 @@
 [
   {
-    "public_id": "80bd40ea-3abc-41fc-89fd-49467f05fa0f",
+    "id": 1,
+    "public_id": "user_public_id_1",
     "email": "email@mail.com",
     "name_first": "name_first",
     "name_last": "name_last",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500",
+    "verified": 1
   },
   {
-    "public_id": "80ad40ea-3abc-41fc-89fd-49467f05fa0f",
+    "id": 2,
+    "public_id": "user_public_id_2",
     "email": "email",
     "name_first": "name_first",
     "name_last": "name_last",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   },
   {
-    "public_id": "f76c2a1c-7816-4a54-a76b-c11e8b993706",
+    "id": 3,
+    "public_id": "user_public_id_3",
     "email": "fraserbasil@gmail.com",
     "name_first": "Fraser",
     "name_last": "Langton",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   },
   {
-    "public_id": "622ef1ef-3dca-4d36-b638-975eda7a7063",
+    "id": 4,
+    "public_id": "user_public_id_4",
     "email": "mlitterick@student.unimelb.edu.au",
     "name_first": "Marcus",
     "name_last": "Litterick",
-    "password": "password"
+    "password": "2c1b4a4384ce5d6d82845e28298840886ce8cbbc70e2f7db60525b20b438b4882662d7cbfdda183830f875ae819f1c09c0f1116cb16412e0a6f7c7d502f8f500"
   }
 ]

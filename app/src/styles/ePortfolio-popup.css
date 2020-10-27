@@ -103,6 +103,12 @@
 	transition: all, 0.2s;
   }
 
+  .ePortfolio-popup-overlay .actions {
+	float: right;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
   .ePortfolio-popup-overlay .modal .PopupBottom {
 	  width: 100%;
 	  height: auto;
@@ -145,14 +151,13 @@
   }
 
   .ePortfolio-popup-overlay .DropDown option {
-	background-color: #363636;
+	background-color: white;
 	outline: none;
 	border: 1px;
-	border-radius: ;
 }
 
   .ePortfolio-popup-overlay .DropDown option:checked{
-	color: #121212;
+	background-color: #e7e8ea;
 	}
 
   .ePortfolio-popup-overlay .basePageTextBox {
@@ -168,15 +173,23 @@
 	
 
 .ePortfolio-popup-content .menu-item {
-	background-color: #121212;
+	background-color: #e7e8ea;
 	border-radius: #cf6679;
+}
+
+.ePortfolio-popup-content .form-control {
+	border-radius: 5px;
+	background-color: #e7e8ea;
+	outline: none;
+	border: none;
+	width:100%;
 }
 
   
 .blocker {
-	  height: 150%;
-	  width: 150%;
+	  height: 100%;
+	  width: 100%;
 	  background-color: transparent;
 	  position: absolute;
+	  z-index: 1;
   }
-

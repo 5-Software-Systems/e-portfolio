@@ -1,14 +1,10 @@
-import React from 'react';
+import React from "react";
+import MUIRichTextEditor from "mui-rte";
 
-
-export function TextToHTML({text}) {
-
-    
-    return (
-        <p>{text}</p>
-    );
+export default function TextToHTML({ text }) {
+  return (
+    <div className="richtext">
+      <MUIRichTextEditor defaultValue={text} toolbar={false} readOnly={true} />
+    </div>
+  );
 }
-
-
-
-export default TextToHTML;

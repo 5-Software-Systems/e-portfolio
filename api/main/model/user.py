@@ -18,6 +18,7 @@ class User(Model):
     name_last = db.Column(db.String(255), unique=False, nullable=False)
     password_hash = db.Column(db.String(100), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+    verified = db.Column(db.Boolean, default=False)
 
     portfolios = relationship('Portfolio')
 
