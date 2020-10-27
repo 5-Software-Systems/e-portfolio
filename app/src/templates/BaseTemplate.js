@@ -232,8 +232,6 @@ function PersistentDrawerLeft(props) {
                 </ListItem>
             </List>
         }
-        <Divider />
-        <Test />
       </Drawer>
     </div>
   );
