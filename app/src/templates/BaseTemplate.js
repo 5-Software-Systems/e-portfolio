@@ -155,7 +155,7 @@ function PersistentDrawerLeft(props) {
             edge="start"
             className={clsx(classes.menuButton, open)}
           >
-              <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="Logo" height="50" />
+              <img src={process.env.PUBLIC_URL + "/images/logo.svg"} alt="logo" height="50" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Echidna

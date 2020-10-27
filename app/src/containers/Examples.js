@@ -9,7 +9,7 @@ export default function Examples() {
         <DemoPreview
           name={"Echidna"}
           id={"echidna"}
-          img={process.env.PUBLIC_URL + "/images/Logo_b.svg"}
+          img={process.env.PUBLIC_URL + "/images/logo_b.svg"}
         />
         <DemoPreview
           name={"From humble beginnings..."}

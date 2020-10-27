@@ -843,7 +843,7 @@ function Team() {
         width={columns * width}
         margin={[10, 10]}
         compactType={"horizontal"}
-        isDraggable={false}
+        isDraggable={true}
         isResizable={true}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}

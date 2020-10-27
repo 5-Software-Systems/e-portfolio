@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey
 
-from .embed import WidgetBase
+from .widget import WidgetBase
 from ... import db
 
 
