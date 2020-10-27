@@ -1,14 +1,14 @@
 import React from "react";
 
 export default function ImageToHTML({
-  src = "https://i.kym-cdn.com/entries/icons/facebook/000/016/540/hgh08Pez.jpg",
+  src = "/images/placeholder.svg",
   alt = "an image",
   width = "100%",
   height = "100%",
 }) {
   return (
     <img
-      src={src}
+      src={src ? src : "/images/placeholder.svg"}
       alt={alt}
       width={width}
       height={height}
