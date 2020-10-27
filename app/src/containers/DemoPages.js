@@ -64,7 +64,7 @@ export default function EPortfolioDemo() {
           >
             <ArrowBack />
           </button>
-          <h1 className="impact">{PID}</h1>
+          <h1 className="impact">{PID === "team" ? "Presentation" : PID}</h1>
           <p></p>
         </header>
         <div className="container">
@@ -408,7 +408,7 @@ function Team() {
       location: [1, 1, 4, 0],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fdtbd","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d6v6k","text":"           Fraser","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fdtbd","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d6v6k","text":"      Fraser","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -417,7 +417,7 @@ function Team() {
       location: [1, 1, 3, 0],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"97for","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4r312","text":"         Marcus","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"97for","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4r312","text":"     Marcus","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -426,7 +426,7 @@ function Team() {
       location: [1, 1, 2, 0],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"av1vp","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"281j6","text":"         Fabrice","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"av1vp","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"281j6","text":"     Fabrice","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -435,7 +435,7 @@ function Team() {
       location: [1, 1, 1, 0],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8tb6c","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"59jcj","text":"          Calvin","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8tb6c","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"59jcj","text":"      Calvin","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -444,7 +444,7 @@ function Team() {
       location: [1, 1, 0, 0],
       data: {
         about:
-          '{"blocks":[{"key":"fsk7q","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c4q15","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"197q0","text":"         Nathan","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"fsk7q","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"c4q15","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"197q0","text":"     Nathan","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -453,7 +453,7 @@ function Team() {
       location: [1, 1, 0, 1],
       data: {
         image_url:
-          "https://lh3.googleusercontent.com/5Cs4eIvfdilsa41Y-mY0L3yIRLEkVZ1bTGAlNfzi9_AUigbtjqGH3T9qibydd_u1ojabUr5cZ1bNfmDNLYrVlYbyjWZlO_m55WqTejKsmP80Cwo5ztsNIs6v8hGjKfpQnlvJb2ln0VIHyCvcmsJjLgiSPkQA7e4FrBY3rlHHrxzPQRRSAqFXQDnGXFKG41cDKPJctjAzd3SjTjX74inhWG02vtuLY5ZMUc7cv4OW0tZ7CtRn0qWg9I0EquHwiQ1ha35yvfEfbvXnQdyNCQDypGPf5qLu76IN0xZVnKGu6PN8ZBTna-D5C8DB-Pe7PFF8LiFXTIgUUI0pO2JuJYw1rpsLHv2DpdsIYuSUKQ1DXdgIsUiBmbQVRTDZ3AUP9dVEmudQVFde_dIA-PYKEULFG9WDIGOeyOusmAAyQtQNVAg13ZyVslUsOD3oZIs-zJTy8Wp_8sfR2Z1A7oS5aFoCppts08ukZx06b1BIJ6cCKuWPB-KEjFzTpM7KozXYuPZWbU72Du9bizyX6zRfNxXYUQLtxXo_VtZYEi1XsXxHOUhuvOlqAlAKtsdY4H0A-fIAapr74tYdEdup9bJWoxz-U4TjOv75k3xWsfcifsY58_mmAMK1NANZO5N_TEFCCcvHPeYvIOrUjJUZIDITEMAjipTGuTjMvodX-gFFNZXt5Olna5DigwqGo7n7RsHvWA=w1258-h943-no?authuser=0",
+          "https://lh3.googleusercontent.com/pw/ACtC-3dj0ioI1CvMzQJMQ2XrYLMXymEtesoe5s-bZvcRzfETDAb2bryLCd1wnfpYxBEocpUlbA1v2jkZch0O1hNCVxxE7Z5JU6lyah0p2rVvArSnGeQA_kF5hLICMfHdAbfM5zhz9ZsXut4ZOfPvMpJ43AQqVQ=w1258-h943-no?authuser=0",
       },
     },
     {
@@ -516,7 +516,7 @@ function Team() {
       location: [5, 1, 0, 3],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dm9il","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f1kba","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bgenk","text":"                                                                Our Client and Requirements","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dm9il","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bgenk","text":"                                          Our Client and Requirements","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -525,7 +525,7 @@ function Team() {
       location: [3, 1, 1, 4],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cga73","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1tvu2","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8361p","text":"A tool which can encapsulate one’s skills, experiences and ideas 💡","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"621p6","text":"Self expressive, more casual than professional 🤠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"eei2d","text":"Multiple portfolios, each with different purposes 🌌","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1udil","text":"Shareable to friends, family, employers, etc 👨‍👩‍👧‍👦","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"534st","text":"Intuitive, concise, secure, refined, epic ✨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"8361p","text":"A tool which can encapsulate one’s skills, experiences and ideas 💡","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"621p6","text":"Self expressive, more casual than professional 🤠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"eei2d","text":"Multiple portfolios, each with different purposes 🌌","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1udil","text":"Shareable to friends, family, employers, etc 👨‍👩‍👧‍👦","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"534st","text":"Intuitive, concise, secure, refined, epic ✨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -561,7 +561,7 @@ function Team() {
       location: [5, 1, 0, 9],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2t4bo","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"79ac6","text":"                       ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1l1tf","text":"                                                                        Technologies Used","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2t4bo","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1l1tf","text":"                                                    Technologies Used","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -588,7 +588,7 @@ function Team() {
       location: [3, 1, 1, 14],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"etsu7","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"46ui7","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d95e0","text":"                                     Collaboration Tools ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"etsu7","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d95e0","text":"                      Collaboration Tools ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -597,7 +597,7 @@ function Team() {
       location: [1, 1, 0, 14],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"         ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5s9gc","text":"             Slack","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e2c87","text":"Main communication tool","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cde5o","text":"Conversations split into required channels  ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"5s9gc","text":"Slack","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e2c87","text":"Main communication tool","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cde5o","text":"Conversations split into required channels  ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -606,7 +606,7 @@ function Team() {
       location: [1, 1, 4, 14],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2ak6m","text":"            Zoom","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dl0hr","text":"Major meetings ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d0p40","text":"Meetings with client ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"2ak6m","text":"Zoom","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dl0hr","text":"Major meetings ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"d0p40","text":"Meetings with client ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -615,7 +615,7 @@ function Team() {
       location: [1, 1, 0, 15],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fa4fs","text":"         Discord","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"72hdh","text":"For quick collaborations ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ff97c","text":"Voice calls ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"fa4fs","text":"Discord","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"72hdh","text":"For quick collaborations ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ff97c","text":"Voice calls ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -624,7 +624,7 @@ function Team() {
       location: [1, 1, 1, 15],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bchoj","text":"            Trello","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"50ao1","text":"See backlog and progress","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"32ul","text":"Assign tasks","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"bchoj","text":"Trello","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"50ao1","text":"See backlog and progress","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"32ul","text":"Assign tasks","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -633,7 +633,7 @@ function Team() {
       location: [1, 1, 2, 15],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9snmg","text":"      Google Drive","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9kk3b","text":"Collection of documentation and artifacts","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4iqne","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"9snmg","text":"Google Drive","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9kk3b","text":"Collection of documentation and artifacts","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4iqne","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -642,7 +642,7 @@ function Team() {
       location: [1, 1, 3, 15],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ajgv","text":"          GitHub","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fu26o","text":"Code repository ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3ko9v","text":"Issues and bugs documentation","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8k7b8","text":"Automatic testing","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"ajgv","text":"GitHub","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fu26o","text":"Code repository ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3ko9v","text":"Issues and bugs documentation","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8k7b8","text":"Automatic testing","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -651,7 +651,7 @@ function Team() {
       location: [1, 1, 4, 15],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fui3o","text":"          FunRetro","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fevjk","text":"Retrospectives for sprint reviews ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"85vrj","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"fui3o","text":"FunRetro","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fevjk","text":"Retrospectives for sprint reviews ","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"85vrj","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -660,7 +660,7 @@ function Team() {
       location: [5, 1, 0, 16],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"46j1c","text":"                                 ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"agrh3","text":"                                                                                  Challenges ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"46j1c","text":"                                 ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"agrh3","text":"                                                        Challenges ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -678,7 +678,7 @@ function Team() {
       location: [2, 1, 0, 17],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"                                                   Technical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":61,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"3p5pi","text":"Adding deployment architecture after creating other architecture 🏠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3k8ha","text":"Refactoring after new libraries were found 📚","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fgbl","text":"Learning from scratch 📝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7bhu0","text":"Code merges and reviews 🤔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2fp1g","text":"Dependency management 👨‍💼","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5iopa","text":"Bug tracking 🐛","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gvtl","text":"Automatic testing suddenly broke 😳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"Technical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":61,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"3p5pi","text":"Adding deployment architecture after creating tech stack 🏠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3k8ha","text":"Refactoring after new libraries were found 📚","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fgbl","text":"Learning from scratch 📝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7bhu0","text":"Code merges and reviews 🤔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2fp1g","text":"Dependency management 👨‍💼","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5iopa","text":"Bug tracking 🐛","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gvtl","text":"Automatic testing suddenly broke 😳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -687,7 +687,7 @@ function Team() {
       location: [5, 1, 0, 18],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"lqe2","text":"                          ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9mi7k","text":"                                                                                   Lessons","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"lqe2","text":"                          ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9mi7k","text":"                                                          Lessons","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -696,7 +696,7 @@ function Team() {
       location: [2, 1, 3, 17],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"                                         Logistical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":52,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"donne","text":"Knowing priority of what to do in earlier sprints 🏃‍♀️💨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9fq53","text":"Some of our workflows took practice and weren’t as laid out until sprint 3 〰","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fj7u","text":"Communication between teams 💬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7qqiv","text":"Some client suggestions were out of our scope 🔎","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5pbiu","text":"Time constraints w/ other commitments ⏳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"pd6a","text":"Working from home 💻","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5mnfq","text":"Negative cash flow 📉","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2st80","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"Logistical ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":52,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"donne","text":"Knowing priority of what to do in earlier sprints🏃‍💨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9fq53","text":"Some of our workflows took practice and weren’t as laid out until sprint 3 〰","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3fj7u","text":"Communication between teams 💬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7qqiv","text":"Some client suggestions were out of our scope 🔎","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5pbiu","text":"Time constraints w/ other commitments ⏳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"pd6a","text":"Working from home 💻","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5mnfq","text":"Negative cash flow 📉","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2st80","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -705,7 +705,7 @@ function Team() {
       location: [3, 1, 1, 19],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6g6v1","text":"Wait longer to start coding, more research and planning 📃","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bemkf","text":"Document extensively from the start ✍","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ed8bk","text":"Create a CI/CD pipeline in week one. Look into Dev/Ops a lot more 👀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dvatp","text":"Create conceptual designs to give us an idea of the final product 💭","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2vb3o","text":"Git conventions took a while to grasp 😓","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"37brr","text":"Use tools to full extent, i.e. Github functions 🛠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3nvr0","text":"Make tests before implementation ✔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9nb37","text":"Camera on in tutes 📸","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"6g6v1","text":"Wait longer to start coding, more research and planning 📃","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"bemkf","text":"Document extensively from the start ✍","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ed8bk","text":"Create a CI/CD pipeline in week one.1️⃣","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2vb3o","text":"Developed an improved understanding of git conventions 📚","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"37brr","text":"Use tools to full extent, i.e. Github functions 🛠","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3nvr0","text":"Make tests before implementation ✔","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9nb37","text":"Mettings are so much better with cameras on 📸","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -723,7 +723,7 @@ function Team() {
       location: [3, 1, 1, 20],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8dbdo","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"995ri","text":"                                              Highlights","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"96l4a","text":"                                                    and","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6mest","text":"                                           Cool Features","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"8dbdo","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"995ri","text":"                              Highlights","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"96l4a","text":"                                    and","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6mest","text":"                           Cool Features","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -741,7 +741,7 @@ function Team() {
       location: [2, 1, 0, 21],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"               Highlights","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":25,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"br6lp","text":"Team cooperation 🤝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"412n3","text":"Good clients 🥂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"b9hu6","text":"Effective use of tools 🔬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f4cs6","text":"Documentation 📄","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6k1ue","text":"Highly motivated team 💪","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"au00s","text":"Feature workflow 📊","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ibr1","text":"Productive weekly meetings 👨‍❤️‍👨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2pp1j","text":"Use of labels 🅱","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"Highlights","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":25,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"br6lp","text":"Team cooperation 🤝","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"412n3","text":"Good clients 🥂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"b9hu6","text":"Effective use of tools 🔬","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f4cs6","text":"Documentation 📄","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6k1ue","text":"Highly motivated team 💪","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"au00s","text":"Feature workflow 📊","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ibr1","text":"Productive weekly meetings 👨‍❤️‍👨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2pp1j","text":"Use of labels 🅱","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -750,7 +750,7 @@ function Team() {
       location: [2, 1, 3, 21],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"                     Features","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":29,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"chf8q","text":"Drag and drop ⚡","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3cp8k","text":"Resize to any dimension ✂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4ien1","text":"Rich text editing 🤑","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f59qp","text":"Custom background 😮","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"as942","text":"Secure sharing 🔐","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8bi27","text":"Social media integration 😉🤳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":25,"length":2,"key":0}],"data":{}},{"key":"5c6eu","text":"Entertainment integration 🎥","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"href":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/","url":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/"}}}}',
+          '{"blocks":[{"key":"vg3v","text":"Features","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":29,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"chf8q","text":"Drag and drop ⚡","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3cp8k","text":"Resize to any dimension ✂","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4ien1","text":"Rich text editing 🤑","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"f59qp","text":"Custom backgrounds 😮","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"as942","text":"Secure sharing 🔐","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8bi27","text":"Social media integration 😉🤳","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":25,"length":2,"key":0}],"data":{}},{"key":"5c6eu","text":"Entertainment integration 🎥","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5c6gu","text":"Mobile friendly 📱","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"href":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/","url":"https://scoutdigitaltraining.com.au/social-media/emoji-guide-2019/"}}}}',
       },
     },
     {
@@ -759,7 +759,7 @@ function Team() {
       location: [5, 1, 0, 22],
       data: {
         about:
-          '{"blocks":[{"key":"vg3v","text":"            ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gfg6","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kjvh","text":"                                                                    THANKS FOR WATCHING ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+          '{"blocks":[{"key":"vg3v","text":"            ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"8gfg6","text":"","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kjvh","text":"                                            THANKS FOR YOUR TIME ","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
       },
     },
     {
@@ -842,9 +842,9 @@ function Team() {
         rowHeight={height}
         width={columns * width}
         margin={[10, 10]}
-        compactType={null}
-        isDraggable={false}
-        isResizable={false}
+        compactType={"horizontal"}
+        isDraggable={true}
+        isResizable={true}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
