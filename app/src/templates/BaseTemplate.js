@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import Test from '../components/Test';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from "react-router-dom";
 import { isLoggedIn, deauthorize } from "../util/cookies";
@@ -14,12 +14,14 @@ import List from '@material-ui/core/List';
 import { useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import ContactIcon from '@material-ui/icons/RecentActors';
 import UpdatesIcon from '@material-ui/icons/DynamicFeed';
 import LoginIcon from '@material-ui/icons/LockOpen';
 import SignUpIcon from '@material-ui/icons/ContactMail';
 import GalleryIcon from '@material-ui/icons/ViewCarousel';
+import HelpIcon from '@material-ui/icons/Help';
 import SettingsIcon from '@material-ui/icons/Settings';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -37,14 +39,13 @@ export default function BaseTemplate(props) {
                 {props.children}
             </section>
             <footer className="border-top text-center text-muted">
-                <p><a href="/demo" tabIndex="-1">FiveCent Software Systems.</a></p>
-                <Test />
+                <p><a href="/">FiveCent Software Systems.</a></p>
             </footer>
         </Fragment>
     );
 }
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,20 +59,35 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
+    marginRight: -drawerWidth,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
+    marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
+  show: {
+    transition: theme.transitions.create(['visibility', 'opacity'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.standard,
+    }),
+  },
   hide: {
-    display: 'none',
+    visibility: 'none',
+    opacity: 0,
+    transition: theme.transitions.create(['visibility', 'opacity'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.standard,
+    }),
   },
   drawer: {
     flexShrink: 0,
+  },
+  title: {
+    flexGrow: 1,
   },
   drawerPaper: {
     width: drawerWidth,
@@ -82,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   content: {
     flexGrow: 1,
@@ -91,29 +107,37 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginRight: drawerWidth,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginRight: 0,
   },
 }));
 
-export function PersistentDrawerLeft(props) {
+function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpen(! open);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  async function handleLogout() {
+        // clear cookies
+        deauthorize().then(() => {
+            history.push("/");
+        });
+    }
 
   return (
     <div className={classes.root}>
@@ -127,22 +151,45 @@ export function PersistentDrawerLeft(props) {
           <IconButton
             color="inherit"
             aria-label="open drawer"
+            href="/"
+            edge="start"
+            className={clsx(classes.menuButton, open)}
+          >
+              <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="Logo" height="50" />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Echidna
+          </Typography>
+          <div position="static"
+               className={clsx(classes.show, {
+                 [classes.hide]: open,
+               })}
+          >
+              {/* this is jank af but it works*/}
+              { isLoggedIn() ?
+                <Fragment>
+                  <Button color="inherit" component={Link} to="/portfolio">Gallery</Button>
+                  <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                </Fragment>
+              :
+                props.nav_right
+              }
+          </div>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <img src={process.env.PUBLIC_URL + "/images/Logo.svg"} alt="" height="50" />
+          <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.content} noWrap>
-            Echidna
-          </Typography>
-          {props.nav_right}
         </Toolbar>
       </AppBar>
       <Drawer
         className={classes.drawer}
         variant="persistent"
-        anchor="left"
+        anchor="right"
         open={open}
         classes={{
           paper: classes.drawerPaper,
@@ -166,6 +213,10 @@ export function PersistentDrawerLeft(props) {
             <ListItem button key="update" component={Link} to="/updates">
               <ListItemIcon><UpdatesIcon /></ListItemIcon>
               <ListItemText primary="Updates" />
+            </ListItem>
+            <ListItem button key="help" component={Link} to="/help">
+              <ListItemIcon><HelpIcon /></ListItemIcon>
+              <ListItemText primary="Help" />
             </ListItem>
         </List>
         <Divider />

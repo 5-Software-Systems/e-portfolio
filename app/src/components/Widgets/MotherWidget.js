@@ -10,7 +10,7 @@ import TwitterToHTML from './EmbedWidgetTwitter';
 import ApplemusicToHTML from './EmbedWidgetApplemusic';
 
 
-export function MotherWidget({widget}) {
+export default function MotherWidget({widget}) {
     const w_data = widget.data;
     if (widget.type === 'about') {
         return (
@@ -54,5 +54,3 @@ export function MotherWidget({widget}) {
         )
     }
 }
-
-export default MotherWidget;

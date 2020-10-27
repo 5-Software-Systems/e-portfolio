@@ -187,10 +187,9 @@
 
   
 .blocker {
-	  height: 150%;
-	  width: 150%;
+	  height: 100%;
+	  width: 100%;
 	  background-color: transparent;
 	  position: absolute;
 	  z-index: 1;
   }
-
