@@ -10,7 +10,7 @@ from ..util.exception import RequestError
 from ..util.funcs import rel_path
 
 
-def send_email(addr, text: MIMEText):
+def send_email(addr, text: MIMEText, subject):
     gmail_user, gmail_pass = current_app.config['GMAIL_USER'], current_app.config['GMAIL_PASS']
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
@@ -20,7 +20,7 @@ def send_email(addr, text: MIMEText):
     msg = MIMEMultipart()
     msg['From'] = gmail_user
     msg['To'] = addr
-    msg['Subject'] = "Reset Password"
+    msg['Subject'] = subject
     msg.attach(text)
 
     try:
@@ -52,7 +52,7 @@ def send_reset_email(user, token):
     )
     email_text = MIMEText(html, 'html')
 
-    send_email(user.email, email_text)
+    send_email(user.email, email_text, "Reset your password")
 
     if current_app.config['DEBUG']:
         return req.url
@@ -79,7 +79,7 @@ def send_verify_email(user, token):
     )
     email_text = MIMEText(html, 'html')
 
-    send_email(user.email, email_text)
+    send_email(user.email, email_text, "Verify your account")
 
     if current_app.config['DEBUG']:
         return req.url
