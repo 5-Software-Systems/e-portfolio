@@ -5,9 +5,11 @@ import "../../styles/Form.css";
 import { validateEmail, hashPassword, useFormFields } from "../../util/form";
 import { authorize, isLoggedIn, isVerified } from "../../util/cookies";
 import { useHistory } from "react-router-dom";
+
+import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
-export default function LoginForm() {
+export default function LoginForm(close_outer=(() =>{})) {
   const [fields, handleFieldChange] = useFormFields({
     login_email: "",
     login_password: "",
@@ -43,7 +45,6 @@ export default function LoginForm() {
       setVerified(true);
       if (validateForm) {
         handleSubmit().then(() => {
-          setLoading(false);
           if (isLoggedIn()) {
             history.push("/profile");
           }
@@ -52,6 +53,7 @@ export default function LoginForm() {
           } else {
             setVerified(false);
           }
+          setLoading(false);
         });
       }
     }
@@ -95,12 +97,24 @@ export default function LoginForm() {
       <a href="/forgot" className="forgot">
         Forgot Password?
       </a>
-      {isIncorrect ? (
-        <Alert severity="error">Incorrect email or password, please try again.</Alert>
-      ) : null}
-      {verified ? null : (
-        <Alert severity="error">User not verified, please check your emails.</Alert>
-      )}
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isIncorrect}
+        onClose={() => setIncorrect(false)}
+        key={'topcenter'}
+        autoHideDuration={4000}
+      >
+        <Alert severity="error">Incorrect email or password! Please try again.</Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={! verified}
+        onClose={() => setVerified(false)}
+        key={'topcenter'}
+        autoHideDuration={4000}
+      >
+        <Alert severity="error">User not verified! A new verification email has been sent, please check your emails.</Alert>
+      </Snackbar>
       <Button className="btn" type="submit" disabled={isLoading}>
         {isLoading ? "Loading..." : "Submit"}
       </Button>
