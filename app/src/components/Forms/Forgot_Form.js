@@ -5,6 +5,7 @@ import "../../styles/Form.css";
 import { validateEmail, useFormFields } from "../../util/form";
 import { useHistory } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 
 export default function LoginForm() {
   const [fields, handleFieldChange] = useFormFields({
@@ -39,7 +40,7 @@ export default function LoginForm() {
         setLoading(false);
       }
     }
-  }, [isLoading, history, fields]);
+  }, [isLoading, fields]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -49,7 +50,6 @@ export default function LoginForm() {
   return (
     <Form onSubmit={handleClick}>
       <h1>Forgot Password</h1>
-      {!isDone ? (
         <Fragment>
           <FormGroup controlId="email">
             <FormLabel>
@@ -68,11 +68,17 @@ export default function LoginForm() {
           <Button className="btn" type="submit" disabled={isLoading}>
             {isLoading ? "Loading..." : "Submit"}
           </Button>
+          <Snackbar
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            open={isDone}
+            onClose={() => {setDone(false); history.push('/login')}}
+            key={'topcenter'}
+            autoHideDuration={15000}
+          >
+            <Alert severity="info">A password reset email has been sent to your email address, please follow the link to reset your password.
+            If it doesn't appear within a few minutes, check your spam folder.</Alert>
+          </Snackbar>
         </Fragment>
-      ) : (
-        <Alert severity="info">A password reset email has been sent to your email address, please follow the link to reset your password. <br/>
-          If it doesn't appear within a few minutes, check your spam folder.</Alert>
-      )}
     </Form>
   );
 }

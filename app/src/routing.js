@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import { isLoggedIn } from "./util/cookies";
+import { isLoggedIn, deauthorize } from "./util/cookies";
+import { useHistory, Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 // Containers
 import BaseTemplate from "./templates/BaseTemplate";
@@ -245,19 +247,26 @@ export function _404Page() {
 }
 
 function RightNav() {
+  const history = useHistory();
+  async function handleLogout() {
+        // clear cookies
+        deauthorize().then(() => {
+            history.push("/");
+        });
+  }
+
   if (isLoggedIn()) {
-    return <div></div>;
+    return (
+      <Fragment>
+        <Button color="inherit" component={Link} to="/portfolio">Gallery</Button>
+        <Button color="inherit" onClick={handleLogout}>Logout</Button>
+      </Fragment>
+    );
   } else {
     return (
       <Fragment>
-        <Popup name="Login">
-          {" "}
-          <LoginForm />{" "}
-        </Popup>
-        <Popup name="Sign Up">
-          {" "}
-          <SignupForm />{" "}
-        </Popup>
+        <Popup name="Login" />
+        <Popup name="Sign Up" />
       </Fragment>
     );
   }

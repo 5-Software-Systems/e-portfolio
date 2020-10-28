@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "../styles/BasePage.css";
 import "../styles/ePortfolio-popup.css";
@@ -33,6 +33,26 @@ export default function EPortfolioPreview(props) {
   //edit funciton
   const [newName, setNewName] = useState(props.name);
   const [newImage, setNewImage] = useState(props.img);
+
+  const [previewImage, setPreviewImage] = useState(props.img);
+
+  useEffect(() => {
+    async function getFile() {
+        const requestOptions = {
+          method: "GET",
+          headers: {
+            "Content-Type": "image/png",
+            Authorization: "bearer " + Auth,
+          },
+        };
+        var image = await fetch(
+          props.img,
+          requestOptions
+        );
+        setPreviewImage(image);
+    }
+    getFile();
+  }, [Auth, props.img]);
 
   const [open, setOpen] = useState(false);
 
@@ -217,6 +237,7 @@ export default function EPortfolioPreview(props) {
   function update() {
     if (props.onUpdate) {
       props.onUpdate();
+      console.log(process.env.PUBLIC_URL);
     }
   }
 
@@ -226,7 +247,7 @@ export default function EPortfolioPreview(props) {
         <h3>{props.name}</h3>
         <br />
         <img
-          src={props.img ? props.img : "/images/placeholder.svg"}
+          src={previewImage.url !== window.location.href ? previewImage.url : "/images/placeholder.svg"}
           alt="not a valid url"
           height="150"
         />
