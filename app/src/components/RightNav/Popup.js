@@ -5,6 +5,11 @@ import Modal from "@material-ui/core/Modal";
 import Fade from "@material-ui/core/Fade";
 import "../../styles/Form.css";
 
+import LoginForm from "../Forms/Login_Form";
+import SignupForm from "../Forms/Signup_Form";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -16,18 +21,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomPopup(props) {
   const [open, setOpen] = useState(false);
+  const [isComplete, setComplete] = useState(false);
   const classes = useStyles();
+
+  const handleSubmit = () => {
+    handleClose();
+    setComplete(true);
+  }
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  function CloseButton() {
-    return (
-      <Button className="btn cancel" onClick={() => setOpen((o) => !o)}>
-        Close
-      </Button>
-    );
+  var content;
+  var alert;
+
+  if (props.name === "Login") {
+    content = LoginForm(() => handleSubmit());
+    alert = null;
+  } else if (props.name === "Sign Up") {
+    content = SignupForm(() => handleSubmit());
+    alert = <Alert severity="info">A verification email has been sent to your email address, please follow the link to verify your account before logging in.
+          If it doesn't appear within a few minutes, check your spam folder.</Alert>
   }
 
   return (
@@ -44,11 +59,22 @@ export default function CustomPopup(props) {
       >
         <Fade in={open}>
           <div className="form-container">
-            {props.children}
-            <CloseButton />
+            {content}
+            <Button className="btn cancel" onClick={handleClose}>
+              Close
+            </Button>
           </div>
         </Fade>
       </Modal>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isComplete}
+        onClose={() => setComplete(false)}
+        key={'topcenter'}
+        autoHideDuration={15000}
+      >
+        {alert}
+      </Snackbar>
     </Fragment>
   );
 }

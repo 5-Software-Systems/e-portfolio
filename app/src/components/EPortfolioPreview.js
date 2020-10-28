@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import "../styles/BasePage.css";
 import "../styles/ePortfolio-popup.css";
@@ -33,6 +33,38 @@ export default function EPortfolioPreview(props) {
   //edit funciton
   const [newName, setNewName] = useState(props.name);
   const [newImage, setNewImage] = useState(props.img);
+
+  const [loadingImage, setLoading] = useState(true);
+  const [previewImage, setPreviewImage] = useState(props.img);
+
+  useEffect(() => {
+    async function getFile() {
+      if (props.img) {
+          const URL = props.img.split("/");
+          const image_domain = URL[2];
+          if (window.location.host === image_domain) {
+            const requestOptions = {
+              method: "GET",
+              headers: {
+                "Content-Type": "image/png",
+                Authorization: "bearer " + Auth,
+              },
+            };
+            var image = await fetch(
+              props.img,
+              requestOptions
+            );
+            setPreviewImage(image.url);
+          } else {
+            setPreviewImage(props.img);
+          }
+      } else {
+        setPreviewImage("/images/placeholder.svg");
+      }
+      setLoading(false);
+    }
+    getFile();
+  }, [Auth, props.img]);
 
   const [open, setOpen] = useState(false);
 
@@ -217,6 +249,7 @@ export default function EPortfolioPreview(props) {
   function update() {
     if (props.onUpdate) {
       props.onUpdate();
+      console.log(process.env.PUBLIC_URL);
     }
   }
 
@@ -225,11 +258,15 @@ export default function EPortfolioPreview(props) {
       <a href={"/portfolio/" + props.id} className="eportfolioinfo">
         <h3>{props.name}</h3>
         <br />
-        <img
-          src={props.img ? props.img : "/images/placeholder.svg"}
-          alt="not a valid url"
-          height="150"
-        />
+        { loadingImage ?
+            <p> Loading... </p>
+        :
+            <img
+              src={ previewImage }
+              alt="not a valid url"
+              height="150"
+            />
+        }
       </a>
       <div className="button_container">{settingsButton()}</div>
       <Snackbar

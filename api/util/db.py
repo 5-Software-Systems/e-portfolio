@@ -16,7 +16,9 @@ def clean(app, db):
         db.session.commit()
 
 
-def delete():
+def delete(app, db):
+    with app.app_context():
+        db.drop_all()
     try:
         os.remove('eportfolio.db')
     except FileNotFoundError:
@@ -28,7 +30,7 @@ def create(app, db):
         db.create_all()
 
 
-def populate(app):
+def populate(app, db):
     data_dir = os.path.join(os.path.dirname(__file__), 'data')
     with app.app_context():
         to_do = [data_file for data_file in os.listdir(data_dir) if data_file.endswith('.json')]
@@ -39,7 +41,9 @@ def populate(app):
                 data = json.load(f)
             for record in data:
                 obj = model(**record)
-                obj.save()
+                db.session.add(obj)
+                # obj.save()
+        db.session.commit()
 
     try:
         users = User.query.all()
