@@ -6,6 +6,13 @@ import MUIRichTextEditor from "mui-rte";
 import { convertToRaw } from "draft-js";
 
 export default function GetFields(props) {
+  const changed = props.changed;
+  const defaultData = props.defaultData;
+  const onChange = props.onChange;
+  const type = props.type;
+  const user = props.user;
+
+
   const Auth = isAuthorized();
 
   const [fields, setFields] = useState([]);
@@ -13,23 +20,23 @@ export default function GetFields(props) {
   const [text, setText] = useState({});
 
   useEffect(() => {
-    setText(props.defaultData);
-  }, [props.defaultData]);
+    setText(defaultData);
+  }, [defaultData]);
 
   function setTextList(field, txt) {
     var textOBJ = text;
     textOBJ[field] = txt;
     setText(textOBJ);
-    if (props.onChange) {
-      props.onChange(textOBJ);
+    if (onChange) {
+      onChange(textOBJ);
     }
   }
 
   function getDefaultData() {
-    if (props.changed !== 0) {
+    if (changed !== 0) {
       return {};
     }
-    return props.defaultData;
+    return defaultData;
   }
 
   //    function undefinedText(text) {
@@ -46,7 +53,7 @@ export default function GetFields(props) {
     function getFieldRequirementsForEachWidget(data) {
       var i = 0;
       for (i = 0; i < data.length; i++) {
-        if (props.type === data[i].type) {
+        if (type === data[i].type) {
           setFields(data[i].data);
         }
       }
@@ -66,18 +73,21 @@ export default function GetFields(props) {
     }
 
     fetchWidgetTypes();
-  }, [props, Auth]);
+  }, [type, Auth]);
+
+
+
 
   useEffect(() => {
-    if (props.changed > 0) {
+    if (changed > 0) {
       setText({});
-      props.onChange({});
+      onChange({});
     }
 
-    if (props.type === "about") {
-      setAboutNum(props.changed);
+    if (type === "about") {
+      setAboutNum(changed);
     }
-  }, [props.type, props.changed]);
+  }, [type, changed, onChange]);
 
   const controls = [
     "undo",
@@ -113,7 +123,7 @@ export default function GetFields(props) {
               label="Start typing..."
               defaultValue={getDefaultData()[field]}
               onChange={(e) => {
-                if (aboutNum === props.changed)
+                if (aboutNum === changed)
                   setTextList(
                     field,
                     JSON.stringify(convertToRaw(e.getCurrentContent()))
@@ -132,20 +142,20 @@ export default function GetFields(props) {
           <br />
         </div>
       ))}
-      {imageUpload(props.user)}
+      {imageUpload(user)}
       {Hint()}
     </div>
   );
 
   function Hint() {
-    if (props.type === "embed") {
+    if (type === "embed") {
       return (
         <div>
           <h1>DEV ONLY</h1>
         </div>
       );
     }
-    if (props.type === "youtube_embed") {
+    if (type === "youtube_embed") {
       return (
         <div>
           <p>Put in a YouTube link</p>
@@ -157,7 +167,7 @@ export default function GetFields(props) {
       );
     }
 
-    if (props.type === "spotify_embed") {
+    if (type === "spotify_embed") {
       return (
         <div>
           <p>Put in a Spotify link</p>
@@ -172,7 +182,7 @@ export default function GetFields(props) {
       );
     }
 
-    if (props.type === "instagram_embed") {
+    if (type === "instagram_embed") {
       return (
         <div>
           <p>Put in a Instagram link</p>
@@ -185,7 +195,7 @@ export default function GetFields(props) {
       );
     }
 
-    if (props.type === "twitter_embed") {
+    if (type === "twitter_embed") {
       return (
         <div>
           <p>Put in a Twitter link</p>
@@ -198,7 +208,7 @@ export default function GetFields(props) {
       );
     }
 
-    if (props.type === "applemusic_embed") {
+    if (type === "applemusic_embed") {
       return (
         <div>
           <p>Put in an AppleMusic link</p>
@@ -223,7 +233,7 @@ export default function GetFields(props) {
   }
 
   function imageUpload(user) {
-    if (props.type === "image") {
+    if (type === "image") {
       return (
         <div>
           <FilePopUp
