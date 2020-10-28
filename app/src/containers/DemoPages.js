@@ -257,7 +257,7 @@ function Demo() {
             height="100%"
             title="embed4"
             src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403"
-            frameborder="0"
+            frameBorder="0"
             allowtransparency="true"
             allow="encrypted-media"
           ></iframe>

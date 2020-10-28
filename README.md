@@ -4,7 +4,10 @@
 
 #### Marcus Litterick, Nathan Doolan, Fraser Langton, Fabrice Wong Kwok, Calvin Sagar
 
-The project for COMP30022 is to develop a personal ePortfolio system. The ePortfolio system must be capable of allowing you to submit individual guest lecture reports and end-of-subject individual reflections that are requirements in COMP30022, as well as a team report. You will be assigned a client in addition, specifically a Masters student (or group of Masters students) studying SWEN90016. The Masters students will be assigned in Week 3 of the semester.
+The project for COMP30022 is to develop a personal ePortfolio system. The ePortfolio system must be capable of allowing
+you to submit individual guest lecture reports and end-of-subject individual reflections that are requirements in COMP30022,
+ as well as a team report. You will be assigned a client in addition, specifically a Masters student (or group of Masters
+  students) studying SWEN90016. The Masters students will be assigned in Week 3 of the semester.
 
 ___
 
@@ -12,7 +15,9 @@ ___
 
 ##### Ticketing
 On Trello ensure the ticket is correct and is not waiting on any other ticket/card.
-A correct ticket has a "Done condition" that outlines the state of the task that deems it finished, a checklist that roughly outlines the timeline of the task and any relevant tags and members attached to it.
+<br/>
+Note: A correct ticket has a "Done condition" that outlines the state of the task that deems it finished, a checklist that
+roughly outlines the timeline of the task and any relevant tags and members attached to it.
 If the ticket is correct and your starting it move it to the "Doing" List in Trello.
 
 ##### Starting a feature
@@ -37,7 +42,9 @@ If anyone else has made changes to the master, merge them from the master to you
 ` git merge master ` \
 Now push the feature branch to the remote.
 ` git push -u origin {university id}/{feature name} `
-###### Pull Requests
+
+
+##### Pull Requests
 Now go to GitHub and open a new Pull Request.
 Set the "base" as master and the "compare" to your feature branch.
 Fill out the heading with the feature name and write a breif description of the changes the feature adds to the master.
@@ -97,5 +104,5 @@ For more detail: `pytest tests/ -vv`
 
 
 ### Deploying
-
-@Nathan todo
+- The currently deployed master version can be found at: <br/> http://www.echidna.studio/
+- The test environment can be found at: <br/> https://test-eportfolio123.herokuapp.com/

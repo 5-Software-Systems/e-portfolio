@@ -258,7 +258,7 @@ function RightNav() {
   if (isLoggedIn()) {
     return (
       <Fragment>
-        <Button color="inherit" component={Link} to="/portfolio">Gallery</Button>
+        <Button color="inherit" component={Link} to="/profile">Gallery</Button>
         <Button color="inherit" onClick={handleLogout}>Logout</Button>
       </Fragment>
     );
