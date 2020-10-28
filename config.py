@@ -26,6 +26,12 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
 
 
+class TestingDBConfig(Config):
+    DEBUG = True
+    TESTING = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
+
+
 class LocalTestingConfig(Config):
     DEBUG = True
     TESTING = True
@@ -43,6 +49,7 @@ config_by_name = {
     'local': LocalConfig,
     'debug': LocalConfig,
     'test': TestingConfig,
+    'testdb': TestingDBConfig,
     'testlocal': LocalTestingConfig,
     'production': ProductionConfig
 }
