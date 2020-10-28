@@ -14,8 +14,6 @@ export default function SignupForm(close_outer=(() => {})) {
     signup_password: "",
   });
   const [isLoading, setLoading] = useState(false);
-  const [isIncorrect, setIncorrect] = useState(false);
-  const [isComplete, setComplete] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -46,17 +44,13 @@ export default function SignupForm(close_outer=(() => {})) {
 
     if (isLoading) {
       if (validateForm()) {
-        setIncorrect(false);
         handleSubmit().then(() => {
-          setComplete(true);
           close_outer();
         });
       } else {
-        setIncorrect(true);
-        setLoading(false);
       }
     }
-  }, [isLoading, history, fields]);
+  }, [isLoading, history, fields, close_outer]);
 
   const handleClick = (e) => {
     e.preventDefault();
