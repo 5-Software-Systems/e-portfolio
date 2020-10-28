@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from "react-router-dom";
 import { isLoggedIn, deauthorize } from "../util/cookies";
@@ -122,7 +121,6 @@ function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(! open);
@@ -131,13 +129,6 @@ function PersistentDrawerLeft(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  async function handleLogout() {
-        // clear cookies
-        deauthorize().then(() => {
-            history.push("/");
-        });
-    }
 
   return (
     <div className={classes.root}>
@@ -165,15 +156,7 @@ function PersistentDrawerLeft(props) {
                  [classes.hide]: open,
                })}
           >
-              {/* this is jank af but it works*/}
-              { isLoggedIn() ?
-                <Fragment>
-                  <Button color="inherit" component={Link} to="/portfolio">Gallery</Button>
-                  <Button color="inherit" onClick={handleLogout}>Logout</Button>
-                </Fragment>
-              :
-                props.nav_right
-              }
+          {props.nav_right}
           </div>
           <IconButton
             color="inherit"
