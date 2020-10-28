@@ -38,18 +38,28 @@ export default function EPortfolioPreview(props) {
 
   useEffect(() => {
     async function getFile() {
-        const requestOptions = {
-          method: "GET",
-          headers: {
-            "Content-Type": "image/png",
-            Authorization: "bearer " + Auth,
-          },
-        };
-        var image = await fetch(
-          props.img,
-          requestOptions
-        );
-        setPreviewImage(image);
+      if (props.img) {
+          const URL = props.img.split("/");
+          const image_domain = URL[2];
+          if (window.location.host === image_domain) {
+            const requestOptions = {
+              method: "GET",
+              headers: {
+                "Content-Type": "image/png",
+                Authorization: "bearer " + Auth,
+              },
+            };
+            var image = await fetch(
+              props.img,
+              requestOptions
+            );
+            setPreviewImage(image.url);
+          } else {
+            setPreviewImage(props.img);
+          }
+      } else {
+        setPreviewImage("/images/placeholder.svg");
+      }
     }
     getFile();
   }, [Auth, props.img]);
@@ -247,7 +257,7 @@ export default function EPortfolioPreview(props) {
         <h3>{props.name}</h3>
         <br />
         <img
-          src={previewImage.url !== window.location.href ? previewImage.url : "/images/placeholder.svg"}
+          src={ previewImage }
           alt="not a valid url"
           height="150"
         />
