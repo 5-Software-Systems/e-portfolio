@@ -34,6 +34,7 @@ export default function EPortfolioPreview(props) {
   const [newName, setNewName] = useState(props.name);
   const [newImage, setNewImage] = useState(props.img);
 
+  const [loadingImage, setLoading] = useState(true);
   const [previewImage, setPreviewImage] = useState(props.img);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function EPortfolioPreview(props) {
       } else {
         setPreviewImage("/images/placeholder.svg");
       }
+      setLoading(false);
     }
     getFile();
   }, [Auth, props.img]);
@@ -256,11 +258,15 @@ export default function EPortfolioPreview(props) {
       <a href={"/portfolio/" + props.id} className="eportfolioinfo">
         <h3>{props.name}</h3>
         <br />
-        <img
-          src={ previewImage }
-          alt="not a valid url"
-          height="150"
-        />
+        { loadingImage ?
+            <p> Loading... </p>
+        :
+            <img
+              src={ previewImage }
+              alt="not a valid url"
+              height="150"
+            />
+        }
       </a>
       <div className="button_container">{settingsButton()}</div>
       <Snackbar
