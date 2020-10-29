@@ -98,14 +98,14 @@ ReactDOM.render(
             exact
             path="/profile"
             render={() => {
-              return isLoggedIn() ? <ProfilePage /> : <Redirect to="/" />;
+              return isLoggedIn() ? <ProfilePage /> : <Redirect to="/login" />;
             }}
           />
           <Route
             exact
             path="/settings"
             render={() => {
-              return isLoggedIn() ? <SettingsPage /> : <Redirect to="/" />;
+              return isLoggedIn() ? <SettingsPage /> : <Redirect to="/login" />;
             }}
           />
           <Route

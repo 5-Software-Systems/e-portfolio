@@ -45,7 +45,7 @@ export default function AddPortfolio(props) {
       }),
     };
     const portfolio = await fetch(
-      "api/user/" + props.PID + "/portfolio",
+      "/api/user/" + props.PID + "/portfolio",
       requestOptions
     );
 

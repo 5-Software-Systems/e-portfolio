@@ -32,7 +32,7 @@ export default function DetailUpdate() {
           Authorization: "bearer " + Auth,
         },
       };
-      const user_data = await fetch("api/auth/user", requestOptions_id);
+      const user_data = await fetch("/api/auth/user", requestOptions_id);
       const returned_user = await user_data.json();
       setUser(returned_user);
     }
