@@ -126,7 +126,6 @@ ReactDOM.render(
               return <PortfolioNotFound />;
             }}
           />
-          <Route exact path="/demo" component={Demo} />
           <Route exact path="/updates" component={UpdatesPage} />
           <Route exact path="/contact" component={ContactUsPage} />
           <Route exact path="/help" component={ExamplesPage} />
