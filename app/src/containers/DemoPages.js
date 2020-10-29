@@ -39,6 +39,7 @@ export default function EPortfolioDemo() {
 
   return (
     <Fragment>
+      <title>{PID}</title>
       {/**bg image*/}
       <div
         style={{
