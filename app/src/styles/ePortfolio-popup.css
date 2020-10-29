@@ -48,6 +48,10 @@
 	font-family: Roboto;
   }
 
+.ePortfolio-popup-overlay h1 {
+	padding: 0px 25px;
+  }
+
 .ePortfolio-popup-overlay [data-popup=tooltip].popup-overlay {
 	background: transparent
 }
