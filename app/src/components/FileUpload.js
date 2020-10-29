@@ -20,6 +20,7 @@ export function FileUpload(props) {
 
   const [upload, setUpload] = useState(false);
   const [nothing, setNothing] = useState(false);
+  const [fileError, setFileError] = useState(false);
 
   //file uploading
 
@@ -28,6 +29,14 @@ export function FileUpload(props) {
   }
 
   async function uploadImage(file) {
+
+    console.log(file.type);
+
+    if (file.type.split('/')[0] != 'image') {
+      setFileError(true);
+      return;
+    }
+
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": file.type, Authorization: "bearer " + Auth },
@@ -161,9 +170,18 @@ export function FileUpload(props) {
         >
           <Alert severity="error">Nothing selected!</Alert>
         </Snackbar>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={fileError}
+          onClose={() => setFileError(false)}
+          key={'nut'}
+          autoHideDuration={1500}
+        >
+          <Alert severity="error">File error! Please upload image type files only.</Alert>
+      </Snackbar>
       </div>
       <div id="upload-box">
-        <input type="file" onChange={handleUpload} />
+        <input type="file" accept="image/*" onChange={handleUpload} />
         <br />
         <br />
         {upload ? <p>Uploaded successfully!</p> : null}
