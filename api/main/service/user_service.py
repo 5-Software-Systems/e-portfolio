@@ -45,6 +45,15 @@ def update_a_user(public_id, data):
     return user
 
 
+def delete_a_user(public_id):
+    user = get_a_user(public_id)
+    user.delete()
+    return {
+        'status': 'success',
+        'message': 'user deleted'
+    }
+
+
 def generate_token(user):
     auth_token = user.encode_auth_token()
     return {
