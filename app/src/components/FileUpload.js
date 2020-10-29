@@ -29,9 +29,6 @@ export function FileUpload(props) {
   }
 
   async function uploadImage(file) {
-
-    console.log(file.type);
-
     if (file.type.split('/')[0] != 'image') {
       setFileError(true);
       return;
@@ -99,7 +96,6 @@ export function FileUpload(props) {
 
     if (props.setImage) {
       props.setImage(url);
-      console.log(url);
     }
     if (props.close) {
       props.close();

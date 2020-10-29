@@ -249,7 +249,6 @@ export default function EPortfolioPreview(props) {
   function update() {
     if (props.onUpdate) {
       props.onUpdate();
-      console.log(process.env.PUBLIC_URL);
     }
   }
 
