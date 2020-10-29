@@ -162,7 +162,7 @@ function Demo() {
       >
         <div key="a" data-grid={{ i: "a", x: 3, y: 1, w: 1, h: 2 }}>
           <img
-            src={process.env.PUBLIC_URL + "/images/galaxy.gif"}
+            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2Fs1P4kzgXdyZK8%2Fgiphy.gif&f=1&nofb=1"}
             alt="galaxy"
             draggable="false"
             height="100%"
@@ -234,7 +234,7 @@ function Demo() {
         </div>
         <div key="h" data-grid={{ i: "h", x: 1, y: 0, w: 1, h: 1 }}>
           <img
-            src={process.env.PUBLIC_URL + "/images/what.gif"}
+            src={"https://media0.giphy.com/media/3o7ZeODTGuQOeLr3l6/giphy.gif"}
             alt={"bruhmoment"}
             width={width}
             draggable="false"
