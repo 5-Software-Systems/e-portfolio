@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, FormGroup, FormControl } from "react-bootstrap";
 import DetailUpdate from "../components/Forms/DetailUpdate";
-import { deauthorize } from "../util/cookies";
+import { isAuthorized, deauthorize } from "../util/cookies";
 import { useHistory } from "react-router-dom";
 import { useFormFields } from "../util/form";
 import Popup from "reactjs-popup";
@@ -10,11 +10,26 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 
 export default function Settings() {
+    const Auth = isAuthorized();
     const history = useHistory();
     const [fields, handleFieldChange] = useFormFields({
         response: "",
       });
     const [invalid, setInvalid] = useState(false);
+
+    async function getUser() {
+      //get user id
+      const requestOptions_id = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "bearer " + Auth,
+        },
+      };
+      const user_data = await fetch("/api/auth/user", requestOptions_id);
+      const returned_user = await user_data.json();
+      return returned_user.public_id;
+    }
 
     async function handleLogout() {
         // clear cookies
@@ -24,11 +39,18 @@ export default function Settings() {
     }
 
     async function handleSubmit() {
-        console.log(fields.response);
         if (String(fields.response).toLowerCase() === "delete") {
-            // TODO Delete user
-            alert("You haven't been deleted, but I will make this work eventually")
-            // handleLogout();
+            const requestOptions = {
+              method: "DELETE",
+              headers: {
+                Authorization: "bearer " + Auth,
+              },
+            };
+            getUser().then(async (user) => {
+              await fetch("/api/user/" + user, requestOptions).then(() => {
+                handleLogout();
+              })
+            });
         } else {
           setInvalid(true);
         }
