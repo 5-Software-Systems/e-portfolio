@@ -20,7 +20,7 @@ class User(Model):
     registered_on = db.Column(db.DateTime, nullable=False, default=lambda: datetime.datetime.now(datetime.timezone.utc))
     verified = db.Column(db.Boolean, default=False)
 
-    portfolios = relationship('Portfolio')
+    portfolios = relationship('Portfolio', cascade="all, delete")
 
     @property
     def password(self):

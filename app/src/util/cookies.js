@@ -20,7 +20,7 @@ export function isVerified() {
 
 export async function authorize(requestOptions) {
   //util cookie/authentication implementation
-  const response = await fetch("api/auth/login", requestOptions);
+  const response = await fetch("/api/auth/login", requestOptions);
   const data = await response.json();
   const cookie = new Cookies();
 
@@ -50,7 +50,7 @@ export async function deauthorize() {
       Authorization: "bearer " + Auth,
     },
   };
-  await fetch("api/auth/logout", requestOptions);
+  await fetch("/api/auth/logout", requestOptions);
 
   new Cookies().remove("authorization");
   new Cookies().set("logged_in", 0, { path: "/" });

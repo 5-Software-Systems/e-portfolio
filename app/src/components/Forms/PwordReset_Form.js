@@ -47,7 +47,7 @@ export default function PasswordResetForm() {
           password: hashPassword(fields.new_Password),
         }),
       };
-      await fetch("api/user/" + user + "/password_reset", requestOptions_reset);
+      await fetch("/api/user/" + user + "/password_reset", requestOptions_reset);
       setComplete(true);
     }
 

@@ -29,7 +29,7 @@ export default function SignupForm(close_outer=(() => {})) {
           name_last: fields.signup_lastname,
         }),
       };
-      await fetch("api/user", requestOptions_signup);
+      await fetch("/api/user", requestOptions_signup);
     }
 
     function validateForm() {

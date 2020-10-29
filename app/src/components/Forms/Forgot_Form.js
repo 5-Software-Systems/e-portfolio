@@ -23,7 +23,7 @@ export default function LoginForm() {
         body: JSON.stringify({ email: String(fields.email).toLowerCase() }),
       };
       //util cookie/authentication implementation
-      await fetch("api/auth/password_forgot", requestOptions);
+      await fetch("/api/auth/password_forgot", requestOptions);
       setDone(true);
     }
 

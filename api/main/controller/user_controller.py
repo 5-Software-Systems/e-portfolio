@@ -47,3 +47,11 @@ class User(Resource):
         """Update a User"""
         data = request.json
         return user_service.update_a_user(public_id=user_public_id, data=data), 200
+
+    @namespace.expect(api_model.auth_token_header, validate=True)
+    @namespace.marshal_with(api_model.response)
+    @token_required('user', 'login')
+    def delete(self, user_public_id):
+        """delete a user"""
+        res = user_service.delete_a_user(user_public_id)
+        return res, 200
