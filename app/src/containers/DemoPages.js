@@ -277,8 +277,8 @@ function Demo() {
         width={columns * width}
         margin={[10, 10]}
         compactType={null}
-        isDraggable={false}
-        isResizable={false}
+        isDraggable={true}
+        isResizable={true}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
@@ -305,75 +305,122 @@ function Calvin() {
 
   const widgets = [
     {
-      public_id: "ce8f4405-7da8-4892-8af3-64b781908b63",
-      type: "image",
-      location: [2, 1, 1, 0],
-      data: {
-        image_url:
-          "https://media.discordapp.net/attachments/198751173967216640/767647617462173736/Picture_2.png",
-      },
+      "public_id": "c00de5ef-b942-4e74-b999-1f7653d0f130",
+      "type": "about",
+      "location": [
+        2,
+        1,
+        0,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"fsk7q\",\"text\":\"Calvin\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"7ch2j\",\"text\":\"Developer at FiveCent Software Systems 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":27,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"282ne\",\"text\":\"He/Him ♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":7,\"length\":2,\"key\":0}],\"data\":{}},{\"key\":\"dm3nt\",\"text\":\"21 years old 🔞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":1,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"9lt1g\",\"text\":\"3rd year university student ✨\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"681iu\",\"text\":\"Leo ♌\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://emojipedia.org/male-sign/\",\"target\":\"_blank\",\"url\":\"https://emojipedia.org/male-sign/\"}}}}"
+      }
     },
     {
-      public_id: "aeabb5d9-daa2-4381-ae00-7f21a3351654",
-      type: "about",
-      location: [1, 1, 0, 0],
-      data: {
-        about:
-          '{"blocks":[{"key":"fsk7q","text":"Calvin","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2ea43","text":"Developer at FiveCent Software Systems 💻","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":12,"length":27,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"dst4u","text":"He/Him ♂️","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":7,"length":2,"key":0}],"data":{}},{"key":"4cdrj","text":"21 years old  🔞","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":12,"length":2,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"blk1i","text":"3rd year university student ✨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4uqhk","text":"Leo ♌","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"href":"https://emojipedia.org/male-sign/","url":"https://emojipedia.org/male-sign/"}}}}',
-      },
+      "public_id": "13989e2b-4d57-4085-b70a-c6b5e67c81b7",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "data": {
+        "image_url": "https://media.discordapp.net/attachments/198751173967216640/767647617462173736/Picture_2.png"
+      }
     },
     {
-      public_id: "58e27e33-6e6b-4a08-9060-c4306202a58c",
-      type: "about",
-      location: [1, 1, 3, 0],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"Likes","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":5,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"1lt1e","text":"Essendon 🔴⚫","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"59o5l","text":"Rain 🌧","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fnnhj","text":"Blue Cheese 🧀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cog2m","text":"Dislikes ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":9,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"68hn8","text":"Summer ☀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"acgt6","text":"Seafood 🦞","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9jhjb","text":"Fabrice 🙅‍♂️","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "e19cec40-77b8-4de0-b88f-42a01b6b0bda",
+      "type": "spotify_embed",
+      "location": [
+        1,
+        2,
+        0,
+        1
+      ],
+      "data": {
+        "external_url": "https://open.spotify.com/album/5WpDQt6EbpzXbqo9g9P0L6"
+      }
     },
     {
-      public_id: "7b188eb2-a1c4-4468-95ad-15554e3caa94",
-      type: "embed",
-      location: [1, 2, 0, 1],
-      data: {
-        external_url:
-          "https://open.spotify.com/embed/album/5WpDQt6EbpzXbqo9g9P0L6",
-      },
+      "public_id": "9ba899f8-90ab-47fb-abe4-34348e7d1ac4",
+      "type": "image",
+      "location": [
+        3,
+        2,
+        1,
+        2
+      ],
+      "data": {
+        "image_url": "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp"
+      }
     },
     {
-      public_id: "5996fea4-a010-4dec-8a9b-afee9d9f8ec6",
-      type: "embed",
-      location: [2, 1, 2, 1],
-      data: {
-        external_url: "https://www.youtube.com/embed/dGcsHMXbSOA",
-      },
+      "public_id": "79e7ba2c-afa8-45bd-83b8-2d2111add075",
+      "type": "youtube_embed",
+      "location": [
+        2,
+        1,
+        3,
+        1
+      ],
+      "data": {
+        "external_url": "https://youtu.be/dGcsHMXbSOA"
+      }
     },
     {
-      public_id: "7778cb18-263e-4b5d-a205-4bfe700c8621",
-      type: "image",
-      location: [2, 1, 1, 2],
-      data: {
-        image_url: "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp",
-      },
+      "public_id": "2d01fc09-8632-420a-93ef-cb2eb5e4dd71",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        4,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"The man who moves a mountain begins by carring small stones.\",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"dmcbg\",\"text\":\"- Calvin :)\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
     },
     {
-      public_id: "b9612117-061e-465b-8598-1dadd150b5f9",
-      type: "about",
-      location: [1, 1, 1, 1],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"                                     ↑","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ns4m","text":"                                    Me","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"16h20","text":"<--- Album I was listening to making this portfolio","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e3mbs","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6ncc0","text":"This guy showed me how to write this program ---> ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"113da","text":"I wish I could retire, boy that\'d be sweet. ","type":"blockquote","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6g41k","text":"                                      ↓","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "66441f43-e573-4c1b-8107-d320c96ab7dc",
+      "type": "about",
+      "location": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"                                                                              ↑\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"c2gsb\",\"text\":\"                                                                            Me\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"182ld\",\"text\":\"<--- Album I was listening to making this portfolio\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bak0u\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bgcri\",\"text\":\"            This guy showed me how to write this program --->\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1fnf\",\"text\":\"I wish I could retire, boy that'd be sweet.\",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5dhtl\",\"text\":\"                                                      ↓\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6iqhu\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
     },
     {
-      public_id: "154e06c2-e6f3-43b9-97c9-2a263455a194",
-      type: "about",
-      location: [1, 1, 3, 2],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dvf2u","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1hpm9","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5623p","text":"The man who moves a mountain begins by carring small stones.","type":"blockquote","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3ut8j","text":"- Calvin :)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "1aff2e3e-3a33-4271-ba03-cf686d8a841a",
+      "type": "about",
+      "location": [
+        1,
+        2,
+        4,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"7sfi\",\"text\":\"Essendon 🔴⚫\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"4cer8\",\"text\":\"Rain 🌧\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"es44j\",\"text\":\"Blue Cheese 🧀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"a4u74\",\"text\":\"Tennis 🎾\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"7thj0\",\"text\":\"Hyperpop 🎶\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"75dae\",\"text\":\"Japanese mayonnaise 😋\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":20,\"length\":1,\"key\":0}],\"data\":{}},{\"key\":\"6faef\",\"text\":\"Sound cancelling headphones 🎧\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"clrsm\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"5h0s0\",\"text\":\"Summer ☀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"f0a26\",\"text\":\"Seafood 🦞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"326vh\",\"text\":\"Children 👶\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"525a7\",\"text\":\"CSS 🅱\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"ek8j\",\"text\":\"Long hair 💇‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2v0ll\",\"text\":\"Dependencies 🦸‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2evq1\",\"text\":\"Fabrice 🙅‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://getemoji.com/\",\"url\":\"https://getemoji.com/\"}}}}"
+      }
     },
+    {
+      "public_id": "2778345a-4e53-4fd6-afd9-bfae5902e845",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        0,
+        3
+      ],
+      "data": {
+        "image_url": "https://i.kym-cdn.com/photos/images/newsfeed/001/462/672/469.jpg"
+      }
+    }
   ];
 
   return (
@@ -383,8 +430,8 @@ function Calvin() {
         width={columns * width}
         margin={[10, 10]}
         compactType={null}
-        isDraggable={true}
-        isResizable={true}
+        isDraggable={false}
+        isResizable={false}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
