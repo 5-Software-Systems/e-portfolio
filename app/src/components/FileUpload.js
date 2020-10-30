@@ -74,7 +74,7 @@ export function FileUpload(props) {
       "/api/user/" + props.userID + "/file/" + current,
       requestOptions
     );
-    setUpload(false);
+    setUpload(!upload);
     setCurrent("None");
   }
 
