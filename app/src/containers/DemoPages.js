@@ -150,197 +150,277 @@ function Echidna() {
 
 function Demo() {
 
+  const widgets = [
+    {
+      "public_id": "e19f5176-8cc7-4e1f-bc51-56aaf1b9b39c",
+      "type": "youtube_embed",
+      "location": [
+        1,
+        3,
+        0,
+        0
+      ],
+      "data": {
+        "external_url": "https://youtu.be/aoKwNx3yr-w"
+      }
+    },
+    {
+      "public_id": "923b0c88-33b5-47d2-a0c1-109fa0d78ad1",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        4,
+        0
+      ],
+      "data": {
+        "image_url": "https://media0.giphy.com/media/3o7ZeODTGuQOeLr3l6/giphy.gif"
+      }
+    },
+    {
+      "public_id": "539e5f0f-bae5-412d-852b-b363380715d6",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        1
+      ],
+      "data": {
+        "image_url": "https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320"
+      }
+    },
+    {
+      "public_id": "49d51c4d-ef2c-4806-88ee-5f3e3b68faee",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        4,
+        1
+      ],
+      "data": {
+        "image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2Fs1P4kzgXdyZK8%2Fgiphy.gif&f=1&nofb=1"
+      }
+    },
+    {
+      "public_id": "0d2d949b-e04a-4cab-acdb-bc8f1da7e4e5",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "data": {
+        "image_url": "https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041"
+      }
+    },
+    {
+      "public_id": "a8e4af58-fab8-4510-a97c-b253a27bf217",
+      "type": "youtube_embed",
+      "location": [
+        1,
+        1,
+        4,
+        2
+      ],
+      "data": {
+        "external_url": "https://youtu.be/G7RgN9ijwE4"
+      }
+    },
+    {
+      "public_id": "ad39999d-d855-48f2-bbc1-042daa0e3650",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        2
+      ],
+      "data": {
+        "image_url": "https://data.whicdn.com/images/286894498/original.gif"
+      }
+    },
+    {
+      "public_id": "6eac046d-5919-4527-9204-601f7084000b",
+      "type": "about",
+      "location": [
+        5,
+        1,
+        0,
+        3
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Welcome to my page!\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6rn3i\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":445,\"style\":\"CODE\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "e3e3f10c-7781-4e54-8791-ad44a331e9bf",
+      "type": "spotify_embed",
+      "location": [
+        1,
+        3,
+        1,
+        0
+      ],
+      "data": {
+        "external_url": "https://open.spotify.com/playlist/061KeniKf6abnCsesE0qlX?si=hwb92ZcOTViChdmjD6BH2A"
+      }
+    }
+  ];
+
   return (
       <ReactGridLayout
         className="layout"
         rowHeight={height}
         width={columns * width}
         margin={[10, 10]}
-        compactType="horizontal"
+        compactType={null}
+        isDraggable={true}
+        isResizable={true}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
-        <div key="a" data-grid={{ i: "a", x: 3, y: 1, w: 1, h: 2 }}>
-          <img
-            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2Fs1P4kzgXdyZK8%2Fgiphy.gif&f=1&nofb=1"}
-            alt="galaxy"
-            draggable="false"
-            height="100%"
-          />
-        </div>
-        <div key="b" data-grid={{ i: "b", x: 4, y: 1, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed1"
-            src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-        <div key="c" data-grid={{ i: "c", x: 0, y: 4, w: 2, h: 1 }}>
-          <img
-            src={
-              "https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041"
-            }
-            alt={"bruhmoment"}
-            height="100%"
-            draggable="false"
-          />
-        </div>
-        <div key="d" data-grid={{ i: "d", x: 1, y: 1, w: 2, h: 1 }}>
-          <img
-            src={
-              "https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320"
-            }
-            alt={"damn"}
-            height="100%"
-            draggable="false"
-          />
-        </div>
-        <div key="e" data-grid={{ i: "e", x: 1, y: 2, w: 2, h: 1 }}>
-          <img
-            src={"https://data.whicdn.com/images/286894498/original.gif"}
-            alt={"scarce"}
-            height="100%"
-            draggable="false"
-          />
-          <p>hey whats up guys its scarce here</p>
-        </div>
-        <div key="f" data-grid={{ i: "f", x: 2, y: 3, w: 2, h: 1 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed2"
-            src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
-        <div key="g" data-grid={{ i: "g", x: 0, y: 0, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed3"
-            src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R"
-            frameBorder="0"
-            allowtransparency="true"
-            allow="encrypted-media"
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
-        <div key="h" data-grid={{ i: "h", x: 1, y: 0, w: 1, h: 1 }}>
-          <img
-            src={"https://media0.giphy.com/media/3o7ZeODTGuQOeLr3l6/giphy.gif"}
-            alt={"bruhmoment"}
-            width={width}
-            draggable="false"
-          />
-        </div>
-        <div key="i" data-grid={{ i: "i", x: 2, y: 0, w: 3, h: 1 }}>
-          <h1> Welcome to My Page! </h1>{" "}
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.{" "}
-          </p>
-        </div>
-        <div key="gj" data-grid={{ i: "j", x: 0, y: 0, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed4"
-            src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403"
-            frameBorder="0"
-            allowtransparency="true"
-            allow="encrypted-media"
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
+        {widgets.map((widget) => (
+          <div
+            key={widget.public_id}
+            data-grid={{
+              i: widget.public_id,
+              w: widget.location[0],
+              h: widget.location[1],
+              x: widget.location[2],
+              y: widget.location[3],
+            }}
+          >
+            <MotherWidget widget={widget} />
+          </div>
+        ))}
       </ReactGridLayout>
   );
 }
+
 
 function Calvin() {
 
   const widgets = [
     {
-      public_id: "ce8f4405-7da8-4892-8af3-64b781908b63",
-      type: "image",
-      location: [2, 1, 1, 0],
-      data: {
-        image_url:
-          "https://media.discordapp.net/attachments/198751173967216640/767647617462173736/Picture_2.png",
-      },
+      "public_id": "c00de5ef-b942-4e74-b999-1f7653d0f130",
+      "type": "about",
+      "location": [
+        2,
+        1,
+        0,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"fsk7q\",\"text\":\"Calvin\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"7ch2j\",\"text\":\"Developer at FiveCent Software Systems 💻\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":27,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"282ne\",\"text\":\"He/Him ♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":7,\"length\":2,\"key\":0}],\"data\":{}},{\"key\":\"dm3nt\",\"text\":\"21 years old 🔞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":12,\"length\":1,\"style\":\"ITALIC\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"9lt1g\",\"text\":\"3rd year university student ✨\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"681iu\",\"text\":\"Leo ♌\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://emojipedia.org/male-sign/\",\"target\":\"_blank\",\"url\":\"https://emojipedia.org/male-sign/\"}}}}"
+      }
     },
     {
-      public_id: "aeabb5d9-daa2-4381-ae00-7f21a3351654",
-      type: "about",
-      location: [1, 1, 0, 0],
-      data: {
-        about:
-          '{"blocks":[{"key":"fsk7q","text":"Calvin","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"2ea43","text":"Developer at FiveCent Software Systems 💻","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":12,"length":27,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"dst4u","text":"He/Him ♂️","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":7,"length":2,"key":0}],"data":{}},{"key":"4cdrj","text":"21 years old  🔞","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":12,"length":2,"style":"ITALIC"}],"entityRanges":[],"data":{}},{"key":"blk1i","text":"3rd year university student ✨","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"4uqhk","text":"Leo ♌","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{"0":{"type":"LINK","mutability":"MUTABLE","data":{"href":"https://emojipedia.org/male-sign/","url":"https://emojipedia.org/male-sign/"}}}}',
-      },
+      "public_id": "13989e2b-4d57-4085-b70a-c6b5e67c81b7",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "data": {
+        "image_url": "https://media.discordapp.net/attachments/198751173967216640/767647617462173736/Picture_2.png"
+      }
     },
     {
-      public_id: "58e27e33-6e6b-4a08-9060-c4306202a58c",
-      type: "about",
-      location: [1, 1, 3, 0],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"Likes","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":5,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"1lt1e","text":"Essendon 🔴⚫","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"59o5l","text":"Rain 🌧","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"fnnhj","text":"Blue Cheese 🧀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"cog2m","text":"Dislikes ","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":9,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"68hn8","text":"Summer ☀","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"acgt6","text":"Seafood 🦞","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"9jhjb","text":"Fabrice 🙅‍♂️","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "e19cec40-77b8-4de0-b88f-42a01b6b0bda",
+      "type": "spotify_embed",
+      "location": [
+        1,
+        2,
+        0,
+        1
+      ],
+      "data": {
+        "external_url": "https://open.spotify.com/album/5WpDQt6EbpzXbqo9g9P0L6"
+      }
     },
     {
-      public_id: "7b188eb2-a1c4-4468-95ad-15554e3caa94",
-      type: "embed",
-      location: [1, 2, 0, 1],
-      data: {
-        external_url:
-          "https://open.spotify.com/embed/album/5WpDQt6EbpzXbqo9g9P0L6",
-      },
+      "public_id": "9ba899f8-90ab-47fb-abe4-34348e7d1ac4",
+      "type": "image",
+      "location": [
+        3,
+        2,
+        1,
+        2
+      ],
+      "data": {
+        "image_url": "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp"
+      }
     },
     {
-      public_id: "5996fea4-a010-4dec-8a9b-afee9d9f8ec6",
-      type: "embed",
-      location: [2, 1, 2, 1],
-      data: {
-        external_url: "https://www.youtube.com/embed/dGcsHMXbSOA",
-      },
+      "public_id": "79e7ba2c-afa8-45bd-83b8-2d2111add075",
+      "type": "youtube_embed",
+      "location": [
+        2,
+        1,
+        3,
+        1
+      ],
+      "data": {
+        "external_url": "https://youtu.be/dGcsHMXbSOA"
+      }
     },
     {
-      public_id: "7778cb18-263e-4b5d-a205-4bfe700c8621",
-      type: "image",
-      location: [2, 1, 1, 2],
-      data: {
-        image_url: "https://i.giphy.com/media/vXeeHUPxgBtp6/giphy.webp",
-      },
+      "public_id": "2d01fc09-8632-420a-93ef-cb2eb5e4dd71",
+      "type": "about",
+      "location": [
+        1,
+        1,
+        4,
+        0
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"The man who moves a mountain begins by carring small stones.\",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"dmcbg\",\"text\":\"- Calvin :)\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
     },
     {
-      public_id: "b9612117-061e-465b-8598-1dadd150b5f9",
-      type: "about",
-      location: [1, 1, 1, 1],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"                                     ↑","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"ns4m","text":"                                    Me","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"16h20","text":"<--- Album I was listening to making this portfolio","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"e3mbs","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6ncc0","text":"This guy showed me how to write this program ---> ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"113da","text":"I wish I could retire, boy that\'d be sweet. ","type":"blockquote","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"6g41k","text":"                                      ↓","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "66441f43-e573-4c1b-8107-d320c96ab7dc",
+      "type": "about",
+      "location": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"                                                                              ↑\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"c2gsb\",\"text\":\"                                                                            Me\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"182ld\",\"text\":\"<--- Album I was listening to making this portfolio\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bak0u\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"bgcri\",\"text\":\"            This guy showed me how to write this program --->\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"1fnf\",\"text\":\"I wish I could retire, boy that'd be sweet.\",\"type\":\"blockquote\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"5dhtl\",\"text\":\"                                                      ↓\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6iqhu\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
     },
     {
-      public_id: "154e06c2-e6f3-43b9-97c9-2a263455a194",
-      type: "about",
-      location: [1, 1, 3, 2],
-      data: {
-        about:
-          '{"blocks":[{"key":"vg3v","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"dvf2u","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1hpm9","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5623p","text":"The man who moves a mountain begins by carring small stones.","type":"blockquote","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"3ut8j","text":"- Calvin :)","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
-      },
+      "public_id": "1aff2e3e-3a33-4271-ba03-cf686d8a841a",
+      "type": "about",
+      "location": [
+        1,
+        2,
+        4,
+        2
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Likes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":5,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"7sfi\",\"text\":\"Essendon 🔴⚫\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"4cer8\",\"text\":\"Rain 🌧\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"es44j\",\"text\":\"Blue Cheese 🧀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"a4u74\",\"text\":\"Tennis 🎾\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"7thj0\",\"text\":\"Hyperpop 🎶\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"75dae\",\"text\":\"Japanese mayonnaise 😋\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[{\"offset\":20,\"length\":1,\"key\":0}],\"data\":{}},{\"key\":\"6faef\",\"text\":\"Sound cancelling headphones 🎧\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"clrsm\",\"text\":\"Dislikes\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"BOLD\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"5h0s0\",\"text\":\"Summer ☀\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"f0a26\",\"text\":\"Seafood 🦞\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"326vh\",\"text\":\"Children 👶\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"525a7\",\"text\":\"CSS 🅱\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"ek8j\",\"text\":\"Long hair 💇‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2v0ll\",\"text\":\"Dependencies 🦸‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"2evq1\",\"text\":\"Fabrice 🙅‍♂️\",\"type\":\"unordered-list-item\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{\"0\":{\"type\":\"LINK\",\"mutability\":\"MUTABLE\",\"data\":{\"href\":\"https://getemoji.com/\",\"url\":\"https://getemoji.com/\"}}}}"
+      }
     },
+    {
+      "public_id": "2778345a-4e53-4fd6-afd9-bfae5902e845",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        0,
+        3
+      ],
+      "data": {
+        "image_url": "https://i.kym-cdn.com/photos/images/newsfeed/001/462/672/469.jpg"
+      }
+    }
   ];
 
   return (
