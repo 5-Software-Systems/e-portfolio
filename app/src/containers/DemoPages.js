@@ -150,123 +150,156 @@ function Echidna() {
 
 function Demo() {
 
+  const widgets = [
+    {
+      "public_id": "e19f5176-8cc7-4e1f-bc51-56aaf1b9b39c",
+      "type": "youtube_embed",
+      "location": [
+        1,
+        3,
+        0,
+        0
+      ],
+      "data": {
+        "external_url": "https://youtu.be/aoKwNx3yr-w"
+      }
+    },
+    {
+      "public_id": "923b0c88-33b5-47d2-a0c1-109fa0d78ad1",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        4,
+        0
+      ],
+      "data": {
+        "image_url": "https://media0.giphy.com/media/3o7ZeODTGuQOeLr3l6/giphy.gif"
+      }
+    },
+    {
+      "public_id": "539e5f0f-bae5-412d-852b-b363380715d6",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        1
+      ],
+      "data": {
+        "image_url": "https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320"
+      }
+    },
+    {
+      "public_id": "49d51c4d-ef2c-4806-88ee-5f3e3b68faee",
+      "type": "image",
+      "location": [
+        1,
+        1,
+        4,
+        1
+      ],
+      "data": {
+        "image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2Fs1P4kzgXdyZK8%2Fgiphy.gif&f=1&nofb=1"
+      }
+    },
+    {
+      "public_id": "0d2d949b-e04a-4cab-acdb-bc8f1da7e4e5",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        0
+      ],
+      "data": {
+        "image_url": "https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041"
+      }
+    },
+    {
+      "public_id": "a8e4af58-fab8-4510-a97c-b253a27bf217",
+      "type": "youtube_embed",
+      "location": [
+        1,
+        1,
+        4,
+        2
+      ],
+      "data": {
+        "external_url": "https://youtu.be/G7RgN9ijwE4"
+      }
+    },
+    {
+      "public_id": "ad39999d-d855-48f2-bbc1-042daa0e3650",
+      "type": "image",
+      "location": [
+        2,
+        1,
+        2,
+        2
+      ],
+      "data": {
+        "image_url": "https://data.whicdn.com/images/286894498/original.gif"
+      }
+    },
+    {
+      "public_id": "6eac046d-5919-4527-9204-601f7084000b",
+      "type": "about",
+      "location": [
+        5,
+        1,
+        0,
+        3
+      ],
+      "data": {
+        "about": "{\"blocks\":[{\"key\":\"vg3v\",\"text\":\"Welcome to my page!\",\"type\":\"header-two\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"6rn3i\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":445,\"style\":\"CODE\"}],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}"
+      }
+    },
+    {
+      "public_id": "e3e3f10c-7781-4e54-8791-ad44a331e9bf",
+      "type": "spotify_embed",
+      "location": [
+        1,
+        3,
+        1,
+        0
+      ],
+      "data": {
+        "external_url": "https://open.spotify.com/playlist/061KeniKf6abnCsesE0qlX?si=hwb92ZcOTViChdmjD6BH2A"
+      }
+    }
+  ];
+
   return (
       <ReactGridLayout
         className="layout"
         rowHeight={height}
         width={columns * width}
         margin={[10, 10]}
-        compactType="horizontal"
+        compactType={null}
+        isDraggable={false}
+        isResizable={false}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
-        <div key="a" data-grid={{ i: "a", x: 3, y: 1, w: 1, h: 2 }}>
-          <img
-            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.giphy.com%2Fmedia%2Fs1P4kzgXdyZK8%2Fgiphy.gif&f=1&nofb=1"}
-            alt="galaxy"
-            draggable="false"
-            height="100%"
-          />
-        </div>
-        <div key="b" data-grid={{ i: "b", x: 4, y: 1, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed1"
-            src="https://www.youtube.com/embed/aoKwNx3yr-w?autoplay=0&loop=1&color=white"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-        <div key="c" data-grid={{ i: "c", x: 0, y: 4, w: 2, h: 1 }}>
-          <img
-            src={
-              "https://media1.tenor.com/images/8daeb547b121eef5f34e7d4e0b88ea35/tenor.gif?itemid=5156041"
-            }
-            alt={"bruhmoment"}
-            height="100%"
-            draggable="false"
-          />
-        </div>
-        <div key="d" data-grid={{ i: "d", x: 1, y: 1, w: 2, h: 1 }}>
-          <img
-            src={
-              "https://media1.tenor.com/images/48d0355da1b5b8ebd414323806ac2a7f/tenor.gif?itemid=13271320"
-            }
-            alt={"damn"}
-            height="100%"
-            draggable="false"
-          />
-        </div>
-        <div key="e" data-grid={{ i: "e", x: 1, y: 2, w: 2, h: 1 }}>
-          <img
-            src={"https://data.whicdn.com/images/286894498/original.gif"}
-            alt={"scarce"}
-            height="100%"
-            draggable="false"
-          />
-          <p>hey whats up guys its scarce here</p>
-        </div>
-        <div key="f" data-grid={{ i: "f", x: 2, y: 3, w: 2, h: 1 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed2"
-            src="https://www.youtube.com/embed/G7RgN9ijwE4?color=white"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
-        <div key="g" data-grid={{ i: "g", x: 0, y: 0, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed3"
-            src="https://open.spotify.com/embed/playlist/1nvxlaARYE1MMzeEfKgm1R"
-            frameBorder="0"
-            allowtransparency="true"
-            allow="encrypted-media"
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
-        <div key="h" data-grid={{ i: "h", x: 1, y: 0, w: 1, h: 1 }}>
-          <img
-            src={"https://media0.giphy.com/media/3o7ZeODTGuQOeLr3l6/giphy.gif"}
-            alt={"bruhmoment"}
-            width={width}
-            draggable="false"
-          />
-        </div>
-        <div key="i" data-grid={{ i: "i", x: 2, y: 0, w: 3, h: 1 }}>
-          <h1> Welcome to My Page! </h1>{" "}
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.{" "}
-          </p>
-        </div>
-        <div key="gj" data-grid={{ i: "j", x: 0, y: 0, w: 1, h: 3 }}>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed4"
-            src="https://embed.music.apple.com/au/album/future-nostalgia/1495799403"
-            frameBorder="0"
-            allowtransparency="true"
-            allow="encrypted-media"
-          ></iframe>
-          <p>hey this is pretty cool</p>
-        </div>
+        {widgets.map((widget) => (
+          <div
+            key={widget.public_id}
+            data-grid={{
+              i: widget.public_id,
+              w: widget.location[0],
+              h: widget.location[1],
+              x: widget.location[2],
+              y: widget.location[3],
+            }}
+          >
+            <MotherWidget widget={widget} />
+          </div>
+        ))}
       </ReactGridLayout>
   );
 }
+
 
 function Calvin() {
 
@@ -350,8 +383,8 @@ function Calvin() {
         width={columns * width}
         margin={[10, 10]}
         compactType={null}
-        isDraggable={false}
-        isResizable={false}
+        isDraggable={true}
+        isResizable={true}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
       >
