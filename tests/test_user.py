@@ -1,6 +1,6 @@
 import json
 
-from tests.helper import get_headers, create_user, set_up_user
+from tests.helper import get_headers, create_user, set_up_user, create_portfolio
 
 
 def test_get_users(app, client):
@@ -48,3 +48,29 @@ def test_patch_user(app, client):
             if k in expected['user'].keys()
         }
     }
+
+
+def test_delete_empty_user(app, client):
+    user_public_id, auth = set_up_user(app, client)
+    res = client.delete(f'/api/user/{user_public_id}', headers=get_headers(auth))
+    assert res.status_code == 200
+
+    expected = {
+        'status': 'success',
+        'message': 'user deleted'
+    }
+    assert expected == json.loads(res.get_data(as_text=True))
+
+
+def test_delete_user(app, client):
+    user_public_id, auth = set_up_user(app, client)
+    create_portfolio(app, client, user_public_id, auth)
+    res = client.delete(f'/api/user/{user_public_id}', headers=get_headers(auth))
+    assert res.status_code == 200
+
+    expected = {
+        'status': 'success',
+        'message': 'user deleted'
+    }
+    assert expected == json.loads(res.get_data(as_text=True))
+
