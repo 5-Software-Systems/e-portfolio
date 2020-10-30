@@ -30,7 +30,7 @@ export function FileUpload(props) {
   }
 
   async function uploadImage(file) {
-    if (!file || file.type.split('/')[0] != 'image') {
+    if (!file || file.type.split('/')[0] !== 'image') {
       setFileError(true);
       return;
     }
