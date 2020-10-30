@@ -229,9 +229,7 @@ export function FileUpload(props) {
       </div>
       <div id="upload-box">
         <input type="file" accept="image/*" onChange={handleUpload} />
-        <br />
-        <br />
-        {upload ? <p>Uploaded successfully!</p> : null}
+  
       </div>
       <div className="actions">
         <span>
