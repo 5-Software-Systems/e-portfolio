@@ -20,6 +20,7 @@ export function FileUpload(props) {
 
   const [upload, setUpload] = useState(false);
   const [nothing, setNothing] = useState(false);
+  const [cantDelete, setCantDelete] = useState(false);
   const [fileError, setFileError] = useState(false);
 
   //file uploading
@@ -29,7 +30,7 @@ export function FileUpload(props) {
   }
 
   async function uploadImage(file) {
-    if (file.type.split('/')[0] != 'image') {
+    if (!file || file.type.split('/')[0] !== 'image') {
       setFileError(true);
       return;
     }
@@ -56,6 +57,12 @@ export function FileUpload(props) {
       setNothing(true);
       return;
     }
+
+    if (current.split('/')[1] === "images" && current.split('/')[2] === "default") {
+      setCantDelete(true);
+      return;
+    }
+
     const requestOptions = {
       method: "DELETE",
       headers: {
@@ -85,14 +92,19 @@ export function FileUpload(props) {
       setNothing(true);
       return;
     }
+    var url;
 
-    var url =
-      "http://" +
-      window.location.host +
-      "/api/user/" +
-      props.userID +
-      "/file/" +
-      current;
+    if (current.split('/')[1] === "images" && current.split('/')[2] === "default") {
+      url = current;
+    } else {
+      url =
+        "http://" +
+        window.location.host +
+        "/api/user/" +
+        props.userID +
+        "/file/" +
+        current;
+    }
 
     if (props.setImage) {
       props.setImage(url);
@@ -148,6 +160,36 @@ export function FileUpload(props) {
         <p> Selected Image: {current}</p>
         <hr />
         <div className="images">
+            <span>
+              <button onClick={(e) => setCurrent(process.env.PUBLIC_URL + "/images/default/blue_pattern.png")}>
+                <ImageThumb image={process.env.PUBLIC_URL + "/images/default/blue_pattern.png"} />
+              </button>
+            </span>
+            <span>
+              <button onClick={(e) => setCurrent(process.env.PUBLIC_URL + "/images/default/consistent.png")}>
+                <ImageThumb image={process.env.PUBLIC_URL + "/images/default/consistent.png"} />
+              </button>
+            </span>
+            <span>
+              <button onClick={(e) => setCurrent(process.env.PUBLIC_URL + "/images/default/contrast.png")}>
+                <ImageThumb image={process.env.PUBLIC_URL + "/images/default/contrast.png"} />
+              </button>
+            </span>
+            <span>
+              <button onClick={(e) => setCurrent(process.env.PUBLIC_URL + "/images/default/galaxy.png")}>
+                <ImageThumb image={process.env.PUBLIC_URL + "/images/default/galaxy.png"} />
+              </button>
+            </span>
+            <span>
+              <button onClick={(e) => setCurrent(process.env.PUBLIC_URL + "/images/default/pretty_tree.png")}>
+                <ImageThumb image={process.env.PUBLIC_URL + "/images/default/pretty_tree.png"} />
+              </button>
+            </span>
+            <span>
+              <button onClick={(e) => setCurrent("/images/default/xp_hills.png")}>
+                <ImageThumb image={"/images/default/xp_hills.png"} />
+              </button>
+            </span>
             {files.map((file) => (
               <span>
                 <button onClick={(e) => selectImage(file.url)}>
@@ -162,18 +204,27 @@ export function FileUpload(props) {
           open={nothing}
           onClose={() => setNothing(false)}
           key={'bottomcenter'}
-          autoHideDuration={1500}
+          autoHideDuration={2500}
         >
           <Alert severity="error">Nothing selected!</Alert>
+        </Snackbar>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={cantDelete}
+          onClose={() => setCantDelete(false)}
+          key={'bottomcenter'}
+          autoHideDuration={2500}
+        >
+          <Alert severity="error">Cannot delete a default image!</Alert>
         </Snackbar>
         <Snackbar
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={fileError}
           onClose={() => setFileError(false)}
           key={'nut'}
-          autoHideDuration={1500}
+          autoHideDuration={2500}
         >
-          <Alert severity="error">File error! Please upload image type files only.</Alert>
+          <Alert severity="warning">File error! Please upload image type files only.</Alert>
       </Snackbar>
       </div>
       <div id="upload-box">
@@ -190,7 +241,7 @@ export function FileUpload(props) {
           </button>
         </span>
         <span>
-          {current === "None" ? (
+          {current === "None" || (current.split('/')[1] === "images" && current.split('/')[2] === "default") ? (
             <button className="button" onClick={deleteFile}>
               {" "}
               <b>DELETE</b>{" "}
@@ -244,5 +295,9 @@ export function FilePopUp(props) {
 }
 
 const ImageThumb = ({ image }) => {
-  return <img src={image} alt={""} />;
+  return <img
+           draggable={"false"}
+           src={image}
+           alt={""}
+         />;
 };
