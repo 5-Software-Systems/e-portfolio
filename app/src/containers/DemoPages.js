@@ -949,31 +949,48 @@ function Team() {
 
 function Tutorial() {
 
+  const widgets = [
+    {
+      "public_id": "a7244d97-295d-4808-b7ba-a8c8d235060c",
+      "type": "youtube_embed",
+      "location": [
+        5,
+        3,
+        0,
+        0
+      ],
+      "data": {
+        "external_url": "https://youtu.be/jObLzofKDX0"
+      }
+    }
+  ]
+
   return (
-      <ReactGridLayout
-        className="layout"
-        rowHeight={height}
-        width={columns * width}
-        margin={[10, 10]}
-        compactType="horizontal"
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-        cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
+    <ReactGridLayout
+    className="layout"
+    rowHeight={height}
+    width={columns * width}
+    margin={[10, 10]}
+    compactType={"horizontal"}
+    isDraggable={true}
+    isResizable={true}
+    breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+    cols={{ lg: 5, md: 5, sm: 5, xs: 5, xxs: 5 }}
+  >
+    {widgets.map((widget) => (
+      <div
+        key={widget.public_id}
+        data-grid={{
+          i: widget.public_id,
+          w: widget.location[0],
+          h: widget.location[1],
+          x: widget.location[2],
+          y: widget.location[3],
+        }}
       >
-        <div key="a" data-grid={{ i: "a", x: 0, y: 0, w: 1, h: 1 }}>
-          <h1> tutorial page </h1> <p>sooper mahreo in riel loife </p>
-          <iframe
-            width="100%"
-            height="100%"
-            title="embed1"
-            src="https://www.youtube.com/embed/8EQ17_B7kug"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-        <div key="b" data-grid={{ i: "b", x: 1, y: 0, w: 1, h: 1 }}>
-          <h1> tutorial video goes here </h1>
-        </div>
-      </ReactGridLayout>
+        <MotherWidget widget={widget} />
+      </div>
+    ))}
+  </ReactGridLayout>
   );
 }
