@@ -1,0 +1,32 @@
+.imageGallery .images {
+    max-height: 50vh;
+    width: 99%;
+    overflow-y: scroll;
+
+}
+
+.imageGallery button {
+    margin:5px;
+    overflow: hidden;
+    border-radius: 20px;
+    border-width: 0px;
+    outline:none;
+
+    height:200px;
+    width:200px;
+
+    transition: all 0.1s ease;
+}
+
+.imageGallery button:focus {
+    height: 180px;
+    width: 180px;
+    margin: 15px;
+}
+
+.imageGallery button img {
+    margin-left: -8px;
+    margin-top: -1px;
+    width: 108%;
+    height: 101%;
+}

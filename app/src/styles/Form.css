@@ -1,43 +1,105 @@
 .form-container {
-  max-width: 300px;
+  max-width: 450px;
+  min-width: 300px;
   padding: 10px;
-  background-color: white;
+  background-color: #f7f8fa;
+  border-radius: 20px;
+  margin: auto;
 }
 
-.form-container input[type=email], .form-container input[type=password], .form-container input[type=text] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  border: none;
-  background-color: #f1f1f1;
-}
-
-/* When the inputs get focus, do something */
-.form-container input[type=text]:hover, .form-container input[type=password]:hover, .form-container input[type=email]:hover {
-  background-color: #ddd;
+.form-container:focus {
   outline: none;
+}
+
+.form-container input[type=email],
+.form-container input[type=password],
+.form-container input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  outline: none;
+}
+
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:invalid:required,
+.form-container input[type=password]:invalid:required,
+.form-container input[type=email]:invalid:required {
+  background-color: #ddd;
+  border: 3px solid #f9a826;
+}
+
+/* When the required inputs aren't valid, do something */
+.form-container input[type=text]:valid:required,
+.form-container input[type=password]:valid:required,
+.form-container input[type=email]:valid:required {
+  background-color: #ddd;
+  border: 3px solid #06E690;
 }
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #1ace73;
+  background-color: #06E690;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
   margin-bottom:10px;
-  opacity: 0.8;
-}
-
-.form-container .cancel {
-  background-color: #eb2b25;
-}
-
-.form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
 
-.form-container .cancel:hover, .open-button:hover {
-  opacity: 0.88;
+.form-container .cancel {
+  background-color: #F95858;
+  opacity: 1;
+}
+
+.form-container btn:hover {
+  opacity: 0.9;
+}
+
+.forgot{
+  display: block;
+  text-align: right;
+  width: 100%;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.hidden{
+  display: none;
+}
+
+.required{
+  display: inline;
+  color: #ff0000;
+}
+
+.form .modal {
+    font-size: 12px;
+  }
+  .form .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .form .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+  }
+
+.form-content {
+    margin: auto;
+	background-color: #fff;
+	border: 3px solid #f7f8fa;
+	z-index: 1101;
+}
+
+.form-overlay .popup-content {
+  width: auto;
 }

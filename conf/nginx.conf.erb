@@ -1,0 +1,58 @@
+daemon off;
+worker_processes auto;
+
+events {
+   use epoll;
+   accept_mutex on;
+   worker_connections 1024;
+   multi_accept on;
+}
+
+http {
+   server_tokens off;
+   gzip on;
+   gzip_min_length 250;
+
+   access_log off;
+   error_log logs/nginx/error.log crit;
+
+   include mime.types;
+   default_type application/octet-stream;
+
+   client_max_body_size 2M;
+
+   upstream app_server {
+      server unix:/tmp/nginx.socket fail_timeout=0;
+   }
+
+   server {
+        listen 443 ssl default_server;
+        server_name fivecent-eportfolio.herokuapp.com;
+
+        root /e-portfolio/app/build;
+        index index.html;
+
+        client_max_body_size 2M;
+
+        location / {
+        # checks for static file, if not found proxy to app
+        try_files $uri @proxy_to_app;
+        }
+
+        location @proxy_to_app {
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header Host $http_host;
+          proxy_redirect off;
+          proxy_pass https://app_server;
+        }
+
+        # static
+        location ~* \.(jpg|jpeg|png|gif|ico|svg|otf)$ {
+            expires 30d;
+        }
+        location ~* \.(css|js)$ {
+            expires 7d;
+        }
+   }
+}

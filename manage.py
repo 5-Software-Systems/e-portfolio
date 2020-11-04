@@ -1,22 +1,32 @@
 from flask_script import Manager
 
-from app import app, db
+from app import db, create_app
 from api.util import db as dbtest
-from api.util import api_
 
+app = create_app()
 manager = Manager(app)
 
 
 @manager.command
+def run():
+    app.run()
+
+
+@manager.command
 def reset():
-    dbtest.delete()
+    dbtest.delete(app, db)
     dbtest.create(app, db)
 
 
 @manager.command
 def populate():
     dbtest.clean(app, db)
-    dbtest.populate(app)
+    dbtest.populate(app, db)
+
+
+@manager.command
+def create():
+    dbtest.create(app, db)
 
 
 @manager.command

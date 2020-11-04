@@ -1,33 +1,80 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import Popup from 'reactjs-popup';
+import React, { useState, Fragment } from "react";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Fade from "@material-ui/core/Fade";
+import "../../styles/Form.css";
+
+import LoginForm from "../Forms/Login_Form";
+import SignupForm from "../Forms/Signup_Form";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
+const useStyles = makeStyles((theme) => ({
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    outline: "none",
+  },
+}));
 
 export default function CustomPopup(props) {
-    const [open, setOpen] = useState(false);
-    const closeModal = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const [isComplete, setComplete] = useState(false);
+  const classes = useStyles();
 
-    const name = props.name;
-    const content = props.children;
+  const handleSubmit = () => {
+    handleClose();
+    setComplete(true);
+  }
 
-    function CloseButton() {
-        return (
-            <Button className="btn cancel" onClick={closeModal} type="button">
-                Close
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  var content;
+  var alert;
+
+  if (props.name === "Login") {
+    content = LoginForm(() => handleSubmit());
+    alert = null;
+  } else if (props.name === "Sign Up") {
+    content = SignupForm(() => handleSubmit());
+    alert = <Alert severity="info">A verification email has been sent to your email address, please follow the link to verify your account before logging in.
+          If it doesn't appear within a few minutes, check your spam folder.</Alert>
+  }
+
+  return (
+    <Fragment>
+      <Button color="inherit" onClick={() => setOpen((o) => !o)}>
+        {props.name}
+      </Button>
+      <Modal
+        className={classes.modal}
+        aria-labelledby={props.name}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+      >
+        <Fade in={open}>
+          <div className="form-container">
+            {content}
+            <Button className="btn cancel" onClick={handleClose}>
+              Close
             </Button>
-        );
-    }
-
-    return (
-        <div>
-            <Button className="btn btn-info m-2" onClick={() => setOpen(o => !o)} type="button">
-                { name }
-            </Button>
-            <Popup className="modal" open={open} closeOnDocumentClick onClose={closeModal} modal >
-                <form action="/action_page.php" className="form-container">
-                    { content }
-                    <CloseButton />
-                </form>
-            </Popup>
-        </div>
-    );
+          </div>
+        </Fade>
+      </Modal>
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={isComplete}
+        onClose={() => setComplete(false)}
+        key={'topcenter'}
+        autoHideDuration={15000}
+      >
+        {alert}
+      </Snackbar>
+    </Fragment>
+  );
 }

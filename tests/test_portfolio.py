@@ -1,15 +1,12 @@
 import json
-from .test_user import create_user, get_headers
 
+from .helper import create_portfolio, get_headers, set_up_user
 
-####################################################
-############## TEST FUNCTIONS ######################
-####################################################
 
 def test_create_portfolio(app, client):
-    public_id = setupUser(app, client)
+    user_public_id, auth = set_up_user(app, client)
 
-    res = create_portfolio(app, client, public_id)
+    res = create_portfolio(app, client, user_public_id, auth)
     assert res.status_code == 201
 
     public_id = json.loads(res.data)['portfolio']['public_id']
@@ -17,19 +14,22 @@ def test_create_portfolio(app, client):
     expected = {
         "portfolio": {
             "public_id": public_id,
-            "title": "title"
+            "title": "title",
+            "background_url": None
         }
     }
     assert expected == json.loads(res.get_data(as_text=True))
 
 
 def test_get_portfolios(app, client):
-    public_id = setupUser(app, client)
+    user_public_id, auth = set_up_user(app, client)
 
-    res = create_portfolio(app, client, public_id)
+    res = create_portfolio(app, client, user_public_id, auth)
     assert res.status_code == 201
 
-    res = client.get('/api/user/' + public_id + '/portfolio')
+    headers = get_headers(auth)
+
+    res = client.get(f'/api/user/{user_public_id}/portfolio', headers=headers)
     assert res.status_code == 200
 
     public_id = json.loads(res.data)['portfolios'][0]['public_id']
@@ -37,7 +37,8 @@ def test_get_portfolios(app, client):
         "portfolios": [
             {
                 "public_id": public_id,
-                "title": "title"
+                "title": "title",
+                "background_url": None
             }
         ]
     }
@@ -45,19 +46,22 @@ def test_get_portfolios(app, client):
 
 
 def test_get_portfolio(app, client):
-    public_id = setupUser(app, client)
+    user_public_id, auth = set_up_user(app, client)
 
-    res = create_portfolio(app, client, public_id)
+    res = create_portfolio(app, client, user_public_id, auth)
     assert res.status_code == 201
 
-    public_id = json.loads(res.data)['portfolio']['public_id']
+    portfolio_public_id = json.loads(res.data)['portfolio']['public_id']
 
-    res = client.get('/api/portfolio/' + public_id)
+    headers = get_headers(auth)
+
+    res = client.get(f'/api/user/{user_public_id}/portfolio/{portfolio_public_id}', headers=headers)
     assert res.status_code == 200
 
     expected = {
         "portfolio": {
-            "public_id": public_id,
+            'background_url': None,
+            "public_id": portfolio_public_id,
             "title": "title",
             "widget": []
         }
@@ -66,38 +70,45 @@ def test_get_portfolio(app, client):
 
 
 def test_patch_portfolio(app, client):
-    public_id = setupUser(app, client)
+    user_public_id, auth = set_up_user(app, client)
 
-    res = create_portfolio(app, client, public_id)
+    res = create_portfolio(app, client, user_public_id, auth)
     assert res.status_code == 201
 
-    public_id = json.loads(res.data)['portfolio']['public_id']
+    portfolio_public_id = json.loads(res.data)['portfolio']['public_id']
 
     data = {
         "title": "patched_title"
     }
 
-    res = client.patch('/api/portfolio/' + public_id, data=json.dumps(data), headers=get_headers())
+    headers = get_headers(auth)
+
+    res = client.patch(f'/api/user/{user_public_id}/portfolio/{portfolio_public_id}',
+                       data=json.dumps(data), headers=headers)
     assert res.status_code == 200
 
     expected = {
         'portfolio': {
-            'public_id': public_id,
-            'title': 'patched_title'
+            'public_id': portfolio_public_id,
+            'title': 'patched_title',
+            'background_url': None,
         }
     }
     assert expected == json.loads(res.get_data(as_text=True))
 
 
 def test_delete_portfolio(app, client):
-    public_id = setupUser(app, client)
+    user_public_id, auth = set_up_user(app, client)
 
-    res = create_portfolio(app, client, public_id)
+    res = create_portfolio(app, client, user_public_id, auth)
     assert res.status_code == 201
 
-    public_id = json.loads(res.data)['portfolio']['public_id']
+    portfolio_public_id = json.loads(res.data)['portfolio']['public_id']
 
-    res = client.delete('/api/portfolio/' + public_id)
+    headers = get_headers(auth)
+
+    res = client.delete(f'/api/user/{user_public_id}/portfolio/{portfolio_public_id}',
+                        headers=headers)
     assert res.status_code == 200
 
     expected = {
@@ -105,24 +116,3 @@ def test_delete_portfolio(app, client):
         "message": "portfolio deleted"
     }
     assert expected == json.loads(res.get_data(as_text=True))
-
-
-####################################################
-############ HELPER FUNCTIONS ######################
-####################################################
-def create_portfolio(app, client, public_id):
-    data = {
-        "title": "title"
-    }
-
-    res = client.post('/api/user/' + public_id + '/portfolio',
-                      data=json.dumps(data), headers=get_headers())
-    return res
-
-
-def setupUser(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    public_id = json.loads(res.data)['user']['public_id']
-    return public_id

@@ -1,98 +1,74 @@
 import json
+from urllib import parse
 
-from .test_user import create_user, get_headers
+from .helper import create_login_verify, create_login, verify, forgot_password, get_headers, user_data
 
 
-####################################################
-############## TEST FUNCTIONS ######################
-####################################################
-
+# /auth/login
 def test_login(app, client):
-    res = login(app, client)
-    assert res.status_code == 200
+    login_res, user_res = create_login_verify(app, client)
+    assert login_res.status_code == 200
 
 
-def test_incorrect_password_login(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    data = {
-        "email": "email",
-        "password": "incorrect_password"
-    }
-
-    res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
-    assert res.status_code == 401
-
-    expected = {
-        "error": "LoginNotFound",
-        "message": "Login details incorrect, check and try again"
-    }
-    assert expected == json.loads(res.get_data(as_text=True))
-
-
-def test_unknown_user_login(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
-
-    data = {
-        "email": "unknown_user",
-        "password": "password"
-    }
-
-    res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
-    assert res.status_code == 401
-
-    expected = {
-        "error": "LoginNotFound",
-        "message": "Login details incorrect, check and try again"
-    }
-    assert expected == json.loads(res.get_data(as_text=True))
-
-
+# /auth/logout
 def test_logout(app, client):
-    res = login(app, client)
+    login_res, user_res = create_login_verify(app, client)
+    assert login_res.status_code == 200
+
+    auth = json.loads(login_res.data)['Authorization']
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(auth)})
+    res = client.post('/api/auth/logout', headers=headers)
     assert res.status_code == 200
 
-    auth = json.loads(res.data)['Authorization']
 
-    client.post('/api/auth/logout')
+# /auth/user
+def test_check_token(app, client):
+    login_res, user_res = create_login_verify(app, client)
+
+    auth = json.loads(login_res.data)['Authorization']
+    headers = get_headers()
+    headers.update({'Authorization': 'Bearer {}'.format(auth)})
+    res = client.get('/api/auth/user', headers=headers)
+
     assert res.status_code == 200
 
 
-# TODO get this to work
-# def test_check_token(app, client):
-#     res = login(app, client)
-#     assert res.status_code == 200
-#
-#     auth = json.loads(res.data)['Authorization']
-#
-#     mimetype = 'application/json'
-#     headers = {
-#         'Content-Type': mimetype,
-#         'Accept': mimetype,
-#         'Authorization': auth
-#     }
-#
-#     res = client.get('/api/auth/user', headers=headers)
-#     print(res.data)
-#     assert res.status_code == 200
+def test_forgot_password(app, client):
+    res = forgot_password(app, client)
 
-# TODO find a way to not send emails for password resets
-# def test_password_reset(app, client):
+    assert res.status_code == 200
 
 
-####################################################
-############ HELPER FUNCTIONS ######################
-####################################################
-def login(app, client):
-    res = create_user(app, client)
-    assert res.status_code == 201
+def test_reset_password(app, client):
+    forgot_res = forgot_password(app, client)
+
+    reset_link = json.loads(forgot_res.data)['link']
+    parsed = parse.urlparse(reset_link)
+    user_public_id = parse.parse_qs(parsed.query)['user'][0]
+    auth = parse.parse_qs(parsed.query)['auth'][0]
+
+    new_password = "new_password"
 
     data = {
-        "email": "email",
-        "password": "password"
+        "public_id": user_public_id,
+        "password": new_password
     }
 
-    res = client.post('/api/auth/login', data=json.dumps(data), headers=get_headers())
-    return res
+    res = client.post(f'api/user/{user_public_id}/password_reset', data=json.dumps(data), headers=get_headers(auth))
+
+    assert res.status_code == 200
+
+
+def test_verify(app, client):
+    login_res, user_res = create_login(app, client)
+    assert login_res.status_code == 200
+
+    verify_link = json.loads(login_res.data)['Authorization']
+    parsed = parse.urlparse(verify_link)
+    user_public_id = parse.parse_qs(parsed.query)['user'][0]
+    auth = parse.parse_qs(parsed.query)['auth'][0]
+
+    res = verify(app, client, user_public_id, auth)
+
+    assert res.status_code == 200

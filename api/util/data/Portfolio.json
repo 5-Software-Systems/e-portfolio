@@ -1,17 +1,22 @@
 [
   {
+    "public_id": "portfolio_public_id_1",
     "user_id": "1",
-    "title": "Personal"
+    "title": "Personal",
+    "background_url": "https://image.cnbcfm.com/api/v1/image/105438875-1536336503523screen-shot-2018-09-07-at-12.07.32-pm.jpg?v=1536336590&w=1600&h=900"
   },
   {
+    "public_id": "portfolio_public_id_2",
     "user_id": "1",
     "title": "Professional"
   },
   {
+    "public_id": "portfolio_public_id_3",
     "user_id": "2",
     "title": "Personal"
   },
   {
+    "public_id": "portfolio_public_id_4",
     "user_id": "2",
     "title": "Professional"
   }

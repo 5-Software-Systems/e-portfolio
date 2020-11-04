@@ -9,6 +9,10 @@ response = namespace.model(
     name='response',
     model=dict([response_status, response_message])
 )
+link_response = namespace.model(
+    name='response',
+    model=dict([response_status, response_message, link])
+)
 
 widget = namespace.model(
     name='widget',
@@ -33,19 +37,19 @@ widget_type = namespace.model(
 
 portfolio_new = namespace.model(
     name='portfolio_new',
-    model=dict([portfolio_title])
+    model=dict([portfolio_title, background_url])
 )
 portfolio_update = namespace.model(
     name='portfolio_update',
-    model=dict([portfolio_title])
+    model=dict([portfolio_title, background_url])
 )
 portfolio_basic = namespace.model(
     name='portfolio_basic',
-    model=dict([public_id, portfolio_title])
+    model=dict([public_id, portfolio_title, background_url])
 )
 portfolio = namespace.model(
     name='portfolio',
-    model=dict([public_id, portfolio_title,
+    model=dict([public_id, portfolio_title, background_url,
                 ('widget', fields.List(fields.Nested(widget), attribute='widget_list'))])
 )
 
@@ -55,7 +59,7 @@ user_new = namespace.model(
 )
 user_basic = namespace.model(
     name='user',
-    model=dict([public_id, email, name_first, name_last, registered_on])
+    model=dict([public_id, email, name_first, name_last, registered_on, link])
 )
 user_change = namespace.model(
     name='user_change',
@@ -89,3 +93,13 @@ auth_token = namespace.model(
 )
 auth_token_header = namespace.parser()
 auth_token_header.add_argument('Authorization', type=str, location='headers', required=True, help='Bearer <token>')
+
+file = namespace.model(
+    name='file',
+    model=dict([file_name])
+)
+
+share = namespace.model(
+    name='share',
+    model=dict([duration])
+)
