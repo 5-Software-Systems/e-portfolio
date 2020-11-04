@@ -22,6 +22,7 @@ export function FileUpload(props) {
   const [nothing, setNothing] = useState(false);
   const [cantDelete, setCantDelete] = useState(false);
   const [fileError, setFileError] = useState(false);
+  const [fileToBig, setFileToBig] = useState(false);
 
   //file uploading
 
@@ -32,6 +33,10 @@ export function FileUpload(props) {
   async function uploadImage(file) {
     if (!file || file.type.split('/')[0] !== 'image') {
       setFileError(true);
+      return;
+    }
+    if (!file || file.size > 2048 * 1024) {
+      setFileToBig(true);
       return;
     }
 
@@ -211,10 +216,19 @@ export function FileUpload(props) {
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           open={cantDelete}
           onClose={() => setCantDelete(false)}
-          key={'bottomcenter'}
+          key={'bottommiddle'}
           autoHideDuration={2500}
         >
           <Alert severity="error">Cannot delete a default image!</Alert>
+        </Snackbar>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          open={fileToBig}
+          onClose={() => setFileToBig(false)}
+          key={'bottom'}
+          autoHideDuration={2500}
+        >
+          <Alert severity="error">File must be less than 2MB</Alert>
         </Snackbar>
         <Snackbar
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
