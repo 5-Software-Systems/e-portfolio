@@ -24,34 +24,28 @@ http {
    }
 
    server {
-      listen <%= ENV["PORT"] %>;
-      server_name fivecent-eportfolio.herokuapp.com default_server;
+        listen <%= ENV["PORT"] %>;
+        server_name fivecent-eportfolio.herokuapp.com default_server;
 
 
-      root /e-portfolio/app/build;
-      index index.html;
-      location / {
-          try_files $uri /$uri index.html;
-      }
+        root /e-portfolio/app/build;
+        index index.html;
 
-      location ^~ /api {
-         proxy_set_header X-Real-IP $remote_addr;
-         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header Host $server_name;
-         proxy_redirect off;
-         proxy_pass http://127.0.0.1:5000;
-      }
-      location ^~ /admin {
-         proxy_set_header Host $http_host;
-         proxy_set_header X-Real-IP $remote_addr;
-         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-         proxy_set_header X-Forwarded-Host $http_host;
-         proxy_redirect off;
-         proxy_pass http://app_server;
-      }
+        location / {
+        # checks for static file, if not found proxy to app
+        try_files $uri @proxy_to_app;
+        }
 
-      # static
-      location ~* \.(jpg|jpeg|png|gif|ico|svg|otf)$ {
+        location @proxy_to_app {
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header Host $http_host;
+          proxy_redirect off;
+          proxy_pass http://app_server;
+        }
+
+        # static
+        location ~* \.(jpg|jpeg|png|gif|ico|svg|otf)$ {
             expires 30d;
         }
         location ~* \.(css|js)$ {
