@@ -18,7 +18,8 @@ def create_app():
     )
 
     app.config.from_object(config)
-    print(config, file=sys.stderr)
+    for attr in [a for a in dir(config) if not a.startswith('__')]:
+        print(f'{attr:<35} = {getattr(config, attr)}', file=sys.stderr)
     db.init_app(app)
     flask_bcrypt.init_app(app)
 
