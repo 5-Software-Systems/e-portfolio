@@ -138,8 +138,7 @@ export function FileUpload(props) {
         const requestOptions = {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
-            Authorization: "bearer " + Auth,
+            "Content-Type": "application/json"
           },
         };
         var image = await fetch(

@@ -31,7 +31,6 @@ class Files(Resource):
 @namespace.param('file_name', 'The File identifier')
 class File(Resource):
 
-    @token_required('user', 'login')
     def get(self, user_public_id, file_name):
         """
         This is technically not restful - DOWNLOAD IN SWAGGER WON'T WORK
