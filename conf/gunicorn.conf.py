@@ -3,5 +3,3 @@ def when_ready(server):
 
 
 bind = 'unix:///tmp/nginx.socket'
-worker_class = 'gevent'
-timeout = 90
