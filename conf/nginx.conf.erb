@@ -24,9 +24,8 @@ http {
    }
 
    server {
-        listen <%= ENV["PORT"] %>;
-        server_name fivecent-eportfolio.herokuapp.com default_server;
-
+        listen 443 ssl default_server;
+        server_name fivecent-eportfolio.herokuapp.com;
 
         root /e-portfolio/app/build;
         index index.html;
