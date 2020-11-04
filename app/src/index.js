@@ -28,8 +28,6 @@ import {
   _404Page,
 } from "./routing.js";
 
-const defaultTheme = createMuiTheme();
-
 const theme = createMuiTheme({
   palette: {
     mode: "light",
@@ -38,16 +36,6 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: "#F95858",
-    },
-  },
-  overrides: {
-    MuiToolbar: {
-      gutters: {
-        [defaultTheme.breakpoints.up("sm")]: {
-          paddingLeft: defaultTheme.spacing(5),
-          paddingRight: defaultTheme.spacing(5),
-        },
-      },
     },
   },
 });
