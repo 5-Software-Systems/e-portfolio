@@ -18,6 +18,7 @@ import Alert from '@material-ui/lab/Alert';
 
 export default function EditBox(props) {
   const Auth = isAuthorized();
+  const startType = props.widgetType;
   const [dropDownType, setDropDownType] = useState(props.widgetType);
   const [data, setData] = useState({});
   const [changeCount, setChangeCount] = useState(0);
@@ -38,25 +39,35 @@ export default function EditBox(props) {
   }
 
   async function updateWidget() {
-    deleteWidget();
+    var sameType = (dropDownType === startType);
+    var method = "PATCH";
+    var body = {
+      location: props.widgetLocation,
+      data,
+    }
+
+    if (!sameType) {
+      deleteWidget();
+      method = "POST"
+      body = {
+        type: dropDownType,
+        location: props.widgetLocation,
+        data,
+      }
+    }
+
+
+    
     const requestOptions = {
-      method: "POST",
+      method: method,
       headers: {
         "Content-Type": "application/json",
         Authorization: "bearer " + Auth,
       },
-      body: JSON.stringify({
-        type: dropDownType,
-        location: props.widgetLocation,
-        data,
-      }),
+      body: JSON.stringify(body),
     };
-    await fetch(
-      "/api/user/" +
-        props.userID +
-        "/portfolio/" +
-        props.portfolioID +
-        "/widget",
+    await fetch("/api/user/" +
+      props.userID + (sameType ? "" : "/portfolio/" + props.portfolioID) + "/widget" + (sameType ? "/" + props.PID : ""),
       requestOptions
     );
   }

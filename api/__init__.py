@@ -24,5 +24,5 @@ def handle_server_error(e: ServerError):
         'message': e.error_message,
     }
     if current_app.config['DEBUG']:
-        print(type(e), json.dumps(err, indent=2), file=sys.stderr)
+        print(type(e), '\n', json.dumps(err, indent=2), file=sys.stderr)
     return err, e.status_code

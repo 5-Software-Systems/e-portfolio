@@ -27,7 +27,7 @@ export default function EPortfolioPreview(props) {
         Authorization: "bearer " + Auth,
       },
     };
-    await fetch("api/" + api_link, requestOptions);
+    await fetch("/api/" + api_link, requestOptions);
   }
 
   //edit funciton
@@ -80,7 +80,7 @@ export default function EPortfolioPreview(props) {
         background_url: newImage,
       }),
     };
-    await fetch("api/" + api_link, requestOptions);
+    await fetch("/api/" + api_link, requestOptions);
   }
 
   function editButton(outer_close) {
@@ -249,7 +249,6 @@ export default function EPortfolioPreview(props) {
   function update() {
     if (props.onUpdate) {
       props.onUpdate();
-      console.log(process.env.PUBLIC_URL);
     }
   }
 

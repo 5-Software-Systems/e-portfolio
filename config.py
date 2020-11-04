@@ -7,6 +7,7 @@ load_dotenv()
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PROPAGATE_EXCEPTIONS = False
+    AUTH = bool(os.environ.get('AUTH', 'true').lower() == 'true')
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
     GMAIL_USER = os.environ.get('SMTP_EMAIL')
@@ -23,6 +24,7 @@ class TestingConfig(Config):
     DEBUG = True
     TESTING = True
     PROPAGATE_EXCEPTIONS = True
+    AUTH = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DB_URI')
 
 
@@ -36,12 +38,14 @@ class LocalTestingConfig(Config):
     DEBUG = True
     TESTING = True
     PROPAGATE_EXCEPTIONS = True
+    AUTH = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
 
 
 class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
+    AUTH = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DB_URI')
 
 

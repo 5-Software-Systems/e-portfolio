@@ -14,7 +14,7 @@ def token_required(key, permissions):
     def token_required(f):
         @wraps(f)
         def decorated(*args, **kwargs):
-            if current_app.config['DEBUG']:
+            if not current_app.config['AUTH']:
                 return f(*args, **kwargs)
 
             token = split_bearer_token(request.headers.get('Authorization'))

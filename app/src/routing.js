@@ -183,7 +183,6 @@ export function ContactUsPage() {
 export function Demo() {
   return (
     <div>
-      <title>Demo</title>
       <EPortfolioDemo />
     </div>
   );

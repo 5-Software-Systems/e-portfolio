@@ -98,14 +98,14 @@ ReactDOM.render(
             exact
             path="/profile"
             render={() => {
-              return isLoggedIn() ? <ProfilePage /> : <Redirect to="/" />;
+              return isLoggedIn() ? <ProfilePage /> : <Redirect to="/login" />;
             }}
           />
           <Route
             exact
             path="/settings"
             render={() => {
-              return isLoggedIn() ? <SettingsPage /> : <Redirect to="/" />;
+              return isLoggedIn() ? <SettingsPage /> : <Redirect to="/login" />;
             }}
           />
           <Route
@@ -126,7 +126,6 @@ ReactDOM.render(
               return <PortfolioNotFound />;
             }}
           />
-          <Route exact path="/demo" component={Demo} />
           <Route exact path="/updates" component={UpdatesPage} />
           <Route exact path="/contact" component={ContactUsPage} />
           <Route exact path="/help" component={ExamplesPage} />
