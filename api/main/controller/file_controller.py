@@ -31,7 +31,6 @@ class Files(Resource):
 @namespace.param('file_name', 'The File identifier')
 class File(Resource):
 
-    @namespace.expect(api_model.auth_token_header)
     @token_required('user', 'login')
     def get(self, user_public_id, file_name):
         """
