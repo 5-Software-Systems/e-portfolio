@@ -98,7 +98,7 @@ export function FileUpload(props) {
       url = current;
     } else {
       url =
-        "http://" +
+        "https://" +
         window.location.host +
         "/api/user/" +
         props.userID +
