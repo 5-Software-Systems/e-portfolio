@@ -207,7 +207,7 @@ export function PortfolioNotFound() {
         <div className="banner first">
           <div className="container">
             <h2 className="font-weight-semibold">
-              The portfolio you're looking is no longer available.
+              The portfolio you're looking for is no longer available.
             </h2>
             <img
               src={process.env.PUBLIC_URL + "/images/not_found.svg"}

@@ -26,7 +26,8 @@
       transition: background-color, 0.2s;
  }
 
- .basepage .eportfoliopreview:hover{
+ .basepage .eportfoliopreview:hover,
+ .eportfoliopreview:focus {
       background-color: #f0f1ff;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.829);
       transition: background-color, box-shadow, 0.5s;

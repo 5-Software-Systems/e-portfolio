@@ -41,7 +41,7 @@ Upon completion of the feature check that it is working locally.
 If anyone else has made changes to the master, merge them from the master to your feature branch.
 ` git merge master ` \
 Now push the feature branch to the remote.
-` git push -u origin {university id}/{feature name} `
+` git push -u origin {university id}/{trello_card_id}-{feature name} `
 
 
 ##### Pull Requests
@@ -55,47 +55,43 @@ If there is reason to deny the request from either reviewer you will be messaged
 ___
 
 ### Installation
+From root dir \
+Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
+`python -m venv venv`\
+`venv\Scripts\pip install -r requirements.txt`
 
 Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmjs.com/get-npm) \
 `cd app
 `\
 `npm install
-` 
-
-Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
-`cd ..` _(return to parent dir)_\
-`python -m venv venv`\
-`venv\Scripts\pip install -r requirements.txt'`
-
+`
 
 ### Running
 
-##### Development
-
+##### For Development
+From root dir \
 Start API (back-end) \
-`venv\Scripts\python manage.py runserver --debug
-`\
+`venv\Scripts\python manage.py runserver`\
 Create database (after model changes) (back-end) \
-`venv\Scripts\python manage.py reset
-`
+`venv\Scripts\python manage.py reset`
 
 APP (front-end) \
+From root dir \
 `cd app
 `\
 `npm run start
 `
-##### Build
-
+##### To Run Build
+From root dir \
 `npm --prefix app run build
 `\
-`venv\Scripts\python -m api --run --debug
-`
+`venv\Scripts\python manage.py runserver`
 
-### Testing
+### For Testing
 
 API (back-end) \
-In separate processes: \
-`venv\Scripts\python manage.py runserver --debug`\
+In separate processes/terminal sessions: \
+`venv\Scripts\python manage.py runserver`\
 `venv\Scripts\python manage.py testapi`
 
 Unit Tests: \
@@ -103,6 +99,6 @@ Unit Tests: \
 For more detail: `pytest tests/ -vv`
 
 
-### Deploying
-- The currently deployed master version can be found at: <br/> http://www.echidna.studio/
+### Deployment
+- The currently deployed master version can be found at: <br/> https://fivecent-eportfolio.herokuapp.com/
 - The test environment can be found at: <br/> https://test-eportfolio123.herokuapp.com/

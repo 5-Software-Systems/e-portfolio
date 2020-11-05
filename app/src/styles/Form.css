@@ -7,6 +7,10 @@
   margin: auto;
 }
 
+.form-container:focus {
+  outline: none;
+}
+
 .form-container input[type=email],
 .form-container input[type=password],
 .form-container input[type=text] {
