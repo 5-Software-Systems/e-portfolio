@@ -16,10 +16,10 @@ namespace = Namespace(
 @namespace.route('/user')
 class UserList(Resource):
 
-    @namespace.marshal_with(api_model.user_basic, as_list=True, envelope='users')
-    def get(self):
-        """List all Users"""
-        return user_service.get_all_users()
+    # @namespace.marshal_with(api_model.user_basic, as_list=True, envelope='users')
+    # def get(self):
+    #     """List all Users"""
+    #     return user_service.get_all_users()
 
     @namespace.expect(api_model.user_new, api_model.auth_token_header, validate=True)
     @namespace.marshal_with(api_model.user_basic, envelope='user')
