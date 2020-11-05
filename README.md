@@ -41,7 +41,7 @@ Upon completion of the feature check that it is working locally.
 If anyone else has made changes to the master, merge them from the master to your feature branch.
 ` git merge master ` \
 Now push the feature branch to the remote.
-` git push -u origin {university id}/{feature name} `
+` git push -u origin {university id}/{trello_card_id}-{feature name} `
 
 
 ##### Pull Requests
@@ -58,7 +58,7 @@ ___
 From root dir \
 Check you have Python by typing `python` in CMD, if not, get [Python](https://www.python.org/downloads) \
 `python -m venv venv`\
-`venv\Scripts\pip install -r requirements.txt'`
+`venv\Scripts\pip install -r requirements.txt`
 
 Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmjs.com/get-npm) \
 `cd app
@@ -71,11 +71,9 @@ Check you have Node by typing `node` in CMD, if not, get [Node](https://www.npmj
 ##### For Development
 From root dir \
 Start API (back-end) \
-`venv\Scripts\python manage.py runserver --debug
-`\
+`venv\Scripts\python manage.py runserver`\
 Create database (after model changes) (back-end) \
-`venv\Scripts\python manage.py reset
-`
+`venv\Scripts\python manage.py reset`
 
 APP (front-end) \
 From root dir \
@@ -83,18 +81,17 @@ From root dir \
 `\
 `npm run start
 `
-##### To Build
+##### To Run Build
 From root dir \
 `npm --prefix app run build
 `\
-`venv\Scripts\python -m api --run --debug
-`
+`venv\Scripts\python manage.py runserver`
 
 ### For Testing
 
 API (back-end) \
 In separate processes/terminal sessions: \
-`venv\Scripts\python manage.py runserver --debug`\
+`venv\Scripts\python manage.py runserver`\
 `venv\Scripts\python manage.py testapi`
 
 Unit Tests: \
