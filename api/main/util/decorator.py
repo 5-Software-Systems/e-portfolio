@@ -5,7 +5,7 @@ from ..service.auth_service import decode_token, split_bearer_token
 from ..util.exception import AuthenticationError, Forbidden, RequestError
 
 
-def token_required(key, permissions):
+def token_required(key, *permissions):
     """
     :param key: the key for the resource being protected eg. user, portfolio
     :param permissions: list of permissions eg. login, reset, verify
@@ -27,11 +27,11 @@ def token_required(key, permissions):
             if not token_id:
                 raise AuthenticationError
 
-            request_id = kwargs.get(f'{key}_public_id')
-            if not request_id:
+            resource_public_id = kwargs.get(f'{key}_public_id')
+            if not resource_public_id:
                 raise RequestError
 
-            if not token_id == request_id:
+            if not token_id == resource_public_id:
                 raise Forbidden
 
             return f(*args, **kwargs)
